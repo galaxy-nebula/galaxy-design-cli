@@ -69,8 +69,8 @@ npm publish
 
 - **Name**: `galaxy-ui-cli`
 - **Version**: `0.1.0`
-- **Homepage**: https://galaxy-ui-docs.vercel.app
-- **Repository**: https://github.com/buikevin/galaxy-ui-cli
+- **Homepage**: https://galaxy-design.vercel.app
+- **Repository**: https://github.com/buikevin/galaxy-design-cli
 - **License**: MIT
 
 ## Lưu ý

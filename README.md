@@ -189,7 +189,7 @@ Galaxy UI stores configuration in `components.json` at your project root:
 
 ```json
 {
-  "$schema": "https://galaxy-ui.com/schema.json",
+  "$schema": "https://galaxy-design.vercel.app/schema.json",
   "framework": "react",
   "typescript": true,
   "tailwind": {
@@ -295,8 +295,8 @@ Components are copied to your project, so you have full control:
 ## 📖 Documentation & Examples
 
 - **Live Examples**: Check `examples/` folder for complete React, Vue, and Angular apps
-- **Docs Website**: <https://galaxy-ui-cli.vercel.app>
-- **GitHub**: <https://github.com/buikevin/galaxy-ui-cli>
+- **Docs Website**: <https://galaxy-design.vercel.app>
+- **GitHub**: <https://github.com/buikevin/galaxy-design-cli>
 
 ## 🤝 Contributing
 
@@ -317,4 +317,4 @@ MIT License - see [LICENSE](../../LICENSE) for details
 
 **Made with ❤️ by the Galaxy UI team**
 
-For issues and feature requests, please visit our [GitHub Issues](<https://github.com/buikevin/galaxy-ui-cli/issues>)
+For issues and feature requests, please visit our [GitHub Issues](<https://github.com/buikevin/galaxy-design-cli/issues>)

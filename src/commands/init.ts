@@ -286,8 +286,8 @@ export async function initCommand(options: InitOptions) {
   console.log(chalk.gray(`     galaxy-ui add --all\n`));
 
   console.log(chalk.cyan('Learn more:'));
-  console.log(chalk.white('  Documentation: https://galaxy-ui.com'));
-  console.log(chalk.white('  GitHub: https://github.com/buikevin/galaxy-ui-cli\n'));
+  console.log(chalk.white('  Documentation: https://galaxy-design.vercel.app'));
+  console.log(chalk.white('  GitHub: https://github.com/buikevin/galaxy-design-cli\n'));
 }
 
 /**

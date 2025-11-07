@@ -142,7 +142,7 @@ export const defaultConfigs: Record<Framework, Partial<ComponentsConfig>> = {
 export function getDefaultConfig(framework: Framework): ComponentsConfig {
   const defaults = defaultConfigs[framework];
   return {
-    $schema: 'https://galaxy-ui.com/schema.json',
+    $schema: 'https://galaxy-design.vercel.app/schema.json',
     ...defaults,
   } as ComponentsConfig;
 }
