@@ -3,6 +3,11 @@ import { dirname, join, relative } from 'path';
 import type { Platform } from './platform-detector';
 import { getComponentSourceDir, isMobilePlatform } from './platform-detector';
 import { getComponent, validateComponentDependencies } from './registry-loader';
+import {
+	fetchAndSaveFile,
+	getComponentGitHubPath,
+	checkGitHubConnection,
+} from './github-fetcher';
 
 /**
  * Component copy options
@@ -40,10 +45,10 @@ export interface ComponentCopyResult {
  * @param options - Copy options
  * @returns Copy result
  */
-export function copyComponent(
+export async function copyComponent(
 	componentName: string,
 	options: ComponentCopyOptions,
-): ComponentCopyResult {
+): Promise<ComponentCopyResult> {
 	const result: ComponentCopyResult = {
 		componentName,
 		success: false,
@@ -74,24 +79,15 @@ export function copyComponent(
 		return result;
 	}
 
-	// Get source directory
-	const packagesDir = options.packagesDir || join(__dirname, '..', '..', '..');
-	const componentSourceDir = getComponentSourceDir(options.platform);
-	const sourceDir = join(packagesDir, componentSourceDir);
-
 	// Determine target directory based on platform
 	const componentsTargetDir = getComponentsTargetDir(options.platform, options.targetDir);
 
+	// Determine source mode: GitHub or local
+	const useGitHub = !options.packagesDir;
+
 	// Copy each file
 	for (const file of component.files) {
-		const sourceFile = join(sourceDir, file);
 		const targetFile = join(componentsTargetDir, file);
-
-		// Check if source exists
-		if (!existsSync(sourceFile)) {
-			result.errors.push(`Source file not found: ${sourceFile}`);
-			continue;
-		}
 
 		// Check if target already exists
 		if (existsSync(targetFile) && !options.overwrite) {
@@ -111,9 +107,32 @@ export function copyComponent(
 			mkdirSync(targetDir, { recursive: true });
 		}
 
-		// Copy file
+		// Copy file - from GitHub or local
 		try {
-			copyFileSync(sourceFile, targetFile);
+			if (useGitHub) {
+				// Fetch from GitHub
+				const githubPath = getComponentGitHubPath(options.platform, componentName, file);
+				const success = await fetchAndSaveFile(githubPath, targetFile);
+
+				if (!success) {
+					result.errors.push(`Failed to fetch ${file} from GitHub`);
+					continue;
+				}
+			} else {
+				// Copy from local packages directory (for development)
+				const packagesDir = options.packagesDir!;
+				const componentSourceDir = getComponentSourceDir(options.platform);
+				const sourceDir = join(packagesDir, componentSourceDir);
+				const sourceFile = join(sourceDir, file);
+
+				if (!existsSync(sourceFile)) {
+					result.errors.push(`Source file not found: ${sourceFile}`);
+					continue;
+				}
+
+				copyFileSync(sourceFile, targetFile);
+			}
+
 			result.filesCopied.push(relative(options.targetDir, targetFile));
 		} catch (error) {
 			result.errors.push(
@@ -133,14 +152,14 @@ export function copyComponent(
  * @param options - Copy options
  * @returns Array of copy results
  */
-export function copyComponents(
+export async function copyComponents(
 	componentNames: string[],
 	options: ComponentCopyOptions,
-): ComponentCopyResult[] {
+): Promise<ComponentCopyResult[]> {
 	const results: ComponentCopyResult[] = [];
 
 	for (const name of componentNames) {
-		const result = copyComponent(name, options);
+		const result = await copyComponent(name, options);
 		results.push(result);
 
 		// If this component failed, log warning but continue
