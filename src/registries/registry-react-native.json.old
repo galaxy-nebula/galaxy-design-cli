@@ -1,0 +1,379 @@
+{
+  "$schema": "../schemas/registry-schema.json",
+  "name": "react-native",
+  "components": {
+    "button": {
+      "name": "Button",
+      "type": "form",
+      "description": "Displays a button or a component that looks like a button",
+      "dependencies": ["class-variance-authority", "nativewind"],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["Button.tsx", "variants.ts", "index.ts"],
+      "category": "form"
+    },
+    "input": {
+      "name": "Input",
+      "type": "form",
+      "description": "Displays a form input field or a component that looks like an input field",
+      "dependencies": ["nativewind"],
+      "devDependencies": [],
+      "registryDependencies": ["label"],
+      "files": ["Input.tsx", "index.ts"],
+      "category": "form"
+    },
+    "label": {
+      "name": "Label",
+      "type": "form",
+      "description": "Renders an accessible label associated with controls",
+      "dependencies": ["@rn-primitives/label", "nativewind"],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["Label.tsx", "index.ts"],
+      "category": "form"
+    },
+    "checkbox": {
+      "name": "Checkbox",
+      "type": "form",
+      "description": "A control that allows the user to toggle between checked and not checked",
+      "dependencies": ["@rn-primitives/checkbox", "nativewind"],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["Checkbox.tsx", "index.ts"],
+      "category": "form"
+    },
+    "select": {
+      "name": "Select",
+      "type": "form",
+      "description": "Displays a list of options for the user to pick from triggered by a button",
+      "dependencies": ["@rn-primitives/select", "nativewind"],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["Select.tsx", "index.ts"],
+      "category": "form"
+    },
+    "radio-group": {
+      "name": "Radio Group",
+      "type": "form",
+      "description": "A set of checkable buttons where no more than one of the buttons can be checked at a time",
+      "dependencies": ["@rn-primitives/radio-group", "nativewind"],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["RadioGroup.tsx", "index.ts"],
+      "category": "form"
+    },
+    "switch": {
+      "name": "Switch",
+      "type": "form",
+      "description": "A control that allows the user to toggle between checked and not checked",
+      "dependencies": ["@rn-primitives/switch", "nativewind"],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["Switch.tsx", "index.ts"],
+      "category": "form"
+    },
+    "slider": {
+      "name": "Slider",
+      "type": "form",
+      "description": "An input where the user selects a value from within a given range",
+      "dependencies": ["@rn-primitives/slider", "nativewind"],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["Slider.tsx", "index.ts"],
+      "category": "form"
+    },
+    "separator": {
+      "name": "Separator",
+      "type": "layout",
+      "description": "Visually or semantically separates content",
+      "dependencies": ["@rn-primitives/separator", "nativewind"],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["Separator.tsx", "index.ts"],
+      "category": "layout"
+    },
+    "accordion": {
+      "name": "Accordion",
+      "type": "layout",
+      "description": "A vertically stacked set of interactive headings that each reveal a section of content",
+      "dependencies": ["@rn-primitives/accordion", "nativewind"],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["Accordion.tsx", "index.ts"],
+      "category": "layout"
+    },
+    "dialog": {
+      "name": "Dialog",
+      "type": "modal-overlay",
+      "description": "A window overlaid on either the primary window or another dialog window",
+      "dependencies": ["@rn-primitives/dialog", "@rn-primitives/portal", "nativewind"],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["Dialog.tsx", "index.ts"],
+      "category": "modal-overlay"
+    },
+    "alert-dialog": {
+      "name": "Alert Dialog",
+      "type": "modal-overlay",
+      "description": "A modal dialog that interrupts the user with important content and expects a response",
+      "dependencies": ["@rn-primitives/alert-dialog", "@rn-primitives/portal", "nativewind"],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["AlertDialog.tsx", "index.ts"],
+      "category": "modal-overlay"
+    },
+    "tabs": {
+      "name": "Tabs",
+      "type": "layout",
+      "description": "A set of layered sections of content (tab panels) that are displayed one at a time",
+      "dependencies": ["@rn-primitives/tabs", "nativewind"],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["Tabs.tsx", "index.ts"],
+      "category": "layout"
+    },
+    "avatar": {
+      "name": "Avatar",
+      "type": "data-display",
+      "description": "An image element with a fallback for representing the user",
+      "dependencies": ["@rn-primitives/avatar", "nativewind"],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["Avatar.tsx", "index.ts"],
+      "category": "data-display"
+    },
+    "progress": {
+      "name": "Progress",
+      "type": "data-display",
+      "description": "Displays an indicator showing the completion progress of a task",
+      "dependencies": ["@rn-primitives/progress", "nativewind"],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["Progress.tsx", "index.ts"],
+      "category": "data-display"
+    },
+    "tooltip": {
+      "name": "Tooltip",
+      "type": "modal-overlay",
+      "description": "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it",
+      "dependencies": ["@rn-primitives/tooltip", "@rn-primitives/portal", "nativewind"],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["Tooltip.tsx", "index.ts"],
+      "category": "modal-overlay"
+    },
+    "aspect-ratio": {
+      "name": "Aspect Ratio",
+      "type": "layout",
+      "description": "Displays content within a desired ratio",
+      "dependencies": ["@rn-primitives/aspect-ratio", "nativewind"],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["AspectRatio.tsx", "index.ts"],
+      "category": "layout"
+    },
+    "collapsible": {
+      "name": "Collapsible",
+      "type": "layout",
+      "description": "An interactive component which expands/collapses a panel",
+      "dependencies": ["@rn-primitives/collapsible", "nativewind"],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["Collapsible.tsx", "index.ts"],
+      "category": "layout"
+    },
+    "context-menu": {
+      "name": "Context Menu",
+      "type": "navigation",
+      "description": "Displays a menu to the user (such as a set of actions or functions) triggered by a button",
+      "dependencies": ["@rn-primitives/context-menu", "@rn-primitives/portal", "nativewind"],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["ContextMenu.tsx", "index.ts"],
+      "category": "navigation"
+    },
+    "dropdown-menu": {
+      "name": "Dropdown Menu",
+      "type": "navigation",
+      "description": "Displays a menu to the user (such as a set of actions or functions) triggered by a button",
+      "dependencies": ["@rn-primitives/dropdown-menu", "@rn-primitives/portal", "nativewind"],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["DropdownMenu.tsx", "index.ts"],
+      "category": "navigation"
+    },
+    "hover-card": {
+      "name": "Hover Card",
+      "type": "modal-overlay",
+      "description": "For sighted users to preview content available behind a link",
+      "dependencies": ["@rn-primitives/hover-card", "@rn-primitives/portal", "nativewind"],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["HoverCard.tsx", "index.ts"],
+      "category": "modal-overlay"
+    },
+    "menubar": {
+      "name": "Menubar",
+      "type": "navigation",
+      "description": "A visually persistent menu common in desktop applications",
+      "dependencies": ["@rn-primitives/menubar", "@rn-primitives/portal", "nativewind"],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["Menubar.tsx", "index.ts"],
+      "category": "navigation"
+    },
+    "popover": {
+      "name": "Popover",
+      "type": "modal-overlay",
+      "description": "Displays rich content in a portal, triggered by a button",
+      "dependencies": ["@rn-primitives/popover", "@rn-primitives/portal", "nativewind"],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["Popover.tsx", "index.ts"],
+      "category": "modal-overlay"
+    },
+    "toggle": {
+      "name": "Toggle",
+      "type": "form",
+      "description": "A two-state button that can be either on or off",
+      "dependencies": ["@rn-primitives/toggle", "nativewind"],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["Toggle.tsx", "index.ts"],
+      "category": "form"
+    },
+    "toggle-group": {
+      "name": "Toggle Group",
+      "type": "form",
+      "description": "A set of two-state buttons that can be toggled on or off",
+      "dependencies": ["@rn-primitives/toggle-group", "nativewind"],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["ToggleGroup.tsx", "index.ts"],
+      "category": "form"
+    },
+    "textarea": {
+      "name": "Textarea",
+      "type": "form",
+      "description": "Displays a form textarea or a component that looks like a textarea",
+      "dependencies": ["nativewind"],
+      "devDependencies": [],
+      "registryDependencies": ["label"],
+      "files": ["Textarea.tsx", "index.ts"],
+      "category": "form"
+    },
+    "card": {
+      "name": "Card",
+      "type": "data-display",
+      "description": "Displays a card with header, content, and footer",
+      "dependencies": ["nativewind"],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["Card.tsx", "index.ts"],
+      "category": "data-display"
+    },
+    "skeleton": {
+      "name": "Skeleton",
+      "type": "feedback",
+      "description": "Use to show a placeholder while content is loading",
+      "dependencies": ["nativewind"],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["Skeleton.tsx", "index.ts"],
+      "category": "feedback"
+    },
+    "alert": {
+      "name": "Alert",
+      "type": "feedback",
+      "description": "Displays a callout for user attention",
+      "dependencies": ["nativewind"],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["Alert.tsx", "index.ts"],
+      "category": "feedback"
+    },
+    "badge": {
+      "name": "Badge",
+      "type": "data-display",
+      "description": "Displays a badge or a component that looks like a badge",
+      "dependencies": ["class-variance-authority", "nativewind"],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["Badge.tsx", "index.ts"],
+      "category": "data-display"
+    },
+    "text": {
+      "name": "Text",
+      "type": "data-display",
+      "description": "Typography component with semantic variants",
+      "dependencies": ["class-variance-authority", "nativewind"],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["Text.tsx", "index.ts"],
+      "category": "data-display"
+    }
+  },
+  "groups": {
+    "form": {
+      "name": "Form Components",
+      "components": [
+        "button",
+        "input",
+        "checkbox",
+        "select",
+        "radio-group",
+        "switch",
+        "slider",
+        "label",
+        "textarea",
+        "toggle",
+        "toggle-group"
+      ]
+    },
+    "layout": {
+      "name": "Layout Components",
+      "components": [
+        "separator",
+        "accordion",
+        "tabs",
+        "aspect-ratio",
+        "collapsible"
+      ]
+    },
+    "navigation": {
+      "name": "Navigation Components",
+      "components": [
+        "context-menu",
+        "dropdown-menu",
+        "menubar"
+      ]
+    },
+    "modal-overlay": {
+      "name": "Modal & Overlay Components",
+      "components": [
+        "dialog",
+        "alert-dialog",
+        "tooltip",
+        "hover-card",
+        "popover"
+      ]
+    },
+    "data-display": {
+      "name": "Data Display Components",
+      "components": [
+        "avatar",
+        "progress",
+        "card",
+        "badge",
+        "text"
+      ]
+    },
+    "feedback": {
+      "name": "Feedback Components",
+      "components": [
+        "skeleton",
+        "alert"
+      ]
+    }
+  }
+}

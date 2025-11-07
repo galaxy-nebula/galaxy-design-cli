@@ -1,0 +1,20 @@
+# Source files
+src/
+tsconfig*.json
+.swcrc
+
+# Build artifacts
+*.tsbuildinfo
+*.map
+
+# Development files
+node_modules/
+.nx/
+.vscode/
+
+# Git
+.git/
+.gitignore
+
+# Documentation (keep README.md)
+CONTRIBUTING.md

@@ -1,0 +1,258 @@
+{
+  "$schema": "../schemas/registry-schema.json",
+  "name": "flutter",
+  "components": {
+    "button": {
+      "name": "Button",
+      "type": "form",
+      "description": "Displays a button or a component that looks like a button",
+      "dependencies": [],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["button.dart", "button_theme.dart"],
+      "category": "form"
+    },
+    "input": {
+      "name": "Input",
+      "type": "form",
+      "description": "Displays a form input field or a component that looks like an input field",
+      "dependencies": [],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["input.dart"],
+      "category": "form"
+    },
+    "checkbox": {
+      "name": "Checkbox",
+      "type": "form",
+      "description": "A control that allows the user to toggle between checked and not checked",
+      "dependencies": [],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["checkbox.dart"],
+      "category": "form"
+    },
+    "select": {
+      "name": "Select",
+      "type": "form",
+      "description": "Displays a list of options for the user to pick from triggered by a button",
+      "dependencies": [],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["select.dart"],
+      "category": "form"
+    },
+    "slider": {
+      "name": "Slider",
+      "type": "form",
+      "description": "An input where the user selects a value from within a given range",
+      "dependencies": [],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["slider.dart"],
+      "category": "form"
+    },
+    "accordion": {
+      "name": "Accordion",
+      "type": "layout",
+      "description": "A vertically stacked set of interactive headings that each reveal a section of content",
+      "dependencies": [],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["accordion.dart"],
+      "category": "layout"
+    },
+    "dialog": {
+      "name": "Dialog",
+      "type": "modal-overlay",
+      "description": "A window overlaid on either the primary window or another dialog window",
+      "dependencies": [],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["dialog.dart"],
+      "category": "modal-overlay"
+    },
+    "alert-dialog": {
+      "name": "Alert Dialog",
+      "type": "modal-overlay",
+      "description": "A modal dialog that interrupts the user with important content and expects a response",
+      "dependencies": [],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["alert_dialog.dart"],
+      "category": "modal-overlay"
+    },
+    "tabs": {
+      "name": "Tabs",
+      "type": "layout",
+      "description": "A set of layered sections of content (tab panels) that are displayed one at a time",
+      "dependencies": [],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["tabs.dart"],
+      "category": "layout"
+    },
+    "avatar": {
+      "name": "Avatar",
+      "type": "data-display",
+      "description": "An image element with a fallback for representing the user",
+      "dependencies": [],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["avatar.dart"],
+      "category": "data-display"
+    },
+    "tooltip": {
+      "name": "Tooltip",
+      "type": "modal-overlay",
+      "description": "A popup that displays information related to an element",
+      "dependencies": [],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["tooltip.dart"],
+      "category": "modal-overlay"
+    },
+    "card": {
+      "name": "Card",
+      "type": "data-display",
+      "description": "Displays a card with header, content, and footer",
+      "dependencies": [],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["card.dart"],
+      "category": "data-display"
+    },
+    "menubar": {
+      "name": "Menubar",
+      "type": "navigation",
+      "description": "A visually persistent menu common in desktop applications",
+      "dependencies": [],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["menubar.dart"],
+      "category": "navigation"
+    },
+    "sheet": {
+      "name": "Sheet",
+      "type": "modal-overlay",
+      "description": "Extends the Dialog component to display content that complements the main content of the screen",
+      "dependencies": [],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["sheet.dart"],
+      "category": "modal-overlay"
+    },
+    "table": {
+      "name": "Table",
+      "type": "data-display",
+      "description": "A responsive table component",
+      "dependencies": [],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["table.dart"],
+      "category": "data-display"
+    },
+    "alert": {
+      "name": "Alert",
+      "type": "feedback",
+      "description": "Displays a callout for user attention",
+      "dependencies": [],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["alert.dart"],
+      "category": "feedback"
+    },
+    "calendar": {
+      "name": "Calendar",
+      "type": "form",
+      "description": "A date field component that allows users to enter and edit date",
+      "dependencies": [],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["calendar.dart"],
+      "category": "form"
+    },
+    "date-picker": {
+      "name": "Date Picker",
+      "type": "form",
+      "description": "A date picker component with range and calendar support",
+      "dependencies": [],
+      "devDependencies": [],
+      "registryDependencies": ["calendar"],
+      "files": ["date_picker.dart"],
+      "category": "form"
+    },
+    "time-picker": {
+      "name": "Time Picker",
+      "type": "form",
+      "description": "A time picker component",
+      "dependencies": [],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["time_picker.dart"],
+      "category": "form"
+    },
+    "form": {
+      "name": "Form",
+      "type": "form",
+      "description": "Building forms with validation",
+      "dependencies": [],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["form.dart", "form_field.dart"],
+      "category": "form"
+    }
+  },
+  "groups": {
+    "form": {
+      "name": "Form Components",
+      "components": [
+        "button",
+        "input",
+        "checkbox",
+        "select",
+        "slider",
+        "calendar",
+        "date-picker",
+        "time-picker",
+        "form"
+      ]
+    },
+    "layout": {
+      "name": "Layout Components",
+      "components": [
+        "accordion",
+        "tabs"
+      ]
+    },
+    "navigation": {
+      "name": "Navigation Components",
+      "components": [
+        "menubar"
+      ]
+    },
+    "modal-overlay": {
+      "name": "Modal & Overlay Components",
+      "components": [
+        "dialog",
+        "alert-dialog",
+        "tooltip",
+        "sheet"
+      ]
+    },
+    "data-display": {
+      "name": "Data Display Components",
+      "components": [
+        "avatar",
+        "card",
+        "table"
+      ]
+    },
+    "feedback": {
+      "name": "Feedback Components",
+      "components": [
+        "alert"
+      ]
+    }
+  }
+}

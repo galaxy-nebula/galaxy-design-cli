@@ -1,0 +1,68 @@
+{
+  "name": "galaxy-ui-cli",
+  "version": "0.2.0",
+  "description": "CLI tool for adding Galaxy UI components to your Vue, React, Angular, React Native, or Flutter project",
+  "author": "Bùi Trọng Hiếu (kevinbui) <kevinbui210191@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/buikevin/galaxy-design-cli.git"
+  },
+  "homepage": "https://galaxy-design.vercel.app",
+  "bugs": {
+    "email": "kevinbui210191@gmail.com"
+  },
+  "keywords": [
+    "galaxy-ui",
+    "ui-components",
+    "vue",
+    "react",
+    "angular",
+    "react-native",
+    "flutter",
+    "mobile",
+    "tailwind",
+    "nativewind",
+    "radix-ui",
+    "cli",
+    "component-library",
+    "cross-platform"
+  ],
+  "private": false,
+  "packageManager": "bun@1.2.19",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "galaxy-ui-cli": "./dist/bin.js"
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "@galaxy-ui-cli/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "swc src -d dist --config-file .swcrc --strip-leading-paths && cp src/registry.json dist/ && cp -r src/registries dist/ && cp -r src/schemas dist/ && cp -r src/templates dist/",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@swc/helpers": "~0.5.11",
+    "chalk": "^5.6.2",
+    "commander": "^14.0.2",
+    "cosmiconfig": "^9.0.0",
+    "execa": "^9.6.0",
+    "ora": "^9.0.0",
+    "prompts": "^2.4.2",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@swc/cli": "^0.4.1-nightly.20240914",
+    "@swc/core": "^1.9.3",
+    "typescript": "^5.7.3"
+  }
+}

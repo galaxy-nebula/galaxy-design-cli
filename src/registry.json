@@ -1,0 +1,460 @@
+{
+  "components": {
+    "button": {
+      "name": "Button",
+      "selector": "gButton",
+      "type": "form",
+      "description": "Versatile button with 6 status variants and 5 sizes",
+      "files": ["button/button.component.ts"],
+      "dependencies": [],
+      "peerDependencies": ["lucide-angular"],
+      "exports": ["ButtonDirective"]
+    },
+    "input": {
+      "name": "Input",
+      "selector": "g-input",
+      "type": "form",
+      "description": "Text input with label, hints, and error messages",
+      "files": ["input/input.component.ts"],
+      "dependencies": [],
+      "peerDependencies": ["lucide-angular"],
+      "exports": ["InputComponent"]
+    },
+    "checkbox": {
+      "name": "Checkbox",
+      "selector": "g-checkbox",
+      "type": "form",
+      "description": "Checkbox with indeterminate state support",
+      "files": ["checkbox/checkbox.component.ts"],
+      "dependencies": [],
+      "peerDependencies": ["lucide-angular"],
+      "exports": ["CheckboxComponent"]
+    },
+    "select": {
+      "name": "Select",
+      "selector": "g-select",
+      "type": "form",
+      "description": "Custom dropdown with search functionality",
+      "files": ["select/select.component.ts"],
+      "dependencies": [],
+      "peerDependencies": ["lucide-angular"],
+      "exports": ["SelectComponent", "OptionComponent"]
+    },
+    "calendar": {
+      "name": "Calendar",
+      "selector": "g-calendar",
+      "type": "form",
+      "description": "Full-featured date picker",
+      "files": ["calendar/calendar.component.ts"],
+      "dependencies": [],
+      "peerDependencies": [],
+      "exports": ["CalendarComponent"]
+    },
+    "radio": {
+      "name": "Radio",
+      "selector": "g-radio",
+      "type": "form",
+      "description": "Radio button group with single/multiple selection",
+      "files": ["radio/radio.component.ts"],
+      "dependencies": [],
+      "peerDependencies": [],
+      "exports": ["RadioComponent"]
+    },
+    "switch": {
+      "name": "Switch",
+      "selector": "g-switch",
+      "type": "form",
+      "description": "Toggle switch with smooth animation",
+      "files": ["switch/switch.component.ts"],
+      "dependencies": [],
+      "peerDependencies": [],
+      "exports": ["SwitchComponent"]
+    },
+    "slider": {
+      "name": "Slider",
+      "selector": "g-slider",
+      "type": "form",
+      "description": "Range slider with min/max and step support",
+      "files": ["slider/slider.component.ts"],
+      "dependencies": [],
+      "peerDependencies": [],
+      "exports": ["SliderComponent"]
+    },
+    "rate": {
+      "name": "Rate",
+      "selector": "g-rate",
+      "type": "form",
+      "description": "Star rating with half star support",
+      "files": ["rate/rate.component.ts"],
+      "dependencies": [],
+      "peerDependencies": ["lucide-angular"],
+      "exports": ["RateComponent"]
+    },
+    "button-group": {
+      "name": "Button Group",
+      "selector": "g-button-group",
+      "type": "form",
+      "description": "Button group with single/multiple selection",
+      "files": ["button-group/button-group.component.ts"],
+      "dependencies": [],
+      "peerDependencies": [],
+      "exports": ["ButtonGroupComponent", "ButtonGroupItemComponent"]
+    },
+    "autocomplete": {
+      "name": "Autocomplete",
+      "selector": "g-autocomplete",
+      "type": "form",
+      "description": "Autocomplete input with search and suggestions",
+      "files": ["autocomplete/autocomplete.component.ts"],
+      "dependencies": [],
+      "peerDependencies": ["lucide-angular"],
+      "exports": ["AutocompleteComponent"]
+    },
+    "calendar-range": {
+      "name": "Calendar Range",
+      "selector": "g-calendar-range",
+      "type": "form",
+      "description": "Date range picker with start and end dates",
+      "files": ["calendar-range/calendar-range.component.ts"],
+      "dependencies": [],
+      "peerDependencies": [],
+      "exports": ["CalendarRangeComponent"]
+    },
+    "card": {
+      "name": "Card",
+      "selector": "g-card",
+      "type": "layout",
+      "description": "Container with header, body, and footer sections",
+      "files": ["card/card.component.ts"],
+      "dependencies": [],
+      "peerDependencies": [],
+      "exports": ["CardComponent", "CardHeaderComponent", "CardBodyComponent", "CardFooterComponent"]
+    },
+    "accordion": {
+      "name": "Accordion",
+      "selector": "g-accordion",
+      "type": "layout",
+      "description": "Collapsible sections with expand/collapse",
+      "files": ["accordion/accordion.component.ts"],
+      "dependencies": [],
+      "peerDependencies": ["lucide-angular"],
+      "exports": ["AccordionComponent", "AccordionItemComponent"]
+    },
+    "grid": {
+      "name": "Grid",
+      "selector": "g-grid",
+      "type": "layout",
+      "description": "12-column responsive grid system",
+      "files": ["grid/grid.component.ts"],
+      "dependencies": [],
+      "peerDependencies": [],
+      "exports": ["GridComponent", "GridItemComponent"]
+    },
+    "divider": {
+      "name": "Divider",
+      "selector": "g-divider",
+      "type": "layout",
+      "description": "Horizontal or vertical separator",
+      "files": ["divider/divider.component.ts"],
+      "dependencies": [],
+      "peerDependencies": [],
+      "exports": ["DividerComponent"]
+    },
+    "splitter": {
+      "name": "Splitter",
+      "selector": "g-splitter",
+      "type": "layout",
+      "description": "Resizable split panes with drag handles",
+      "files": ["splitter/splitter.component.ts"],
+      "dependencies": [],
+      "peerDependencies": ["lucide-angular"],
+      "exports": ["SplitterComponent", "SplitterPanelComponent"]
+    },
+    "menu": {
+      "name": "Menu",
+      "selector": "g-menu",
+      "type": "navigation",
+      "description": "Sidebar navigation with icons and badges",
+      "files": ["menu/menu.component.ts"],
+      "dependencies": [],
+      "peerDependencies": ["lucide-angular"],
+      "exports": ["MenuComponent", "MenuItemComponent", "MenuGroupComponent"]
+    },
+    "breadcrumb": {
+      "name": "Breadcrumb",
+      "selector": "g-breadcrumb",
+      "type": "navigation",
+      "description": "Page location navigation trail",
+      "files": ["breadcrumb/breadcrumb.component.ts"],
+      "dependencies": [],
+      "peerDependencies": ["lucide-angular"],
+      "exports": ["BreadcrumbComponent", "BreadcrumbItemComponent"]
+    },
+    "tabs": {
+      "name": "Tabs",
+      "selector": "g-tabs",
+      "type": "navigation",
+      "description": "Tabbed content organization",
+      "files": ["tabs/tabs.component.ts"],
+      "dependencies": [],
+      "peerDependencies": ["lucide-angular"],
+      "exports": ["TabsComponent", "TabComponent", "TabPanelComponent"]
+    },
+    "dropdown": {
+      "name": "Dropdown",
+      "selector": "g-dropdown",
+      "type": "navigation",
+      "description": "Action menus and context menus",
+      "files": ["dropdown/dropdown.component.ts"],
+      "dependencies": [],
+      "peerDependencies": ["lucide-angular"],
+      "exports": ["DropdownComponent", "DropdownMenuComponent", "DropdownItemComponent"]
+    },
+    "sidebar": {
+      "name": "Sidebar",
+      "selector": "g-sidebar",
+      "type": "navigation",
+      "description": "Layout with collapsible sidebar",
+      "files": ["sidebar/sidebar.component.ts"],
+      "dependencies": [],
+      "peerDependencies": ["lucide-angular"],
+      "exports": ["SidebarComponent", "SidebarHeaderComponent", "SidebarContentComponent", "SidebarFooterComponent"]
+    },
+    "stepper": {
+      "name": "Stepper",
+      "selector": "g-stepper",
+      "type": "navigation",
+      "description": "Multi-step wizards and forms",
+      "files": ["stepper/stepper.component.ts"],
+      "dependencies": [],
+      "peerDependencies": ["lucide-angular"],
+      "exports": ["StepperComponent", "StepComponent"]
+    },
+    "table": {
+      "name": "Table",
+      "selector": "g-table",
+      "type": "data-display",
+      "description": "Data table with sorting, filtering, and selection",
+      "files": ["table/table.component.ts"],
+      "dependencies": [],
+      "peerDependencies": ["lucide-angular"],
+      "exports": ["TableComponent"]
+    },
+    "pagination": {
+      "name": "Pagination",
+      "selector": "g-pagination",
+      "type": "data-display",
+      "description": "Pagination controls for data navigation",
+      "files": ["pagination/pagination.component.ts"],
+      "dependencies": [],
+      "peerDependencies": ["lucide-angular"],
+      "exports": ["PaginationComponent"]
+    },
+    "table-paginated": {
+      "name": "Table Paginated",
+      "selector": "g-table-paginated",
+      "type": "data-display",
+      "description": "Data table with built-in pagination",
+      "files": ["table-paginated/table-paginated.component.ts"],
+      "dependencies": ["table", "pagination"],
+      "peerDependencies": ["lucide-angular"],
+      "exports": ["TablePaginatedComponent"]
+    },
+    "list": {
+      "name": "List",
+      "selector": "g-list",
+      "type": "data-display",
+      "description": "Versatile list component for displaying data",
+      "files": ["list/list.component.ts"],
+      "dependencies": [],
+      "peerDependencies": [],
+      "exports": ["ListComponent", "ListItemComponent"]
+    },
+    "tree": {
+      "name": "Tree",
+      "selector": "g-tree",
+      "type": "data-display",
+      "description": "Hierarchical tree structure with expand/collapse",
+      "files": ["tree/tree.component.ts"],
+      "dependencies": [],
+      "peerDependencies": ["lucide-angular"],
+      "exports": ["TreeComponent"]
+    },
+    "tag": {
+      "name": "Tag",
+      "selector": "g-tag",
+      "type": "data-display",
+      "description": "Tag component for labels and categorization",
+      "files": ["tag/tag.component.ts"],
+      "dependencies": [],
+      "peerDependencies": ["lucide-angular"],
+      "exports": ["TagComponent"]
+    },
+    "timeline": {
+      "name": "Timeline",
+      "selector": "g-timeline",
+      "type": "data-display",
+      "description": "Timeline component for displaying chronological events",
+      "files": ["timeline/timeline.component.ts"],
+      "dependencies": [],
+      "peerDependencies": ["lucide-angular"],
+      "exports": ["TimelineComponent"]
+    },
+    "popover": {
+      "name": "Popover",
+      "selector": "g-popover",
+      "type": "modal-overlay",
+      "description": "Popover component for contextual information",
+      "files": ["popover/popover.component.ts"],
+      "dependencies": [],
+      "peerDependencies": [],
+      "exports": ["PopoverComponent"]
+    },
+    "drawer": {
+      "name": "Drawer",
+      "selector": "g-drawer",
+      "type": "modal-overlay",
+      "description": "Drawer component with slide-in animation (shadcn style)",
+      "files": ["drawer/drawer.component.ts"],
+      "dependencies": [],
+      "peerDependencies": ["lucide-angular"],
+      "exports": ["DrawerComponent"]
+    },
+    "toast": {
+      "name": "Toast",
+      "selector": "g-toast",
+      "type": "modal-overlay",
+      "description": "Toast notification component with service (antd style)",
+      "files": ["toast/toast.component.ts"],
+      "dependencies": [],
+      "peerDependencies": ["lucide-angular"],
+      "exports": ["ToastComponent", "ToastService", "ToastItemComponent", "ToastContainerComponent"]
+    },
+    "tooltip": {
+      "name": "Tooltip",
+      "selector": "g-tooltip",
+      "type": "modal-overlay",
+      "description": "Tooltip component for hover information (shadcn style)",
+      "files": ["tooltip/tooltip.component.ts"],
+      "dependencies": [],
+      "peerDependencies": [],
+      "exports": ["TooltipComponent"]
+    },
+    "progress": {
+      "name": "Progress",
+      "selector": "g-progress",
+      "type": "modal-overlay",
+      "description": "Progress bar and circle component (antd style)",
+      "files": ["progress/progress.component.ts"],
+      "dependencies": [],
+      "peerDependencies": ["lucide-angular"],
+      "exports": ["ProgressComponent"]
+    },
+    "skeleton": {
+      "name": "Skeleton",
+      "selector": "g-skeleton",
+      "type": "modal-overlay",
+      "description": "Skeleton loading placeholder component (antd style)",
+      "files": ["skeleton/skeleton.component.ts"],
+      "dependencies": [],
+      "peerDependencies": [],
+      "exports": ["SkeletonComponent"]
+    },
+    "popconfirm": {
+      "name": "Popconfirm",
+      "selector": "g-popconfirm",
+      "type": "modal-overlay",
+      "description": "Popconfirm component for confirmation dialogs (antd style)",
+      "files": ["popconfirm/popconfirm.component.ts"],
+      "dependencies": [],
+      "peerDependencies": ["lucide-angular"],
+      "exports": ["PopconfirmComponent"]
+    },
+    "dialog": {
+      "name": "Dialog",
+      "selector": "g-dialog",
+      "type": "modal-overlay",
+      "description": "Modal dialog component",
+      "files": ["dialog/dialog.component.ts"],
+      "dependencies": [],
+      "peerDependencies": ["lucide-angular"],
+      "exports": ["DialogComponent"]
+    },
+    "spinner": {
+      "name": "Spinner",
+      "selector": "g-spinner",
+      "type": "modal-overlay",
+      "description": "Loading spinner component with multiple styles",
+      "files": ["spinner/spinner.component.ts"],
+      "dependencies": [],
+      "peerDependencies": ["lucide-angular"],
+      "exports": ["SpinnerComponent"]
+    },
+    "avatar": {
+      "name": "Avatar",
+      "selector": "g-avatar",
+      "type": "other",
+      "description": "Avatar component for user profile pictures",
+      "files": ["avatar/avatar.component.ts"],
+      "dependencies": [],
+      "peerDependencies": ["lucide-angular"],
+      "exports": ["AvatarComponent", "AvatarGroupComponent"]
+    },
+    "badge": {
+      "name": "Badge",
+      "selector": "g-badge",
+      "type": "other",
+      "description": "Badge component for counts and status indicators",
+      "files": ["badge/badge.component.ts"],
+      "dependencies": [],
+      "peerDependencies": [],
+      "exports": ["BadgeComponent", "BadgeRibbonComponent"]
+    },
+    "tour": {
+      "name": "Tour",
+      "selector": "g-tour",
+      "type": "other",
+      "description": "Tour component for user onboarding (antd style)",
+      "files": ["tour/tour.component.ts"],
+      "dependencies": [],
+      "peerDependencies": ["lucide-angular"],
+      "exports": ["TourComponent"]
+    },
+    "carousel": {
+      "name": "Carousel",
+      "selector": "g-carousel",
+      "type": "other",
+      "description": "Carousel component for image/content slides (antd style)",
+      "files": ["carousel/carousel.component.ts"],
+      "dependencies": [],
+      "peerDependencies": ["lucide-angular"],
+      "exports": ["CarouselComponent", "CarouselItemComponent"]
+    }
+  },
+  "groups": {
+    "form": {
+      "name": "Form Components",
+      "components": ["button", "input", "checkbox", "select", "calendar", "radio", "switch", "slider", "rate", "button-group", "autocomplete", "calendar-range"]
+    },
+    "layout": {
+      "name": "Layout Components",
+      "components": ["card", "accordion", "grid", "divider", "splitter"]
+    },
+    "navigation": {
+      "name": "Navigation Components",
+      "components": ["menu", "breadcrumb", "tabs", "dropdown", "sidebar", "stepper"]
+    },
+    "data-display": {
+      "name": "Data Display Components",
+      "components": ["table", "pagination", "table-paginated", "list", "tree", "tag", "timeline"]
+    },
+    "modal-overlay": {
+      "name": "Modal & Overlay Components",
+      "components": ["popover", "drawer", "toast", "tooltip", "progress", "skeleton", "popconfirm", "dialog", "spinner"]
+    },
+    "other": {
+      "name": "Other Components",
+      "components": ["avatar", "badge", "tour", "carousel"]
+    }
+  }
+}
