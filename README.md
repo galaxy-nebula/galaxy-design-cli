@@ -18,11 +18,11 @@ A modern, framework-agnostic CLI tool for adding beautiful, accessible UI compon
 
 ```bash
 # Using npx (recommended - no installation needed)
-npx galaxy-ui-cli@latest init
+npx galaxy-design@latest init
 
 # Or install globally
-npm install -g galaxy-ui-cli
-bun add -g galaxy-ui-cli
+npm install -g galaxy-design
+bun add -g galaxy-design
 ```
 
 ## 🚀 Quick Start
@@ -30,7 +30,7 @@ bun add -g galaxy-ui-cli
 ### 1. Initialize Galaxy UI in your project
 
 ```bash
-npx galaxy-ui-cli@latest init
+npx galaxy-design@latest init
 ```
 
 This interactive command will:
@@ -46,13 +46,13 @@ This interactive command will:
 
 ```bash
 # Add single component
-npx galaxy-ui-cli@latest add button
+npx galaxy-design@latest add button
 
 # Add multiple components
-npx galaxy-ui-cli@latest add button input card
+npx galaxy-design@latest add button input card
 
 # Interactive mode (select from list)
-npx galaxy-ui-cli@latest add
+npx galaxy-design@latest add
 ```
 
 ## 📚 Available Components (41 total)
@@ -229,10 +229,10 @@ Galaxy UI stores configuration in `components.json` at your project root:
 Initialize Galaxy UI in your project.
 
 ```bash
-npx galaxy-ui-cli@latest init
+npx galaxy-design@latest init
 
 # Skip prompts (use defaults)
-npx galaxy-ui-cli@latest init --yes
+npx galaxy-design@latest init --yes
 ```
 
 ### `add`
@@ -241,16 +241,16 @@ Add components to your project.
 
 ```bash
 # Interactive mode
-npx galaxy-ui-cli@latest add
+npx galaxy-design@latest add
 
 # Add specific components
-npx galaxy-ui-cli@latest add button input
+npx galaxy-design@latest add button input
 
 # Add all components
-npx galaxy-ui-cli@latest add --all
+npx galaxy-design@latest add --all
 
 # Overwrite existing components
-npx galaxy-ui-cli@latest add button --overwrite
+npx galaxy-design@latest add button --overwrite
 ```
 
 ### `diff`
@@ -258,7 +258,7 @@ npx galaxy-ui-cli@latest add button --overwrite
 Check which components have updates available.
 
 ```bash
-npx galaxy-ui-cli@latest diff button
+npx galaxy-design@latest diff button
 ```
 
 ## 🌈 Styling & Theming

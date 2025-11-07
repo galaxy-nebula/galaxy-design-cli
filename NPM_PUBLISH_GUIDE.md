@@ -1,6 +1,6 @@
 # Hướng dẫn Publish lên NPM
 
-Package `galaxy-ui-cli` đã được chuẩn bị đầy đủ để publish lên npm registry. Làm theo các bước sau:
+Package `galaxy-design` đã được chuẩn bị đầy đủ để publish lên npm registry. Làm theo các bước sau:
 
 ## Bước 1: Đăng nhập NPM
 
@@ -38,13 +38,13 @@ Sau khi publish thành công:
 
 ```bash
 # Kiểm tra package đã có trên npm
-npm view galaxy-ui-cli
+npm view galaxy-design
 
 # Test cài đặt global
-npm install -g galaxy-ui-cli
+npm install -g galaxy-design
 
 # Hoặc chạy trực tiếp với npx
-npx galaxy-ui-cli@latest --version
+npx galaxy-design@latest --version
 ```
 
 ## Cập nhật version sau này
@@ -67,15 +67,15 @@ npm publish
 
 ## Thông tin package
 
-- **Name**: `galaxy-ui-cli`
-- **Version**: `0.1.0`
+- **Name**: `galaxy-design`
+- **Version**: `0.2.0`
 - **Homepage**: https://galaxy-design.vercel.app
-- **Repository**: https://github.com/buikevin/galaxy-design-cli
+- **Repository**: https://github.com/buikevin/galaxy-design
 - **License**: MIT
 
 ## Lưu ý
 
-1. Tên package `galaxy-ui-cli` đã được kiểm tra và có sẵn trên npm
+1. Tên package `galaxy-design` đã được kiểm tra và có sẵn trên npm
 2. Package được config với `"private": false` nên có thể publish công khai
 3. `prepublishOnly` script sẽ tự động build trước khi publish
 4. `.npmignore` đã loại bỏ source files, chỉ publish compiled code
@@ -97,7 +97,7 @@ npm publish
 ## Next Steps
 
 Sau khi publish thành công:
-1. Update documentation với instruction cài đặt: `npx galaxy-ui-cli@latest`
+1. Update documentation với instruction cài đặt: `npx galaxy-design@latest`
 2. Tạo GitHub release
 3. Update CHANGELOG.md
-4. Share package link: https://www.npmjs.com/package/galaxy-ui-cli
+4. Share package link: https://www.npmjs.com/package/galaxy-design

@@ -1,18 +1,19 @@
 {
-  "name": "galaxy-ui-cli",
+  "name": "galaxy-design",
   "version": "0.2.0",
   "description": "CLI tool for adding Galaxy UI components to your Vue, React, Angular, React Native, or Flutter project",
   "author": "Bùi Trọng Hiếu (kevinbui) <kevinbui210191@gmail.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/buikevin/galaxy-design-cli.git"
+    "url": "https://github.com/buikevin/galaxy-design.git"
   },
   "homepage": "https://galaxy-design.vercel.app",
   "bugs": {
-    "email": "kevinbui210191@gmail.com"
+    "url": "https://github.com/buikevin/galaxy-design/issues"
   },
   "keywords": [
+    "galaxy-design",
     "galaxy-ui",
     "ui-components",
     "vue",
@@ -26,7 +27,9 @@
     "radix-ui",
     "cli",
     "component-library",
-    "cross-platform"
+    "cross-platform",
+    "design-system",
+    "shadcn"
   ],
   "private": false,
   "packageManager": "bun@1.2.19",
@@ -35,8 +38,14 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "bin": {
+    "galaxy-design": "./dist/bin.js",
     "galaxy-ui-cli": "./dist/bin.js"
   },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "exports": {
     "./package.json": "./package.json",
     ".": {
