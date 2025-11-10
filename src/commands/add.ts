@@ -19,6 +19,7 @@ import {
 import { writeFile, fileExists, readFile, ensureDir } from '../utils/files.js';
 import { installDependencies } from '../utils/package-manager.js';
 import type { Framework } from '../utils/config-schema.js';
+import { fetchFileFromGitHub, getComponentGitHubPath } from '../utils/github-fetcher.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -34,7 +35,7 @@ export async function addCommand(components: string[], options: AddOptions) {
   // Check if components.json exists (new config system)
   if (!hasComponentsConfig(cwd)) {
     console.log(chalk.red('❌ Galaxy UI is not initialized in this project.'));
-    console.log(chalk.gray('Run') + chalk.cyan(' galaxy-ui init ') + chalk.gray('first.'));
+    console.log(chalk.gray('Run') + chalk.cyan(' galaxy-design init ') + chalk.gray('first.'));
     return;
   }
 
@@ -167,7 +168,7 @@ export async function addCommand(components: string[], options: AddOptions) {
       const componentFolderPath = join(fullDestPath, componentKey);
       ensureDir(componentFolderPath);
 
-      // Copy component files from source packages
+      // Copy component files from GitHub
       for (const file of component.files) {
         const fileName = file.includes('/') ? file.split('/').pop()! : file;
         const destFilePath = join(componentFolderPath, fileName);
@@ -180,27 +181,25 @@ export async function addCommand(components: string[], options: AddOptions) {
           continue;
         }
 
-        // Get source path from packages (blocks/ or components/)
-        const sourceFolder = component.type === 'block' ? 'blocks' : 'components';
-        const packagePath = resolve(__dirname, '..', '..', '..', framework, 'src', sourceFolder, componentKey);
-        const sourcePath = join(packagePath, file);
-
-        // Try to read the source file
-        if (fileExists(sourcePath)) {
-          const content = readFile(sourcePath);
+        try {
+          // Fetch file from GitHub
+          const sourceFolder = component.type === 'block' ? 'blocks' : 'components';
+          const githubPath = `packages/${framework}/src/${sourceFolder}/${componentKey}/${file}`;
+          const content = await fetchFileFromGitHub(githubPath);
           writeFile(destFilePath, content);
-        } else {
-          // Try with capitalized component name
-          const capitalizedFile = file.charAt(0).toUpperCase() + file.slice(1);
-          const capitalizedSourcePath = join(packagePath, capitalizedFile);
-
-          if (fileExists(capitalizedSourcePath)) {
-            const content = readFile(capitalizedSourcePath);
+        } catch (error) {
+          // Try with capitalized file name
+          try {
+            const capitalizedFile = file.charAt(0).toUpperCase() + file.slice(1);
+            const sourceFolder = component.type === 'block' ? 'blocks' : 'components';
+            const githubPath = `packages/${framework}/src/${sourceFolder}/${componentKey}/${capitalizedFile}`;
+            const content = await fetchFileFromGitHub(githubPath);
             writeFile(destFilePath, content);
-          } else {
-            // Fallback to placeholder if source not found
-            const placeholderContent = `// ${component.name} component for ${framework}\n// TODO: Component source not found at ${sourcePath}\n`;
+          } catch (capitalizedError) {
+            // If both attempts fail, write a placeholder
+            const placeholderContent = `// ${component.name} component for ${framework}\n// TODO: Failed to fetch component from GitHub: ${error instanceof Error ? error.message : 'Unknown error'}\n`;
             writeFile(destFilePath, placeholderContent);
+            spinner.warn(`${chalk.yellow('⚠')} Failed to fetch ${file} from GitHub, created placeholder`);
           }
         }
       }

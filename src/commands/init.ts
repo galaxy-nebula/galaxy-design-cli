@@ -53,7 +53,7 @@ export async function initCommand(options: InitOptions) {
   if (detectedFramework === 'unknown') {
     console.log(
       chalk.red(
-        '❌ Could not detect framework. Please ensure you are in a valid Angular, React, Vue, React Native, or Flutter project.'
+        '❌ Could not detect framework. Please ensure you are in a valid Angular, React, Vue, Next.js, Nuxt.js, React Native, or Flutter project.'
       )
     );
     return;
@@ -68,6 +68,8 @@ export async function initCommand(options: InitOptions) {
     vue: 'vue',
     'react-native': 'react-native',
     flutter: 'flutter',
+    nextjs: 'nextjs',
+    nuxtjs: 'nuxtjs',
     unknown: null,
   };
 
@@ -178,6 +180,7 @@ export async function initCommand(options: InitOptions) {
   // Framework-specific dependencies
   switch (framework) {
     case 'vue':
+    case 'nuxtjs':
       dependencies.push('radix-vue');
       devDependencies.push('tailwindcss', 'autoprefixer', 'postcss');
       if (config.iconLibrary === 'lucide') {
@@ -186,6 +189,7 @@ export async function initCommand(options: InitOptions) {
       break;
 
     case 'react':
+    case 'nextjs':
       dependencies.push('@radix-ui/react-slot');
       devDependencies.push('tailwindcss', 'autoprefixer', 'postcss');
       if (config.iconLibrary === 'lucide') {
@@ -281,13 +285,13 @@ export async function initCommand(options: InitOptions) {
   console.log(chalk.white(`  1. Configure Tailwind CSS in ${config.tailwind.config}`));
   console.log(chalk.white(`  2. Import utilities in ${config.tailwind.css}`));
   console.log(chalk.white(`  3. Add components:`));
-  console.log(chalk.gray(`     galaxy-ui add button`));
-  console.log(chalk.gray(`     galaxy-ui add input card`));
-  console.log(chalk.gray(`     galaxy-ui add --all\n`));
+  console.log(chalk.gray(`     galaxy-design add button`));
+  console.log(chalk.gray(`     galaxy-design add input card`));
+  console.log(chalk.gray(`     galaxy-design add --all\n`));
 
   console.log(chalk.cyan('Learn more:'));
   console.log(chalk.white('  Documentation: https://galaxy-design.vercel.app'));
-  console.log(chalk.white('  GitHub: https://github.com/buikevin/galaxy-design-cli\n'));
+  console.log(chalk.white('  GitHub: https://github.com/buikevin/galaxy-design\n'));
 }
 
 /**

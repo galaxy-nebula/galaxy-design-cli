@@ -92,6 +92,16 @@
       "files": ["Textarea.tsx", "index.ts"],
       "category": "form"
     },
+    "form": {
+      "name": "Form",
+      "type": "form",
+      "description": "Building forms with React Hook Form and Zod validation",
+      "dependencies": ["react-hook-form", "@hookform/resolvers", "zod"],
+      "devDependencies": [],
+      "registryDependencies": ["button", "input", "label"],
+      "files": ["Form.tsx", "index.ts"],
+      "category": "form"
+    },
     "separator": {
       "name": "Separator",
       "type": "layout",
@@ -142,6 +152,16 @@
       "files": ["Collapsible.tsx", "index.ts"],
       "category": "layout"
     },
+    "card": {
+      "name": "Card",
+      "type": "layout",
+      "description": "Displays a card with header, content, and footer",
+      "dependencies": [],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["Card.tsx", "index.ts"],
+      "category": "layout"
+    },
     "alert-dialog": {
       "name": "Alert Dialog",
       "type": "feedback",
@@ -150,6 +170,16 @@
       "devDependencies": [],
       "registryDependencies": [],
       "files": ["AlertDialog.tsx", "index.ts"],
+      "category": "feedback"
+    },
+    "alert": {
+      "name": "Alert",
+      "type": "feedback",
+      "description": "Displays a callout for user attention",
+      "dependencies": [],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["Alert.tsx", "index.ts"],
       "category": "feedback"
     },
     "progress": {
@@ -200,6 +230,16 @@
       "devDependencies": [],
       "registryDependencies": [],
       "files": ["NavigationMenu.tsx", "index.ts"],
+      "category": "navigation"
+    },
+    "breadcrumb": {
+      "name": "Breadcrumb",
+      "type": "navigation",
+      "description": "Displays the path to the current resource using a hierarchy of links",
+      "dependencies": [],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["Breadcrumb.tsx", "index.ts"],
       "category": "navigation"
     },
     "menubar": {
@@ -392,6 +432,26 @@
       "files": ["Skeleton.tsx", "index.ts"],
       "category": "feedback"
     },
+    "badge": {
+      "name": "Badge",
+      "type": "feedback",
+      "description": "Displays a badge or a component that looks like a badge",
+      "dependencies": [],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["Badge.tsx", "index.ts"],
+      "category": "feedback"
+    },
+    "toast": {
+      "name": "Toast",
+      "type": "feedback",
+      "description": "A succinct message that is displayed temporarily",
+      "dependencies": ["@radix-ui/react-toast"],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": ["Toast.tsx", "Toaster.tsx", "index.ts"],
+      "category": "feedback"
+    },
     "kbd": {
       "name": "Kbd",
       "type": "data-display",
@@ -496,11 +556,11 @@
   "groups": {
     "form": {
       "name": "Form Components",
-      "components": ["button", "input", "label", "select", "checkbox", "radio-group", "switch", "slider", "textarea", "calendar", "calendar-range", "tags-input"]
+      "components": ["button", "input", "label", "select", "checkbox", "radio-group", "switch", "slider", "textarea", "form", "calendar", "calendar-range", "tags-input"]
     },
     "layout": {
       "name": "Layout Components",
-      "components": ["separator", "accordion", "tabs", "dialog", "collapsible", "scroll-area", "aspect-ratio", "resizable", "sheet", "toolbar"]
+      "components": ["card", "separator", "accordion", "tabs", "dialog", "collapsible", "scroll-area", "aspect-ratio", "resizable", "sheet", "toolbar"]
     },
     "interactive": {
       "name": "Interactive Components",
@@ -508,7 +568,7 @@
     },
     "feedback": {
       "name": "Feedback Components",
-      "components": ["alert-dialog", "progress", "empty", "skeleton"]
+      "components": ["alert-dialog", "alert", "progress", "empty", "skeleton", "badge", "toast"]
     },
     "data-display": {
       "name": "Data Display Components",
@@ -516,7 +576,7 @@
     },
     "navigation": {
       "name": "Navigation Components",
-      "components": ["dropdown-menu", "navigation-menu", "menubar", "context-menu", "popover", "tooltip", "pagination", "command"]
+      "components": ["dropdown-menu", "navigation-menu", "breadcrumb", "menubar", "context-menu", "popover", "tooltip", "pagination", "command"]
     },
     "charts": {
       "name": "Chart Components",

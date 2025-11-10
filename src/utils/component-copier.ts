@@ -8,6 +8,7 @@ import {
 	getComponentGitHubPath,
 	checkGitHubConnection,
 } from './github-fetcher';
+import { transformComponent } from './component-transformer';
 
 /**
  * Component copy options
@@ -109,6 +110,8 @@ export async function copyComponent(
 
 		// Copy file - from GitHub or local
 		try {
+			let fileContent: string;
+
 			if (useGitHub) {
 				// Fetch from GitHub
 				const githubPath = getComponentGitHubPath(options.platform, componentName, file);
@@ -118,6 +121,9 @@ export async function copyComponent(
 					result.errors.push(`Failed to fetch ${file} from GitHub`);
 					continue;
 				}
+
+				// Read the fetched content for transformation
+				fileContent = readFileSync(targetFile, 'utf-8');
 			} else {
 				// Copy from local packages directory (for development)
 				const packagesDir = options.packagesDir!;
@@ -130,7 +136,23 @@ export async function copyComponent(
 					continue;
 				}
 
-				copyFileSync(sourceFile, targetFile);
+				fileContent = readFileSync(sourceFile, 'utf-8');
+			}
+
+			// Transform component if needed (Next.js, Nuxt.js)
+			const transformResult = transformComponent(fileContent, {
+				platform: options.platform,
+				componentName,
+				filePath: targetFile,
+			});
+
+			// Write the transformed content
+			writeFileSync(targetFile, transformResult.content, 'utf-8');
+
+			// Log transformation notes if modified
+			if (transformResult.modified && transformResult.notes.length > 0) {
+				// Store notes for later display (optional)
+				console.log(`  📝 ${file}: ${transformResult.notes.join(', ')}`);
 			}
 
 			result.filesCopied.push(relative(options.targetDir, targetFile));
@@ -192,12 +214,20 @@ function getComponentsTargetDir(platform: Platform, projectRoot: string): string
 			return join(projectRoot, 'lib', 'components');
 
 		case 'vue':
-			// Vue: src/components
-			return join(projectRoot, 'src', 'components');
+		case 'nuxtjs':
+			// Vue/Nuxt: src/components or components
+			if (existsSync(join(projectRoot, 'src'))) {
+				return join(projectRoot, 'src', 'components');
+			}
+			return join(projectRoot, 'components');
 
 		case 'react':
-			// React: src/components
-			return join(projectRoot, 'src', 'components');
+		case 'nextjs':
+			// React/Next.js: src/components or components
+			if (existsSync(join(projectRoot, 'src'))) {
+				return join(projectRoot, 'src', 'components');
+			}
+			return join(projectRoot, 'components');
 
 		case 'angular':
 			// Angular: src/components or components
@@ -236,14 +266,16 @@ export function generateImportStatement(
 	switch (platform) {
 		case 'react-native':
 		case 'react':
+		case 'nextjs':
 			// TypeScript/JSX import
-			return `import { ${exports.join(', ')} } from './components/${componentName}';`;
+			return `import { ${exports.join(', ')} } from '@/components/${componentName}';`;
 
 		case 'flutter':
 			// Dart import
 			return `import 'package:your_app/components/${componentName}/${componentName.replace(/-/g, '_')}.dart';`;
 
 		case 'vue':
+		case 'nuxtjs':
 			// Vue import
 			return `import { ${exports.join(', ')} } from '@/components/${componentName}';`;
 

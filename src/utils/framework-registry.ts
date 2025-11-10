@@ -41,7 +41,15 @@ export function loadFrameworkRegistry(framework: Framework): FrameworkRegistry {
     return registryCache.get(framework)!;
   }
 
-  const registryPath = resolve(__dirname, `../registries/registry-${framework}.json`);
+  // Map Next.js to React registry and Nuxt.js to Vue registry
+  let registryFramework = framework;
+  if (framework === 'nextjs') {
+    registryFramework = 'react';
+  } else if (framework === 'nuxtjs') {
+    registryFramework = 'vue';
+  }
+
+  const registryPath = resolve(__dirname, `../registries/registry-${registryFramework}.json`);
 
   if (!existsSync(registryPath)) {
     throw new Error(
@@ -54,7 +62,7 @@ export function loadFrameworkRegistry(framework: Framework): FrameworkRegistry {
     const registry: FrameworkRegistry = JSON.parse(registryContent);
 
     // Try to load and merge blocks registry
-    const blocksRegistryPath = resolve(__dirname, `../registries/blocks-${framework}.json`);
+    const blocksRegistryPath = resolve(__dirname, `../registries/blocks-${registryFramework}.json`);
     if (existsSync(blocksRegistryPath)) {
       try {
         const blocksContent = readFileSync(blocksRegistryPath, 'utf-8');

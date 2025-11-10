@@ -4,7 +4,7 @@ import { join } from 'path';
 /**
  * Supported platforms for Galaxy UI CLI
  */
-export type Platform = 'react-native' | 'flutter' | 'vue' | 'react' | 'angular' | 'unknown';
+export type Platform = 'react-native' | 'flutter' | 'vue' | 'react' | 'angular' | 'nextjs' | 'nuxtjs' | 'unknown';
 
 /**
  * Platform detection result with confidence level
@@ -88,6 +88,34 @@ export function detectPlatform(cwd: string): PlatformDetectionResult {
 			const packageJson = require(join(cwd, 'package.json'));
 			const deps = { ...packageJson.dependencies, ...packageJson.devDependencies };
 
+			// Check for Next.js (must be before React check)
+			if (deps['next']) {
+				evidence.push('Found Next.js in dependencies');
+				if (existsSync(join(cwd, 'next.config.js')) || existsSync(join(cwd, 'next.config.ts'))) {
+					evidence.push('Found next.config (Next.js config)');
+				}
+				return {
+					platform: 'nextjs',
+					confidence: 'high',
+					evidence,
+					framework: 'nextjs',
+				};
+			}
+
+			// Check for Nuxt.js (must be before Vue check)
+			if (deps['nuxt'] || deps['nuxt3']) {
+				evidence.push('Found Nuxt.js in dependencies');
+				if (existsSync(join(cwd, 'nuxt.config.ts')) || existsSync(join(cwd, 'nuxt.config.js'))) {
+					evidence.push('Found nuxt.config (Nuxt.js config)');
+				}
+				return {
+					platform: 'nuxtjs',
+					confidence: 'high',
+					evidence,
+					framework: 'nuxtjs',
+				};
+			}
+
 			// Check for Vue
 			if (deps['vue'] || deps['@vue/cli']) {
 				evidence.push('Found Vue in dependencies');
@@ -152,6 +180,8 @@ export function getPlatformDisplayName(platform: Platform): string {
 		'vue': 'Vue.js',
 		'react': 'React',
 		'angular': 'Angular',
+		'nextjs': 'Next.js',
+		'nuxtjs': 'Nuxt.js',
 		'unknown': 'Unknown',
 	};
 	return names[platform];
@@ -168,7 +198,7 @@ export function isMobilePlatform(platform: Platform): boolean {
  * Check if platform is web
  */
 export function isWebPlatform(platform: Platform): boolean {
-	return platform === 'vue' || platform === 'react' || platform === 'angular';
+	return platform === 'vue' || platform === 'react' || platform === 'angular' || platform === 'nextjs' || platform === 'nuxtjs';
 }
 
 /**
@@ -181,7 +211,9 @@ export function getRegistryFileName(platform: Platform): string {
 		case 'flutter':
 			return 'registry-flutter.json';
 		case 'vue':
+		case 'nuxtjs':
 		case 'react':
+		case 'nextjs':
 		case 'angular':
 			return 'registry.json'; // Web platforms use same registry
 		default:
@@ -199,8 +231,10 @@ export function getComponentSourceDir(platform: Platform): string {
 		case 'flutter':
 			return 'packages/flutter/lib/components';
 		case 'vue':
+		case 'nuxtjs':
 			return 'packages/vue/src/components';
 		case 'react':
+		case 'nextjs':
 			return 'packages/react/src/components';
 		case 'angular':
 			return 'packages/angular/src/components';

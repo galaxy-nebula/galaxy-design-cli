@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 // Framework types
-export const frameworkSchema = z.enum(['vue', 'react', 'angular', 'react-native', 'flutter']);
+export const frameworkSchema = z.enum(['vue', 'react', 'angular', 'react-native', 'flutter', 'nextjs', 'nuxtjs']);
 export type Framework = z.infer<typeof frameworkSchema>;
 
 // Base color types
@@ -134,6 +134,42 @@ export const defaultConfigs: Record<Framework, Partial<ComponentsConfig>> = {
     },
     iconLibrary: 'lucide',
   },
+  nextjs: {
+    framework: 'nextjs',
+    typescript: true,
+    tailwind: {
+      config: 'tailwind.config.ts',
+      css: 'app/globals.css', // Next.js App Router
+      baseColor: 'slate',
+      cssVariables: true,
+      prefix: '',
+    },
+    aliases: {
+      components: '@/components',
+      utils: '@/lib/utils',
+      ui: '@/components/ui',
+      lib: '@/lib',
+    },
+    iconLibrary: 'lucide',
+  },
+  nuxtjs: {
+    framework: 'nuxtjs',
+    typescript: true,
+    tailwind: {
+      config: 'tailwind.config.js',
+      css: 'assets/css/main.css', // Nuxt 3 default
+      baseColor: 'slate',
+      cssVariables: true,
+      prefix: '',
+    },
+    aliases: {
+      components: '@/components',
+      utils: '@/lib/utils',
+      ui: '@/components/ui',
+      lib: '@/lib',
+    },
+    iconLibrary: 'lucide',
+  },
 };
 
 /**
@@ -173,8 +209,10 @@ export function getFileExtensions(framework: Framework, typescript: boolean): st
 
   switch (framework) {
     case 'vue':
+    case 'nuxtjs':
       return ['.vue', `.${ext}`];
     case 'react':
+    case 'nextjs':
       return [`.tsx`, `.jsx`, `.${ext}`];
     case 'react-native':
       return [`.tsx`, `.jsx`, `.native.${ext}`, `.${ext}`];
@@ -193,8 +231,10 @@ export function getFileExtensions(framework: Framework, typescript: boolean): st
 export function getComponentPath(framework: Framework): string {
   switch (framework) {
     case 'vue':
+    case 'nuxtjs':
       return 'src/components';
     case 'react':
+    case 'nextjs':
       return 'src/components';
     case 'react-native':
       return 'src/components';

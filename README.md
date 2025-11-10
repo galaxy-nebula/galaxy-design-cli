@@ -1,12 +1,12 @@
 # Galaxy UI CLI
 
-A modern, framework-agnostic CLI tool for adding beautiful, accessible UI components to your projects. Inspired by shadcn/ui, but supporting React, Vue, and Angular.
+A modern, framework-agnostic CLI tool for adding beautiful, accessible UI components to your projects. Inspired by shadcn/ui, but supporting React, Vue, Angular, Next.js, and Nuxt.js.
 
 ## 🌟 Features
 
-- 🚀 **Multi-framework support**: React, Vue, and Angular
+- 🚀 **Multi-framework support**: React, Vue, Angular, Next.js, and Nuxt.js
 - 📦 **41 production-ready components** across 8 categories
-- 🎨 **Built with Radix UI primitives** (radix-ui for React, radix-vue for Vue, radix-ng for Angular)
+- 🎨 **Built with Radix UI primitives** (radix-ui for React/Next.js, radix-vue for Vue/Nuxt.js, radix-ng for Angular)
 - 🌙 **Dark mode support** out of the box
 - 📱 **Responsive design** with mobile-first approach
 - ♿ **Accessibility-focused** (WAI-ARIA compliant)
@@ -35,7 +35,7 @@ npx galaxy-design@latest init
 
 This interactive command will:
 
-- ✅ Detect your framework (React, Vue, or Angular)
+- ✅ Detect your framework (React, Vue, Angular, Next.js, or Nuxt.js)
 - ✅ Detect your package manager (npm, pnpm, yarn, or bun)
 - ✅ Install required dependencies (lucide icons, clsx, tailwind-merge, radix primitives)
 - ✅ Create component directory structure
@@ -182,6 +182,46 @@ import {InputComponent} from '@/components/ui/input';
 })
 export class MyComponent {}
 ```
+
+### Next.js
+
+```tsx
+'use client'
+
+import {Button} from '@/components/ui/button'
+import {Input} from '@/components/ui/input'
+
+export default function MyComponent() {
+  return (
+    <div>
+      <Button variant="default" size="lg">
+        Click me
+      </Button>
+      <Input placeholder="Enter text..." />
+    </div>
+  )
+}
+```
+
+**Note:** Galaxy UI CLI automatically adds the `'use client'` directive to components that use client-side features (hooks, event handlers, browser APIs). Server-compatible components won't have this directive added.
+
+### Nuxt.js
+
+```vue
+<script setup lang="ts">
+import {Button} from '@/components/ui/button'
+import {Input} from '@/components/ui/input'
+</script>
+
+<template>
+  <div>
+    <Button variant="default" size="lg">Click me</Button>
+    <Input placeholder="Enter text..." />
+  </div>
+</template>
+```
+
+**Note:** Components work seamlessly with Nuxt 3's auto-import feature. Make sure to configure the `@/` alias in your `nuxt.config.ts`.
 
 ## ⚙️ Configuration
 

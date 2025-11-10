@@ -1,7 +1,7 @@
 import { existsSync, readFileSync } from 'fs';
 import { resolve } from 'path';
 
-export type Framework = 'angular' | 'react' | 'vue' | 'react-native' | 'flutter' | 'unknown';
+export type Framework = 'angular' | 'react' | 'vue' | 'react-native' | 'flutter' | 'nextjs' | 'nuxtjs' | 'unknown';
 export type PackageManager = 'npm' | 'pnpm' | 'yarn' | 'bun' | 'pub';
 
 /**
@@ -30,6 +30,16 @@ export function detectFramework(cwd: string): Framework {
     // Check for React Native (must be before React check)
     if (deps['react-native']) {
       return 'react-native';
+    }
+
+    // Check for Next.js (must be before React check)
+    if (deps['next']) {
+      return 'nextjs';
+    }
+
+    // Check for Nuxt.js (must be before Vue check)
+    if (deps['nuxt'] || deps['nuxt3']) {
+      return 'nuxtjs';
     }
 
     if (deps['@angular/core']) {
