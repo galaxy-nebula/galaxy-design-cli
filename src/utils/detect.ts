@@ -5,6 +5,15 @@ export type Framework = 'angular' | 'react' | 'vue' | 'react-native' | 'flutter'
 export type PackageManager = 'npm' | 'pnpm' | 'yarn' | 'bun' | 'pub';
 
 /**
+ * Detect if the project uses src/ directory structure
+ * Common in Next.js, React, and some Vue projects
+ */
+export function hasSrcDirectory(cwd: string): boolean {
+  const srcPath = resolve(cwd, 'src');
+  return existsSync(srcPath);
+}
+
+/**
  * Detect the framework being used in the project
  */
 export function detectFramework(cwd: string): Framework {

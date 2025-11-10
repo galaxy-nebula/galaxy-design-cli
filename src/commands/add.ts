@@ -10,6 +10,7 @@ import {
   hasComponentsConfig,
   getFrameworkFromConfig,
 } from '../utils/components-config.js';
+import { hasSrcDirectory } from '../utils/detect.js';
 import {
   loadFrameworkRegistry,
   getFrameworkComponent,
@@ -151,7 +152,11 @@ export async function addCommand(components: string[], options: AddOptions) {
       // Get component destination path from aliases
       const componentsAlias = componentsConfig.aliases.components;
       const destPath = componentsAlias.replace('@/', '');
-      const fullDestPath = resolve(cwd, destPath, 'ui');
+
+      // Detect if project uses src/ directory and adjust path
+      const usesSrcDir = hasSrcDirectory(cwd);
+      const baseDir = usesSrcDir ? 'src/' : '';
+      const fullDestPath = resolve(cwd, baseDir + destPath, 'ui');
       ensureDir(fullDestPath);
 
       // Get file extension based on framework
@@ -168,6 +173,12 @@ export async function addCommand(components: string[], options: AddOptions) {
       const componentFolderPath = join(fullDestPath, componentKey);
       ensureDir(componentFolderPath);
 
+      // Map framework to actual package framework for GitHub path
+      // Next.js uses React components, Nuxt.js uses Vue components
+      let packageFramework = framework;
+      if (framework === 'nextjs') packageFramework = 'react';
+      if (framework === 'nuxtjs') packageFramework = 'vue';
+
       // Copy component files from GitHub
       for (const file of component.files) {
         const fileName = file.includes('/') ? file.split('/').pop()! : file;
@@ -182,9 +193,9 @@ export async function addCommand(components: string[], options: AddOptions) {
         }
 
         try {
-          // Fetch file from GitHub
+          // Fetch file from GitHub (use packageFramework for correct path)
           const sourceFolder = component.type === 'block' ? 'blocks' : 'components';
-          const githubPath = `packages/${framework}/src/${sourceFolder}/${componentKey}/${file}`;
+          const githubPath = `packages/${packageFramework}/src/${sourceFolder}/${componentKey}/${file}`;
           const content = await fetchFileFromGitHub(githubPath);
           writeFile(destFilePath, content);
         } catch (error) {
@@ -192,7 +203,7 @@ export async function addCommand(components: string[], options: AddOptions) {
           try {
             const capitalizedFile = file.charAt(0).toUpperCase() + file.slice(1);
             const sourceFolder = component.type === 'block' ? 'blocks' : 'components';
-            const githubPath = `packages/${framework}/src/${sourceFolder}/${componentKey}/${capitalizedFile}`;
+            const githubPath = `packages/${packageFramework}/src/${sourceFolder}/${componentKey}/${capitalizedFile}`;
             const content = await fetchFileFromGitHub(githubPath);
             writeFile(destFilePath, content);
           } catch (capitalizedError) {

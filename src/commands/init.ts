@@ -4,6 +4,7 @@ import ora from 'ora';
 import {
   detectFramework,
   detectPackageManager,
+  hasSrcDirectory,
   type Framework as DetectedFramework,
 } from '../utils/detect.js';
 import {
@@ -85,6 +86,12 @@ export async function initCommand(options: InitOptions) {
 
   // Get configuration from user (or use defaults with --yes)
   let config = getDefaultConfig(framework);
+
+  // Detect if project uses src/ directory and adjust paths accordingly
+  const usesSrcDir = hasSrcDirectory(cwd);
+  if (usesSrcDir) {
+    console.log(chalk.green(`✓ Detected ${chalk.bold('src/')} directory structure`));
+  }
 
   if (!options.yes) {
     console.log(chalk.cyan('\n📝 Configuration\n'));
@@ -238,8 +245,9 @@ export async function initCommand(options: InitOptions) {
   const dirSpinner = ora('Creating directories...').start();
 
   try {
-    const componentsPath = resolve(cwd, config.aliases.components.replace('@/', ''));
-    const utilsPath = resolve(cwd, config.aliases.utils.replace('@/', ''));
+    const baseDir = usesSrcDir ? 'src/' : '';
+    const componentsPath = resolve(cwd, baseDir + config.aliases.components.replace('@/', ''));
+    const utilsPath = resolve(cwd, baseDir + config.aliases.utils.replace('@/', ''));
 
     await ensureDir(componentsPath);
     await ensureDir(resolve(componentsPath, 'ui'));
@@ -256,7 +264,8 @@ export async function initCommand(options: InitOptions) {
   const utilsSpinner = ora('Creating utility functions...').start();
 
   try {
-    const utilsPath = resolve(cwd, config.aliases.utils.replace('@/', '') + '.ts');
+    const baseDir = usesSrcDir ? 'src/' : '';
+    const utilsPath = resolve(cwd, baseDir + config.aliases.utils.replace('@/', '') + '.ts');
     const utilsContent = getUtilsContent();
     writeFile(utilsPath, utilsContent);
 
