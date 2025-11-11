@@ -590,17 +590,16 @@
       "description": "Avatar component for user profile pictures",
       "files": [
         "avatar.component.ts",
+        "avatar-image.component.ts",
+        "avatar-fallback.component.ts",
         "index.ts"
       ],
-      "dependencies": [
-        "@radix-ng/primitives"
-      ],
-      "peerDependencies": [
-        "lucide-angular"
-      ],
+      "dependencies": [],
+      "peerDependencies": [],
       "exports": [
         "AvatarComponent",
-        "AvatarGroupComponent"
+        "AvatarImageComponent",
+        "AvatarFallbackComponent"
       ]
     },
     "scroll-area": {
