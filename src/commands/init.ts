@@ -721,16 +721,16 @@ function configureTypeScriptAliases(cwd: string, tsconfigFile: string, usesSrcDi
     // Determine the correct path based on project structure
     const pathMapping = usesSrcDir ? './src/*' : './*';
 
-    // Check if already configured with our path mapping
-    if (content.includes('"baseUrl":') && content.includes(pathMapping)) {
-      return; // Already configured
-    }
-
-    // Find the position to insert path aliases - right before the closing brace of compilerOptions
-    // Look for the last property in compilerOptions before the closing brace
-    const compilerOptionsMatch = content.match(/"compilerOptions"\s*:\s*{/);
+    // Check if paths already exists in compilerOptions - skip to avoid duplicates
+    // Match "compilerOptions" followed by anything, then "paths" within the compilerOptions object
+    const compilerOptionsMatch = content.match(/"compilerOptions"\s*:\s*\{([\s\S]*?)^\s*\}/m);
     if (!compilerOptionsMatch) {
       throw new Error('compilerOptions not found');
+    }
+
+    // Check if paths already exists in the compilerOptions
+    if (compilerOptionsMatch[1].includes('"paths"')) {
+      return; // Paths already configured, skip to avoid duplicates
     }
 
     // Strategy: Insert before the closing } of compilerOptions
