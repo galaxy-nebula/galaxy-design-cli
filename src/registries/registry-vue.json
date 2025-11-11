@@ -291,13 +291,13 @@
       "type": "feedback",
       "description": "A succinct message that is displayed temporarily",
       "dependencies": [
-        "radix-vue"
+        "vue-sonner"
       ],
       "devDependencies": [],
       "registryDependencies": [],
       "files": [
         "toast.vue",
-        "toaster.vue"
+        "index.ts"
       ],
       "category": "feedback"
     },
