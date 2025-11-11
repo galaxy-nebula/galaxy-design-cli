@@ -356,10 +356,10 @@
       "type": "chart",
       "description": "Display data as a responsive line chart with smooth curves and customizable styling",
       "files": [
-        "charts/line-chart.component.ts",
-        "charts/types.ts",
-        "charts/utils.ts",
-        "charts/index.ts"
+        "line-chart.component.ts",
+        "types.ts",
+        "utils.ts",
+        "index.ts"
       ],
       "dependencies": [
         "ngx-echarts",
@@ -377,10 +377,10 @@
       "type": "chart",
       "description": "Display data as vertical or horizontal bars with support for stacked and grouped layouts",
       "files": [
-        "charts/bar-chart.component.ts",
-        "charts/types.ts",
-        "charts/utils.ts",
-        "charts/index.ts"
+        "bar-chart.component.ts",
+        "types.ts",
+        "utils.ts",
+        "index.ts"
       ],
       "dependencies": [
         "ngx-echarts",
@@ -398,10 +398,10 @@
       "type": "chart",
       "description": "Display proportional data as a pie or donut chart with customizable labels and legend",
       "files": [
-        "charts/pie-chart.component.ts",
-        "charts/types.ts",
-        "charts/utils.ts",
-        "charts/index.ts"
+        "pie-chart.component.ts",
+        "types.ts",
+        "utils.ts",
+        "index.ts"
       ],
       "dependencies": [
         "ngx-echarts",
@@ -424,10 +424,10 @@
       "devDependencies": [],
       "registryDependencies": [],
       "files": [
-        "charts/DonutChart.vue",
-        "charts/types.ts",
-        "charts/utils.ts",
-        "charts/index.ts"
+        "donut-chart.component.ts",
+        "types.ts",
+        "utils.ts",
+        "index.ts"
       ],
       "category": "charts"
     },
@@ -437,10 +437,10 @@
       "type": "chart",
       "description": "Visualize cumulative totals over time with filled areas and gradient support",
       "files": [
-        "charts/area-chart.component.ts",
-        "charts/types.ts",
-        "charts/utils.ts",
-        "charts/index.ts"
+        "area-chart.component.ts",
+        "types.ts",
+        "utils.ts",
+        "index.ts"
       ],
       "dependencies": [
         "ngx-echarts",
@@ -458,10 +458,10 @@
       "type": "chart",
       "description": "Display multi-dimensional data comparison on a radial grid",
       "files": [
-        "charts/radar-chart.component.ts",
-        "charts/types.ts",
-        "charts/utils.ts",
-        "charts/index.ts"
+        "radar-chart.component.ts",
+        "types.ts",
+        "utils.ts",
+        "index.ts"
       ],
       "dependencies": [
         "ngx-echarts",
@@ -479,10 +479,10 @@
       "type": "chart",
       "description": "Display distribution and correlation analysis with scatter plots",
       "files": [
-        "charts/scatter-chart.component.ts",
-        "charts/types.ts",
-        "charts/utils.ts",
-        "charts/index.ts"
+        "scatter-chart.component.ts",
+        "types.ts",
+        "utils.ts",
+        "index.ts"
       ],
       "dependencies": [
         "ngx-echarts",
@@ -500,10 +500,10 @@
       "type": "chart",
       "description": "Combine multiple chart types (line, bar, area) in a single visualization",
       "files": [
-        "charts/mixed-chart.component.ts",
-        "charts/types.ts",
-        "charts/utils.ts",
-        "charts/index.ts"
+        "mixed-chart.component.ts",
+        "types.ts",
+        "utils.ts",
+        "index.ts"
       ],
       "dependencies": [
         "ngx-echarts",
@@ -1017,10 +1017,10 @@
       "type": "chart",
       "description": "Display data as a gauge chart with customizable ranges and styling",
       "files": [
-        "charts/gauge-chart.component.ts",
-        "charts/types.ts",
-        "charts/utils.ts",
-        "charts/index.ts"
+        "gauge-chart.component.ts",
+        "types.ts",
+        "utils.ts",
+        "index.ts"
       ],
       "dependencies": [
         "ngx-echarts",
