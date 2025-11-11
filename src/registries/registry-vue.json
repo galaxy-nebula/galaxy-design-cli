@@ -830,6 +830,7 @@
       ],
       "files": [
         "ToggleGroup.vue",
+        "ToggleGroupItem.vue",
         "index.ts"
       ],
       "category": "interactive"
@@ -839,14 +840,15 @@
       "type": "layout",
       "description": "Accessible resizable panel groups and layouts with keyboard support",
       "dependencies": [
-        "radix-vue"
+        "radix-vue",
+        "splitpanes"
       ],
       "devDependencies": [],
       "registryDependencies": [],
       "files": [
-        "Resizable.vue",
-        "ResizableHandle.vue",
+        "ResizablePanelGroup.vue",
         "ResizablePanel.vue",
+        "ResizableHandle.vue",
         "index.ts"
       ],
       "category": "layout"
