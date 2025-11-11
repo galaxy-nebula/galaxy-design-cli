@@ -125,6 +125,26 @@ export async function addCommand(components: string[], options: AddOptions) {
   // Remove duplicates
   componentsToAdd = [...new Set(componentsToAdd)];
 
+  // Resolve registry dependencies
+  const resolvedComponents = new Set<string>(componentsToAdd);
+  const toProcess = [...componentsToAdd];
+
+  while (toProcess.length > 0) {
+    const componentKey = toProcess.pop()!;
+    const component = getFrameworkComponent(framework, componentKey);
+
+    if (component && component.registryDependencies && component.registryDependencies.length > 0) {
+      for (const depKey of component.registryDependencies) {
+        if (!resolvedComponents.has(depKey)) {
+          resolvedComponents.add(depKey);
+          toProcess.push(depKey);
+        }
+      }
+    }
+  }
+
+  componentsToAdd = Array.from(resolvedComponents);
+
   console.log(chalk.bold.cyan(`\n📦 Adding ${componentsToAdd.length} component(s)...\n`));
 
   // Collect all dependencies
