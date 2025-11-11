@@ -49,7 +49,7 @@ export const defaultConfigs: Record<Framework, Partial<ComponentsConfig>> = {
     typescript: true,
     tailwind: {
       config: 'tailwind.config.js',
-      css: 'src/assets/styles/global.css',
+      css: 'src/style.css',
       baseColor: 'slate',
       cssVariables: true,
       prefix: '',
@@ -67,7 +67,7 @@ export const defaultConfigs: Record<Framework, Partial<ComponentsConfig>> = {
     typescript: true,
     tailwind: {
       config: 'tailwind.config.js',
-      css: 'src/app/globals.css',
+      css: 'src/index.css',
       baseColor: 'slate',
       cssVariables: true,
       prefix: '',
