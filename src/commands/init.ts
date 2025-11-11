@@ -332,13 +332,13 @@ export async function initCommand(options: InitOptions) {
   }
 
   // Configure path aliases for TypeScript and bundler
-  if (config.typescript && framework !== 'flutter' && framework !== 'angular') {
+  if (config.typescript && framework !== 'flutter') {
     const aliasSpinner = ora('Configuring path aliases...').start();
 
     try {
       // Configure TypeScript path aliases
-      if (framework === 'react') {
-        // Vite React uses tsconfig.app.json
+      if (framework === 'react' || framework === 'angular') {
+        // Vite React and Angular use tsconfig.app.json
         configureTypeScriptAliases(cwd, 'tsconfig.app.json', usesSrcDir);
       } else if (framework === 'vue' || framework === 'nextjs') {
         // Vue and Next.js use tsconfig.json
@@ -734,16 +734,19 @@ function configureTypeScriptAliases(cwd: string, tsconfigFile: string, usesSrcDi
     }
 
     // Strategy: Insert before the closing } of compilerOptions
-    // Find the pattern: any content followed by closing brace and comma (or newline), followed by "include" or other root property
-    const insertPattern = /(\s*)(}\s*,?\s*\n\s*"(?:include|exclude|extends|files|references))/;
+    // Match the closing brace of compilerOptions followed by next root property
+    const insertPattern = /(\n)(\s*)(}\s*,?\s*\n\s*"(?:include|exclude|files|references))/;
     const match = content.match(insertPattern);
 
     if (match) {
-      const indent = match[1] || '    ';
-      // Insert path config before the closing brace
-      const pathConfig = `,\n\n${indent}/* Path Aliases */\n${indent}"baseUrl": ".",\n${indent}"paths": {\n${indent}  "@/*": ["${pathMapping}"]\n${indent}}`;
+      // Detect indent level from the closing brace
+      const baseIndent = match[2] || '  ';
+      const propertyIndent = baseIndent + '  ';
 
-      content = content.replace(insertPattern, `${pathConfig}\n$1$2`);
+      // Insert path config before the closing brace
+      const pathConfig = `,${match[1]}${propertyIndent}/* Path Aliases */${match[1]}${propertyIndent}"baseUrl": ".",${match[1]}${propertyIndent}"paths": {${match[1]}${propertyIndent}  "@/*": ["${pathMapping}"]${match[1]}${propertyIndent}}`;
+
+      content = content.replace(insertPattern, `${pathConfig}${match[1]}${match[2]}${match[3]}`);
       writeFileSync(tsconfigPath, content, 'utf-8');
     }
   } catch (error) {
