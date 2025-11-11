@@ -740,7 +740,7 @@ function configureTypeScriptAliases(cwd: string, tsconfigFile: string): void {
       // Insert path config before the closing brace
       const pathConfig = `,\n\n${indent}/* Path Aliases */\n${indent}"baseUrl": ".",\n${indent}"paths": {\n${indent}  "@/*": ["./src/*"]\n${indent}}`;
 
-      content = content.replace(insertPattern, `${pathConfig}\n${indent}}$2`);
+      content = content.replace(insertPattern, `${pathConfig}\n$1$2`);
       writeFileSync(tsconfigPath, content, 'utf-8');
     }
   } catch (error) {
