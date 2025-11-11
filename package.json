@@ -1,6 +1,6 @@
 {
   "name": "galaxy-design",
-  "version": "0.2.27",
+  "version": "0.2.28",
   "description": "CLI tool for adding Galaxy UI components to your Vue, React, Angular, Next.js, Nuxt.js, React Native, or Flutter project",
   "author": "Bùi Trọng Hiếu (kevinbui) <kevinbui210191@gmail.com>",
   "license": "MIT",
