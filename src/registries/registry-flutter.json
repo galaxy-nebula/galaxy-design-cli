@@ -7,7 +7,7 @@
       "type": "layout",
       "description": "Collapsible accordion component for expandable content sections",
       "files": [
-        "accordion/accordion.dart"
+        "accordion.dart"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -23,7 +23,7 @@
       "type": "feedback",
       "description": "Alert component for displaying important messages with variants",
       "files": [
-        "alert/alert.dart"
+        "alert.dart"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -38,7 +38,7 @@
       "type": "overlay",
       "description": "Modal alert dialog for important confirmations and decisions",
       "files": [
-        "alert-dialog/alert_dialog.dart"
+        "alert_dialog.dart"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -53,7 +53,7 @@
       "type": "layout",
       "description": "Container that maintains a specific aspect ratio for its content",
       "files": [
-        "aspect-ratio/aspect_ratio.dart"
+        "aspect_ratio.dart"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -68,7 +68,7 @@
       "type": "data-display",
       "description": "Avatar component for displaying user profile images with fallback",
       "files": [
-        "avatar/avatar.dart"
+        "avatar.dart"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -84,7 +84,7 @@
       "type": "data-display",
       "description": "Badge component for status indicators, counts, and labels",
       "files": [
-        "badge/badge.dart"
+        "badge.dart"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -100,7 +100,7 @@
       "type": "form",
       "description": "Button component with multiple variants, sizes, and states",
       "files": [
-        "button/button.dart"
+        "button.dart"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -115,7 +115,7 @@
       "type": "layout",
       "description": "Card container with header, content, and footer sections",
       "files": [
-        "card/card.dart"
+        "card.dart"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -133,7 +133,7 @@
       "type": "form",
       "description": "Checkbox input with label and indeterminate state support",
       "files": [
-        "checkbox/checkbox.dart"
+        "checkbox.dart"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -148,7 +148,7 @@
       "type": "layout",
       "description": "Collapsible container for showing and hiding content",
       "files": [
-        "collapsible/collapsible.dart"
+        "collapsible.dart"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -163,7 +163,7 @@
       "type": "overlay",
       "description": "Context menu triggered by long press gesture",
       "files": [
-        "context-menu/context_menu.dart"
+        "context_menu.dart"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -179,7 +179,7 @@
       "type": "form",
       "description": "Date picker with single date and date range selection",
       "files": [
-        "date-picker/date_picker.dart"
+        "date_picker.dart"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -196,7 +196,7 @@
       "type": "overlay",
       "description": "Modal dialog for displaying content over the main interface",
       "files": [
-        "dialog/dialog.dart"
+        "dialog.dart"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -211,7 +211,7 @@
       "type": "overlay",
       "description": "Dropdown menu for displaying a list of actions or options",
       "files": [
-        "dropdown-menu/dropdown_menu.dart"
+        "dropdown_menu.dart"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -227,7 +227,7 @@
       "type": "data-display",
       "description": "Empty state component with presets for no data, errors, and offline states",
       "files": [
-        "empty/empty.dart"
+        "empty.dart"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -242,7 +242,7 @@
       "type": "overlay",
       "description": "Hover card for displaying additional information on press",
       "files": [
-        "hover-card/hover_card.dart"
+        "hover_card.dart"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -257,7 +257,7 @@
       "type": "form",
       "description": "Text input component with label, placeholder, and error states",
       "files": [
-        "input/input.dart"
+        "input.dart"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -272,7 +272,7 @@
       "type": "form",
       "description": "Label component for form inputs",
       "files": [
-        "label/label.dart"
+        "label.dart"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -287,7 +287,7 @@
       "type": "navigation",
       "description": "Menubar component for horizontal navigation menus",
       "files": [
-        "menubar/menubar.dart"
+        "menubar.dart"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -303,7 +303,7 @@
       "type": "navigation",
       "description": "Navigation menu with bottom tab and drawer variants",
       "files": [
-        "navigation-menu/navigation_menu.dart"
+        "navigation_menu.dart"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -319,7 +319,7 @@
       "type": "navigation",
       "description": "Pagination component with compact, full, and load more variants",
       "files": [
-        "pagination/pagination.dart"
+        "pagination.dart"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -334,7 +334,7 @@
       "type": "overlay",
       "description": "Popover component for displaying floating content",
       "files": [
-        "popover/popover.dart"
+        "popover.dart"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -349,7 +349,7 @@
       "type": "feedback",
       "description": "Progress bar and circular progress component",
       "files": [
-        "progress/progress.dart"
+        "progress.dart"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -364,7 +364,7 @@
       "type": "form",
       "description": "Radio button group for single selection from multiple options",
       "files": [
-        "radio-group/radio_group.dart"
+        "radio_group.dart"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -380,7 +380,7 @@
       "type": "form",
       "description": "Select dropdown component for choosing from a list of options",
       "files": [
-        "select/select.dart"
+        "select.dart"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -396,7 +396,7 @@
       "type": "layout",
       "description": "Visual separator line for dividing content",
       "files": [
-        "separator/separator.dart"
+        "separator.dart"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -411,7 +411,7 @@
       "type": "overlay",
       "description": "Bottom sheet and side sheet component with header and footer",
       "files": [
-        "sheet/sheet.dart"
+        "sheet.dart"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -427,7 +427,7 @@
       "type": "feedback",
       "description": "Skeleton loading placeholder component",
       "files": [
-        "skeleton/skeleton.dart"
+        "skeleton.dart"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -442,7 +442,7 @@
       "type": "form",
       "description": "Slider component for selecting a value from a range",
       "files": [
-        "slider/slider.dart"
+        "slider.dart"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -457,7 +457,7 @@
       "type": "form",
       "description": "Toggle switch component for boolean input",
       "files": [
-        "switch/switch.dart"
+        "switch.dart"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -472,7 +472,7 @@
       "type": "data-display",
       "description": "Table component for displaying structured data",
       "files": [
-        "table/table.dart"
+        "table.dart"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -489,7 +489,7 @@
       "type": "navigation",
       "description": "Tabs component for organizing content into sections",
       "files": [
-        "tabs/tabs.dart"
+        "tabs.dart"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -505,7 +505,7 @@
       "type": "form",
       "description": "Multi-line text input component",
       "files": [
-        "textarea/textarea.dart"
+        "textarea.dart"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -520,7 +520,7 @@
       "type": "form",
       "description": "Toggle button for binary state changes",
       "files": [
-        "toggle/toggle.dart"
+        "toggle.dart"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -535,7 +535,7 @@
       "type": "form",
       "description": "Group of toggle buttons for single or multiple selection",
       "files": [
-        "toggle-group/toggle_group.dart"
+        "toggle_group.dart"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -550,7 +550,7 @@
       "type": "overlay",
       "description": "Tooltip component for displaying helpful information on press",
       "files": [
-        "tooltip/tooltip.dart"
+        "tooltip.dart"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -565,7 +565,7 @@
       "type": "data-display",
       "description": "Typography component with 11 text variants (h1-h4, p, lead, large, small, muted, blockquote, code)",
       "files": [
-        "typography/typography.dart"
+        "typography.dart"
       ],
       "dependencies": [],
       "peerDependencies": [
