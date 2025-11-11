@@ -374,11 +374,20 @@
       "name": "Breadcrumb",
       "type": "navigation",
       "description": "Displays the path to the current resource using a hierarchy of links",
-      "dependencies": [],
+      "dependencies": [
+        "lucide-vue-next"
+      ],
       "devDependencies": [],
       "registryDependencies": [],
       "files": [
-        "breadcrumb.vue"
+        "breadcrumb.vue",
+        "breadcrumb-list.vue",
+        "breadcrumb-item.vue",
+        "breadcrumb-link.vue",
+        "breadcrumb-page.vue",
+        "breadcrumb-separator.vue",
+        "breadcrumb-ellipsis.vue",
+        "index.ts"
       ],
       "category": "navigation"
     },
