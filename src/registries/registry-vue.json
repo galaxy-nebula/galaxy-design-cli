@@ -6,10 +6,16 @@
       "name": "Button",
       "type": "form",
       "description": "Displays a button or a component that looks like a button",
-      "dependencies": ["class-variance-authority"],
+      "dependencies": [
+        "class-variance-authority"
+      ],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["Button.vue", "variants.ts", "index.ts"],
+      "files": [
+        "Button.vue",
+        "variants.ts",
+        "index.ts"
+      ],
       "category": "form"
     },
     "input": {
@@ -19,67 +25,93 @@
       "dependencies": [],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["input.vue"],
+      "files": [
+        "input.vue"
+      ],
       "category": "form"
     },
     "label": {
       "name": "Label",
       "type": "form",
       "description": "Renders an accessible label associated with controls",
-      "dependencies": ["radix-vue"],
+      "dependencies": [
+        "radix-vue"
+      ],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["label.vue"],
+      "files": [
+        "label.vue"
+      ],
       "category": "form"
     },
     "select": {
       "name": "Select",
       "type": "form",
       "description": "Displays a list of options for the user to pick from triggered by a button",
-      "dependencies": ["radix-vue"],
+      "dependencies": [
+        "radix-vue"
+      ],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["select.vue"],
+      "files": [
+        "select.vue"
+      ],
       "category": "form"
     },
     "checkbox": {
       "name": "Checkbox",
       "type": "form",
       "description": "A control that allows the user to toggle between checked and not checked",
-      "dependencies": ["radix-vue"],
+      "dependencies": [
+        "radix-vue"
+      ],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["checkbox.vue"],
+      "files": [
+        "checkbox.vue"
+      ],
       "category": "form"
     },
     "radio-group": {
       "name": "Radio Group",
       "type": "form",
       "description": "A set of checkable buttons where no more than one of the buttons can be checked at a time",
-      "dependencies": ["radix-vue"],
+      "dependencies": [
+        "radix-vue"
+      ],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["radio-group.vue"],
+      "files": [
+        "radio-group.vue"
+      ],
       "category": "form"
     },
     "switch": {
       "name": "Switch",
       "type": "form",
       "description": "A control that allows the user to toggle between checked and not checked",
-      "dependencies": ["radix-vue"],
+      "dependencies": [
+        "radix-vue"
+      ],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["switch.vue"],
+      "files": [
+        "switch.vue"
+      ],
       "category": "form"
     },
     "slider": {
       "name": "Slider",
       "type": "form",
       "description": "An input where the user selects a value from within a given range",
-      "dependencies": ["radix-vue"],
+      "dependencies": [
+        "radix-vue"
+      ],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["slider.vue"],
+      "files": [
+        "slider.vue"
+      ],
       "category": "form"
     },
     "textarea": {
@@ -89,17 +121,29 @@
       "dependencies": [],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["textarea.vue"],
+      "files": [
+        "textarea.vue"
+      ],
       "category": "form"
     },
     "form": {
       "name": "Form",
       "type": "form",
       "description": "Building forms with Vue and Radix Vue primitives",
-      "dependencies": ["radix-vue", "@vee-validate/zod", "vee-validate"],
+      "dependencies": [
+        "radix-vue",
+        "@vee-validate/zod",
+        "vee-validate"
+      ],
       "devDependencies": [],
-      "registryDependencies": ["button", "input", "label"],
-      "files": ["form.vue"],
+      "registryDependencies": [
+        "button",
+        "input",
+        "label"
+      ],
+      "files": [
+        "form.vue"
+      ],
       "category": "form"
     },
     "card": {
@@ -109,107 +153,166 @@
       "dependencies": [],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["card.vue"],
+      "files": [
+        "card.vue",
+        "card-header.vue",
+        "card-title.vue",
+        "card-description.vue",
+        "card-content.vue",
+        "card-footer.vue",
+        "index.ts"
+      ],
       "category": "layout"
     },
     "separator": {
       "name": "Separator",
       "type": "layout",
       "description": "Visually or semantically separates content",
-      "dependencies": ["radix-vue"],
+      "dependencies": [
+        "radix-vue"
+      ],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["separator.vue"],
+      "files": [
+        "separator.vue"
+      ],
       "category": "layout"
     },
     "accordion": {
       "name": "Accordion",
       "type": "layout",
       "description": "A vertically stacked set of interactive headings that each reveal a section of content",
-      "dependencies": ["radix-vue"],
+      "dependencies": [
+        "radix-vue"
+      ],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["accordion.vue"],
+      "files": [
+        "accordion.vue"
+      ],
       "category": "layout"
     },
     "tabs": {
       "name": "Tabs",
       "type": "layout",
-      "description": "A set of layered sections of content—known as tab panels—that are displayed one at a time",
-      "dependencies": ["radix-vue"],
+      "description": "A set of layered sections of content\u2014known as tab panels\u2014that are displayed one at a time",
+      "dependencies": [
+        "radix-vue"
+      ],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["tabs.vue"],
+      "files": [
+        "tabs.vue"
+      ],
       "category": "layout"
     },
     "dialog": {
       "name": "Dialog",
       "type": "layout",
       "description": "A window overlaid on either the primary window or another dialog window",
-      "dependencies": ["radix-vue"],
+      "dependencies": [
+        "radix-vue"
+      ],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["dialog.vue"],
+      "files": [
+        "dialog.vue"
+      ],
       "category": "layout"
     },
     "alert": {
       "name": "Alert",
       "type": "feedback",
       "description": "Displays a callout for user attention",
-      "dependencies": [],
+      "dependencies": [
+        "class-variance-authority"
+      ],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["alert.vue"],
+      "files": [
+        "alert.vue",
+        "alert-title.vue",
+        "alert-description.vue",
+        "index.ts"
+      ],
       "category": "feedback"
     },
     "alert-dialog": {
       "name": "Alert Dialog",
       "type": "feedback",
       "description": "A modal dialog that interrupts the user with important content and expects a response",
-      "dependencies": ["radix-vue"],
+      "dependencies": [
+        "radix-vue"
+      ],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["AlertDialog.vue", "AlertDialogContent.vue", "AlertDialogFooter.vue", "AlertDialogHeader.vue", "index.ts"],
+      "files": [
+        "AlertDialog.vue",
+        "AlertDialogContent.vue",
+        "AlertDialogFooter.vue",
+        "AlertDialogHeader.vue",
+        "index.ts"
+      ],
       "category": "feedback"
     },
     "aspect-ratio": {
       "name": "Aspect Ratio",
       "type": "layout",
       "description": "Displays content within a desired aspect ratio",
-      "dependencies": ["radix-vue"],
+      "dependencies": [
+        "radix-vue"
+      ],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["aspect-ratio.vue"],
+      "files": [
+        "aspect-ratio.vue"
+      ],
       "category": "layout"
     },
     "avatar": {
       "name": "Avatar",
       "type": "data-display",
       "description": "An image element with a fallback for representing the user",
-      "dependencies": ["radix-vue"],
+      "dependencies": [
+        "radix-vue"
+      ],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["Avatar.vue", "AvatarFallback.vue", "AvatarImage.vue", "index.ts"],
+      "files": [
+        "Avatar.vue",
+        "AvatarFallback.vue",
+        "AvatarImage.vue",
+        "index.ts"
+      ],
       "category": "data-display"
     },
     "toast": {
       "name": "Toast",
       "type": "feedback",
       "description": "A succinct message that is displayed temporarily",
-      "dependencies": ["radix-vue"],
+      "dependencies": [
+        "radix-vue"
+      ],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["toast.vue", "toaster.vue"],
+      "files": [
+        "toast.vue",
+        "toaster.vue"
+      ],
       "category": "feedback"
     },
     "progress": {
       "name": "Progress",
       "type": "feedback",
       "description": "Displays an indicator showing the completion progress of a task",
-      "dependencies": ["radix-vue"],
+      "dependencies": [
+        "radix-vue"
+      ],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["progress.vue"],
+      "files": [
+        "progress.vue"
+      ],
       "category": "feedback"
     },
     "skeleton": {
@@ -219,37 +322,52 @@
       "dependencies": [],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["skeleton.vue"],
+      "files": [
+        "skeleton.vue"
+      ],
       "category": "feedback"
     },
     "badge": {
       "name": "Badge",
       "type": "feedback",
       "description": "Displays a badge or a component that looks like a badge",
-      "dependencies": [],
+      "dependencies": [
+        "class-variance-authority"
+      ],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["badge.vue"],
+      "files": [
+        "badge.vue",
+        "index.ts"
+      ],
       "category": "feedback"
     },
     "dropdown-menu": {
       "name": "Dropdown Menu",
       "type": "navigation",
       "description": "Displays a menu to the user triggered by a button",
-      "dependencies": ["radix-vue"],
+      "dependencies": [
+        "radix-vue"
+      ],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["dropdown-menu.vue"],
+      "files": [
+        "dropdown-menu.vue"
+      ],
       "category": "navigation"
     },
     "navigation-menu": {
       "name": "Navigation Menu",
       "type": "navigation",
       "description": "A collection of links for navigating websites",
-      "dependencies": ["radix-vue"],
+      "dependencies": [
+        "radix-vue"
+      ],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["navigation-menu.vue"],
+      "files": [
+        "navigation-menu.vue"
+      ],
       "category": "navigation"
     },
     "breadcrumb": {
@@ -259,147 +377,242 @@
       "dependencies": [],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["breadcrumb.vue"],
+      "files": [
+        "breadcrumb.vue"
+      ],
       "category": "navigation"
     },
     "collapsible": {
       "name": "Collapsible",
       "type": "layout",
       "description": "An interactive component which expands/collapses a panel",
-      "dependencies": ["radix-vue"],
+      "dependencies": [
+        "radix-vue"
+      ],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["collapsible.vue"],
+      "files": [
+        "collapsible.vue"
+      ],
       "category": "layout"
     },
     "context-menu": {
       "name": "Context Menu",
       "type": "navigation",
       "description": "Displays a menu to the user triggered by right-click or long-press",
-      "dependencies": ["radix-vue"],
+      "dependencies": [
+        "radix-vue"
+      ],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["ContextMenu.vue", "ContextMenuContent.vue", "ContextMenuItem.vue", "index.ts"],
+      "files": [
+        "ContextMenu.vue",
+        "ContextMenuContent.vue",
+        "ContextMenuItem.vue",
+        "index.ts"
+      ],
       "category": "navigation"
     },
     "hover-card": {
       "name": "Hover Card",
       "type": "data-display",
       "description": "For sighted users to preview content available behind a link",
-      "dependencies": ["radix-vue"],
+      "dependencies": [
+        "radix-vue"
+      ],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["HoverCard.vue", "HoverCardContent.vue", "index.ts"],
+      "files": [
+        "HoverCard.vue",
+        "HoverCardContent.vue",
+        "index.ts"
+      ],
       "category": "data-display"
     },
     "menubar": {
       "name": "Menubar",
       "type": "navigation",
       "description": "A visually persistent menu common in desktop applications",
-      "dependencies": ["radix-vue"],
+      "dependencies": [
+        "radix-vue"
+      ],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["menubar.vue"],
+      "files": [
+        "menubar.vue"
+      ],
       "category": "navigation"
     },
     "popover": {
       "name": "Popover",
       "type": "navigation",
       "description": "Displays rich content in a portal, triggered by a button",
-      "dependencies": ["radix-vue"],
+      "dependencies": [
+        "radix-vue"
+      ],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["popover.vue"],
+      "files": [
+        "popover.vue"
+      ],
       "category": "navigation"
     },
     "tooltip": {
       "name": "Tooltip",
       "type": "navigation",
       "description": "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it",
-      "dependencies": ["radix-vue"],
+      "dependencies": [
+        "radix-vue"
+      ],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["tooltip.vue"],
+      "files": [
+        "tooltip.vue"
+      ],
       "category": "navigation"
     },
     "line-chart": {
       "name": "LineChart",
       "type": "chart",
       "description": "Display data as a responsive line chart with smooth curves and customizable styling",
-      "dependencies": ["vue-echarts", "echarts"],
+      "dependencies": [
+        "vue-echarts",
+        "echarts"
+      ],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["charts/LineChart.vue", "charts/types.ts", "charts/utils.ts", "charts/index.ts"],
+      "files": [
+        "linechart.vue",
+        "types.ts",
+        "utils.ts",
+        "index.ts"
+      ],
       "category": "charts"
     },
     "bar-chart": {
       "name": "BarChart",
       "type": "chart",
       "description": "Display data as vertical or horizontal bars with support for stacked and grouped layouts",
-      "dependencies": ["vue-echarts", "echarts"],
+      "dependencies": [
+        "vue-echarts",
+        "echarts"
+      ],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["charts/BarChart.vue", "charts/types.ts", "charts/utils.ts", "charts/index.ts"],
+      "files": [
+        "barchart.vue",
+        "types.ts",
+        "utils.ts",
+        "index.ts"
+      ],
       "category": "charts"
     },
     "pie-chart": {
       "name": "PieChart",
       "type": "chart",
       "description": "Display proportional data as a pie or donut chart with customizable labels and legend",
-      "dependencies": ["vue-echarts", "echarts"],
+      "dependencies": [
+        "vue-echarts",
+        "echarts"
+      ],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["charts/PieChart.vue", "charts/types.ts", "charts/utils.ts", "charts/index.ts"],
+      "files": [
+        "piechart.vue",
+        "types.ts",
+        "utils.ts",
+        "index.ts"
+      ],
       "category": "charts"
     },
     "donut-chart": {
       "name": "DonutChart",
       "type": "chart",
       "description": "Display proportional data as a donut chart with a hollow center",
-      "dependencies": ["vue-echarts", "echarts"],
+      "dependencies": [
+        "vue-echarts",
+        "echarts"
+      ],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["charts/DonutChart.vue", "charts/types.ts", "charts/utils.ts", "charts/index.ts"],
+      "files": [
+        "donutchart.vue",
+        "types.ts",
+        "utils.ts",
+        "index.ts"
+      ],
       "category": "charts"
     },
     "area-chart": {
       "name": "AreaChart",
       "type": "chart",
       "description": "Visualize cumulative totals over time with filled areas and gradient support",
-      "dependencies": ["vue-echarts", "echarts"],
+      "dependencies": [
+        "vue-echarts",
+        "echarts"
+      ],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["charts/AreaChart.vue", "charts/types.ts", "charts/utils.ts", "charts/index.ts"],
+      "files": [
+        "areachart.vue",
+        "types.ts",
+        "utils.ts",
+        "index.ts"
+      ],
       "category": "charts"
     },
     "radar-chart": {
       "name": "RadarChart",
       "type": "chart",
       "description": "Display multi-dimensional data comparison on a radial grid",
-      "dependencies": ["vue-echarts", "echarts"],
+      "dependencies": [
+        "vue-echarts",
+        "echarts"
+      ],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["charts/RadarChart.vue", "charts/types.ts", "charts/utils.ts", "charts/index.ts"],
+      "files": [
+        "radarchart.vue",
+        "types.ts",
+        "utils.ts",
+        "index.ts"
+      ],
       "category": "charts"
     },
     "scatter-chart": {
       "name": "ScatterChart",
       "type": "chart",
       "description": "Display distribution and correlation analysis with scatter plots",
-      "dependencies": ["vue-echarts", "echarts"],
+      "dependencies": [
+        "vue-echarts",
+        "echarts"
+      ],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["charts/ScatterChart.vue", "charts/types.ts", "charts/utils.ts", "charts/index.ts"],
+      "files": [
+        "scatterchart.vue",
+        "types.ts",
+        "utils.ts",
+        "index.ts"
+      ],
       "category": "charts"
     },
     "mixed-chart": {
       "name": "MixedChart",
       "type": "chart",
       "description": "Combine multiple chart types (line, bar, area) in a single visualization",
-      "dependencies": ["vue-echarts", "echarts"],
+      "dependencies": [
+        "vue-echarts",
+        "echarts"
+      ],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["charts/MixedChart.vue", "charts/types.ts", "charts/utils.ts", "charts/index.ts"],
+      "files": [
+        "mixedchart.vue",
+        "types.ts",
+        "utils.ts",
+        "index.ts"
+      ],
       "category": "charts"
     },
     "empty": {
@@ -409,7 +622,10 @@
       "dependencies": [],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["Empty.vue", "index.ts"],
+      "files": [
+        "Empty.vue",
+        "index.ts"
+      ],
       "category": "feedback"
     },
     "kbd": {
@@ -419,7 +635,10 @@
       "dependencies": [],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["Kbd.vue", "index.ts"],
+      "files": [
+        "Kbd.vue",
+        "index.ts"
+      ],
       "category": "data-display"
     },
     "typography": {
@@ -429,17 +648,25 @@
       "dependencies": [],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["Typography.vue", "index.ts"],
+      "files": [
+        "Typography.vue",
+        "index.ts"
+      ],
       "category": "data-display"
     },
     "pagination": {
       "name": "Pagination",
       "type": "navigation",
       "description": "Page navigation with previous, next, and page numbers",
-      "dependencies": ["lucide-vue-next"],
+      "dependencies": [
+        "lucide-vue-next"
+      ],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["Pagination.vue", "index.ts"],
+      "files": [
+        "Pagination.vue",
+        "index.ts"
+      ],
       "category": "navigation"
     },
     "table": {
@@ -449,138 +676,263 @@
       "dependencies": [],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["Table.vue", "index.ts"],
+      "files": [
+        "Table.vue",
+        "index.ts"
+      ],
       "category": "data-display"
     },
     "calendar": {
       "name": "Calendar",
       "type": "form",
       "description": "A date picker calendar component",
-      "dependencies": ["radix-vue", "lucide-vue-next"],
+      "dependencies": [
+        "radix-vue",
+        "lucide-vue-next"
+      ],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["Calendar.vue", "index.ts"],
+      "files": [
+        "Calendar.vue",
+        "index.ts"
+      ],
       "category": "form"
     },
     "calendar-range": {
       "name": "Calendar Range",
       "type": "form",
       "description": "A date range picker calendar component",
-      "dependencies": ["radix-vue", "lucide-vue-next"],
+      "dependencies": [
+        "radix-vue",
+        "lucide-vue-next"
+      ],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["CalendarRange.vue", "index.ts"],
+      "files": [
+        "CalendarRange.vue",
+        "index.ts"
+      ],
       "category": "form"
     },
     "command": {
       "name": "Command",
       "type": "navigation",
       "description": "Command palette for keyboard-first navigation and search",
-      "dependencies": ["lucide-vue-next"],
+      "dependencies": [
+        "lucide-vue-next"
+      ],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["Command.vue", "index.ts"],
+      "files": [
+        "Command.vue",
+        "index.ts"
+      ],
       "category": "navigation"
     },
     "sheet": {
       "name": "Sheet",
       "type": "layout",
       "description": "Slide-over panel that slides in from the edge of the screen",
-      "dependencies": ["radix-vue", "lucide-vue-next"],
+      "dependencies": [
+        "radix-vue",
+        "lucide-vue-next"
+      ],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["Sheet.vue", "index.ts"],
+      "files": [
+        "Sheet.vue",
+        "index.ts"
+      ],
       "category": "layout"
     },
     "toolbar": {
       "name": "Toolbar",
       "type": "layout",
       "description": "A container for grouping a set of controls",
-      "dependencies": ["radix-vue"],
+      "dependencies": [
+        "radix-vue"
+      ],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["Toolbar.vue", "index.ts"],
+      "files": [
+        "Toolbar.vue",
+        "index.ts"
+      ],
       "category": "layout"
     },
     "tags-input": {
       "name": "Tags Input",
       "type": "form",
       "description": "Input field for entering multiple tags or values",
-      "dependencies": ["lucide-vue-next"],
+      "dependencies": [
+        "lucide-vue-next"
+      ],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["TagsInput.vue", "index.ts"],
+      "files": [
+        "TagsInput.vue",
+        "index.ts"
+      ],
       "category": "form"
     },
     "scroll-area": {
       "name": "Scroll Area",
       "type": "layout",
       "description": "Augments native scroll functionality for custom, cross-browser styling",
-      "dependencies": ["radix-vue"],
+      "dependencies": [
+        "radix-vue"
+      ],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["ScrollArea.vue", "ScrollBar.vue", "index.ts"],
+      "files": [
+        "ScrollArea.vue",
+        "ScrollBar.vue",
+        "index.ts"
+      ],
       "category": "layout"
     },
     "toggle": {
       "name": "Toggle",
       "type": "interactive",
       "description": "A two-state button that can be either on or off",
-      "dependencies": ["radix-vue", "class-variance-authority"],
+      "dependencies": [
+        "radix-vue",
+        "class-variance-authority"
+      ],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["Toggle.vue", "variants.ts", "index.ts"],
+      "files": [
+        "Toggle.vue",
+        "variants.ts",
+        "index.ts"
+      ],
       "category": "interactive"
     },
     "toggle-group": {
       "name": "Toggle Group",
       "type": "interactive",
       "description": "A set of two-state buttons that can be toggled on or off",
-      "dependencies": ["radix-vue"],
+      "dependencies": [
+        "radix-vue"
+      ],
       "devDependencies": [],
-      "registryDependencies": ["toggle"],
-      "files": ["ToggleGroup.vue", "index.ts"],
+      "registryDependencies": [
+        "toggle"
+      ],
+      "files": [
+        "ToggleGroup.vue",
+        "index.ts"
+      ],
       "category": "interactive"
     },
     "resizable": {
       "name": "Resizable",
       "type": "layout",
       "description": "Accessible resizable panel groups and layouts with keyboard support",
-      "dependencies": ["radix-vue"],
+      "dependencies": [
+        "radix-vue"
+      ],
       "devDependencies": [],
       "registryDependencies": [],
-      "files": ["Resizable.vue", "ResizableHandle.vue", "ResizablePanel.vue", "index.ts"],
+      "files": [
+        "Resizable.vue",
+        "ResizableHandle.vue",
+        "ResizablePanel.vue",
+        "index.ts"
+      ],
       "category": "layout"
     }
   },
   "groups": {
     "form": {
       "name": "Form Components",
-      "components": ["button", "input", "label", "select", "checkbox", "radio-group", "switch", "slider", "textarea", "form", "calendar", "calendar-range", "tags-input"]
+      "components": [
+        "button",
+        "input",
+        "label",
+        "select",
+        "checkbox",
+        "radio-group",
+        "switch",
+        "slider",
+        "textarea",
+        "form",
+        "calendar",
+        "calendar-range",
+        "tags-input"
+      ]
     },
     "layout": {
       "name": "Layout Components",
-      "components": ["card", "separator", "accordion", "tabs", "dialog", "sheet", "toolbar", "aspect-ratio", "collapsible", "scroll-area", "resizable"]
+      "components": [
+        "card",
+        "separator",
+        "accordion",
+        "tabs",
+        "dialog",
+        "sheet",
+        "toolbar",
+        "aspect-ratio",
+        "collapsible",
+        "scroll-area",
+        "resizable"
+      ]
     },
     "feedback": {
       "name": "Feedback Components",
-      "components": ["alert", "alert-dialog", "toast", "progress", "skeleton", "badge", "empty"]
+      "components": [
+        "alert",
+        "alert-dialog",
+        "toast",
+        "progress",
+        "skeleton",
+        "badge",
+        "empty"
+      ]
     },
     "data-display": {
       "name": "Data Display Components",
-      "components": ["kbd", "typography", "table", "avatar", "hover-card"]
+      "components": [
+        "kbd",
+        "typography",
+        "table",
+        "avatar",
+        "hover-card"
+      ]
     },
     "navigation": {
       "name": "Navigation Components",
-      "components": ["dropdown-menu", "navigation-menu", "breadcrumb", "popover", "tooltip", "pagination", "command", "context-menu", "menubar"]
+      "components": [
+        "dropdown-menu",
+        "navigation-menu",
+        "breadcrumb",
+        "popover",
+        "tooltip",
+        "pagination",
+        "command",
+        "context-menu",
+        "menubar"
+      ]
     },
     "interactive": {
       "name": "Interactive Components",
-      "components": ["toggle", "toggle-group"]
+      "components": [
+        "toggle",
+        "toggle-group"
+      ]
     },
     "charts": {
       "name": "Chart Components",
-      "components": ["line-chart", "bar-chart", "pie-chart", "donut-chart", "area-chart", "radar-chart", "scatter-chart", "mixed-chart"]
+      "components": [
+        "line-chart",
+        "bar-chart",
+        "pie-chart",
+        "donut-chart",
+        "area-chart",
+        "radar-chart",
+        "scatter-chart",
+        "mixed-chart"
+      ]
     }
   }
 }
