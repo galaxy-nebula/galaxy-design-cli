@@ -7,8 +7,8 @@
       "type": "layout",
       "description": "Collapsible accordion component for expandable content sections",
       "files": [
-        "accordion/Accordion.tsx",
-        "accordion/index.ts"
+        "Accordion.tsx",
+        "index.ts"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -27,8 +27,8 @@
       "type": "feedback",
       "description": "Alert component for displaying important messages with variants",
       "files": [
-        "alert/Alert.tsx",
-        "alert/index.ts"
+        "Alert.tsx",
+        "index.ts"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -46,8 +46,8 @@
       "type": "overlay",
       "description": "Modal alert dialog for important confirmations and decisions",
       "files": [
-        "alert-dialog/AlertDialog.tsx",
-        "alert-dialog/index.ts"
+        "AlertDialog.tsx",
+        "index.ts"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -70,8 +70,8 @@
       "type": "layout",
       "description": "Container that maintains a specific aspect ratio for its content",
       "files": [
-        "aspect-ratio/AspectRatio.tsx",
-        "aspect-ratio/index.ts"
+        "AspectRatio.tsx",
+        "index.ts"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -87,8 +87,8 @@
       "type": "data-display",
       "description": "Avatar component for displaying user profile images with fallback",
       "files": [
-        "avatar/Avatar.tsx",
-        "avatar/index.ts"
+        "Avatar.tsx",
+        "index.ts"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -107,8 +107,8 @@
       "type": "data-display",
       "description": "Badge component for status indicators, counts, and labels",
       "files": [
-        "badge/Badge.tsx",
-        "badge/index.ts"
+        "Badge.tsx",
+        "index.ts"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -124,8 +124,8 @@
       "type": "form",
       "description": "Button component with multiple variants, sizes, and states",
       "files": [
-        "button/Button.tsx",
-        "button/index.ts"
+        "Button.tsx",
+        "index.ts"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -141,8 +141,8 @@
       "type": "layout",
       "description": "Card container with header, content, and footer sections",
       "files": [
-        "card/Card.tsx",
-        "card/index.ts"
+        "Card.tsx",
+        "index.ts"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -163,8 +163,8 @@
       "type": "form",
       "description": "Checkbox input with label and indeterminate state support",
       "files": [
-        "checkbox/Checkbox.tsx",
-        "checkbox/index.ts"
+        "Checkbox.tsx",
+        "index.ts"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -180,8 +180,8 @@
       "type": "layout",
       "description": "Collapsible container for showing and hiding content",
       "files": [
-        "collapsible/Collapsible.tsx",
-        "collapsible/index.ts"
+        "Collapsible.tsx",
+        "index.ts"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -199,8 +199,8 @@
       "type": "overlay",
       "description": "Context menu triggered by long press gesture",
       "files": [
-        "context-menu/ContextMenu.tsx",
-        "context-menu/index.ts"
+        "ContextMenu.tsx",
+        "index.ts"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -220,8 +220,8 @@
       "type": "form",
       "description": "Date picker with single date and date range selection",
       "files": [
-        "date-picker/DatePicker.tsx",
-        "date-picker/index.ts"
+        "DatePicker.tsx",
+        "index.ts"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -239,8 +239,8 @@
       "type": "overlay",
       "description": "Modal dialog for displaying content over the main interface",
       "files": [
-        "dialog/Dialog.tsx",
-        "dialog/index.ts"
+        "Dialog.tsx",
+        "index.ts"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -261,8 +261,8 @@
       "type": "overlay",
       "description": "Dropdown menu for displaying a list of actions or options",
       "files": [
-        "dropdown-menu/DropdownMenu.tsx",
-        "dropdown-menu/index.ts"
+        "DropdownMenu.tsx",
+        "index.ts"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -283,8 +283,8 @@
       "type": "data-display",
       "description": "Empty state component with presets for no data, errors, and offline states",
       "files": [
-        "empty/Empty.tsx",
-        "empty/index.ts"
+        "Empty.tsx",
+        "index.ts"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -300,8 +300,8 @@
       "type": "overlay",
       "description": "Hover card for displaying additional information on press",
       "files": [
-        "hover-card/HoverCard.tsx",
-        "hover-card/index.ts"
+        "HoverCard.tsx",
+        "index.ts"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -319,8 +319,8 @@
       "type": "form",
       "description": "Text input component with label, placeholder, and error states",
       "files": [
-        "input/Input.tsx",
-        "input/index.ts"
+        "Input.tsx",
+        "index.ts"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -336,8 +336,8 @@
       "type": "form",
       "description": "Label component for form inputs",
       "files": [
-        "label/Label.tsx",
-        "label/index.ts"
+        "Label.tsx",
+        "index.ts"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -353,8 +353,8 @@
       "type": "navigation",
       "description": "Menubar component for horizontal navigation menus",
       "files": [
-        "menubar/Menubar.tsx",
-        "menubar/index.ts"
+        "Menubar.tsx",
+        "index.ts"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -375,8 +375,8 @@
       "type": "navigation",
       "description": "Navigation menu with bottom tab and drawer variants",
       "files": [
-        "navigation-menu/NavigationMenu.tsx",
-        "navigation-menu/index.ts"
+        "NavigationMenu.tsx",
+        "index.ts"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -394,8 +394,8 @@
       "type": "navigation",
       "description": "Pagination component with compact, full, and load more variants",
       "files": [
-        "pagination/Pagination.tsx",
-        "pagination/index.ts"
+        "Pagination.tsx",
+        "index.ts"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -411,8 +411,8 @@
       "type": "overlay",
       "description": "Popover component for displaying floating content",
       "files": [
-        "popover/Popover.tsx",
-        "popover/index.ts"
+        "Popover.tsx",
+        "index.ts"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -430,8 +430,8 @@
       "type": "feedback",
       "description": "Progress bar component for showing task completion",
       "files": [
-        "progress/Progress.tsx",
-        "progress/index.ts"
+        "Progress.tsx",
+        "index.ts"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -447,8 +447,8 @@
       "type": "form",
       "description": "Radio button group for single selection from multiple options",
       "files": [
-        "radio-group/RadioGroup.tsx",
-        "radio-group/index.ts"
+        "RadioGroup.tsx",
+        "index.ts"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -465,8 +465,8 @@
       "type": "form",
       "description": "Select dropdown component for choosing from a list of options",
       "files": [
-        "select/Select.tsx",
-        "select/index.ts"
+        "Select.tsx",
+        "index.ts"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -486,8 +486,8 @@
       "type": "layout",
       "description": "Visual separator line for dividing content",
       "files": [
-        "separator/Separator.tsx",
-        "separator/index.ts"
+        "Separator.tsx",
+        "index.ts"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -503,8 +503,8 @@
       "type": "overlay",
       "description": "Bottom sheet and side sheet component with header and footer",
       "files": [
-        "sheet/Sheet.tsx",
-        "sheet/index.ts"
+        "Sheet.tsx",
+        "index.ts"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -525,8 +525,8 @@
       "type": "feedback",
       "description": "Skeleton loading placeholder component",
       "files": [
-        "skeleton/Skeleton.tsx",
-        "skeleton/index.ts"
+        "Skeleton.tsx",
+        "index.ts"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -542,8 +542,8 @@
       "type": "form",
       "description": "Slider component for selecting a value from a range",
       "files": [
-        "slider/Slider.tsx",
-        "slider/index.ts"
+        "Slider.tsx",
+        "index.ts"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -559,8 +559,8 @@
       "type": "form",
       "description": "Toggle switch component for boolean input",
       "files": [
-        "switch/Switch.tsx",
-        "switch/index.ts"
+        "Switch.tsx",
+        "index.ts"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -576,8 +576,8 @@
       "type": "data-display",
       "description": "Table component for displaying structured data",
       "files": [
-        "table/Table.tsx",
-        "table/index.ts"
+        "Table.tsx",
+        "index.ts"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -598,8 +598,8 @@
       "type": "navigation",
       "description": "Tabs component for organizing content into sections",
       "files": [
-        "tabs/Tabs.tsx",
-        "tabs/index.ts"
+        "Tabs.tsx",
+        "index.ts"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -618,8 +618,8 @@
       "type": "form",
       "description": "Multi-line text input component",
       "files": [
-        "textarea/Textarea.tsx",
-        "textarea/index.ts"
+        "Textarea.tsx",
+        "index.ts"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -635,8 +635,8 @@
       "type": "form",
       "description": "Toggle button for binary state changes",
       "files": [
-        "toggle/Toggle.tsx",
-        "toggle/index.ts"
+        "Toggle.tsx",
+        "index.ts"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -652,8 +652,8 @@
       "type": "form",
       "description": "Group of toggle buttons for single or multiple selection",
       "files": [
-        "toggle-group/ToggleGroup.tsx",
-        "toggle-group/index.ts"
+        "ToggleGroup.tsx",
+        "index.ts"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -670,8 +670,8 @@
       "type": "overlay",
       "description": "Tooltip component for displaying helpful information on press",
       "files": [
-        "tooltip/Tooltip.tsx",
-        "tooltip/index.ts"
+        "Tooltip.tsx",
+        "index.ts"
       ],
       "dependencies": [],
       "peerDependencies": [
@@ -689,8 +689,8 @@
       "type": "data-display",
       "description": "Typography component with 11 text variants (h1-h4, p, lead, large, small, muted, blockquote, code)",
       "files": [
-        "typography/Typography.tsx",
-        "typography/index.ts"
+        "Typography.tsx",
+        "index.ts"
       ],
       "dependencies": [],
       "peerDependencies": [
