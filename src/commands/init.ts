@@ -339,10 +339,10 @@ export async function initCommand(options: InitOptions) {
       // Configure TypeScript path aliases
       if (framework === 'react') {
         // Vite React uses tsconfig.app.json
-        configureTypeScriptAliases(cwd, 'tsconfig.app.json');
+        configureTypeScriptAliases(cwd, 'tsconfig.app.json', usesSrcDir);
       } else if (framework === 'vue' || framework === 'nextjs') {
         // Vue and Next.js use tsconfig.json
-        configureTypeScriptAliases(cwd, 'tsconfig.json');
+        configureTypeScriptAliases(cwd, 'tsconfig.json', usesSrcDir);
       }
 
       // Configure bundler path aliases (only for Vite projects, not Next.js/Nuxt)
@@ -708,7 +708,7 @@ function getCSSContent(baseColor: BaseColor): string {
 /**
  * Configure TypeScript path aliases in tsconfig
  */
-function configureTypeScriptAliases(cwd: string, tsconfigFile: string): void {
+function configureTypeScriptAliases(cwd: string, tsconfigFile: string, usesSrcDir: boolean): void {
   const tsconfigPath = resolve(cwd, tsconfigFile);
 
   if (!existsSync(tsconfigPath)) {
@@ -718,8 +718,11 @@ function configureTypeScriptAliases(cwd: string, tsconfigFile: string): void {
   try {
     let content = readFileSync(tsconfigPath, 'utf-8');
 
-    // Check if baseUrl and paths already exist
-    if (content.includes('"baseUrl"') && content.includes('"paths"') && content.includes('"@/*"')) {
+    // Determine the correct path based on project structure
+    const pathMapping = usesSrcDir ? './src/*' : './*';
+
+    // Check if already configured with our path mapping
+    if (content.includes('"baseUrl":') && content.includes(pathMapping)) {
       return; // Already configured
     }
 
@@ -738,7 +741,7 @@ function configureTypeScriptAliases(cwd: string, tsconfigFile: string): void {
     if (match) {
       const indent = match[1] || '    ';
       // Insert path config before the closing brace
-      const pathConfig = `,\n\n${indent}/* Path Aliases */\n${indent}"baseUrl": ".",\n${indent}"paths": {\n${indent}  "@/*": ["./src/*"]\n${indent}}`;
+      const pathConfig = `,\n\n${indent}/* Path Aliases */\n${indent}"baseUrl": ".",\n${indent}"paths": {\n${indent}  "@/*": ["${pathMapping}"]\n${indent}}`;
 
       content = content.replace(insertPattern, `${pathConfig}\n$1$2`);
       writeFileSync(tsconfigPath, content, 'utf-8');
