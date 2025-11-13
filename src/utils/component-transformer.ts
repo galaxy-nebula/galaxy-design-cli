@@ -156,6 +156,37 @@ function transformNuxtjsComponent(content: string, componentName: string): Trans
 }
 
 /**
+ * Transform import paths to match user's project structure
+ *
+ * Transforms @/components/xxx to @/components/ui/xxx
+ */
+function transformImportPaths(content: string): TransformResult {
+	const notes: string[] = [];
+	let modified = false;
+	let transformedContent = content;
+
+	// Transform @/components/ imports to @/components/ui/
+	// Match patterns like: from '@/components/calendar'
+	const importPattern = /from\s+['"]@\/components\/([^'"]+)['"]/g;
+
+	transformedContent = content.replace(importPattern, (match, componentPath) => {
+		// Skip if already has /ui/ in path
+		if (componentPath.includes('ui/')) {
+			return match;
+		}
+		modified = true;
+		notes.push(`Transformed import path: @/components/${componentPath} -> @/components/ui/${componentPath}`);
+		return `from '@/components/ui/${componentPath}'`;
+	});
+
+	return {
+		content: transformedContent,
+		modified,
+		notes,
+	};
+}
+
+/**
  * Transform component file based on platform
  *
  * @param content - File content
@@ -165,26 +196,42 @@ function transformNuxtjsComponent(content: string, componentName: string): Trans
 export function transformComponent(content: string, options: TransformOptions): TransformResult {
 	const { platform, componentName } = options;
 
+	// First, apply import path transformations for all platforms
+	const importTransform = transformImportPaths(content);
+	let transformedContent = importTransform.content;
+	let notes = [...importTransform.notes];
+	let modified = importTransform.modified;
+
+	// Then apply platform-specific transformations
+	let platformResult: TransformResult;
 	switch (platform) {
 		case 'nextjs':
-			return transformNextjsComponent(content, componentName);
+			platformResult = transformNextjsComponent(transformedContent, componentName);
+			break;
 
 		case 'nuxtjs':
-			return transformNuxtjsComponent(content, componentName);
+			platformResult = transformNuxtjsComponent(transformedContent, componentName);
+			break;
 
-		// Other platforms don't need transformation
+		// Other platforms don't need additional transformation
 		case 'react':
 		case 'vue':
 		case 'angular':
 		case 'react-native':
 		case 'flutter':
 		default:
-			return {
-				content,
+			platformResult = {
+				content: transformedContent,
 				modified: false,
-				notes: ['No transformation needed for this platform'],
+				notes: modified ? [] : ['No transformation needed for this platform'],
 			};
 	}
+
+	return {
+		content: platformResult.content,
+		modified: modified || platformResult.modified,
+		notes: [...notes, ...platformResult.notes],
+	};
 }
 
 /**

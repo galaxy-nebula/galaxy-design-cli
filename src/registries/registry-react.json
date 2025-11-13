@@ -787,6 +787,79 @@
       ],
       "category": "form"
     },
+    "date-picker": {
+      "name": "Date Picker",
+      "type": "form",
+      "description": "A date picker component with popover and calendar",
+      "dependencies": [
+        "date-fns"
+      ],
+      "devDependencies": [],
+      "registryDependencies": [
+        "calendar",
+        "popover",
+        "button"
+      ],
+      "files": [
+        "DatePicker.tsx",
+        "index.ts"
+      ],
+      "category": "form"
+    },
+    "date-range-picker": {
+      "name": "Date Range Picker",
+      "type": "form",
+      "description": "A date range picker component with popover and calendar range",
+      "dependencies": [
+        "date-fns"
+      ],
+      "devDependencies": [],
+      "registryDependencies": [
+        "calendar-range",
+        "popover",
+        "button"
+      ],
+      "files": [
+        "DateRangePicker.tsx",
+        "index.ts"
+      ],
+      "category": "form"
+    },
+    "time-picker": {
+      "name": "Time Picker",
+      "type": "form",
+      "description": "A time picker component with popover and select inputs for hours and minutes",
+      "dependencies": [],
+      "devDependencies": [],
+      "registryDependencies": [
+        "popover",
+        "button",
+        "select"
+      ],
+      "files": [
+        "TimePicker.tsx",
+        "index.ts"
+      ],
+      "category": "form"
+    },
+    "date-time-picker": {
+      "name": "Date Time Picker",
+      "type": "form",
+      "description": "A combined date and time picker component",
+      "dependencies": [
+        "date-fns"
+      ],
+      "devDependencies": [],
+      "registryDependencies": [
+        "date-picker",
+        "time-picker"
+      ],
+      "files": [
+        "DateTimePicker.tsx",
+        "index.ts"
+      ],
+      "category": "form"
+    },
     "command": {
       "name": "Command",
       "type": "navigation",
@@ -869,6 +942,10 @@
         "form",
         "calendar",
         "calendar-range",
+        "date-picker",
+        "date-range-picker",
+        "time-picker",
+        "date-time-picker",
         "tags-input"
       ]
     },

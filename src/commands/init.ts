@@ -214,6 +214,7 @@ export async function initCommand(options: InitOptions) {
     case 'angular':
       // Angular components use Radix NG primitives
       dependencies.push('@radix-ng/primitives');
+      devDependencies.push('tailwindcss@3.4.0', 'autoprefixer', 'postcss');
       if (config.iconLibrary === 'lucide') {
         dependencies.push('lucide-angular');
       }
@@ -293,7 +294,7 @@ export async function initCommand(options: InitOptions) {
   }
 
   // Create Tailwind CSS configuration files (only for frameworks that use Tailwind)
-  if (framework !== 'flutter' && framework !== 'angular') {
+  if (framework !== 'flutter') {
     const tailwindSpinner = ora('Creating Tailwind CSS configuration...').start();
 
     try {
@@ -304,7 +305,7 @@ export async function initCommand(options: InitOptions) {
 
       // Create postcss.config.js
       const postcssConfigPath = resolve(cwd, 'postcss.config.js');
-      const postcssConfigContent = getPostCSSConfigContent();
+      const postcssConfigContent = getPostCSSConfigContent(framework);
       writeFile(postcssConfigPath, postcssConfigContent);
 
       tailwindSpinner.succeed('Tailwind CSS configuration created');
@@ -337,19 +338,18 @@ export async function initCommand(options: InitOptions) {
 
     try {
       // Configure TypeScript path aliases
-      if (framework === 'react' || framework === 'angular') {
-        // Vite React and Angular use tsconfig.app.json
+      if (framework === 'react' || framework === 'angular' || framework === 'vue') {
+        // Vite React, Angular, and Vue use tsconfig.app.json
         configureTypeScriptAliases(cwd, 'tsconfig.app.json', usesSrcDir);
-      } else if (framework === 'vue' || framework === 'nextjs') {
-        // Vue and Next.js use tsconfig.json
+      } else if (framework === 'nextjs') {
+        // Next.js uses tsconfig.json
         configureTypeScriptAliases(cwd, 'tsconfig.json', usesSrcDir);
       }
 
       // Configure bundler path aliases (only for Vite projects, not Next.js/Nuxt)
-      if (framework === 'react') {
+      if (framework === 'react' || framework === 'vue') {
+        // Both React and Vue Vite projects use vite.config.ts
         configureViteAliases(cwd, 'vite.config.ts');
-      } else if (framework === 'vue') {
-        configureViteAliases(cwd, 'vite.config.js');
       }
 
       aliasSpinner.succeed('Path aliases configured');
@@ -404,12 +404,22 @@ function getTailwindConfigContent(framework: Framework): string {
     "./index.html",
     "./src/**/*.{vue,js,ts,jsx,tsx}",
   ]`
+      : framework === 'angular'
+      ? `[
+    "./src/**/*.{html,ts}",
+    "./src/components/**/*.{html,ts}",
+  ]`
       : `[
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ]`;
 
+  // Angular uses CommonJS, other frameworks use ES modules
+  const exportStatement = framework === 'angular'
+    ? 'module.exports = '
+    : 'export default ';
+
   return `/** @type {import('tailwindcss').Config} */
-export default {
+${exportStatement}{
   darkMode: ["class"],
   content: ${contentPaths},
   theme: {
@@ -464,7 +474,18 @@ export default {
 /**
  * Get postcss.config.js content
  */
-function getPostCSSConfigContent(): string {
+function getPostCSSConfigContent(framework: Framework): string {
+  // Angular uses CommonJS, other frameworks use ES modules
+  if (framework === 'angular') {
+    return `module.exports = {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+}
+`;
+  }
+
   return `export default {
   plugins: {
     tailwindcss: {},
@@ -700,6 +721,15 @@ function getCSSContent(baseColor: BaseColor): string {
 
   .dark {
     ${colors.dark}
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
   }
 }
 `;

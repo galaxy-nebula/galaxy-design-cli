@@ -174,9 +174,10 @@
       "name": "Accordion",
       "selector": "g-accordion",
       "type": "layout",
-      "description": "Collapsible sections with expand/collapse",
+      "description": "Collapsible sections with expand/collapse (directive-based with Radix support)",
       "files": [
         "accordion.component.ts",
+        "accordion.directive.ts",
         "index.ts"
       ],
       "dependencies": [
@@ -187,16 +188,21 @@
       ],
       "exports": [
         "AccordionComponent",
-        "AccordionItemComponent"
+        "AccordionItemComponent",
+        "UiAccordionRootDirective",
+        "UiAccordionItemDirective",
+        "UiAccordionTriggerDirective",
+        "UiAccordionContentDirective"
       ]
     },
     "collapsible": {
       "name": "Collapsible",
       "selector": "g-collapsible",
       "type": "layout",
-      "description": "Collapsible content panel",
+      "description": "Collapsible content panel (directive-based with Radix support)",
       "files": [
         "collapsible.component.ts",
+        "collapsible.directive.ts",
         "index.ts"
       ],
       "dependencies": [
@@ -204,7 +210,10 @@
       ],
       "peerDependencies": [],
       "exports": [
-        "CollapsibleComponent"
+        "CollapsibleComponent",
+        "UiCollapsibleRootDirective",
+        "UiCollapsibleTriggerDirective",
+        "UiCollapsibleContentDirective"
       ]
     },
     "separator": {
@@ -228,10 +237,11 @@
       "name": "Tabs",
       "selector": "g-tabs",
       "type": "navigation",
-      "description": "Tabbed content organization",
+      "description": "Tabbed content organization (directive-based with Radix support)",
       "files": [
         "index.ts",
-        "tabs.component.ts"
+        "tabs.component.ts",
+        "tabs.directive.ts"
       ],
       "dependencies": [
         "@radix-ng/primitives"
@@ -242,7 +252,11 @@
       "exports": [
         "TabsComponent",
         "TabComponent",
-        "TabPanelComponent"
+        "TabPanelComponent",
+        "UiTabsRootDirective",
+        "UiTabsListDirective",
+        "UiTabsTriggerDirective",
+        "UiTabsContentDirective"
       ]
     },
     "dropdown-menu": {
@@ -337,18 +351,26 @@
       "name": "Tooltip",
       "selector": "g-tooltip",
       "type": "modal-overlay",
-      "description": "Tooltip component for hover information (shadcn style)",
+      "description": "Tooltip component for hover information (directive-based with Radix support)",
       "files": [
         "index.ts",
-        "tooltip.component.ts"
+        "tooltip.component.ts",
+        "tooltip.directive.ts"
       ],
       "dependencies": [
         "@radix-ng/primitives"
       ],
       "peerDependencies": [],
       "exports": [
-        "TooltipComponent"
-      ]
+        "TooltipComponent",
+        "UiTooltipRootDirective",
+        "UiTooltipTriggerDirective",
+        "UiTooltipContentDirective"
+      ],
+      "providers": {
+        "import": "import { provideRdxTooltipConfig } from '@radix-ng/primitives/tooltip2';",
+        "function": "...provideRdxTooltipConfig({})"
+      }
     },
     "line-chart": {
       "name": "LineChart",
@@ -519,7 +541,7 @@
       "name": "Dialog",
       "selector": "g-dialog",
       "type": "modal-overlay",
-      "description": "Modal dialog component",
+      "description": "Modal dialog using Radix template API (uses rdxDialogTrigger directive - see Angular docs for usage)",
       "files": [
         "dialog.component.ts",
         "index.ts"
@@ -531,8 +553,18 @@
         "lucide-angular"
       ],
       "exports": [
-        "DialogComponent"
-      ]
+        "DialogComponent",
+        "DialogTriggerComponent",
+        "DialogContentComponent",
+        "DialogTitleComponent",
+        "DialogDescriptionComponent",
+        "DialogHeaderComponent",
+        "DialogFooterComponent"
+      ],
+      "providers": {
+        "import": "import { provideRdxDialogConfig } from '@radix-ng/primitives/dialog';",
+        "function": "...provideRdxDialogConfig()"
+      }
     },
     "alert-dialog": {
       "name": "Alert Dialog",

@@ -13,8 +13,8 @@
       "registryDependencies": [],
       "files": [
         "Button.vue",
-        "index.ts",
-        "variants.ts"
+        "variants.ts",
+        "index.ts"
       ],
       "category": "form"
     },
@@ -26,8 +26,7 @@
       "devDependencies": [],
       "registryDependencies": [],
       "files": [
-        "Input.vue",
-        "index.ts"
+        "Input.vue"
       ],
       "category": "form"
     },
@@ -41,8 +40,7 @@
       "devDependencies": [],
       "registryDependencies": [],
       "files": [
-        "Label.vue",
-        "index.ts"
+        "label.vue"
       ],
       "category": "form"
     },
@@ -56,11 +54,7 @@
       "devDependencies": [],
       "registryDependencies": [],
       "files": [
-        "Select.vue",
-        "SelectContent.vue",
-        "SelectItem.vue",
-        "SelectTrigger.vue",
-        "index.ts"
+        "select.vue"
       ],
       "category": "form"
     },
@@ -74,8 +68,7 @@
       "devDependencies": [],
       "registryDependencies": [],
       "files": [
-        "Checkbox.vue",
-        "index.ts"
+        "checkbox.vue"
       ],
       "category": "form"
     },
@@ -89,9 +82,7 @@
       "devDependencies": [],
       "registryDependencies": [],
       "files": [
-        "RadioGroup.vue",
-        "RadioGroupItem.vue",
-        "index.ts"
+        "radio-group.vue"
       ],
       "category": "form"
     },
@@ -105,8 +96,7 @@
       "devDependencies": [],
       "registryDependencies": [],
       "files": [
-        "Switch.vue",
-        "index.ts"
+        "switch.vue"
       ],
       "category": "form"
     },
@@ -120,8 +110,7 @@
       "devDependencies": [],
       "registryDependencies": [],
       "files": [
-        "Slider.vue",
-        "index.ts"
+        "slider.vue"
       ],
       "category": "form"
     },
@@ -133,8 +122,7 @@
       "devDependencies": [],
       "registryDependencies": [],
       "files": [
-        "Textarea.vue",
-        "index.ts"
+        "Textarea.vue"
       ],
       "category": "form"
     },
@@ -154,12 +142,7 @@
         "label"
       ],
       "files": [
-        "form-description.vue",
-        "form-item.vue",
-        "form-label.vue",
-        "form-message.vue",
-        "form.vue",
-        "index.ts"
+        "form.vue"
       ],
       "category": "form"
     },
@@ -171,12 +154,12 @@
       "devDependencies": [],
       "registryDependencies": [],
       "files": [
-        "card-content.vue",
-        "card-description.vue",
-        "card-footer.vue",
+        "card.vue",
         "card-header.vue",
         "card-title.vue",
-        "card.vue",
+        "card-description.vue",
+        "card-content.vue",
+        "card-footer.vue",
         "index.ts"
       ],
       "category": "layout"
@@ -191,8 +174,7 @@
       "devDependencies": [],
       "registryDependencies": [],
       "files": [
-        "Separator.vue",
-        "index.ts"
+        "Separator.vue"
       ],
       "category": "layout"
     },
@@ -206,29 +188,21 @@
       "devDependencies": [],
       "registryDependencies": [],
       "files": [
-        "Accordion.vue",
-        "AccordionContent.vue",
-        "AccordionItem.vue",
-        "AccordionTrigger.vue",
-        "index.ts"
+        "accordion.vue"
       ],
       "category": "layout"
     },
     "tabs": {
       "name": "Tabs",
       "type": "layout",
-      "description": "A set of layered sections of content—known as tab panels—that are displayed one at a time",
+      "description": "A set of layered sections of content\u2014known as tab panels\u2014that are displayed one at a time",
       "dependencies": [
         "radix-vue"
       ],
       "devDependencies": [],
       "registryDependencies": [],
       "files": [
-        "Tabs.vue",
-        "TabsContent.vue",
-        "TabsList.vue",
-        "TabsTrigger.vue",
-        "index.ts"
+        "tabs.vue"
       ],
       "category": "layout"
     },
@@ -242,11 +216,7 @@
       "devDependencies": [],
       "registryDependencies": [],
       "files": [
-        "Dialog.vue",
-        "DialogContent.vue",
-        "DialogFooter.vue",
-        "DialogHeader.vue",
-        "index.ts"
+        "dialog.vue"
       ],
       "category": "layout"
     },
@@ -260,9 +230,9 @@
       "devDependencies": [],
       "registryDependencies": [],
       "files": [
-        "alert-description.vue",
-        "alert-title.vue",
         "alert.vue",
+        "alert-title.vue",
+        "alert-description.vue",
         "index.ts"
       ],
       "category": "feedback"
@@ -295,8 +265,7 @@
       "devDependencies": [],
       "registryDependencies": [],
       "files": [
-        "AspectRatio.vue",
-        "index.ts"
+        "aspect-ratio.vue"
       ],
       "category": "layout"
     },
@@ -327,8 +296,8 @@
       "devDependencies": [],
       "registryDependencies": [],
       "files": [
-        "index.ts",
-        "toast.vue"
+        "toast.vue",
+        "index.ts"
       ],
       "category": "feedback"
     },
@@ -342,8 +311,7 @@
       "devDependencies": [],
       "registryDependencies": [],
       "files": [
-        "Progress.vue",
-        "index.ts"
+        "progress.vue"
       ],
       "category": "feedback"
     },
@@ -355,8 +323,7 @@
       "devDependencies": [],
       "registryDependencies": [],
       "files": [
-        "Skeleton.vue",
-        "index.ts"
+        "skeleton.vue"
       ],
       "category": "feedback"
     },
@@ -385,10 +352,7 @@
       "devDependencies": [],
       "registryDependencies": [],
       "files": [
-        "DropdownMenu.vue",
-        "DropdownMenuContent.vue",
-        "DropdownMenuItem.vue",
-        "index.ts"
+        "dropdown-menu.vue"
       ],
       "category": "navigation"
     },
@@ -402,8 +366,7 @@
       "devDependencies": [],
       "registryDependencies": [],
       "files": [
-        "NavigationMenu.vue",
-        "index.ts"
+        "navigation-menu.vue"
       ],
       "category": "navigation"
     },
@@ -417,13 +380,13 @@
       "devDependencies": [],
       "registryDependencies": [],
       "files": [
-        "breadcrumb-ellipsis.vue",
+        "breadcrumb.vue",
+        "breadcrumb-list.vue",
         "breadcrumb-item.vue",
         "breadcrumb-link.vue",
-        "breadcrumb-list.vue",
         "breadcrumb-page.vue",
         "breadcrumb-separator.vue",
-        "breadcrumb.vue",
+        "breadcrumb-ellipsis.vue",
         "index.ts"
       ],
       "category": "navigation"
@@ -438,8 +401,7 @@
       "devDependencies": [],
       "registryDependencies": [],
       "files": [
-        "Collapsible.vue",
-        "index.ts"
+        "collapsible.vue"
       ],
       "category": "layout"
     },
@@ -486,8 +448,7 @@
       "devDependencies": [],
       "registryDependencies": [],
       "files": [
-        "Menubar.vue",
-        "index.ts"
+        "menubar.vue"
       ],
       "category": "navigation"
     },
@@ -501,9 +462,7 @@
       "devDependencies": [],
       "registryDependencies": [],
       "files": [
-        "Popover.vue",
-        "PopoverContent.vue",
-        "index.ts"
+        "popover.vue"
       ],
       "category": "navigation"
     },
@@ -517,9 +476,7 @@
       "devDependencies": [],
       "registryDependencies": [],
       "files": [
-        "Tooltip.vue",
-        "TooltipContent.vue",
-        "index.ts"
+        "tooltip.vue"
       ],
       "category": "navigation"
     },
@@ -534,10 +491,10 @@
       "devDependencies": [],
       "registryDependencies": [],
       "files": [
-        "index.ts",
         "linechart.vue",
         "types.ts",
-        "utils.ts"
+        "utils.ts",
+        "index.ts"
       ],
       "category": "charts"
     },
@@ -553,9 +510,9 @@
       "registryDependencies": [],
       "files": [
         "barchart.vue",
-        "index.ts",
         "types.ts",
-        "utils.ts"
+        "utils.ts",
+        "index.ts"
       ],
       "category": "charts"
     },
@@ -570,10 +527,10 @@
       "devDependencies": [],
       "registryDependencies": [],
       "files": [
-        "index.ts",
         "piechart.vue",
         "types.ts",
-        "utils.ts"
+        "utils.ts",
+        "index.ts"
       ],
       "category": "charts"
     },
@@ -589,9 +546,9 @@
       "registryDependencies": [],
       "files": [
         "donutchart.vue",
-        "index.ts",
         "types.ts",
-        "utils.ts"
+        "utils.ts",
+        "index.ts"
       ],
       "category": "charts"
     },
@@ -607,9 +564,9 @@
       "registryDependencies": [],
       "files": [
         "areachart.vue",
-        "index.ts",
         "types.ts",
-        "utils.ts"
+        "utils.ts",
+        "index.ts"
       ],
       "category": "charts"
     },
@@ -624,10 +581,10 @@
       "devDependencies": [],
       "registryDependencies": [],
       "files": [
-        "index.ts",
         "radarchart.vue",
         "types.ts",
-        "utils.ts"
+        "utils.ts",
+        "index.ts"
       ],
       "category": "charts"
     },
@@ -642,10 +599,10 @@
       "devDependencies": [],
       "registryDependencies": [],
       "files": [
-        "index.ts",
         "scatterchart.vue",
         "types.ts",
-        "utils.ts"
+        "utils.ts",
+        "index.ts"
       ],
       "category": "charts"
     },
@@ -660,10 +617,10 @@
       "devDependencies": [],
       "registryDependencies": [],
       "files": [
-        "index.ts",
         "mixedchart.vue",
         "types.ts",
-        "utils.ts"
+        "utils.ts",
+        "index.ts"
       ],
       "category": "charts"
     },
@@ -855,8 +812,8 @@
       "registryDependencies": [],
       "files": [
         "Toggle.vue",
-        "index.ts",
-        "variants.ts"
+        "variants.ts",
+        "index.ts"
       ],
       "category": "interactive"
     },
@@ -889,11 +846,11 @@
       "devDependencies": [],
       "registryDependencies": [],
       "files": [
-        "ResizableHandle.vue",
-        "ResizablePanel.vue",
         "ResizablePanelGroup.vue",
-        "index.ts",
-        "splitpanes.d.ts"
+        "ResizablePanel.vue",
+        "ResizableHandle.vue",
+        "splitpanes.d.ts",
+        "index.ts"
       ],
       "category": "layout"
     }

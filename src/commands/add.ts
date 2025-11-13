@@ -21,6 +21,8 @@ import { writeFile, fileExists, readFile, ensureDir } from '../utils/files.js';
 import { installDependencies } from '../utils/package-manager.js';
 import type { Framework } from '../utils/config-schema.js';
 import { fetchFileFromGitHub, getComponentGitHubPath } from '../utils/github-fetcher.js';
+import { transformComponent } from '../utils/component-transformer.js';
+import { generateAngularProvidersIndex } from '../utils/angular-provider-manager.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -216,7 +218,16 @@ export async function addCommand(components: string[], options: AddOptions) {
           // Fetch file from GitHub (use packageFramework for correct path)
           const sourceFolder = component.type === 'block' ? 'blocks' : 'components';
           const githubPath = `packages/${packageFramework}/src/${sourceFolder}/${componentKey}/${file}`;
-          const content = await fetchFileFromGitHub(githubPath);
+          let content = await fetchFileFromGitHub(githubPath);
+
+          // Apply transformations (import path fixes, 'use client' for Next.js, etc.)
+          const transformResult = transformComponent(content, {
+            platform: framework,
+            componentName: componentKey,
+            filePath: destFilePath,
+          });
+          content = transformResult.content;
+
           writeFile(destFilePath, content);
         } catch (error) {
           // Try with capitalized file name
@@ -224,7 +235,16 @@ export async function addCommand(components: string[], options: AddOptions) {
             const capitalizedFile = file.charAt(0).toUpperCase() + file.slice(1);
             const sourceFolder = component.type === 'block' ? 'blocks' : 'components';
             const githubPath = `packages/${packageFramework}/src/${sourceFolder}/${componentKey}/${capitalizedFile}`;
-            const content = await fetchFileFromGitHub(githubPath);
+            let content = await fetchFileFromGitHub(githubPath);
+
+            // Apply transformations (import path fixes, 'use client' for Next.js, etc.)
+            const transformResult = transformComponent(content, {
+              platform: framework,
+              componentName: componentKey,
+              filePath: destFilePath,
+            });
+            content = transformResult.content;
+
             writeFile(destFilePath, content);
           } catch (capitalizedError) {
             // If both attempts fail, write a placeholder
@@ -308,6 +328,30 @@ export async function addCommand(components: string[], options: AddOptions) {
     }
   }
 
+  // For Angular, generate/update the components/ui/index.ts file with providers
+  if (framework === 'angular' && successful > 0) {
+    console.log('\n');
+    const providerSpinner = ora('Generating providers index...').start();
+
+    try {
+      const componentsAlias = componentsConfig.aliases.components;
+      const destPath = componentsAlias.replace('@/', '');
+      const usesSrcDir = hasSrcDirectory(cwd);
+      const baseDir = usesSrcDir ? 'src/' : '';
+      const fullDestPath = resolve(cwd, baseDir + destPath, 'ui');
+
+      const success = generateAngularProvidersIndex(fullDestPath, framework);
+
+      if (success) {
+        providerSpinner.succeed('Generated providers index at ' + chalk.cyan(`${destPath}/ui/index.ts`));
+      } else {
+        providerSpinner.warn('Could not generate providers index');
+      }
+    } catch (error) {
+      providerSpinner.fail('Failed to generate providers index');
+    }
+  }
+
   // Next steps
   if (successful > 0) {
     console.log('\n' + chalk.gray('Next steps:'));
@@ -322,11 +366,12 @@ export async function addCommand(components: string[], options: AddOptions) {
         console.log(chalk.gray('  2. Use them in your JSX'));
         break;
       case 'angular':
-        console.log(chalk.gray('  1. Import the components in your Angular module or component'));
-        console.log(chalk.gray('  2. Use them in your templates'));
+        console.log(chalk.gray('  1. Import provideGalaxyComponents() in your app.config.ts providers array'));
+        console.log(chalk.gray('  2. Import the components in your Angular component'));
+        console.log(chalk.gray('  3. Use them in your templates'));
         break;
     }
 
-    console.log(chalk.gray('  3. Enjoy building with Galaxy UI! 🚀\n'));
+    console.log(chalk.gray('  4. Enjoy building with Galaxy UI! 🚀\n'));
   }
 }
