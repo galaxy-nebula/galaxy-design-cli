@@ -369,7 +369,7 @@
       ],
       "providers": {
         "import": "import { provideRdxTooltipConfig } from '@radix-ng/primitives/tooltip2';",
-        "function": "...provideRdxTooltipConfig({})"
+        "function": "provideRdxTooltipConfig({})"
       }
     },
     "line-chart": {
@@ -544,6 +544,7 @@
       "description": "Modal dialog using Radix template API (uses rdxDialogTrigger directive - see Angular docs for usage)",
       "files": [
         "dialog.component.ts",
+        "dialog.directive.ts",
         "index.ts"
       ],
       "dependencies": [
@@ -563,7 +564,7 @@
       ],
       "providers": {
         "import": "import { provideRdxDialogConfig } from '@radix-ng/primitives/dialog';",
-        "function": "...provideRdxDialogConfig()"
+        "function": "provideRdxDialogConfig()"
       }
     },
     "alert-dialog": {
