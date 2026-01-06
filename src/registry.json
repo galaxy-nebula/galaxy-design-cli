@@ -128,7 +128,12 @@
       "files": ["card/card.component.ts"],
       "dependencies": [],
       "peerDependencies": [],
-      "exports": ["CardComponent", "CardHeaderComponent", "CardBodyComponent", "CardFooterComponent"]
+      "exports": [
+        "CardComponent",
+        "CardHeaderComponent",
+        "CardBodyComponent",
+        "CardFooterComponent"
+      ]
     },
     "accordion": {
       "name": "Accordion",
@@ -140,18 +145,8 @@
       "peerDependencies": ["lucide-angular"],
       "exports": ["AccordionComponent", "AccordionItemComponent"]
     },
-    "grid": {
-      "name": "Grid",
-      "selector": "g-grid",
-      "type": "layout",
-      "description": "12-column responsive grid system",
-      "files": ["grid/grid.component.ts"],
-      "dependencies": [],
-      "peerDependencies": [],
-      "exports": ["GridComponent", "GridItemComponent"]
-    },
-    "divider": {
-      "name": "Divider",
+    "separator": {
+      "name": "Separator",
       "selector": "g-divider",
       "type": "layout",
       "description": "Horizontal or vertical separator",
@@ -170,8 +165,8 @@
       "peerDependencies": ["lucide-angular"],
       "exports": ["SplitterComponent", "SplitterPanelComponent"]
     },
-    "menu": {
-      "name": "Menu",
+    "menubar": {
+      "name": "Menubar",
       "selector": "g-menu",
       "type": "navigation",
       "description": "Sidebar navigation with icons and badges",
@@ -200,15 +195,19 @@
       "peerDependencies": ["lucide-angular"],
       "exports": ["TabsComponent", "TabComponent", "TabPanelComponent"]
     },
-    "dropdown": {
-      "name": "Dropdown",
+    "dropdown-menu": {
+      "name": "Dropdown Menu",
       "selector": "g-dropdown",
       "type": "navigation",
       "description": "Action menus and context menus",
       "files": ["dropdown/dropdown.component.ts"],
       "dependencies": [],
       "peerDependencies": ["lucide-angular"],
-      "exports": ["DropdownComponent", "DropdownMenuComponent", "DropdownItemComponent"]
+      "exports": [
+        "DropdownComponent",
+        "DropdownMenuComponent",
+        "DropdownItemComponent"
+      ]
     },
     "sidebar": {
       "name": "Sidebar",
@@ -218,7 +217,12 @@
       "files": ["sidebar/sidebar.component.ts"],
       "dependencies": [],
       "peerDependencies": ["lucide-angular"],
-      "exports": ["SidebarComponent", "SidebarHeaderComponent", "SidebarContentComponent", "SidebarFooterComponent"]
+      "exports": [
+        "SidebarComponent",
+        "SidebarHeaderComponent",
+        "SidebarContentComponent",
+        "SidebarFooterComponent"
+      ]
     },
     "stepper": {
       "name": "Stepper",
@@ -328,7 +332,12 @@
       "files": ["toast/toast.component.ts"],
       "dependencies": [],
       "peerDependencies": ["lucide-angular"],
-      "exports": ["ToastComponent", "ToastService", "ToastItemComponent", "ToastContainerComponent"]
+      "exports": [
+        "ToastComponent",
+        "ToastService",
+        "ToastItemComponent",
+        "ToastContainerComponent"
+      ]
     },
     "tooltip": {
       "name": "Tooltip",
@@ -434,23 +443,61 @@
   "groups": {
     "form": {
       "name": "Form Components",
-      "components": ["button", "input", "checkbox", "select", "calendar", "radio", "switch", "slider", "rate", "button-group", "autocomplete", "calendar-range"]
+      "components": [
+        "button",
+        "input",
+        "checkbox",
+        "select",
+        "calendar",
+        "radio",
+        "switch",
+        "slider",
+        "rate",
+        "button-group",
+        "autocomplete",
+        "calendar-range"
+      ]
     },
     "layout": {
       "name": "Layout Components",
-      "components": ["card", "accordion", "grid", "divider", "splitter"]
+      "components": ["card", "accordion", "separator", "splitter"]
     },
     "navigation": {
       "name": "Navigation Components",
-      "components": ["menu", "breadcrumb", "tabs", "dropdown", "sidebar", "stepper"]
+      "components": [
+        "menubar",
+        "breadcrumb",
+        "tabs",
+        "dropdown-menu",
+        "sidebar",
+        "stepper"
+      ]
     },
     "data-display": {
       "name": "Data Display Components",
-      "components": ["table", "pagination", "table-paginated", "list", "tree", "tag", "timeline"]
+      "components": [
+        "table",
+        "pagination",
+        "table-paginated",
+        "list",
+        "tree",
+        "tag",
+        "timeline"
+      ]
     },
     "modal-overlay": {
       "name": "Modal & Overlay Components",
-      "components": ["popover", "drawer", "toast", "tooltip", "progress", "skeleton", "popconfirm", "dialog", "spinner"]
+      "components": [
+        "popover",
+        "drawer",
+        "toast",
+        "tooltip",
+        "progress",
+        "skeleton",
+        "popconfirm",
+        "dialog",
+        "spinner"
+      ]
     },
     "other": {
       "name": "Other Components",
