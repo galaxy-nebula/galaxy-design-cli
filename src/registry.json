@@ -2,442 +2,972 @@
   "components": {
     "button": {
       "name": "Button",
-      "selector": "gButton",
       "type": "form",
-      "description": "Versatile button with 6 status variants and 5 sizes",
-      "files": ["button/button.component.ts"],
-      "dependencies": [],
-      "peerDependencies": ["lucide-angular"],
-      "exports": ["ButtonDirective"]
+      "description": "Displays a button or a component that looks like a button",
+      "category": "form",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
+      ]
     },
     "input": {
       "name": "Input",
-      "selector": "g-input",
       "type": "form",
-      "description": "Text input with label, hints, and error messages",
-      "files": ["input/input.component.ts"],
-      "dependencies": [],
-      "peerDependencies": ["lucide-angular"],
-      "exports": ["InputComponent"]
+      "description": "Displays a form input field or a component that looks like an input field",
+      "category": "form",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
+      ]
     },
-    "checkbox": {
-      "name": "Checkbox",
-      "selector": "g-checkbox",
+    "label": {
+      "name": "Label",
       "type": "form",
-      "description": "Checkbox with indeterminate state support",
-      "files": ["checkbox/checkbox.component.ts"],
-      "dependencies": [],
-      "peerDependencies": ["lucide-angular"],
-      "exports": ["CheckboxComponent"]
+      "description": "Renders an accessible label associated with controls",
+      "category": "form",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
+      ]
     },
     "select": {
       "name": "Select",
-      "selector": "g-select",
       "type": "form",
-      "description": "Custom dropdown with search functionality",
-      "files": ["select/select.component.ts"],
-      "dependencies": [],
-      "peerDependencies": ["lucide-angular"],
-      "exports": ["SelectComponent", "OptionComponent"]
+      "description": "Displays a list of options for the user to pick from triggered by a button",
+      "category": "form",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
+      ]
     },
-    "calendar": {
-      "name": "Calendar",
-      "selector": "g-calendar",
+    "checkbox": {
+      "name": "Checkbox",
       "type": "form",
-      "description": "Full-featured date picker",
-      "files": ["calendar/calendar.component.ts"],
-      "dependencies": [],
-      "peerDependencies": [],
-      "exports": ["CalendarComponent"]
+      "description": "A control that allows the user to toggle between checked and not checked",
+      "category": "form",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
+      ]
     },
-    "radio": {
-      "name": "Radio",
-      "selector": "g-radio",
+    "radio-group": {
+      "name": "Radio Group",
       "type": "form",
-      "description": "Radio button group with single/multiple selection",
-      "files": ["radio/radio.component.ts"],
-      "dependencies": [],
-      "peerDependencies": [],
-      "exports": ["RadioComponent"]
+      "description": "A set of checkable buttons where only one can be selected at a time",
+      "category": "form",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
+      ]
     },
     "switch": {
       "name": "Switch",
-      "selector": "g-switch",
       "type": "form",
-      "description": "Toggle switch with smooth animation",
-      "files": ["switch/switch.component.ts"],
-      "dependencies": [],
-      "peerDependencies": [],
-      "exports": ["SwitchComponent"]
+      "description": "A control that allows the user to toggle between checked and not checked",
+      "category": "form",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
+      ]
     },
     "slider": {
       "name": "Slider",
-      "selector": "g-slider",
       "type": "form",
-      "description": "Range slider with min/max and step support",
-      "files": ["slider/slider.component.ts"],
-      "dependencies": [],
-      "peerDependencies": [],
-      "exports": ["SliderComponent"]
+      "description": "An input where the user selects a value from within a given range",
+      "category": "form",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
+      ]
+    },
+    "textarea": {
+      "name": "Textarea",
+      "type": "form",
+      "description": "Displays a form textarea or a component that looks like a textarea",
+      "category": "form",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
+      ]
+    },
+    "form": {
+      "name": "Form",
+      "type": "form",
+      "description": "Building forms with proper validation and accessibility",
+      "category": "form",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular"
+      ]
     },
     "rate": {
       "name": "Rate",
-      "selector": "g-rate",
       "type": "form",
       "description": "Star rating with half star support",
-      "files": ["rate/rate.component.ts"],
-      "dependencies": [],
-      "peerDependencies": ["lucide-angular"],
-      "exports": ["RateComponent"]
+      "category": "form",
+      "frameworks": []
     },
     "button-group": {
       "name": "Button Group",
-      "selector": "g-button-group",
       "type": "form",
       "description": "Button group with single/multiple selection",
-      "files": ["button-group/button-group.component.ts"],
-      "dependencies": [],
-      "peerDependencies": [],
-      "exports": ["ButtonGroupComponent", "ButtonGroupItemComponent"]
+      "category": "form",
+      "frameworks": []
     },
     "autocomplete": {
       "name": "Autocomplete",
-      "selector": "g-autocomplete",
       "type": "form",
       "description": "Autocomplete input with search and suggestions",
-      "files": ["autocomplete/autocomplete.component.ts"],
-      "dependencies": [],
-      "peerDependencies": ["lucide-angular"],
-      "exports": ["AutocompleteComponent"]
+      "category": "form",
+      "frameworks": []
+    },
+    "calendar": {
+      "name": "Calendar",
+      "type": "form",
+      "description": "Full-featured date picker",
+      "category": "form",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular"
+      ]
     },
     "calendar-range": {
       "name": "Calendar Range",
-      "selector": "g-calendar-range",
       "type": "form",
       "description": "Date range picker with start and end dates",
-      "files": ["calendar-range/calendar-range.component.ts"],
-      "dependencies": [],
-      "peerDependencies": [],
-      "exports": ["CalendarRangeComponent"]
+      "category": "form",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular"
+      ]
+    },
+    "date-picker": {
+      "name": "Date Picker",
+      "type": "form",
+      "description": "A date picker component with popover and calendar",
+      "category": "form",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "react-native",
+        "flutter"
+      ]
+    },
+    "date-range-picker": {
+      "name": "Date Range Picker",
+      "type": "form",
+      "description": "A date range picker component with popover and calendar range",
+      "category": "form",
+      "frameworks": [
+        "react",
+        "nextjs"
+      ]
+    },
+    "time-picker": {
+      "name": "Time Picker",
+      "type": "form",
+      "description": "A time picker component with popover and select inputs for hours and minutes",
+      "category": "form",
+      "frameworks": [
+        "react",
+        "nextjs"
+      ]
+    },
+    "date-time-picker": {
+      "name": "Date Time Picker",
+      "type": "form",
+      "description": "A combined date and time picker component",
+      "category": "form",
+      "frameworks": [
+        "react",
+        "nextjs"
+      ]
+    },
+    "tags-input": {
+      "name": "Tags Input",
+      "type": "form",
+      "description": "Input field for entering multiple tags or values",
+      "category": "form",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular"
+      ]
     },
     "card": {
       "name": "Card",
-      "selector": "g-card",
       "type": "layout",
-      "description": "Container with header, body, and footer sections",
-      "files": ["card/card.component.ts"],
-      "dependencies": [],
-      "peerDependencies": [],
-      "exports": [
-        "CardComponent",
-        "CardHeaderComponent",
-        "CardBodyComponent",
-        "CardFooterComponent"
+      "description": "Displays a card with header, content, and footer",
+      "category": "layout",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
+      ]
+    },
+    "separator": {
+      "name": "Separator",
+      "type": "layout",
+      "description": "Visually or semantically separates content",
+      "category": "layout",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
       ]
     },
     "accordion": {
       "name": "Accordion",
-      "selector": "g-accordion",
       "type": "layout",
-      "description": "Collapsible sections with expand/collapse",
-      "files": ["accordion/accordion.component.ts"],
-      "dependencies": [],
-      "peerDependencies": ["lucide-angular"],
-      "exports": ["AccordionComponent", "AccordionItemComponent"]
-    },
-    "separator": {
-      "name": "Separator",
-      "selector": "g-divider",
-      "type": "layout",
-      "description": "Horizontal or vertical separator",
-      "files": ["divider/divider.component.ts"],
-      "dependencies": [],
-      "peerDependencies": [],
-      "exports": ["DividerComponent"]
-    },
-    "splitter": {
-      "name": "Splitter",
-      "selector": "g-splitter",
-      "type": "layout",
-      "description": "Resizable split panes with drag handles",
-      "files": ["splitter/splitter.component.ts"],
-      "dependencies": [],
-      "peerDependencies": ["lucide-angular"],
-      "exports": ["SplitterComponent", "SplitterPanelComponent"]
-    },
-    "menubar": {
-      "name": "Menubar",
-      "selector": "g-menu",
-      "type": "navigation",
-      "description": "Sidebar navigation with icons and badges",
-      "files": ["menu/menu.component.ts"],
-      "dependencies": [],
-      "peerDependencies": ["lucide-angular"],
-      "exports": ["MenuComponent", "MenuItemComponent", "MenuGroupComponent"]
-    },
-    "breadcrumb": {
-      "name": "Breadcrumb",
-      "selector": "g-breadcrumb",
-      "type": "navigation",
-      "description": "Page location navigation trail",
-      "files": ["breadcrumb/breadcrumb.component.ts"],
-      "dependencies": [],
-      "peerDependencies": ["lucide-angular"],
-      "exports": ["BreadcrumbComponent", "BreadcrumbItemComponent"]
+      "description": "A vertically stacked set of interactive headings that each reveal a section of content",
+      "category": "layout",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
+      ]
     },
     "tabs": {
       "name": "Tabs",
-      "selector": "g-tabs",
-      "type": "navigation",
-      "description": "Tabbed content organization",
-      "files": ["tabs/tabs.component.ts"],
-      "dependencies": [],
-      "peerDependencies": ["lucide-angular"],
-      "exports": ["TabsComponent", "TabComponent", "TabPanelComponent"]
+      "type": "layout",
+      "description": "A set of layered sections of content known as tab panels that are displayed one at a time",
+      "category": "layout",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
+      ]
+    },
+    "dialog": {
+      "name": "Dialog",
+      "type": "layout",
+      "description": "A window overlaid on either the primary window or another dialog window",
+      "category": "layout",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
+      ]
+    },
+    "collapsible": {
+      "name": "Collapsible",
+      "type": "layout",
+      "description": "An interactive component which expands/collapses a panel",
+      "category": "layout",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
+      ]
+    },
+    "aspect-ratio": {
+      "name": "Aspect Ratio",
+      "type": "layout",
+      "description": "Displays content within a desired aspect ratio",
+      "category": "layout",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
+      ]
+    },
+    "scroll-area": {
+      "name": "Scroll Area",
+      "type": "layout",
+      "description": "Augments native scroll functionality for custom, cross-browser styling",
+      "category": "layout",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular"
+      ]
+    },
+    "resizable": {
+      "name": "Resizable",
+      "type": "layout",
+      "description": "Accessible resizable panel groups and layouts with keyboard support",
+      "category": "layout",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular"
+      ]
+    },
+    "sheet": {
+      "name": "Sheet",
+      "type": "layout",
+      "description": "Slide-over panel that slides in from the edge of the screen",
+      "category": "layout",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
+      ]
+    },
+    "toolbar": {
+      "name": "Toolbar",
+      "type": "layout",
+      "description": "A container for grouping a set of controls",
+      "category": "layout",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular"
+      ]
+    },
+    "alert-dialog": {
+      "name": "Alert Dialog",
+      "type": "feedback",
+      "description": "A modal dialog that interrupts the user with important content and expects a response",
+      "category": "feedback",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
+      ]
+    },
+    "alert": {
+      "name": "Alert",
+      "type": "feedback",
+      "description": "Displays a callout for user attention",
+      "category": "feedback",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
+      ]
+    },
+    "progress": {
+      "name": "Progress",
+      "type": "feedback",
+      "description": "Displays an indicator showing the completion progress of a task",
+      "category": "feedback",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
+      ]
+    },
+    "avatar": {
+      "name": "Avatar",
+      "type": "data-display",
+      "description": "An image element with a fallback for representing the user",
+      "category": "data-display",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
+      ]
+    },
+    "hover-card": {
+      "name": "Hover Card",
+      "type": "data-display",
+      "description": "For sighted users to preview content available behind a link",
+      "category": "data-display",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
+      ]
     },
     "dropdown-menu": {
       "name": "Dropdown Menu",
-      "selector": "g-dropdown",
       "type": "navigation",
-      "description": "Action menus and context menus",
-      "files": ["dropdown/dropdown.component.ts"],
-      "dependencies": [],
-      "peerDependencies": ["lucide-angular"],
-      "exports": [
-        "DropdownComponent",
-        "DropdownMenuComponent",
-        "DropdownItemComponent"
+      "description": "Displays a menu to the user triggered by a button",
+      "category": "navigation",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
       ]
     },
-    "sidebar": {
-      "name": "Sidebar",
-      "selector": "g-sidebar",
+    "navigation-menu": {
+      "name": "Navigation Menu",
       "type": "navigation",
-      "description": "Layout with collapsible sidebar",
-      "files": ["sidebar/sidebar.component.ts"],
-      "dependencies": [],
-      "peerDependencies": ["lucide-angular"],
-      "exports": [
-        "SidebarComponent",
-        "SidebarHeaderComponent",
-        "SidebarContentComponent",
-        "SidebarFooterComponent"
+      "description": "A collection of links for navigating websites",
+      "category": "navigation",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
       ]
     },
-    "stepper": {
-      "name": "Stepper",
-      "selector": "g-stepper",
+    "breadcrumb": {
+      "name": "Breadcrumb",
       "type": "navigation",
-      "description": "Multi-step wizards and forms",
-      "files": ["stepper/stepper.component.ts"],
-      "dependencies": [],
-      "peerDependencies": ["lucide-angular"],
-      "exports": ["StepperComponent", "StepComponent"]
+      "description": "Displays the path to the current resource using a hierarchy of links",
+      "category": "navigation",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular"
+      ]
     },
-    "table": {
-      "name": "Table",
-      "selector": "g-table",
-      "type": "data-display",
-      "description": "Data table with sorting, filtering, and selection",
-      "files": ["table/table.component.ts"],
-      "dependencies": [],
-      "peerDependencies": ["lucide-angular"],
-      "exports": ["TableComponent"]
+    "menubar": {
+      "name": "Menubar",
+      "type": "navigation",
+      "description": "A visually persistent menu common in desktop applications",
+      "category": "navigation",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
+      ]
     },
-    "pagination": {
-      "name": "Pagination",
-      "selector": "g-pagination",
-      "type": "data-display",
-      "description": "Pagination controls for data navigation",
-      "files": ["pagination/pagination.component.ts"],
-      "dependencies": [],
-      "peerDependencies": ["lucide-angular"],
-      "exports": ["PaginationComponent"]
-    },
-    "table-paginated": {
-      "name": "Table Paginated",
-      "selector": "g-table-paginated",
-      "type": "data-display",
-      "description": "Data table with built-in pagination",
-      "files": ["table-paginated/table-paginated.component.ts"],
-      "dependencies": ["table", "pagination"],
-      "peerDependencies": ["lucide-angular"],
-      "exports": ["TablePaginatedComponent"]
-    },
-    "list": {
-      "name": "List",
-      "selector": "g-list",
-      "type": "data-display",
-      "description": "Versatile list component for displaying data",
-      "files": ["list/list.component.ts"],
-      "dependencies": [],
-      "peerDependencies": [],
-      "exports": ["ListComponent", "ListItemComponent"]
-    },
-    "tree": {
-      "name": "Tree",
-      "selector": "g-tree",
-      "type": "data-display",
-      "description": "Hierarchical tree structure with expand/collapse",
-      "files": ["tree/tree.component.ts"],
-      "dependencies": [],
-      "peerDependencies": ["lucide-angular"],
-      "exports": ["TreeComponent"]
-    },
-    "tag": {
-      "name": "Tag",
-      "selector": "g-tag",
-      "type": "data-display",
-      "description": "Tag component for labels and categorization",
-      "files": ["tag/tag.component.ts"],
-      "dependencies": [],
-      "peerDependencies": ["lucide-angular"],
-      "exports": ["TagComponent"]
-    },
-    "timeline": {
-      "name": "Timeline",
-      "selector": "g-timeline",
-      "type": "data-display",
-      "description": "Timeline component for displaying chronological events",
-      "files": ["timeline/timeline.component.ts"],
-      "dependencies": [],
-      "peerDependencies": ["lucide-angular"],
-      "exports": ["TimelineComponent"]
+    "context-menu": {
+      "name": "Context Menu",
+      "type": "navigation",
+      "description": "Displays a menu to the user triggered by right-click or long-press",
+      "category": "navigation",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
+      ]
     },
     "popover": {
       "name": "Popover",
-      "selector": "g-popover",
-      "type": "modal-overlay",
-      "description": "Popover component for contextual information",
-      "files": ["popover/popover.component.ts"],
-      "dependencies": [],
-      "peerDependencies": [],
-      "exports": ["PopoverComponent"]
-    },
-    "drawer": {
-      "name": "Drawer",
-      "selector": "g-drawer",
-      "type": "modal-overlay",
-      "description": "Drawer component with slide-in animation (shadcn style)",
-      "files": ["drawer/drawer.component.ts"],
-      "dependencies": [],
-      "peerDependencies": ["lucide-angular"],
-      "exports": ["DrawerComponent"]
-    },
-    "toast": {
-      "name": "Toast",
-      "selector": "g-toast",
-      "type": "modal-overlay",
-      "description": "Toast notification component with service (antd style)",
-      "files": ["toast/toast.component.ts"],
-      "dependencies": [],
-      "peerDependencies": ["lucide-angular"],
-      "exports": [
-        "ToastComponent",
-        "ToastService",
-        "ToastItemComponent",
-        "ToastContainerComponent"
+      "type": "navigation",
+      "description": "Displays rich content in a portal, triggered by a button",
+      "category": "navigation",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
       ]
     },
     "tooltip": {
       "name": "Tooltip",
-      "selector": "g-tooltip",
-      "type": "modal-overlay",
-      "description": "Tooltip component for hover information (shadcn style)",
-      "files": ["tooltip/tooltip.component.ts"],
-      "dependencies": [],
-      "peerDependencies": [],
-      "exports": ["TooltipComponent"]
+      "type": "navigation",
+      "description": "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it",
+      "category": "navigation",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
+      ]
     },
-    "progress": {
-      "name": "Progress",
-      "selector": "g-progress",
+    "pagination": {
+      "name": "Pagination",
+      "type": "navigation",
+      "description": "Page navigation with previous, next, and page numbers",
+      "category": "navigation",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
+      ]
+    },
+    "command": {
+      "name": "Command",
+      "type": "navigation",
+      "description": "Command palette for keyboard-first navigation and search",
+      "category": "navigation",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular"
+      ]
+    },
+    "line-chart": {
+      "name": "LineChart",
+      "type": "chart",
+      "description": "Display data as a responsive line chart with smooth curves and customizable styling",
+      "category": "charts",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
+      ]
+    },
+    "bar-chart": {
+      "name": "BarChart",
+      "type": "chart",
+      "description": "Display data as vertical or horizontal bars with support for stacked and grouped layouts",
+      "category": "charts",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
+      ]
+    },
+    "pie-chart": {
+      "name": "PieChart",
+      "type": "chart",
+      "description": "Display proportional data as a pie or donut chart with customizable labels and legend",
+      "category": "charts",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
+      ]
+    },
+    "donut-chart": {
+      "name": "DonutChart",
+      "type": "chart",
+      "description": "Display proportional data as a donut chart with a hollow center",
+      "category": "charts",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
+      ]
+    },
+    "area-chart": {
+      "name": "AreaChart",
+      "type": "chart",
+      "description": "Visualize cumulative totals over time with filled areas and gradient support",
+      "category": "charts",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
+      ]
+    },
+    "radar-chart": {
+      "name": "RadarChart",
+      "type": "chart",
+      "description": "Display multi-dimensional data comparison on a radial grid",
+      "category": "charts",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
+      ]
+    },
+    "scatter-chart": {
+      "name": "ScatterChart",
+      "type": "chart",
+      "description": "Display distribution and correlation analysis with scatter plots",
+      "category": "charts",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
+      ]
+    },
+    "mixed-chart": {
+      "name": "MixedChart",
+      "type": "chart",
+      "description": "Combine multiple chart types (line, bar, area) in a single visualization",
+      "category": "charts",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
+      ]
+    },
+    "gauge-chart": {
+      "name": "GaugeChart",
+      "type": "chart",
+      "description": "Display data as a gauge chart with customizable ranges and styling",
+      "category": "charts",
+      "frameworks": [
+        "angular",
+        "react-native",
+        "flutter"
+      ]
+    },
+    "sidebar": {
+      "name": "Sidebar",
+      "type": "navigation",
+      "description": "Layout with collapsible sidebar",
+      "category": "navigation",
+      "frameworks": []
+    },
+    "stepper": {
+      "name": "Stepper",
+      "type": "navigation",
+      "description": "Multi-step wizards and forms",
+      "category": "navigation",
+      "frameworks": []
+    },
+    "table": {
+      "name": "Table",
+      "type": "data-display",
+      "description": "Data table with sorting, filtering, and selection",
+      "category": "data-display",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
+      ]
+    },
+    "table-paginated": {
+      "name": "Table Paginated",
+      "type": "data-display",
+      "description": "Data table with built-in pagination",
+      "category": "data-display",
+      "frameworks": []
+    },
+    "list": {
+      "name": "List",
+      "type": "data-display",
+      "description": "Versatile list component for displaying data",
+      "category": "data-display",
+      "frameworks": []
+    },
+    "tree": {
+      "name": "Tree",
+      "type": "data-display",
+      "description": "Hierarchical tree structure with expand/collapse",
+      "category": "data-display",
+      "frameworks": []
+    },
+    "tag": {
+      "name": "Tag",
+      "type": "data-display",
+      "description": "Tag component for labels and categorization",
+      "category": "data-display",
+      "frameworks": []
+    },
+    "timeline": {
+      "name": "Timeline",
+      "type": "data-display",
+      "description": "Timeline component for displaying chronological events",
+      "category": "data-display",
+      "frameworks": []
+    },
+    "drawer": {
+      "name": "Drawer",
       "type": "modal-overlay",
-      "description": "Progress bar and circle component (antd style)",
-      "files": ["progress/progress.component.ts"],
-      "dependencies": [],
-      "peerDependencies": ["lucide-angular"],
-      "exports": ["ProgressComponent"]
+      "description": "Drawer component with slide-in animation (shadcn style)",
+      "category": "modal-overlay",
+      "frameworks": []
+    },
+    "toast": {
+      "name": "Toast",
+      "type": "feedback",
+      "description": "A succinct message that is displayed temporarily",
+      "category": "feedback",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular"
+      ]
     },
     "skeleton": {
       "name": "Skeleton",
-      "selector": "g-skeleton",
-      "type": "modal-overlay",
-      "description": "Skeleton loading placeholder component (antd style)",
-      "files": ["skeleton/skeleton.component.ts"],
-      "dependencies": [],
-      "peerDependencies": [],
-      "exports": ["SkeletonComponent"]
+      "type": "feedback",
+      "description": "Use to show a placeholder while content is loading",
+      "category": "feedback",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
+      ]
     },
-    "popconfirm": {
-      "name": "Popconfirm",
-      "selector": "g-popconfirm",
-      "type": "modal-overlay",
-      "description": "Popconfirm component for confirmation dialogs (antd style)",
-      "files": ["popconfirm/popconfirm.component.ts"],
-      "dependencies": [],
-      "peerDependencies": ["lucide-angular"],
-      "exports": ["PopconfirmComponent"]
+    "empty": {
+      "name": "Empty",
+      "type": "feedback",
+      "description": "Displays an empty state placeholder",
+      "category": "feedback",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
+      ]
     },
-    "dialog": {
-      "name": "Dialog",
-      "selector": "g-dialog",
-      "type": "modal-overlay",
-      "description": "Modal dialog component",
-      "files": ["dialog/dialog.component.ts"],
-      "dependencies": [],
-      "peerDependencies": ["lucide-angular"],
-      "exports": ["DialogComponent"]
+    "kbd": {
+      "name": "Kbd",
+      "type": "data-display",
+      "description": "Displays keyboard key combinations",
+      "category": "data-display",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular"
+      ]
     },
-    "spinner": {
-      "name": "Spinner",
-      "selector": "g-spinner",
-      "type": "modal-overlay",
-      "description": "Loading spinner component with multiple styles",
-      "files": ["spinner/spinner.component.ts"],
-      "dependencies": [],
-      "peerDependencies": ["lucide-angular"],
-      "exports": ["SpinnerComponent"]
-    },
-    "avatar": {
-      "name": "Avatar",
-      "selector": "g-avatar",
-      "type": "other",
-      "description": "Avatar component for user profile pictures",
-      "files": ["avatar/avatar.component.ts"],
-      "dependencies": [],
-      "peerDependencies": ["lucide-angular"],
-      "exports": ["AvatarComponent", "AvatarGroupComponent"]
+    "typography": {
+      "name": "Typography",
+      "type": "data-display",
+      "description": "Text formatting and typography components",
+      "category": "data-display",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
+      ]
     },
     "badge": {
       "name": "Badge",
-      "selector": "g-badge",
-      "type": "other",
-      "description": "Badge component for counts and status indicators",
-      "files": ["badge/badge.component.ts"],
-      "dependencies": [],
-      "peerDependencies": [],
-      "exports": ["BadgeComponent", "BadgeRibbonComponent"]
+      "type": "feedback",
+      "description": "Displays a badge or a component that looks like a badge",
+      "category": "feedback",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
+      ]
+    },
+    "toggle": {
+      "name": "Toggle",
+      "type": "interactive",
+      "description": "A two-state button that can be either on or off",
+      "category": "interactive",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
+      ]
+    },
+    "toggle-group": {
+      "name": "Toggle Group",
+      "type": "interactive",
+      "description": "A set of two-state buttons that can be toggled on or off",
+      "category": "interactive",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
+      ]
+    },
+    "spinner": {
+      "name": "Spinner",
+      "type": "feedback",
+      "description": "Animated loading spinner.",
+      "category": "feedback",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
+      ]
+    },
+    "popconfirm": {
+      "name": "Popconfirm",
+      "type": "modal-overlay",
+      "description": "Popconfirm component for confirmation dialogs (antd style)",
+      "category": "modal-overlay",
+      "frameworks": []
     },
     "tour": {
       "name": "Tour",
-      "selector": "g-tour",
       "type": "other",
       "description": "Tour component for user onboarding (antd style)",
-      "files": ["tour/tour.component.ts"],
-      "dependencies": [],
-      "peerDependencies": ["lucide-angular"],
-      "exports": ["TourComponent"]
+      "category": "other",
+      "frameworks": []
     },
     "carousel": {
       "name": "Carousel",
-      "selector": "g-carousel",
       "type": "other",
       "description": "Carousel component for image/content slides (antd style)",
-      "files": ["carousel/carousel.component.ts"],
-      "dependencies": [],
-      "peerDependencies": ["lucide-angular"],
-      "exports": ["CarouselComponent", "CarouselItemComponent"]
+      "category": "other",
+      "frameworks": []
     }
   },
   "groups": {
@@ -446,29 +976,54 @@
       "components": [
         "button",
         "input",
-        "checkbox",
+        "label",
         "select",
-        "calendar",
-        "radio",
+        "checkbox",
+        "radio-group",
         "switch",
         "slider",
+        "textarea",
+        "form",
         "rate",
         "button-group",
         "autocomplete",
-        "calendar-range"
+        "calendar",
+        "calendar-range",
+        "date-picker",
+        "date-range-picker",
+        "time-picker",
+        "date-time-picker",
+        "tags-input"
       ]
     },
     "layout": {
       "name": "Layout Components",
-      "components": ["card", "accordion", "separator", "splitter"]
+      "components": [
+        "card",
+        "separator",
+        "accordion",
+        "tabs",
+        "dialog",
+        "collapsible",
+        "aspect-ratio",
+        "scroll-area",
+        "resizable",
+        "sheet",
+        "toolbar"
+      ]
     },
     "navigation": {
       "name": "Navigation Components",
       "components": [
-        "menubar",
-        "breadcrumb",
-        "tabs",
         "dropdown-menu",
+        "navigation-menu",
+        "breadcrumb",
+        "menubar",
+        "context-menu",
+        "popover",
+        "tooltip",
+        "pagination",
+        "command",
         "sidebar",
         "stepper"
       ]
@@ -476,32 +1031,65 @@
     "data-display": {
       "name": "Data Display Components",
       "components": [
+        "avatar",
+        "hover-card",
         "table",
-        "pagination",
         "table-paginated",
         "list",
         "tree",
         "tag",
-        "timeline"
+        "timeline",
+        "kbd",
+        "typography"
+      ]
+    },
+    "feedback": {
+      "name": "Feedback Components",
+      "components": [
+        "alert-dialog",
+        "alert",
+        "progress",
+        "toast",
+        "skeleton",
+        "empty",
+        "badge"
       ]
     },
     "modal-overlay": {
       "name": "Modal & Overlay Components",
       "components": [
-        "popover",
         "drawer",
-        "toast",
-        "tooltip",
-        "progress",
-        "skeleton",
-        "popconfirm",
-        "dialog",
-        "spinner"
+        "spinner",
+        "popconfirm"
+      ]
+    },
+    "interactive": {
+      "name": "Interactive Components",
+      "components": [
+        "toggle",
+        "toggle-group"
+      ]
+    },
+    "charts": {
+      "name": "Chart Components",
+      "components": [
+        "line-chart",
+        "bar-chart",
+        "pie-chart",
+        "donut-chart",
+        "area-chart",
+        "radar-chart",
+        "scatter-chart",
+        "mixed-chart",
+        "gauge-chart"
       ]
     },
     "other": {
       "name": "Other Components",
-      "components": ["avatar", "badge", "tour", "carousel"]
+      "components": [
+        "tour",
+        "carousel"
+      ]
     }
   }
 }

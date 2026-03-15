@@ -5,15 +5,47 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+export type SummaryFramework =
+  | 'react'
+  | 'nextjs'
+  | 'vue'
+  | 'nuxtjs'
+  | 'angular'
+  | 'react-native'
+  | 'flutter';
+
+export interface SummaryProp {
+  name: string;
+  type: unknown;
+  default?: unknown;
+  description?: string;
+  frameworks?: SummaryFramework[];
+  overrides?: Record<string, unknown>;
+}
+
+export interface SummaryChildComponent {
+  name: string;
+  props: SummaryProp[];
+}
+
 export interface Component {
   name: string;
-  selector: string;
-  type: 'form' | 'layout' | 'navigation' | 'data-display' | 'modal-overlay' | 'other';
+  type:
+    | 'form'
+    | 'layout'
+    | 'navigation'
+    | 'feedback'
+    | 'data-display'
+    | 'modal-overlay'
+    | 'interactive'
+    | 'charts'
+    | 'block'
+    | 'other';
   description: string;
-  files: string[];
-  dependencies: string[];
-  peerDependencies: string[];
-  exports: string[];
+  category: string;
+  frameworks: SummaryFramework[];
+  props?: SummaryProp[];
+  children?: SummaryChildComponent[];
 }
 
 export interface ComponentGroup {
@@ -61,9 +93,19 @@ export function getAllComponents(): Record<string, Component> {
 /**
  * Get components by type
  */
-export function getComponentsByType(type: 'form' | 'layout' | 'navigation' | 'data-display' | 'modal-overlay' | 'other'): Component[] {
+export function getComponentsByType(type: Component['type']): Component[] {
   const registry = loadRegistry();
   return Object.values(registry.components).filter(c => c.type === type);
+}
+
+/**
+ * Get components that support a specific framework
+ */
+export function getComponentsByFramework(framework: SummaryFramework): Component[] {
+  const registry = loadRegistry();
+  return Object.values(registry.components).filter((component) =>
+    component.frameworks.includes(framework),
+  );
 }
 
 /**
@@ -102,17 +144,8 @@ export function componentExists(name: string): boolean {
  * Get component dependencies (including peer dependencies)
  */
 export function getComponentDependencies(name: string): string[] {
-  const component = getComponent(name);
-  if (!component) {
-    return [];
-  }
-
-  const deps = new Set<string>();
-
-  // Add component dependencies
-  component.dependencies.forEach(dep => deps.add(dep));
-
-  return Array.from(deps);
+  void name;
+  return [];
 }
 
 /**

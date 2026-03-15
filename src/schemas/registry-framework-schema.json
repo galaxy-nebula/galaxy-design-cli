@@ -1,0 +1,131 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Galaxy Framework Registry",
+  "description": "Framework-specific source-of-truth registry used for file copying, dependency resolution, and installation.",
+  "type": "object",
+  "required": ["components", "groups"],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "framework": {
+      "type": "string",
+      "enum": [
+        "react",
+        "vue",
+        "angular",
+        "react-native",
+        "flutter"
+      ]
+    },
+    "components": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/frameworkComponent"
+      }
+    },
+    "groups": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/componentGroup"
+      }
+    }
+  },
+  "definitions": {
+    "componentGroup": {
+      "type": "object",
+      "required": ["name", "components"],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "components": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "frameworkComponent": {
+      "type": "object",
+      "required": [
+        "name",
+        "type",
+        "description",
+        "files",
+        "dependencies",
+        "devDependencies",
+        "registryDependencies",
+        "category"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "selector": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "form",
+            "layout",
+            "navigation",
+            "feedback",
+            "data-display",
+            "modal-overlay",
+            "interactive",
+            "charts",
+            "block",
+            "other"
+          ]
+        },
+        "description": {
+          "type": "string"
+        },
+        "files": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "dependencies": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "devDependencies": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "peerDependencies": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "registryDependencies": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "exports": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "category": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}

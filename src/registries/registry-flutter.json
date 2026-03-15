@@ -16,6 +16,52 @@
       "exports": [
         "GalaxyAccordion",
         "GalaxyAccordionItem"
+      ],
+      "category": "layout",
+      "props": [
+        {
+          "name": "items",
+          "type": {
+            "kind": "array",
+            "of": {
+              "kind": "custom",
+              "name": "GalaxyAccordionItem"
+            }
+          },
+          "description": "Accordion items to render."
+        },
+        {
+          "name": "allowMultipleExpanded",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": false,
+          "description": "Allow multiple items expanded at once."
+        }
+      ],
+      "children": [
+        {
+          "name": "AccordionItem",
+          "props": [
+            {
+              "name": "title",
+              "type": {
+                "kind": "custom",
+                "name": "Widget"
+              },
+              "description": "Accordion item title widget."
+            },
+            {
+              "name": "content",
+              "type": {
+                "kind": "custom",
+                "name": "Widget"
+              },
+              "description": "Accordion item content widget."
+            }
+          ]
+        }
       ]
     },
     "alert": {
@@ -31,6 +77,87 @@
       ],
       "exports": [
         "GalaxyAlert"
+      ],
+      "category": "feedback",
+      "props": [
+        {
+          "name": "child",
+          "type": {
+            "kind": "custom",
+            "name": "Widget"
+          },
+          "description": "Alert content widget."
+        },
+        {
+          "name": "variant",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "default_"
+              },
+              {
+                "kind": "literal",
+                "value": "destructive"
+              }
+            ]
+          },
+          "default": "default_",
+          "description": "Visual style variant for the alert."
+        },
+        {
+          "name": "padding",
+          "type": {
+            "kind": "custom",
+            "name": "EdgeInsetsGeometry"
+          },
+          "description": "Padding inside the alert container."
+        }
+      ],
+      "children": [
+        {
+          "name": "AlertTitle",
+          "props": [
+            {
+              "name": "title",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "description": "Title text."
+            },
+            {
+              "name": "style",
+              "type": {
+                "kind": "custom",
+                "name": "TextStyle"
+              },
+              "description": "Optional text style override."
+            }
+          ]
+        },
+        {
+          "name": "AlertDescription",
+          "props": [
+            {
+              "name": "description",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "description": "Description text."
+            },
+            {
+              "name": "style",
+              "type": {
+                "kind": "custom",
+                "name": "TextStyle"
+              },
+              "description": "Optional text style override."
+            }
+          ]
+        }
       ]
     },
     "alert-dialog": {
@@ -46,6 +173,75 @@
       ],
       "exports": [
         "GalaxyAlertDialog"
+      ],
+      "category": "feedback",
+      "props": [
+        {
+          "name": "title",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Optional title text."
+        },
+        {
+          "name": "description",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Optional description text."
+        },
+        {
+          "name": "cancelText",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Label for the cancel button."
+        },
+        {
+          "name": "confirmText",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Label for the confirm button."
+        },
+        {
+          "name": "onCancel",
+          "type": {
+            "kind": "function",
+            "signature": "() => void"
+          },
+          "description": "Called after the dialog is dismissed via the cancel action."
+        },
+        {
+          "name": "onConfirm",
+          "type": {
+            "kind": "function",
+            "signature": "() => void"
+          },
+          "description": "Called after the dialog is dismissed via the confirm action."
+        },
+        {
+          "name": "variant",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "default_"
+              },
+              {
+                "kind": "literal",
+                "value": "destructive"
+              }
+            ]
+          },
+          "default": "default_",
+          "description": "Visual style for the confirm action."
+        }
       ]
     },
     "aspect-ratio": {
@@ -61,6 +257,25 @@
       ],
       "exports": [
         "GalaxyAspectRatio"
+      ],
+      "category": "layout",
+      "props": [
+        {
+          "name": "ratio",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Desired aspect ratio."
+        },
+        {
+          "name": "child",
+          "type": {
+            "kind": "custom",
+            "name": "Widget"
+          },
+          "description": "Content constrained by the ratio."
+        }
       ]
     },
     "avatar": {
@@ -75,8 +290,68 @@
         "flutter"
       ],
       "exports": [
-        "GalaxyAvatar",
-        "GalaxyAvatarGroup"
+        "GalaxyAvatar"
+      ],
+      "category": "data-display",
+      "props": [
+        {
+          "name": "imageUrl",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Image source URL."
+        },
+        {
+          "name": "fallbackText",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Fallback text used when no image is available."
+        },
+        {
+          "name": "size",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "sm"
+              },
+              {
+                "kind": "literal",
+                "value": "md"
+              },
+              {
+                "kind": "literal",
+                "value": "lg"
+              },
+              {
+                "kind": "literal",
+                "value": "xl"
+              }
+            ]
+          },
+          "default": "md",
+          "description": "Avatar size variant."
+        },
+        {
+          "name": "backgroundColor",
+          "type": {
+            "kind": "custom",
+            "name": "Color"
+          },
+          "description": "Background color of the avatar."
+        },
+        {
+          "name": "foregroundColor",
+          "type": {
+            "kind": "custom",
+            "name": "Color"
+          },
+          "description": "Foreground color of the fallback text."
+        }
       ]
     },
     "badge": {
@@ -92,7 +367,61 @@
       ],
       "exports": [
         "GalaxyBadge",
+        "GalaxyBadgeCount",
         "GalaxyBadgePositioned"
+      ],
+      "category": "data-display",
+      "props": [
+        {
+          "name": "text",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Badge text content."
+        },
+        {
+          "name": "child",
+          "type": {
+            "kind": "custom",
+            "name": "Widget"
+          },
+          "description": "Custom badge content widget."
+        },
+        {
+          "name": "variant",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "default_"
+              },
+              {
+                "kind": "literal",
+                "value": "secondary"
+              },
+              {
+                "kind": "literal",
+                "value": "destructive"
+              },
+              {
+                "kind": "literal",
+                "value": "outline"
+              }
+            ]
+          },
+          "default": "default_",
+          "description": "Visual style variant for the badge."
+        },
+        {
+          "name": "padding",
+          "type": {
+            "kind": "custom",
+            "name": "EdgeInsets"
+          },
+          "description": "Padding inside the badge."
+        }
       ]
     },
     "button": {
@@ -108,6 +437,63 @@
       ],
       "exports": [
         "GalaxyButton"
+      ],
+      "props": [
+        {
+          "name": "variant",
+          "type": {
+            "kind": "union",
+            "values": [
+              "primary",
+              "destructive",
+              "outline",
+              "secondary",
+              "ghost",
+              "link"
+            ]
+          },
+          "default": "primary",
+          "description": "Visual style variant."
+        },
+        {
+          "name": "size",
+          "type": {
+            "kind": "union",
+            "values": [
+              "defaultSize",
+              "sm",
+              "lg",
+              "icon"
+            ]
+          },
+          "default": "defaultSize",
+          "description": "Size variant."
+        },
+        {
+          "name": "onPressed",
+          "type": {
+            "kind": "function",
+            "signature": "() => void"
+          },
+          "description": "Press handler."
+        },
+        {
+          "name": "disabled",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": false,
+          "description": "Disables the button."
+        },
+        {
+          "name": "child",
+          "type": {
+            "kind": "custom",
+            "name": "Widget"
+          },
+          "description": "Button content."
+        }
       ]
     },
     "card": {
@@ -126,6 +512,141 @@
         "GalaxyCardHeader",
         "GalaxyCardContent",
         "GalaxyCardFooter"
+      ],
+      "category": "layout",
+      "props": [
+        {
+          "name": "child",
+          "type": {
+            "kind": "custom",
+            "name": "Widget"
+          },
+          "description": "Card content widget."
+        },
+        {
+          "name": "padding",
+          "type": {
+            "kind": "custom",
+            "name": "EdgeInsetsGeometry"
+          },
+          "description": "Optional padding applied around the child."
+        },
+        {
+          "name": "elevation",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "default": 1,
+          "description": "Card elevation."
+        }
+      ],
+      "children": [
+        {
+          "name": "CardHeader",
+          "props": [
+            {
+              "name": "child",
+              "type": {
+                "kind": "custom",
+                "name": "Widget"
+              },
+              "description": "Header content widget."
+            },
+            {
+              "name": "padding",
+              "type": {
+                "kind": "custom",
+                "name": "EdgeInsetsGeometry"
+              },
+              "description": "Padding for the header section."
+            }
+          ]
+        },
+        {
+          "name": "CardTitle",
+          "props": [
+            {
+              "name": "title",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "description": "Title text."
+            },
+            {
+              "name": "style",
+              "type": {
+                "kind": "custom",
+                "name": "TextStyle"
+              },
+              "description": "Optional text style override."
+            }
+          ]
+        },
+        {
+          "name": "CardDescription",
+          "props": [
+            {
+              "name": "description",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "description": "Description text."
+            },
+            {
+              "name": "style",
+              "type": {
+                "kind": "custom",
+                "name": "TextStyle"
+              },
+              "description": "Optional text style override."
+            }
+          ]
+        },
+        {
+          "name": "CardContent",
+          "props": [
+            {
+              "name": "child",
+              "type": {
+                "kind": "custom",
+                "name": "Widget"
+              },
+              "description": "Content widget."
+            },
+            {
+              "name": "padding",
+              "type": {
+                "kind": "custom",
+                "name": "EdgeInsetsGeometry"
+              },
+              "description": "Padding for the content section."
+            }
+          ]
+        },
+        {
+          "name": "CardFooter",
+          "props": [
+            {
+              "name": "child",
+              "type": {
+                "kind": "custom",
+                "name": "Widget"
+              },
+              "description": "Footer content widget."
+            },
+            {
+              "name": "padding",
+              "type": {
+                "kind": "custom",
+                "name": "EdgeInsetsGeometry"
+              },
+              "description": "Padding for the footer section."
+            }
+          ]
+        }
       ]
     },
     "checkbox": {
@@ -141,6 +662,41 @@
       ],
       "exports": [
         "GalaxyCheckbox"
+      ],
+      "props": [
+        {
+          "name": "value",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Controlled checked state."
+        },
+        {
+          "name": "onChanged",
+          "type": {
+            "kind": "function",
+            "signature": "(value: boolean | null) => void"
+          },
+          "description": "Called when the checked state changes."
+        },
+        {
+          "name": "label",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Label text."
+        },
+        {
+          "name": "disabled",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": false,
+          "description": "Disables the checkbox."
+        }
       ]
     },
     "collapsible": {
@@ -156,6 +712,42 @@
       ],
       "exports": [
         "GalaxyCollapsible"
+      ],
+      "category": "layout",
+      "props": [
+        {
+          "name": "trigger",
+          "type": {
+            "kind": "custom",
+            "name": "Widget"
+          },
+          "description": "Widget used to toggle the collapsible state."
+        },
+        {
+          "name": "content",
+          "type": {
+            "kind": "custom",
+            "name": "Widget"
+          },
+          "description": "Widget revealed when expanded."
+        },
+        {
+          "name": "initiallyExpanded",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": false,
+          "description": "Whether the collapsible starts expanded."
+        },
+        {
+          "name": "onExpansionChanged",
+          "type": {
+            "kind": "function",
+            "signature": "(expanded: bool) => void"
+          },
+          "description": "Called when the expansion state changes."
+        }
       ]
     },
     "context-menu": {
@@ -172,6 +764,81 @@
       "exports": [
         "GalaxyContextMenu",
         "GalaxyContextMenuItem"
+      ],
+      "category": "navigation",
+      "props": [
+        {
+          "name": "child",
+          "type": {
+            "kind": "custom",
+            "name": "Widget"
+          },
+          "description": "Widget that receives the long-press or secondary-tap gesture."
+        },
+        {
+          "name": "items",
+          "type": {
+            "kind": "custom",
+            "name": "List<GalaxyContextMenuItem<T>>"
+          },
+          "description": "Items shown in the context menu."
+        },
+        {
+          "name": "onSelected",
+          "type": {
+            "kind": "function",
+            "signature": "(T value) => void"
+          },
+          "description": "Called when a menu item is selected."
+        }
+      ],
+      "children": [
+        {
+          "name": "GalaxyContextMenuItem",
+          "props": [
+            {
+              "name": "value",
+              "type": {
+                "kind": "custom",
+                "name": "T"
+              },
+              "description": "Value returned when the item is selected."
+            },
+            {
+              "name": "child",
+              "type": {
+                "kind": "custom",
+                "name": "Widget"
+              },
+              "description": "Main item content."
+            },
+            {
+              "name": "leading",
+              "type": {
+                "kind": "custom",
+                "name": "Widget"
+              },
+              "description": "Optional leading widget."
+            },
+            {
+              "name": "trailing",
+              "type": {
+                "kind": "custom",
+                "name": "Widget"
+              },
+              "description": "Optional trailing widget."
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "kind": "primitive",
+                "name": "boolean"
+              },
+              "description": "Disables the item.",
+              "default": false
+            }
+          ]
+        }
       ]
     },
     "date-picker": {
@@ -189,6 +856,128 @@
       "exports": [
         "GalaxyDatePicker",
         "GalaxyDateRangePicker"
+      ],
+      "category": "form",
+      "props": [
+        {
+          "name": "selected",
+          "type": {
+            "kind": "custom",
+            "name": "DateTime"
+          },
+          "description": "Selected date for the single-date picker."
+        },
+        {
+          "name": "minDate",
+          "type": {
+            "kind": "custom",
+            "name": "DateTime"
+          },
+          "description": "Earliest date available for selection."
+        },
+        {
+          "name": "maxDate",
+          "type": {
+            "kind": "custom",
+            "name": "DateTime"
+          },
+          "description": "Latest date available for selection."
+        },
+        {
+          "name": "onChanged",
+          "type": {
+            "kind": "function",
+            "signature": "(date: DateTime?) => void"
+          },
+          "description": "Called when the selected date changes."
+        },
+        {
+          "name": "format",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Date format pattern used for display."
+        },
+        {
+          "name": "placeholder",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Placeholder text shown when no date is selected."
+        },
+        {
+          "name": "header",
+          "type": {
+            "kind": "custom",
+            "name": "Widget"
+          },
+          "description": "Optional header widget rendered above the picker."
+        }
+      ],
+      "children": [
+        {
+          "name": "DateRangePicker",
+          "props": [
+            {
+              "name": "selected",
+              "type": {
+                "kind": "custom",
+                "name": "DateTimeRange"
+              },
+              "description": "Selected date range."
+            },
+            {
+              "name": "minDate",
+              "type": {
+                "kind": "custom",
+                "name": "DateTime"
+              },
+              "description": "Earliest date available for range selection."
+            },
+            {
+              "name": "maxDate",
+              "type": {
+                "kind": "custom",
+                "name": "DateTime"
+              },
+              "description": "Latest date available for range selection."
+            },
+            {
+              "name": "onChanged",
+              "type": {
+                "kind": "function",
+                "signature": "(range: DateTimeRange?) => void"
+              },
+              "description": "Called when the selected date range changes."
+            },
+            {
+              "name": "format",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "description": "Date format pattern used for display."
+            },
+            {
+              "name": "placeholder",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "description": "Placeholder text shown when no range is selected."
+            },
+            {
+              "name": "header",
+              "type": {
+                "kind": "custom",
+                "name": "Widget"
+              },
+              "description": "Optional header widget rendered above the picker."
+            }
+          ]
+        }
       ]
     },
     "dialog": {
@@ -204,6 +993,44 @@
       ],
       "exports": [
         "GalaxyDialog"
+      ],
+      "category": "layout",
+      "props": [
+        {
+          "name": "title",
+          "type": {
+            "kind": "custom",
+            "name": "Widget"
+          },
+          "description": "Optional widget rendered as the dialog title."
+        },
+        {
+          "name": "content",
+          "type": {
+            "kind": "custom",
+            "name": "Widget"
+          },
+          "description": "Optional widget rendered as the main dialog content."
+        },
+        {
+          "name": "actions",
+          "type": {
+            "kind": "array",
+            "of": {
+              "kind": "custom",
+              "name": "Widget"
+            }
+          },
+          "description": "Optional action widgets rendered in the footer row."
+        },
+        {
+          "name": "contentPadding",
+          "type": {
+            "kind": "custom",
+            "name": "EdgeInsetsGeometry"
+          },
+          "description": "Padding applied around the content widget."
+        }
       ]
     },
     "dropdown-menu": {
@@ -220,6 +1047,84 @@
       "exports": [
         "GalaxyDropdownMenu",
         "GalaxyDropdownMenuItem"
+      ],
+      "category": "navigation",
+      "props": [
+        {
+          "name": "trigger",
+          "type": {
+            "kind": "custom",
+            "name": "Widget"
+          },
+          "description": "Widget used to open the menu."
+        },
+        {
+          "name": "items",
+          "type": {
+            "kind": "array",
+            "of": {
+              "kind": "custom",
+              "name": "GalaxyDropdownMenuItem<T>"
+            }
+          },
+          "description": "Menu items rendered in the popup."
+        },
+        {
+          "name": "onSelected",
+          "type": {
+            "kind": "function",
+            "signature": "(value: T) => void"
+          },
+          "description": "Called when an item is selected."
+        }
+      ],
+      "children": [
+        {
+          "name": "GalaxyDropdownMenuItem",
+          "props": [
+            {
+              "name": "value",
+              "type": {
+                "kind": "custom",
+                "name": "T"
+              },
+              "description": "Value returned when the item is selected."
+            },
+            {
+              "name": "child",
+              "type": {
+                "kind": "custom",
+                "name": "Widget"
+              },
+              "description": "Primary content widget."
+            },
+            {
+              "name": "leading",
+              "type": {
+                "kind": "custom",
+                "name": "Widget"
+              },
+              "description": "Optional leading widget."
+            },
+            {
+              "name": "trailing",
+              "type": {
+                "kind": "custom",
+                "name": "Widget"
+              },
+              "description": "Optional trailing widget."
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "kind": "primitive",
+                "name": "boolean"
+              },
+              "default": false,
+              "description": "Disables the item."
+            }
+          ]
+        }
       ]
     },
     "empty": {
@@ -235,6 +1140,90 @@
       ],
       "exports": [
         "GalaxyEmpty"
+      ],
+      "category": "feedback",
+      "props": [
+        {
+          "name": "icon",
+          "type": {
+            "kind": "custom",
+            "name": "Widget"
+          },
+          "description": "Optional icon widget."
+        },
+        {
+          "name": "title",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Optional title text."
+        },
+        {
+          "name": "description",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Optional description text."
+        },
+        {
+          "name": "action",
+          "type": {
+            "kind": "custom",
+            "name": "Widget"
+          },
+          "description": "Optional action widget."
+        },
+        {
+          "name": "padding",
+          "type": {
+            "kind": "custom",
+            "name": "EdgeInsets"
+          },
+          "default": "EdgeInsets.all(32)",
+          "description": "Padding around the empty state content."
+        },
+        {
+          "name": "iconSize",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "default": 64,
+          "description": "Size applied to the icon theme."
+        },
+        {
+          "name": "spacing",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "default": 16,
+          "description": "Base spacing used between sections."
+        }
+      ],
+      "children": [
+        {
+          "name": "GalaxyEmpty.noData",
+          "props": []
+        },
+        {
+          "name": "GalaxyEmpty.noResults",
+          "props": []
+        },
+        {
+          "name": "GalaxyEmpty.error",
+          "props": []
+        },
+        {
+          "name": "GalaxyEmpty.offline",
+          "props": []
+        },
+        {
+          "name": "GalaxyEmpty.emptyList",
+          "props": []
+        }
       ]
     },
     "hover-card": {
@@ -250,6 +1239,49 @@
       ],
       "exports": [
         "GalaxyHoverCard"
+      ],
+      "category": "data-display",
+      "props": [
+        {
+          "name": "trigger",
+          "type": {
+            "kind": "custom",
+            "name": "Widget"
+          },
+          "description": "Widget used as the hover or tap trigger."
+        },
+        {
+          "name": "content",
+          "type": {
+            "kind": "custom",
+            "name": "Widget"
+          },
+          "description": "Widget displayed inside the hover card."
+        },
+        {
+          "name": "width",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Optional width of the hover card."
+        },
+        {
+          "name": "padding",
+          "type": {
+            "kind": "custom",
+            "name": "EdgeInsets"
+          },
+          "description": "Padding inside the hover card."
+        },
+        {
+          "name": "openDelay",
+          "type": {
+            "kind": "custom",
+            "name": "Duration"
+          },
+          "description": "Configured open delay; currently declared but not applied by the implementation."
+        }
       ]
     },
     "input": {
@@ -265,6 +1297,91 @@
       ],
       "exports": [
         "GalaxyInput"
+      ],
+      "props": [
+        {
+          "name": "controller",
+          "type": {
+            "kind": "custom",
+            "name": "TextEditingController"
+          },
+          "description": "Controller for the text field."
+        },
+        {
+          "name": "label",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Label text."
+        },
+        {
+          "name": "placeholder",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Placeholder text."
+        },
+        {
+          "name": "error",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Error text."
+        },
+        {
+          "name": "enabled",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": true,
+          "description": "Whether the input is enabled."
+        },
+        {
+          "name": "obscureText",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": false,
+          "description": "Obscures the input text."
+        },
+        {
+          "name": "keyboardType",
+          "type": {
+            "kind": "custom",
+            "name": "TextInputType"
+          },
+          "description": "Keyboard type."
+        },
+        {
+          "name": "maxLines",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "default": 1,
+          "description": "Max lines."
+        },
+        {
+          "name": "onChanged",
+          "type": {
+            "kind": "function",
+            "signature": "(value: string) => void"
+          },
+          "description": "Change handler."
+        },
+        {
+          "name": "onSubmitted",
+          "type": {
+            "kind": "function",
+            "signature": "(value: string) => void"
+          },
+          "description": "Submit handler."
+        }
       ]
     },
     "label": {
@@ -280,6 +1397,41 @@
       ],
       "exports": [
         "GalaxyLabel"
+      ],
+      "props": [
+        {
+          "name": "text",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Label text."
+        },
+        {
+          "name": "required",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": false,
+          "description": "Marks label as required and appends an asterisk."
+        },
+        {
+          "name": "style",
+          "type": {
+            "kind": "custom",
+            "name": "TextStyle"
+          },
+          "description": "Text style."
+        },
+        {
+          "name": "color",
+          "type": {
+            "kind": "custom",
+            "name": "Color"
+          },
+          "description": "Text color."
+        }
       ]
     },
     "menubar": {
@@ -295,7 +1447,55 @@
       ],
       "exports": [
         "GalaxyMenubar",
-        "GalaxyMenubarItem"
+        "GalaxyMenubarMenu"
+      ],
+      "category": "navigation",
+      "props": [
+        {
+          "name": "menus",
+          "type": {
+            "kind": "array",
+            "of": {
+              "kind": "custom",
+              "name": "GalaxyMenubarMenu"
+            }
+          },
+          "description": "Menus rendered in the menubar."
+        }
+      ],
+      "children": [
+        {
+          "name": "GalaxyMenubarMenu",
+          "props": [
+            {
+              "name": "label",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "description": "Visible label for the menu trigger."
+            },
+            {
+              "name": "items",
+              "type": {
+                "kind": "array",
+                "of": {
+                  "kind": "custom",
+                  "name": "PopupMenuEntry"
+                }
+              },
+              "description": "Popup menu entries."
+            },
+            {
+              "name": "onSelected",
+              "type": {
+                "kind": "function",
+                "signature": "(value: dynamic) => void"
+              },
+              "description": "Called when an item is selected."
+            }
+          ]
+        }
       ]
     },
     "navigation-menu": {
@@ -311,7 +1511,162 @@
       ],
       "exports": [
         "GalaxyNavigationMenu",
-        "NavigationMenuItem"
+        "NavigationMenuItem",
+        "NavigationMenuVariant",
+        "showGalaxyDrawer"
+      ],
+      "category": "navigation",
+      "props": [
+        {
+          "name": "items",
+          "type": {
+            "kind": "custom",
+            "name": "List<NavigationMenuItem>"
+          },
+          "description": "Items rendered in the navigation menu."
+        },
+        {
+          "name": "selectedId",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Currently selected item id."
+        },
+        {
+          "name": "onSelect",
+          "type": {
+            "kind": "function",
+            "signature": "(String id) => void"
+          },
+          "description": "Called when a navigation item is selected."
+        },
+        {
+          "name": "variant",
+          "type": {
+            "kind": "custom",
+            "name": "NavigationMenuVariant"
+          },
+          "description": "Visual variant of the navigation menu.",
+          "default": "NavigationMenuVariant.bottom"
+        },
+        {
+          "name": "header",
+          "type": {
+            "kind": "custom",
+            "name": "Widget"
+          },
+          "description": "Optional header widget for the drawer variant."
+        },
+        {
+          "name": "footer",
+          "type": {
+            "kind": "custom",
+            "name": "Widget"
+          },
+          "description": "Optional footer widget for the drawer variant."
+        }
+      ],
+      "children": [
+        {
+          "name": "NavigationMenuItem",
+          "props": [
+            {
+              "name": "id",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "description": "Unique item id."
+            },
+            {
+              "name": "label",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "description": "Item label text."
+            },
+            {
+              "name": "icon",
+              "type": {
+                "kind": "custom",
+                "name": "IconData"
+              },
+              "description": "Item icon."
+            },
+            {
+              "name": "badge",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "description": "Optional badge text."
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "kind": "primitive",
+                "name": "boolean"
+              },
+              "description": "Disables the item.",
+              "default": false
+            }
+          ]
+        },
+        {
+          "name": "showGalaxyDrawer",
+          "props": [
+            {
+              "name": "context",
+              "type": {
+                "kind": "custom",
+                "name": "BuildContext"
+              },
+              "description": "Build context used to present the drawer."
+            },
+            {
+              "name": "items",
+              "type": {
+                "kind": "custom",
+                "name": "List<NavigationMenuItem>"
+              },
+              "description": "Items rendered in the drawer."
+            },
+            {
+              "name": "selectedId",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "description": "Currently selected item id."
+            },
+            {
+              "name": "onSelect",
+              "type": {
+                "kind": "function",
+                "signature": "(String id) => void"
+              },
+              "description": "Called when a navigation item is selected."
+            },
+            {
+              "name": "header",
+              "type": {
+                "kind": "custom",
+                "name": "Widget"
+              },
+              "description": "Optional header widget for the drawer."
+            },
+            {
+              "name": "footer",
+              "type": {
+                "kind": "custom",
+                "name": "Widget"
+              },
+              "description": "Optional footer widget for the drawer."
+            }
+          ]
+        }
       ]
     },
     "pagination": {
@@ -327,6 +1682,95 @@
       ],
       "exports": [
         "GalaxyPagination"
+      ],
+      "category": "navigation",
+      "props": [
+        {
+          "name": "currentPage",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Current page number."
+        },
+        {
+          "name": "totalPages",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Total number of pages."
+        },
+        {
+          "name": "onPageChange",
+          "type": {
+            "kind": "function",
+            "signature": "(page: int) => void"
+          },
+          "description": "Called when the page changes."
+        },
+        {
+          "name": "variant",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "compact"
+              },
+              {
+                "kind": "literal",
+                "value": "full"
+              },
+              {
+                "kind": "literal",
+                "value": "loadMore"
+              }
+            ]
+          },
+          "default": "compact",
+          "description": "Pagination presentation variant."
+        },
+        {
+          "name": "visiblePages",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "default": 5,
+          "description": "Number of visible pages in compact mode."
+        },
+        {
+          "name": "loadMoreText",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Label for load-more mode."
+        },
+        {
+          "name": "isLoading",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": false,
+          "description": "Loading state for load-more mode."
+        }
+      ],
+      "children": [
+        {
+          "name": "GalaxyPagination.compact",
+          "props": []
+        },
+        {
+          "name": "GalaxyPagination.full",
+          "props": []
+        },
+        {
+          "name": "GalaxyPagination.loadMore",
+          "props": []
+        }
       ]
     },
     "popover": {
@@ -342,6 +1786,41 @@
       ],
       "exports": [
         "GalaxyPopover"
+      ],
+      "category": "navigation",
+      "props": [
+        {
+          "name": "trigger",
+          "type": {
+            "kind": "custom",
+            "name": "Widget"
+          },
+          "description": "Widget that opens the popover."
+        },
+        {
+          "name": "content",
+          "type": {
+            "kind": "custom",
+            "name": "Widget"
+          },
+          "description": "Popover content widget."
+        },
+        {
+          "name": "width",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Optional width of the popover panel."
+        },
+        {
+          "name": "padding",
+          "type": {
+            "kind": "custom",
+            "name": "EdgeInsets"
+          },
+          "description": "Padding inside the popover panel."
+        }
       ]
     },
     "progress": {
@@ -357,6 +1836,42 @@
       ],
       "exports": [
         "GalaxyProgress"
+      ],
+      "category": "feedback",
+      "props": [
+        {
+          "name": "value",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Progress value between 0 and 1, or null for indeterminate."
+        },
+        {
+          "name": "backgroundColor",
+          "type": {
+            "kind": "custom",
+            "name": "Color"
+          },
+          "description": "Background color of the progress track."
+        },
+        {
+          "name": "valueColor",
+          "type": {
+            "kind": "custom",
+            "name": "Color"
+          },
+          "description": "Color of the progress indicator."
+        },
+        {
+          "name": "height",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "default": 4,
+          "description": "Height of the progress bar."
+        }
       ]
     },
     "radio-group": {
@@ -373,6 +1888,76 @@
       "exports": [
         "GalaxyRadioGroup",
         "GalaxyRadio"
+      ],
+      "props": [
+        {
+          "name": "value",
+          "type": {
+            "kind": "custom",
+            "name": "T?"
+          },
+          "description": "Controlled selected value."
+        },
+        {
+          "name": "onChanged",
+          "type": {
+            "kind": "function",
+            "signature": "(value: T?) => void"
+          },
+          "description": "Called when the value changes."
+        },
+        {
+          "name": "options",
+          "type": {
+            "kind": "array",
+            "of": {
+              "kind": "custom",
+              "name": "GalaxyRadioOption<T>"
+            }
+          },
+          "description": "Radio options."
+        },
+        {
+          "name": "direction",
+          "type": {
+            "kind": "custom",
+            "name": "Axis"
+          },
+          "default": "Axis.vertical",
+          "description": "Layout direction."
+        }
+      ],
+      "children": [
+        {
+          "name": "RadioGroupItem",
+          "props": [
+            {
+              "name": "value",
+              "type": {
+                "kind": "custom",
+                "name": "T"
+              },
+              "description": "Item value."
+            },
+            {
+              "name": "label",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "description": "Item label."
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "kind": "primitive",
+                "name": "boolean"
+              },
+              "default": false,
+              "description": "Disables the item."
+            }
+          ]
+        }
       ]
     },
     "select": {
@@ -389,6 +1974,84 @@
       "exports": [
         "GalaxySelect",
         "GalaxySelectItem"
+      ],
+      "props": [
+        {
+          "name": "value",
+          "type": {
+            "kind": "custom",
+            "name": "T?"
+          },
+          "description": "Controlled selected value."
+        },
+        {
+          "name": "items",
+          "type": {
+            "kind": "array",
+            "of": {
+              "kind": "custom",
+              "name": "GalaxySelectItem<T>"
+            }
+          },
+          "description": "Selectable items."
+        },
+        {
+          "name": "onChanged",
+          "type": {
+            "kind": "function",
+            "signature": "(value: T?) => void"
+          },
+          "description": "Called when the value changes."
+        },
+        {
+          "name": "label",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Label text shown above the select."
+        },
+        {
+          "name": "placeholder",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "default": "Select an option",
+          "description": "Placeholder when no value is selected."
+        },
+        {
+          "name": "enabled",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": true,
+          "description": "Whether the select is enabled."
+        }
+      ],
+      "children": [
+        {
+          "name": "SelectItem",
+          "props": [
+            {
+              "name": "value",
+              "type": {
+                "kind": "custom",
+                "name": "T"
+              },
+              "description": "Item value."
+            },
+            {
+              "name": "label",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "description": "Item label."
+            }
+          ]
+        }
       ]
     },
     "separator": {
@@ -404,6 +2067,59 @@
       ],
       "exports": [
         "GalaxySeparator"
+      ],
+      "category": "layout",
+      "props": [
+        {
+          "name": "orientation",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "horizontal"
+              },
+              {
+                "kind": "literal",
+                "value": "vertical"
+              }
+            ]
+          },
+          "default": "horizontal",
+          "description": "Separator orientation."
+        },
+        {
+          "name": "thickness",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Line thickness."
+        },
+        {
+          "name": "color",
+          "type": {
+            "kind": "custom",
+            "name": "Color"
+          },
+          "description": "Separator color."
+        },
+        {
+          "name": "indent",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Leading inset for the divider."
+        },
+        {
+          "name": "endIndent",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Trailing inset for the divider."
+        }
       ]
     },
     "sheet": {
@@ -419,7 +2135,122 @@
       ],
       "exports": [
         "GalaxySheet",
-        "GalaxySheetContent"
+        "GalaxySheetContent",
+        "GalaxySheetHeader",
+        "GalaxySheetFooter"
+      ],
+      "category": "layout",
+      "props": [
+        {
+          "name": "show",
+          "type": {
+            "kind": "function",
+            "signature": "({ context, builder, side, isDismissible, enableDrag, backgroundColor, elevation, shape, constraints }) => Future<T?>"
+          },
+          "description": "Static API to present a modal or side sheet."
+        }
+      ],
+      "children": [
+        {
+          "name": "GalaxySheetContent",
+          "props": [
+            {
+              "name": "header",
+              "type": {
+                "kind": "custom",
+                "name": "Widget"
+              },
+              "description": "Optional header widget."
+            },
+            {
+              "name": "body",
+              "type": {
+                "kind": "custom",
+                "name": "Widget"
+              },
+              "description": "Main sheet body."
+            },
+            {
+              "name": "footer",
+              "type": {
+                "kind": "custom",
+                "name": "Widget"
+              },
+              "description": "Optional footer widget."
+            },
+            {
+              "name": "padding",
+              "type": {
+                "kind": "custom",
+                "name": "EdgeInsets"
+              },
+              "default": "EdgeInsets.all(16)",
+              "description": "Padding inside the sheet."
+            },
+            {
+              "name": "showCloseButton",
+              "type": {
+                "kind": "primitive",
+                "name": "boolean"
+              },
+              "default": true,
+              "description": "Whether to show the close button."
+            },
+            {
+              "name": "onClose",
+              "type": {
+                "kind": "function",
+                "signature": "() => void"
+              },
+              "description": "Custom close handler."
+            }
+          ]
+        },
+        {
+          "name": "GalaxySheetHeader",
+          "props": [
+            {
+              "name": "title",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "description": "Header title text."
+            },
+            {
+              "name": "description",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "description": "Optional header description text."
+            }
+          ]
+        },
+        {
+          "name": "GalaxySheetFooter",
+          "props": [
+            {
+              "name": "children",
+              "type": {
+                "kind": "array",
+                "of": {
+                  "kind": "custom",
+                  "name": "Widget"
+                }
+              },
+              "description": "Footer action widgets."
+            },
+            {
+              "name": "mainAxisAlignment",
+              "type": {
+                "kind": "custom",
+                "name": "MainAxisAlignment"
+              },
+              "description": "Alignment of footer actions."
+            }
+          ]
+        }
       ]
     },
     "skeleton": {
@@ -435,6 +2266,106 @@
       ],
       "exports": [
         "GalaxySkeleton"
+      ],
+      "props": [
+        {
+          "name": "width",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Explicit width for the skeleton."
+        },
+        {
+          "name": "height",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "default": 16,
+          "description": "Explicit height for the skeleton."
+        },
+        {
+          "name": "borderRadius",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "default": 4,
+          "description": "Border radius of the skeleton shape."
+        },
+        {
+          "name": "baseColor",
+          "type": {
+            "kind": "custom",
+            "name": "Color"
+          },
+          "description": "Base shimmer color."
+        },
+        {
+          "name": "highlightColor",
+          "type": {
+            "kind": "custom",
+            "name": "Color"
+          },
+          "description": "Highlight shimmer color."
+        }
+      ]
+    },
+    "spinner": {
+      "name": "Spinner",
+      "type": "feedback",
+      "description": "Animated loading spinner.",
+      "files": [
+        "spinner.dart"
+      ],
+      "dependencies": [],
+      "peerDependencies": [
+        "flutter"
+      ],
+      "exports": [
+        "GalaxySpinner"
+      ],
+      "props": [
+        {
+          "name": "size",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "sm"
+              },
+              {
+                "kind": "literal",
+                "value": "default"
+              },
+              {
+                "kind": "literal",
+                "value": "lg"
+              }
+            ]
+          },
+          "default": "default",
+          "description": "Visual size of the spinner."
+        },
+        {
+          "name": "label",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "default": "Loading...",
+          "description": "Accessibility label announced to assistive technology."
+        },
+        {
+          "name": "color",
+          "type": {
+            "kind": "custom",
+            "name": "Color"
+          },
+          "description": "Override color for the spinner stroke."
+        }
       ]
     },
     "slider": {
@@ -450,6 +2381,68 @@
       ],
       "exports": [
         "GalaxySlider"
+      ],
+      "category": "form",
+      "props": [
+        {
+          "name": "value",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Current slider value."
+        },
+        {
+          "name": "onChanged",
+          "type": {
+            "kind": "function",
+            "signature": "(value: number) => void"
+          },
+          "description": "Called when the slider value changes."
+        },
+        {
+          "name": "min",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "default": 0,
+          "description": "Minimum value."
+        },
+        {
+          "name": "max",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "default": 100,
+          "description": "Maximum value."
+        },
+        {
+          "name": "divisions",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Number of discrete divisions."
+        },
+        {
+          "name": "label",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Optional label rendered above the slider."
+        },
+        {
+          "name": "disabled",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": false,
+          "description": "Disables the slider."
+        }
       ]
     },
     "switch": {
@@ -465,6 +2458,57 @@
       ],
       "exports": [
         "GalaxySwitch"
+      ],
+      "props": [
+        {
+          "name": "value",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Controlled checked state."
+        },
+        {
+          "name": "onChanged",
+          "type": {
+            "kind": "function",
+            "signature": "(value: boolean) => void"
+          },
+          "description": "Called when the checked state changes."
+        },
+        {
+          "name": "activeColor",
+          "type": {
+            "kind": "custom",
+            "name": "Color"
+          },
+          "description": "Active thumb color."
+        },
+        {
+          "name": "inactiveColor",
+          "type": {
+            "kind": "custom",
+            "name": "Color"
+          },
+          "description": "Inactive thumb color."
+        },
+        {
+          "name": "trackColor",
+          "type": {
+            "kind": "custom",
+            "name": "Color"
+          },
+          "description": "Active track color."
+        },
+        {
+          "name": "disabled",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": false,
+          "description": "Disables the switch."
+        }
       ]
     },
     "table": {
@@ -482,6 +2526,79 @@
         "GalaxyTable",
         "GalaxyTableRow",
         "GalaxyTableCell"
+      ],
+      "category": "data-display",
+      "props": [
+        {
+          "name": "columns",
+          "type": {
+            "kind": "array",
+            "of": {
+              "kind": "custom",
+              "name": "GalaxyTableColumn"
+            }
+          },
+          "description": "Column definitions."
+        },
+        {
+          "name": "rows",
+          "type": {
+            "kind": "array",
+            "of": {
+              "kind": "custom",
+              "name": "GalaxyTableRow"
+            }
+          },
+          "description": "Table rows."
+        },
+        {
+          "name": "caption",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Optional caption displayed below the table."
+        },
+        {
+          "name": "showBorder",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": true,
+          "description": "Whether to show the data table border."
+        }
+      ],
+      "children": [
+        {
+          "name": "GalaxyTableColumn",
+          "props": [
+            {
+              "name": "label",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "description": "Column label."
+            }
+          ]
+        },
+        {
+          "name": "GalaxyTableRow",
+          "props": [
+            {
+              "name": "cells",
+              "type": {
+                "kind": "array",
+                "of": {
+                  "kind": "custom",
+                  "name": "Widget"
+                }
+              },
+              "description": "Cell widgets for the row."
+            }
+          ]
+        }
       ]
     },
     "tabs": {
@@ -498,6 +2615,68 @@
       "exports": [
         "GalaxyTabs",
         "GalaxyTab"
+      ],
+      "category": "layout",
+      "props": [
+        {
+          "name": "tabs",
+          "type": {
+            "kind": "array",
+            "of": {
+              "kind": "custom",
+              "name": "GalaxyTab"
+            }
+          },
+          "description": "Tab definitions rendered by the widget."
+        },
+        {
+          "name": "initialIndex",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "default": 0,
+          "description": "Initial selected tab index."
+        },
+        {
+          "name": "onTabChanged",
+          "type": {
+            "kind": "function",
+            "signature": "(index: int) => void"
+          },
+          "description": "Called when the selected tab changes."
+        }
+      ],
+      "children": [
+        {
+          "name": "GalaxyTab",
+          "props": [
+            {
+              "name": "label",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "description": "Visible text for the tab."
+            },
+            {
+              "name": "content",
+              "type": {
+                "kind": "custom",
+                "name": "Widget"
+              },
+              "description": "Widget rendered inside the tab panel."
+            },
+            {
+              "name": "icon",
+              "type": {
+                "kind": "custom",
+                "name": "Widget"
+              },
+              "description": "Optional icon shown in the tab trigger."
+            }
+          ]
+        }
       ]
     },
     "textarea": {
@@ -513,6 +2692,99 @@
       ],
       "exports": [
         "GalaxyTextarea"
+      ],
+      "category": "form",
+      "props": [
+        {
+          "name": "controller",
+          "type": {
+            "kind": "custom",
+            "name": "TextEditingController"
+          },
+          "description": "Optional controller for the textarea value."
+        },
+        {
+          "name": "label",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Optional label rendered above the textarea."
+        },
+        {
+          "name": "placeholder",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Placeholder text."
+        },
+        {
+          "name": "error",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Optional error message rendered below the textarea."
+        },
+        {
+          "name": "enabled",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": true,
+          "description": "Whether the textarea is enabled."
+        },
+        {
+          "name": "maxLines",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Maximum number of visible lines."
+        },
+        {
+          "name": "minLines",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "default": 3,
+          "description": "Minimum number of visible lines."
+        },
+        {
+          "name": "maxLength",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Maximum number of characters allowed."
+        },
+        {
+          "name": "keyboardType",
+          "type": {
+            "kind": "custom",
+            "name": "TextInputType"
+          },
+          "description": "Keyboard type used by the text field."
+        },
+        {
+          "name": "onChanged",
+          "type": {
+            "kind": "function",
+            "signature": "(value: string) => void"
+          },
+          "description": "Called when the textarea value changes."
+        },
+        {
+          "name": "onSubmitted",
+          "type": {
+            "kind": "function",
+            "signature": "(value: string) => void"
+          },
+          "description": "Called when the value is submitted."
+        }
       ]
     },
     "toggle": {
@@ -528,6 +2800,82 @@
       ],
       "exports": [
         "GalaxyToggle"
+      ],
+      "category": "interactive",
+      "props": [
+        {
+          "name": "value",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Controlled toggle state."
+        },
+        {
+          "name": "onPressed",
+          "type": {
+            "kind": "function",
+            "signature": "(value: bool) => void"
+          },
+          "description": "Called when the toggle is pressed."
+        },
+        {
+          "name": "child",
+          "type": {
+            "kind": "custom",
+            "name": "Widget"
+          },
+          "description": "Toggle content."
+        },
+        {
+          "name": "variant",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "default_"
+              },
+              {
+                "kind": "literal",
+                "value": "outline"
+              }
+            ]
+          },
+          "default": "default_",
+          "description": "Visual style variant."
+        },
+        {
+          "name": "size",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "default_"
+              },
+              {
+                "kind": "literal",
+                "value": "sm"
+              },
+              {
+                "kind": "literal",
+                "value": "lg"
+              }
+            ]
+          },
+          "default": "default_",
+          "description": "Size variant."
+        },
+        {
+          "name": "disabled",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": false,
+          "description": "Disables the toggle."
+        }
       ]
     },
     "toggle-group": {
@@ -543,6 +2891,117 @@
       ],
       "exports": [
         "GalaxyToggleGroup"
+      ],
+      "category": "interactive",
+      "props": [
+        {
+          "name": "value",
+          "type": {
+            "kind": "custom",
+            "name": "T?"
+          },
+          "description": "Currently selected value."
+        },
+        {
+          "name": "onValueChanged",
+          "type": {
+            "kind": "function",
+            "signature": "(value: T?) => void"
+          },
+          "description": "Called when the selected value changes."
+        },
+        {
+          "name": "items",
+          "type": {
+            "kind": "array",
+            "of": {
+              "kind": "custom",
+              "name": "GalaxyToggleGroupItem<T>"
+            }
+          },
+          "description": "Toggle items."
+        },
+        {
+          "name": "variant",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "default_"
+              },
+              {
+                "kind": "literal",
+                "value": "outline"
+              }
+            ]
+          },
+          "default": "default_",
+          "description": "Shared visual style variant for items."
+        },
+        {
+          "name": "size",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "default_"
+              },
+              {
+                "kind": "literal",
+                "value": "sm"
+              },
+              {
+                "kind": "literal",
+                "value": "lg"
+              }
+            ]
+          },
+          "default": "default_",
+          "description": "Shared size variant for items."
+        },
+        {
+          "name": "allowDeselect",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": false,
+          "description": "Allow clearing the current selection."
+        }
+      ],
+      "children": [
+        {
+          "name": "GalaxyToggleGroupItem",
+          "props": [
+            {
+              "name": "value",
+              "type": {
+                "kind": "custom",
+                "name": "T"
+              },
+              "description": "Unique item value."
+            },
+            {
+              "name": "child",
+              "type": {
+                "kind": "custom",
+                "name": "Widget"
+              },
+              "description": "Item content."
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "kind": "primitive",
+                "name": "boolean"
+              },
+              "default": false,
+              "description": "Disables the item."
+            }
+          ]
+        }
       ]
     },
     "tooltip": {
@@ -558,6 +3017,73 @@
       ],
       "exports": [
         "GalaxyTooltip"
+      ],
+      "category": "navigation",
+      "props": [
+        {
+          "name": "child",
+          "type": {
+            "kind": "custom",
+            "name": "Widget"
+          },
+          "description": "Widget that triggers the tooltip."
+        },
+        {
+          "name": "message",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Tooltip text."
+        },
+        {
+          "name": "padding",
+          "type": {
+            "kind": "custom",
+            "name": "EdgeInsetsGeometry"
+          },
+          "description": "Padding inside the tooltip bubble."
+        },
+        {
+          "name": "margin",
+          "type": {
+            "kind": "custom",
+            "name": "EdgeInsetsGeometry"
+          },
+          "description": "Margin around the tooltip bubble."
+        },
+        {
+          "name": "height",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Tooltip height override."
+        },
+        {
+          "name": "preferBelow",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Prefer showing the tooltip below the trigger."
+        },
+        {
+          "name": "waitDuration",
+          "type": {
+            "kind": "custom",
+            "name": "Duration"
+          },
+          "description": "Delay before showing the tooltip."
+        },
+        {
+          "name": "showDuration",
+          "type": {
+            "kind": "custom",
+            "name": "Duration"
+          },
+          "description": "How long the tooltip remains visible."
+        }
       ]
     },
     "typography": {
@@ -573,6 +3099,181 @@
       ],
       "exports": [
         "GalaxyTypography"
+      ],
+      "props": [
+        {
+          "name": "text",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Text content."
+        },
+        {
+          "name": "variant",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "h1"
+              },
+              {
+                "kind": "literal",
+                "value": "h2"
+              },
+              {
+                "kind": "literal",
+                "value": "h3"
+              },
+              {
+                "kind": "literal",
+                "value": "h4"
+              },
+              {
+                "kind": "literal",
+                "value": "p"
+              },
+              {
+                "kind": "literal",
+                "value": "lead"
+              },
+              {
+                "kind": "literal",
+                "value": "large"
+              },
+              {
+                "kind": "literal",
+                "value": "small"
+              },
+              {
+                "kind": "literal",
+                "value": "muted"
+              },
+              {
+                "kind": "literal",
+                "value": "blockquote"
+              },
+              {
+                "kind": "literal",
+                "value": "code"
+              }
+            ]
+          },
+          "default": "p",
+          "description": "Typography style variant."
+        },
+        {
+          "name": "weight",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "normal"
+              },
+              {
+                "kind": "literal",
+                "value": "medium"
+              },
+              {
+                "kind": "literal",
+                "value": "semiBold"
+              },
+              {
+                "kind": "literal",
+                "value": "bold"
+              }
+            ]
+          },
+          "description": "Optional weight override."
+        },
+        {
+          "name": "color",
+          "type": {
+            "kind": "custom",
+            "name": "Color"
+          },
+          "description": "Text color override."
+        },
+        {
+          "name": "textAlign",
+          "type": {
+            "kind": "custom",
+            "name": "TextAlign"
+          },
+          "description": "Text alignment."
+        },
+        {
+          "name": "maxLines",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Maximum number of lines."
+        },
+        {
+          "name": "overflow",
+          "type": {
+            "kind": "custom",
+            "name": "TextOverflow"
+          },
+          "description": "Overflow behavior."
+        },
+        {
+          "name": "softWrap",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether text should soft wrap."
+        }
+      ],
+      "children": [
+        {
+          "name": "GalaxyTypography.h1",
+          "props": []
+        },
+        {
+          "name": "GalaxyTypography.h2",
+          "props": []
+        },
+        {
+          "name": "GalaxyTypography.h3",
+          "props": []
+        },
+        {
+          "name": "GalaxyTypography.h4",
+          "props": []
+        },
+        {
+          "name": "GalaxyTypography.p",
+          "props": []
+        },
+        {
+          "name": "GalaxyTypography.lead",
+          "props": []
+        },
+        {
+          "name": "GalaxyTypography.large",
+          "props": []
+        },
+        {
+          "name": "GalaxyTypography.small",
+          "props": []
+        },
+        {
+          "name": "GalaxyTypography.muted",
+          "props": []
+        },
+        {
+          "name": "GalaxyTypography.blockquote",
+          "props": []
+        },
+        {
+          "name": "GalaxyTypography.code",
+          "props": []
+        }
       ]
     },
     "line-chart": {
@@ -593,7 +3294,149 @@
       ],
       "exports": [
         "GalaxyLineChart"
-      ]
+      ],
+      "props": [
+        {
+          "name": "data",
+          "type": {
+            "kind": "custom",
+            "name": "ChartData"
+          },
+          "description": "Chart data including labels and datasets."
+        },
+        {
+          "name": "height",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Chart height in pixels.",
+          "default": 300
+        },
+        {
+          "name": "width",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Chart width in pixels."
+        },
+        {
+          "name": "theme",
+          "type": {
+            "kind": "custom",
+            "name": "ChartTheme"
+          },
+          "description": "Theme mode used by the chart.",
+          "default": "ChartTheme.light"
+        },
+        {
+          "name": "legend",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether to show the legend.",
+          "default": true
+        },
+        {
+          "name": "legendPosition",
+          "type": {
+            "kind": "custom",
+            "name": "LegendPosition"
+          },
+          "description": "Legend position.",
+          "default": "LegendPosition.top"
+        },
+        {
+          "name": "grid",
+          "type": {
+            "kind": "custom",
+            "name": "GridConfig"
+          },
+          "description": "Grid configuration."
+        },
+        {
+          "name": "tooltip",
+          "type": {
+            "kind": "custom",
+            "name": "TooltipConfig"
+          },
+          "description": "Tooltip configuration."
+        },
+        {
+          "name": "animation",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether chart animations are enabled.",
+          "default": true
+        },
+        {
+          "name": "smooth",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether lines are rendered as smooth curves.",
+          "default": true
+        },
+        {
+          "name": "showPoints",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether data points are shown.",
+          "default": true
+        },
+        {
+          "name": "pointSize",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Size of data point markers.",
+          "default": 4
+        },
+        {
+          "name": "area",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether to fill the area under the line.",
+          "default": false
+        },
+        {
+          "name": "loading",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether the loading state is shown.",
+          "default": false
+        },
+        {
+          "name": "emptyText",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Text shown when there is no data.",
+          "default": "No data available"
+        },
+        {
+          "name": "padding",
+          "type": {
+            "kind": "custom",
+            "name": "EdgeInsets"
+          },
+          "description": "Padding inside the chart container."
+        }
+      ],
+      "category": "charts"
     },
     "bar-chart": {
       "name": "BarChart",
@@ -613,7 +3456,140 @@
       ],
       "exports": [
         "GalaxyBarChart"
-      ]
+      ],
+      "props": [
+        {
+          "name": "data",
+          "type": {
+            "kind": "custom",
+            "name": "ChartData"
+          },
+          "description": "Chart data including labels and datasets."
+        },
+        {
+          "name": "height",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Chart height in pixels.",
+          "default": 300
+        },
+        {
+          "name": "width",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Chart width in pixels."
+        },
+        {
+          "name": "theme",
+          "type": {
+            "kind": "custom",
+            "name": "ChartTheme"
+          },
+          "description": "Theme mode used by the chart.",
+          "default": "ChartTheme.light"
+        },
+        {
+          "name": "legend",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether to show the legend.",
+          "default": true
+        },
+        {
+          "name": "legendPosition",
+          "type": {
+            "kind": "custom",
+            "name": "LegendPosition"
+          },
+          "description": "Legend position.",
+          "default": "LegendPosition.top"
+        },
+        {
+          "name": "grid",
+          "type": {
+            "kind": "custom",
+            "name": "GridConfig"
+          },
+          "description": "Grid configuration."
+        },
+        {
+          "name": "tooltip",
+          "type": {
+            "kind": "custom",
+            "name": "TooltipConfig"
+          },
+          "description": "Tooltip configuration."
+        },
+        {
+          "name": "animation",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether chart animations are enabled.",
+          "default": true
+        },
+        {
+          "name": "horizontal",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether to render horizontal bars.",
+          "default": false
+        },
+        {
+          "name": "stacked",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether datasets are stacked.",
+          "default": false
+        },
+        {
+          "name": "showDataLabels",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether to show data labels on bars.",
+          "default": false
+        },
+        {
+          "name": "loading",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether the loading state is shown.",
+          "default": false
+        },
+        {
+          "name": "emptyText",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Text shown when there is no data.",
+          "default": "No data available"
+        },
+        {
+          "name": "padding",
+          "type": {
+            "kind": "custom",
+            "name": "EdgeInsets"
+          },
+          "description": "Padding inside the chart container."
+        }
+      ],
+      "category": "charts"
     },
     "pie-chart": {
       "name": "PieChart",
@@ -633,7 +3609,124 @@
       ],
       "exports": [
         "GalaxyPieChart"
-      ]
+      ],
+      "props": [
+        {
+          "name": "data",
+          "type": {
+            "kind": "custom",
+            "name": "ChartData"
+          },
+          "description": "Chart data including labels and datasets."
+        },
+        {
+          "name": "height",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Chart height in pixels.",
+          "default": 300
+        },
+        {
+          "name": "width",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Chart width in pixels."
+        },
+        {
+          "name": "theme",
+          "type": {
+            "kind": "custom",
+            "name": "ChartTheme"
+          },
+          "description": "Theme mode used by the chart.",
+          "default": "ChartTheme.light"
+        },
+        {
+          "name": "legend",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether to show the legend.",
+          "default": true
+        },
+        {
+          "name": "legendPosition",
+          "type": {
+            "kind": "custom",
+            "name": "LegendPosition"
+          },
+          "description": "Legend position.",
+          "default": "LegendPosition.right"
+        },
+        {
+          "name": "animation",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether chart animations are enabled.",
+          "default": true
+        },
+        {
+          "name": "innerRadius",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Inner radius percentage.",
+          "default": 0
+        },
+        {
+          "name": "outerRadius",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Outer radius percentage.",
+          "default": 70
+        },
+        {
+          "name": "showPercentage",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether to show percentage labels.",
+          "default": true
+        },
+        {
+          "name": "loading",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether the loading state is shown.",
+          "default": false
+        },
+        {
+          "name": "emptyText",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Text shown when there is no data.",
+          "default": "No data available"
+        },
+        {
+          "name": "padding",
+          "type": {
+            "kind": "custom",
+            "name": "EdgeInsets"
+          },
+          "description": "Padding inside the chart container."
+        }
+      ],
+      "category": "charts"
     },
     "area-chart": {
       "name": "AreaChart",
@@ -653,7 +3746,151 @@
       ],
       "exports": [
         "GalaxyAreaChart"
-      ]
+      ],
+      "props": [
+        {
+          "name": "data",
+          "type": {
+            "kind": "custom",
+            "name": "ChartData"
+          },
+          "description": "Chart data including labels and datasets."
+        },
+        {
+          "name": "height",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Chart height in pixels.",
+          "default": 300
+        },
+        {
+          "name": "width",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Chart width in pixels."
+        },
+        {
+          "name": "theme",
+          "type": {
+            "kind": "custom",
+            "name": "ChartTheme"
+          },
+          "description": "Theme mode used by the chart.",
+          "default": "ChartTheme.light"
+        },
+        {
+          "name": "legend",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether to show the legend.",
+          "default": true
+        },
+        {
+          "name": "legendPosition",
+          "type": {
+            "kind": "custom",
+            "name": "LegendPosition"
+          },
+          "description": "Legend position.",
+          "default": "LegendPosition.top"
+        },
+        {
+          "name": "animation",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether chart animations are enabled.",
+          "default": true
+        },
+        {
+          "name": "smooth",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether lines are rendered as smooth curves.",
+          "default": true
+        },
+        {
+          "name": "showPoints",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether data points are shown.",
+          "default": true
+        },
+        {
+          "name": "pointSize",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Size of data point markers.",
+          "default": 4
+        },
+        {
+          "name": "stack",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether datasets are stacked.",
+          "default": false
+        },
+        {
+          "name": "opacity",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Fill opacity for the area.",
+          "default": 0.3
+        },
+        {
+          "name": "gradient",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether to use gradient area fills.",
+          "default": false
+        },
+        {
+          "name": "loading",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether the loading state is shown.",
+          "default": false
+        },
+        {
+          "name": "emptyText",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Text shown when there is no data.",
+          "default": "No data available"
+        },
+        {
+          "name": "padding",
+          "type": {
+            "kind": "custom",
+            "name": "EdgeInsets"
+          },
+          "description": "Padding inside the chart container."
+        }
+      ],
+      "category": "charts"
     },
     "radar-chart": {
       "name": "RadarChart",
@@ -673,7 +3910,107 @@
       ],
       "exports": [
         "GalaxyRadarChart"
-      ]
+      ],
+      "props": [
+        {
+          "name": "data",
+          "type": {
+            "kind": "custom",
+            "name": "ChartData"
+          },
+          "description": "Chart data including labels and datasets."
+        },
+        {
+          "name": "height",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Chart height in pixels.",
+          "default": 300
+        },
+        {
+          "name": "width",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Chart width in pixels."
+        },
+        {
+          "name": "theme",
+          "type": {
+            "kind": "custom",
+            "name": "ChartTheme"
+          },
+          "description": "Theme mode used by the chart.",
+          "default": "ChartTheme.light"
+        },
+        {
+          "name": "legend",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether to show the legend.",
+          "default": true
+        },
+        {
+          "name": "legendPosition",
+          "type": {
+            "kind": "custom",
+            "name": "LegendPosition"
+          },
+          "description": "Legend position.",
+          "default": "LegendPosition.top"
+        },
+        {
+          "name": "loading",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether the loading state is shown.",
+          "default": false
+        },
+        {
+          "name": "emptyText",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Text shown when there is no data.",
+          "default": "No data available"
+        },
+        {
+          "name": "fill",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether to fill the radar area.",
+          "default": true
+        },
+        {
+          "name": "opacity",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Fill opacity.",
+          "default": 0.3
+        },
+        {
+          "name": "numberOfConcentriccircles",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Number of concentric guide circles.",
+          "default": 4
+        }
+      ],
+      "category": "charts"
     },
     "scatter-chart": {
       "name": "ScatterChart",
@@ -693,7 +4030,114 @@
       ],
       "exports": [
         "GalaxyScatterChart"
-      ]
+      ],
+      "props": [
+        {
+          "name": "data",
+          "type": {
+            "kind": "custom",
+            "name": "ChartData"
+          },
+          "description": "Chart data including labels and datasets."
+        },
+        {
+          "name": "height",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Chart height in pixels.",
+          "default": 300
+        },
+        {
+          "name": "width",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Chart width in pixels."
+        },
+        {
+          "name": "theme",
+          "type": {
+            "kind": "custom",
+            "name": "ChartTheme"
+          },
+          "description": "Theme mode used by the chart.",
+          "default": "ChartTheme.light"
+        },
+        {
+          "name": "legend",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether to show the legend.",
+          "default": true
+        },
+        {
+          "name": "legendPosition",
+          "type": {
+            "kind": "custom",
+            "name": "LegendPosition"
+          },
+          "description": "Legend position.",
+          "default": "LegendPosition.top"
+        },
+        {
+          "name": "loading",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether the loading state is shown.",
+          "default": false
+        },
+        {
+          "name": "emptyText",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Text shown when there is no data.",
+          "default": "No data available"
+        },
+        {
+          "name": "symbolSize",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Size of scatter points.",
+          "default": 8
+        },
+        {
+          "name": "opacity",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Opacity of scatter points.",
+          "default": 0.8
+        },
+        {
+          "name": "xAxisLabel",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Label for the X axis."
+        },
+        {
+          "name": "yAxisLabel",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Label for the Y axis."
+        }
+      ],
+      "category": "charts"
     },
     "mixed-chart": {
       "name": "MixedChart",
@@ -713,7 +4157,113 @@
       ],
       "exports": [
         "GalaxyMixedChart"
-      ]
+      ],
+      "props": [
+        {
+          "name": "data",
+          "type": {
+            "kind": "custom",
+            "name": "ChartData"
+          },
+          "description": "Chart data including labels and datasets."
+        },
+        {
+          "name": "height",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Chart height in pixels.",
+          "default": 300
+        },
+        {
+          "name": "width",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Chart width in pixels."
+        },
+        {
+          "name": "theme",
+          "type": {
+            "kind": "custom",
+            "name": "ChartTheme"
+          },
+          "description": "Theme mode used by the chart.",
+          "default": "ChartTheme.light"
+        },
+        {
+          "name": "legend",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether to show the legend.",
+          "default": true
+        },
+        {
+          "name": "legendPosition",
+          "type": {
+            "kind": "custom",
+            "name": "LegendPosition"
+          },
+          "description": "Legend position.",
+          "default": "LegendPosition.top"
+        },
+        {
+          "name": "grid",
+          "type": {
+            "kind": "custom",
+            "name": "GridConfig"
+          },
+          "description": "Grid configuration."
+        },
+        {
+          "name": "tooltip",
+          "type": {
+            "kind": "custom",
+            "name": "TooltipConfig"
+          },
+          "description": "Tooltip configuration."
+        },
+        {
+          "name": "animation",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether chart animations are enabled.",
+          "default": true
+        },
+        {
+          "name": "loading",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether the loading state is shown.",
+          "default": false
+        },
+        {
+          "name": "emptyText",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Text shown when there is no data.",
+          "default": "No data available"
+        },
+        {
+          "name": "padding",
+          "type": {
+            "kind": "custom",
+            "name": "EdgeInsets"
+          },
+          "description": "Padding inside the chart container."
+        }
+      ],
+      "category": "charts"
     },
     "donut-chart": {
       "name": "DonutChart",
@@ -726,11 +4276,133 @@
         "index.dart"
       ],
       "dependencies": [
-        "fl_chart"
+        "fl_chart: ^0.68.0"
       ],
       "devDependencies": [],
       "registryDependencies": [],
-      "category": "charts"
+      "category": "charts",
+      "props": [
+        {
+          "name": "data",
+          "type": {
+            "kind": "custom",
+            "name": "ChartData"
+          },
+          "description": "Chart data including labels and datasets."
+        },
+        {
+          "name": "height",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Chart height in pixels.",
+          "default": 300
+        },
+        {
+          "name": "width",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Chart width in pixels."
+        },
+        {
+          "name": "theme",
+          "type": {
+            "kind": "custom",
+            "name": "ChartTheme"
+          },
+          "description": "Theme mode used by the chart.",
+          "default": "ChartTheme.light"
+        },
+        {
+          "name": "legend",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether to show the legend.",
+          "default": true
+        },
+        {
+          "name": "legendPosition",
+          "type": {
+            "kind": "custom",
+            "name": "LegendPosition"
+          },
+          "description": "Legend position.",
+          "default": "LegendPosition.right"
+        },
+        {
+          "name": "animation",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether chart animations are enabled.",
+          "default": true
+        },
+        {
+          "name": "innerRadius",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Inner radius percentage.",
+          "default": 50
+        },
+        {
+          "name": "outerRadius",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Outer radius percentage.",
+          "default": 70
+        },
+        {
+          "name": "showPercentage",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether to show percentage labels.",
+          "default": true
+        },
+        {
+          "name": "loading",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether the loading state is shown.",
+          "default": false
+        },
+        {
+          "name": "emptyText",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Text shown when there is no data.",
+          "default": "No data available"
+        },
+        {
+          "name": "padding",
+          "type": {
+            "kind": "custom",
+            "name": "EdgeInsets"
+          },
+          "description": "Padding inside the chart container."
+        }
+      ],
+      "peerDependencies": [
+        "flutter"
+      ],
+      "exports": [
+        "GalaxyDonutChart"
+      ]
     },
     "gauge-chart": {
       "name": "GaugeChart",
@@ -743,11 +4415,164 @@
         "index.dart"
       ],
       "dependencies": [
-        "fl_chart"
+        "fl_chart: ^0.68.0"
       ],
       "devDependencies": [],
       "registryDependencies": [],
-      "category": "charts"
+      "category": "charts",
+      "props": [
+        {
+          "name": "value",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Current gauge value."
+        },
+        {
+          "name": "min",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Minimum gauge value.",
+          "default": 0
+        },
+        {
+          "name": "max",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Maximum gauge value.",
+          "default": 100
+        },
+        {
+          "name": "height",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Chart height in pixels.",
+          "default": 300
+        },
+        {
+          "name": "width",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Chart width in pixels."
+        },
+        {
+          "name": "theme",
+          "type": {
+            "kind": "custom",
+            "name": "ChartTheme"
+          },
+          "description": "Theme mode used by the chart.",
+          "default": "ChartTheme.light"
+        },
+        {
+          "name": "startAngle",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Start angle for the gauge arc."
+        },
+        {
+          "name": "endAngle",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "End angle for the gauge arc."
+        },
+        {
+          "name": "showProgress",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether to show the progress arc.",
+          "default": true
+        },
+        {
+          "name": "showPointer",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether to show the gauge pointer.",
+          "default": true
+        },
+        {
+          "name": "title",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Optional gauge title."
+        },
+        {
+          "name": "unit",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Optional value unit."
+        },
+        {
+          "name": "zones",
+          "type": {
+            "kind": "custom",
+            "name": "List<GaugeZone>"
+          },
+          "description": "Color ranges for the gauge."
+        },
+        {
+          "name": "color",
+          "type": {
+            "kind": "custom",
+            "name": "Color"
+          },
+          "description": "Single color for the gauge."
+        },
+        {
+          "name": "loading",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether the loading state is shown.",
+          "default": false
+        },
+        {
+          "name": "emptyText",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Text shown when there is no data.",
+          "default": "No data available"
+        },
+        {
+          "name": "padding",
+          "type": {
+            "kind": "custom",
+            "name": "EdgeInsets"
+          },
+          "description": "Padding inside the chart container."
+        }
+      ],
+      "peerDependencies": [
+        "flutter"
+      ],
+      "exports": [
+        "GalaxyGaugeChart",
+        "GaugeZone"
+      ]
     }
   },
   "groups": {

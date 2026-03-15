@@ -2,7 +2,7 @@
   "components": {
     "button": {
       "name": "Button",
-      "selector": "gButton",
+      "selector": "ui-button, button[ui-button]",
       "type": "form",
       "description": "Versatile button with 6 status variants and 5 sizes",
       "files": [
@@ -19,13 +19,84 @@
         "lucide-angular"
       ],
       "exports": [
-        "ButtonDirective"
+        "ButtonComponent"
       ],
-      "category": "form"
+      "category": "form",
+      "props": [
+        {
+          "name": "variant",
+          "type": {
+            "kind": "union",
+            "values": [
+              "default",
+              "destructive",
+              "outline",
+              "secondary",
+              "ghost",
+              "link"
+            ]
+          },
+          "default": "default",
+          "description": "Visual style variant."
+        },
+        {
+          "name": "size",
+          "type": {
+            "kind": "union",
+            "values": [
+              "default",
+              "sm",
+              "lg",
+              "icon"
+            ]
+          },
+          "default": "default",
+          "description": "Size variant."
+        },
+        {
+          "name": "class",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "default": "",
+          "description": "CSS class names for the button."
+        },
+        {
+          "name": "type",
+          "type": {
+            "kind": "union",
+            "values": [
+              "button",
+              "submit",
+              "reset"
+            ]
+          },
+          "default": "button",
+          "description": "Native button type."
+        },
+        {
+          "name": "disabled",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": false,
+          "description": "Disables the button."
+        },
+        {
+          "name": "ariaLabel",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "ARIA label for accessibility."
+        }
+      ]
     },
     "input": {
       "name": "Input",
-      "selector": "g-input",
+      "selector": "ui-input",
       "type": "form",
       "description": "Text input with label, hints, and error messages",
       "files": [
@@ -40,11 +111,144 @@
       "exports": [
         "InputComponent"
       ],
-      "category": "form"
+      "category": "form",
+      "props": [
+        {
+          "name": "type",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "default": "text",
+          "description": "Input type."
+        },
+        {
+          "name": "value",
+          "type": {
+            "kind": "union",
+            "values": [
+              "string",
+              "number"
+            ]
+          },
+          "description": "Controlled value."
+        },
+        {
+          "name": "placeholder",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Placeholder text."
+        },
+        {
+          "name": "class",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "default": "",
+          "description": "CSS class names for the input."
+        },
+        {
+          "name": "disabled",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": false,
+          "description": "Disables the input."
+        },
+        {
+          "name": "readonly",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": false,
+          "description": "Makes the input read-only."
+        },
+        {
+          "name": "maxlength",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Maximum input length."
+        },
+        {
+          "name": "autocomplete",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Autocomplete hint."
+        },
+        {
+          "name": "ariaInvalid",
+          "type": {
+            "kind": "union",
+            "values": [
+              "boolean",
+              "string"
+            ]
+          },
+          "description": "ARIA invalid state."
+        },
+        {
+          "name": "name",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Input name."
+        },
+        {
+          "name": "id",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Input id."
+        },
+        {
+          "name": "required",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": false,
+          "description": "Required input."
+        },
+        {
+          "name": "valueChange",
+          "type": {
+            "kind": "function",
+            "signature": "(value: string | number) => void"
+          },
+          "description": "Emitted when the value changes."
+        },
+        {
+          "name": "inputFocus",
+          "type": {
+            "kind": "function",
+            "signature": "() => void"
+          },
+          "description": "Emitted on focus."
+        },
+        {
+          "name": "inputBlur",
+          "type": {
+            "kind": "function",
+            "signature": "() => void"
+          },
+          "description": "Emitted on blur."
+        }
+      ]
     },
     "label": {
       "name": "Label",
-      "selector": "ui-label",
+      "selector": "ui-label, label[ui-label]",
       "type": "form",
       "description": "Accessible form label component",
       "files": [
@@ -59,11 +263,38 @@
       "exports": [
         "LabelComponent"
       ],
-      "category": "form"
+      "category": "form",
+      "props": [
+        {
+          "name": "for",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Id of the element the label is associated with."
+        },
+        {
+          "name": "htmlFor",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Alias for the associated element id."
+        },
+        {
+          "name": "class",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "default": "",
+          "description": "CSS class names for the label."
+        }
+      ]
     },
     "checkbox": {
       "name": "Checkbox",
-      "selector": "g-checkbox",
+      "selector": "ui-checkbox",
       "type": "form",
       "description": "Checkbox with indeterminate state support",
       "files": [
@@ -80,11 +311,108 @@
       "exports": [
         "CheckboxComponent"
       ],
-      "category": "form"
+      "category": "form",
+      "props": [
+        {
+          "name": "checked",
+          "type": {
+            "kind": "union",
+            "values": [
+              "boolean",
+              "indeterminate"
+            ]
+          },
+          "description": "Controlled checked state."
+        },
+        {
+          "name": "disabled",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": false,
+          "description": "Disables the checkbox."
+        },
+        {
+          "name": "readonly",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": false,
+          "description": "Read-only state."
+        },
+        {
+          "name": "required",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": false,
+          "description": "Requires a value before form submission."
+        },
+        {
+          "name": "name",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Name for form submission."
+        },
+        {
+          "name": "form",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Associates the checkbox with a form."
+        },
+        {
+          "name": "value",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Value for form submission."
+        },
+        {
+          "name": "id",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Checkbox id."
+        },
+        {
+          "name": "ariaLabel",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "ARIA label for accessibility."
+        },
+        {
+          "name": "class",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "default": "",
+          "description": "CSS class names for the checkbox."
+        },
+        {
+          "name": "checkedChange",
+          "type": {
+            "kind": "function",
+            "signature": "(checked: boolean | 'indeterminate') => void"
+          },
+          "description": "Emitted when the checked state changes."
+        }
+      ]
     },
     "select": {
       "name": "Select",
-      "selector": "g-select",
+      "selector": "ui-select",
       "type": "form",
       "description": "Custom dropdown with search functionality",
       "files": [
@@ -102,11 +430,139 @@
         "SelectComponent",
         "SelectItemComponent"
       ],
-      "category": "form"
+      "category": "form",
+      "props": [
+        {
+          "name": "value",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Controlled selected value."
+        },
+        {
+          "name": "placeholder",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "default": "Select...",
+          "description": "Placeholder when no value is selected."
+        },
+        {
+          "name": "disabled",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": false,
+          "description": "Disables the select."
+        },
+        {
+          "name": "required",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": false,
+          "description": "Requires a value before form submission."
+        },
+        {
+          "name": "name",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Name for form submission."
+        },
+        {
+          "name": "form",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Associates the select with a form."
+        },
+        {
+          "name": "open",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Controlled open state."
+        },
+        {
+          "name": "defaultOpen",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": false,
+          "description": "Uncontrolled initial open state."
+        },
+        {
+          "name": "class",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "default": "",
+          "description": "CSS class names for the root."
+        },
+        {
+          "name": "valueChange",
+          "type": {
+            "kind": "function",
+            "signature": "(value: string) => void"
+          },
+          "description": "Emitted when the value changes."
+        },
+        {
+          "name": "openChange",
+          "type": {
+            "kind": "function",
+            "signature": "(open: boolean) => void"
+          },
+          "description": "Emitted when the open state changes."
+        }
+      ],
+      "children": [
+        {
+          "name": "SelectItem",
+          "props": [
+            {
+              "name": "value",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "description": "Item value."
+            },
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the item."
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "kind": "primitive",
+                "name": "boolean"
+              },
+              "default": false,
+              "description": "Disables the item."
+            }
+          ]
+        }
+      ]
     },
     "radio-group": {
       "name": "Radio Group",
-      "selector": "g-radio-group",
+      "selector": "ui-radio-group",
       "type": "form",
       "description": "Radio button group with single selection",
       "files": [
@@ -118,12 +574,139 @@
       ],
       "peerDependencies": [],
       "exports": [
-        "RadioGroupComponent"
+        "RadioGroupComponent",
+        "RadioGroupItemComponent"
+      ],
+      "props": [
+        {
+          "name": "value",
+          "type": {
+            "kind": "union",
+            "values": [
+              "string",
+              "null"
+            ]
+          },
+          "description": "Controlled selected value."
+        },
+        {
+          "name": "disabled",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": false,
+          "description": "Disables the entire group."
+        },
+        {
+          "name": "required",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": false,
+          "description": "Requires a value before form submission."
+        },
+        {
+          "name": "name",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Name for form submission."
+        },
+        {
+          "name": "orientation",
+          "type": {
+            "kind": "union",
+            "values": [
+              "horizontal",
+              "vertical"
+            ]
+          },
+          "default": "vertical",
+          "description": "Layout orientation."
+        },
+        {
+          "name": "class",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "default": "",
+          "description": "CSS class names for the group."
+        },
+        {
+          "name": "valueChange",
+          "type": {
+            "kind": "function",
+            "signature": "(value: string | null) => void"
+          },
+          "description": "Emitted when the value changes."
+        }
+      ],
+      "children": [
+        {
+          "name": "RadioGroupItem",
+          "props": [
+            {
+              "name": "value",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "description": "Item value."
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "kind": "primitive",
+                "name": "boolean"
+              },
+              "default": false,
+              "description": "Disables the item."
+            },
+            {
+              "name": "required",
+              "type": {
+                "kind": "primitive",
+                "name": "boolean"
+              },
+              "default": false,
+              "description": "Requires the item."
+            },
+            {
+              "name": "name",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "description": "Name for form submission."
+            },
+            {
+              "name": "id",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "description": "Item id."
+            },
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the item."
+            }
+          ]
+        }
       ]
     },
     "switch": {
       "name": "Switch",
-      "selector": "g-switch",
+      "selector": "ui-switch",
       "type": "form",
       "description": "Toggle switch with smooth animation",
       "files": [
@@ -136,11 +719,113 @@
       "peerDependencies": [],
       "exports": [
         "SwitchComponent"
+      ],
+      "props": [
+        {
+          "name": "id",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Switch id."
+        },
+        {
+          "name": "required",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": false,
+          "description": "Requires a value before form submission."
+        },
+        {
+          "name": "ariaLabel",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "ARIA label for accessibility."
+        },
+        {
+          "name": "ariaLabelledBy",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "ARIA labelled-by for accessibility."
+        },
+        {
+          "name": "defaultChecked",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": false,
+          "description": "Uncontrolled initial checked state."
+        },
+        {
+          "name": "checked",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Controlled checked state."
+        },
+        {
+          "name": "disabled",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": false,
+          "description": "Disables the switch."
+        },
+        {
+          "name": "class",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "default": "",
+          "description": "CSS class names for the switch root."
+        },
+        {
+          "name": "checkedChange",
+          "type": {
+            "kind": "function",
+            "signature": "(checked: boolean) => void"
+          },
+          "description": "Emitted when the checked state changes."
+        },
+        {
+          "name": "onCheckedChange",
+          "type": {
+            "kind": "function",
+            "signature": "(checked: boolean) => void"
+          },
+          "description": "Alias event emitted when the checked state changes."
+        }
+      ],
+      "children": [
+        {
+          "name": "SwitchThumb",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the thumb."
+            }
+          ]
+        }
       ]
     },
     "slider": {
       "name": "Slider",
-      "selector": "g-slider",
+      "selector": "ui-slider",
       "type": "form",
       "description": "Range slider with min/max and step support",
       "files": [
@@ -153,11 +838,76 @@
       "peerDependencies": [],
       "exports": [
         "SliderComponent"
+      ],
+      "category": "form",
+      "props": [
+        {
+          "name": "value",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "default": 50,
+          "description": "Controlled slider value exposed by the wrapper."
+        },
+        {
+          "name": "min",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "default": 0,
+          "description": "Minimum value."
+        },
+        {
+          "name": "max",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "default": 100,
+          "description": "Maximum value."
+        },
+        {
+          "name": "step",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "default": 1,
+          "description": "Stepping interval."
+        },
+        {
+          "name": "disabled",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": false,
+          "description": "Disables the slider."
+        },
+        {
+          "name": "class",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "default": "",
+          "description": "CSS class names for the slider root."
+        },
+        {
+          "name": "valueChange",
+          "type": {
+            "kind": "function",
+            "signature": "(value: number) => void"
+          },
+          "description": "Emitted when the slider value changes."
+        }
       ]
     },
     "textarea": {
       "name": "Textarea",
-      "selector": "g-textarea",
+      "selector": "ui-textarea",
       "type": "form",
       "description": "Multi-line text input component",
       "files": [
@@ -168,11 +918,66 @@
       "peerDependencies": [],
       "exports": [
         "TextareaComponent"
+      ],
+      "category": "form",
+      "props": [
+        {
+          "name": "placeholder",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Placeholder text."
+        },
+        {
+          "name": "disabled",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": false,
+          "description": "Disables the textarea."
+        },
+        {
+          "name": "rows",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "default": 3,
+          "description": "Visible number of text rows."
+        },
+        {
+          "name": "class",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "default": "",
+          "description": "CSS class names for the textarea."
+        },
+        {
+          "name": "value",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "primitive",
+                "name": "string"
+              },
+              {
+                "kind": "primitive",
+                "name": "number"
+              }
+            ]
+          },
+          "description": "Bound value through ControlValueAccessor."
+        }
       ]
     },
     "accordion": {
       "name": "Accordion",
-      "selector": "g-accordion",
+      "selector": "ui-accordion",
       "type": "layout",
       "description": "Collapsible sections with expand/collapse (directive-based with Radix support)",
       "files": [
@@ -189,17 +994,134 @@
       "exports": [
         "AccordionComponent",
         "AccordionItemComponent",
+        "AccordionTriggerComponent",
+        "AccordionContentComponent",
         "UiAccordionRootDirective",
         "UiAccordionItemDirective",
         "UiAccordionTriggerDirective",
         "UiAccordionContentDirective"
+      ],
+      "category": "layout",
+      "props": [
+        {
+          "name": "type",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "single"
+              },
+              {
+                "kind": "literal",
+                "value": "multiple"
+              }
+            ]
+          },
+          "default": "single",
+          "description": "Accordion selection behavior."
+        },
+        {
+          "name": "value",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "primitive",
+                "name": "string"
+              },
+              {
+                "kind": "array",
+                "of": {
+                  "kind": "primitive",
+                  "name": "string"
+                }
+              },
+              {
+                "kind": "primitive",
+                "name": "null"
+              }
+            ]
+          },
+          "default": null,
+          "description": "Controlled value for the open item or items."
+        },
+        {
+          "name": "class",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "default": "",
+          "description": "CSS class names for the root element."
+        },
+        {
+          "name": "valueChange",
+          "type": {
+            "kind": "function",
+            "signature": "(value: string | string[] | null | undefined) => void"
+          },
+          "description": "Emitted when the open item or items change."
+        }
+      ],
+      "children": [
+        {
+          "name": "AccordionItem",
+          "props": [
+            {
+              "name": "value",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "description": "Unique value for the item."
+            },
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the item."
+            }
+          ]
+        },
+        {
+          "name": "AccordionTrigger",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the trigger."
+            }
+          ]
+        },
+        {
+          "name": "AccordionContent",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the content container."
+            }
+          ]
+        }
       ]
     },
     "collapsible": {
       "name": "Collapsible",
-      "selector": "g-collapsible",
+      "selector": "ui-collapsible",
       "type": "layout",
-      "description": "Collapsible content panel (directive-based with Radix support)",
+      "description": "Collapsible components and directives built on Radix NG collapsible primitives.",
       "files": [
         "collapsible.component.ts",
         "collapsible.directive.ts",
@@ -211,14 +1133,106 @@
       "peerDependencies": [],
       "exports": [
         "CollapsibleComponent",
+        "CollapsibleTriggerComponent",
+        "CollapsibleContentComponent",
         "UiCollapsibleRootDirective",
         "UiCollapsibleTriggerDirective",
         "UiCollapsibleContentDirective"
+      ],
+      "category": "layout",
+      "props": [
+        {
+          "name": "open",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": false,
+          "description": "Controlled open state."
+        },
+        {
+          "name": "class",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "default": "",
+          "description": "CSS class names for the root element."
+        },
+        {
+          "name": "openChange",
+          "type": {
+            "kind": "function",
+            "signature": "(open: boolean) => void"
+          },
+          "description": "Emitted when the open state changes."
+        }
+      ],
+      "children": [
+        {
+          "name": "CollapsibleTrigger",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the trigger."
+            }
+          ]
+        },
+        {
+          "name": "CollapsibleContent",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the content container."
+            }
+          ]
+        },
+        {
+          "name": "UiCollapsibleRootDirective",
+          "props": [
+            {
+              "name": "open",
+              "type": {
+                "kind": "primitive",
+                "name": "boolean"
+              },
+              "default": false,
+              "description": "Controlled open state for the directive API."
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "kind": "primitive",
+                "name": "boolean"
+              },
+              "default": false,
+              "description": "Disables the collapsible in directive usage."
+            },
+            {
+              "name": "openChange",
+              "type": {
+                "kind": "function",
+                "signature": "(open: boolean) => void"
+              },
+              "description": "Emitted when the directive open state changes."
+            }
+          ]
+        }
       ]
     },
     "separator": {
       "name": "Separator",
-      "selector": "g-separator",
+      "selector": "ui-separator, [ui-separator]",
       "type": "layout",
       "description": "Horizontal or vertical separator",
       "files": [
@@ -231,13 +1245,51 @@
       "peerDependencies": [],
       "exports": [
         "SeparatorComponent"
+      ],
+      "props": [
+        {
+          "name": "orientation",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "horizontal"
+              },
+              {
+                "kind": "literal",
+                "value": "vertical"
+              }
+            ]
+          },
+          "default": "horizontal",
+          "description": "Separator orientation."
+        },
+        {
+          "name": "decorative",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": false,
+          "description": "Whether the separator is decorative only."
+        },
+        {
+          "name": "class",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "default": "",
+          "description": "CSS class names for the separator host."
+        }
       ]
     },
     "tabs": {
       "name": "Tabs",
-      "selector": "g-tabs",
-      "type": "navigation",
-      "description": "Tabbed content organization (directive-based with Radix support)",
+      "selector": "ui-tabs",
+      "type": "layout",
+      "description": "Tabs components and directives built on Radix NG tabs primitives.",
       "files": [
         "index.ts",
         "tabs.component.ts",
@@ -246,24 +1298,128 @@
       "dependencies": [
         "@radix-ng/primitives"
       ],
-      "peerDependencies": [
-        "lucide-angular"
-      ],
+      "peerDependencies": [],
       "exports": [
         "TabsComponent",
-        "TabComponent",
-        "TabPanelComponent",
+        "TabsListComponent",
+        "TabsTriggerComponent",
+        "TabsContentComponent",
         "UiTabsRootDirective",
         "UiTabsListDirective",
         "UiTabsTriggerDirective",
         "UiTabsContentDirective"
+      ],
+      "category": "layout",
+      "props": [
+        {
+          "name": "value",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Controlled active tab value."
+        },
+        {
+          "name": "defaultValue",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Initial active tab value for uncontrolled usage."
+        },
+        {
+          "name": "class",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "default": "",
+          "description": "CSS class names for the tabs root."
+        },
+        {
+          "name": "valueChange",
+          "type": {
+            "kind": "function",
+            "signature": "(value: string | undefined) => void"
+          },
+          "description": "Emitted when the active tab changes."
+        }
+      ],
+      "children": [
+        {
+          "name": "TabsList",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the tabs list."
+            }
+          ]
+        },
+        {
+          "name": "TabsTrigger",
+          "props": [
+            {
+              "name": "value",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "description": "Unique value for the tab trigger."
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "kind": "primitive",
+                "name": "boolean"
+              },
+              "default": false,
+              "description": "Disables the trigger."
+            },
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the trigger."
+            }
+          ]
+        },
+        {
+          "name": "TabsContent",
+          "props": [
+            {
+              "name": "value",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "description": "Value of the content panel to match a trigger."
+            },
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the content panel."
+            }
+          ]
+        }
       ]
     },
     "dropdown-menu": {
       "name": "Dropdown Menu",
-      "selector": "g-dropdown-menu",
+      "selector": "ui-dropdown-menu",
       "type": "navigation",
-      "description": "Action menus and context menus",
+      "description": "Dropdown menu wrappers with partial Radix NG integration.",
       "files": [
         "dropdown-menu.component.ts",
         "index.ts"
@@ -271,36 +1427,174 @@
       "dependencies": [
         "@radix-ng/primitives"
       ],
-      "peerDependencies": [
-        "lucide-angular"
-      ],
+      "peerDependencies": [],
       "exports": [
         "DropdownMenuComponent",
-        "DropdownMenuItemComponent"
+        "DropdownMenuTriggerComponent",
+        "DropdownMenuContentComponent",
+        "DropdownMenuItemComponent",
+        "DropdownMenuSeparatorComponent"
+      ],
+      "category": "navigation",
+      "props": [],
+      "children": [
+        {
+          "name": "DropdownMenuTrigger",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the trigger button. Note: current wrapper does not apply the Radix NG trigger directive."
+            }
+          ]
+        },
+        {
+          "name": "DropdownMenuContent",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the content container. Note: current wrapper does not apply the Radix NG content directive."
+            }
+          ]
+        },
+        {
+          "name": "DropdownMenuItem",
+          "props": [
+            {
+              "name": "disabled",
+              "type": {
+                "kind": "primitive",
+                "name": "boolean"
+              },
+              "default": false,
+              "description": "Disables the item via the underlying Radix NG item directive."
+            },
+            {
+              "name": "inset",
+              "type": {
+                "kind": "primitive",
+                "name": "boolean"
+              },
+              "default": false,
+              "description": "Adds left padding for nested item alignment."
+            },
+            {
+              "name": "onSelect",
+              "type": {
+                "kind": "function",
+                "signature": "() => void"
+              },
+              "description": "Emitted by the underlying Radix NG item directive when selected."
+            },
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the item."
+            }
+          ]
+        },
+        {
+          "name": "DropdownMenuSeparator",
+          "props": []
+        }
       ]
     },
     "menubar": {
       "name": "Menubar",
-      "selector": "g-menubar",
+      "selector": "ui-menubar",
       "type": "navigation",
-      "description": "Horizontal menubar with dropdown menus",
+      "description": "Menubar wrappers styled as a persistent desktop menu; current implementation does not include Radix or menu behavior.",
       "files": [
         "index.ts",
         "menubar.component.ts"
       ],
-      "dependencies": [
-        "@radix-ng/primitives"
-      ],
+      "dependencies": [],
       "peerDependencies": [],
       "exports": [
-        "MenubarComponent"
+        "MenubarComponent",
+        "MenubarTriggerComponent",
+        "MenubarContentComponent",
+        "MenubarItemComponent",
+        "MenubarSeparatorComponent"
+      ],
+      "category": "navigation",
+      "props": [],
+      "children": [
+        {
+          "name": "MenubarTrigger",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the trigger."
+            }
+          ]
+        },
+        {
+          "name": "MenubarContent",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the menu content."
+            }
+          ]
+        },
+        {
+          "name": "MenubarItem",
+          "props": [
+            {
+              "name": "inset",
+              "type": {
+                "kind": "primitive",
+                "name": "boolean"
+              },
+              "default": false,
+              "description": "Adds left padding for nested item alignment."
+            },
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the item."
+            }
+          ]
+        },
+        {
+          "name": "MenubarSeparator",
+          "props": []
+        }
       ]
     },
     "navigation-menu": {
       "name": "Navigation Menu",
-      "selector": "g-navigation-menu",
+      "selector": "ui-navigation-menu",
       "type": "navigation",
-      "description": "Navigation menu with nested items",
+      "description": "Navigation menu components built with local wrappers around Radix NG navigation-menu directives.",
       "files": [
         "index.ts",
         "navigation-menu.component.ts"
@@ -310,14 +1604,123 @@
       ],
       "peerDependencies": [],
       "exports": [
-        "NavigationMenuComponent"
+        "NavigationMenuComponent",
+        "NavigationMenuListComponent",
+        "NavigationMenuItemComponent",
+        "NavigationMenuTriggerComponent",
+        "NavigationMenuContentComponent",
+        "NavigationMenuLinkComponent",
+        "NavigationMenuViewportComponent",
+        "NavigationMenuIndicatorComponent"
+      ],
+      "category": "navigation",
+      "props": [
+        {
+          "name": "class",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "CSS class names for the navigation menu root.",
+          "default": ""
+        }
+      ],
+      "children": [
+        {
+          "name": "NavigationMenuList",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "description": "CSS class names for the list container.",
+              "default": ""
+            }
+          ]
+        },
+        {
+          "name": "NavigationMenuItem",
+          "props": []
+        },
+        {
+          "name": "NavigationMenuTrigger",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "description": "CSS class names for the trigger.",
+              "default": ""
+            }
+          ]
+        },
+        {
+          "name": "NavigationMenuContent",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "description": "CSS class names for the content panel.",
+              "default": ""
+            }
+          ]
+        },
+        {
+          "name": "NavigationMenuLink",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "description": "CSS class names for the link.",
+              "default": ""
+            }
+          ]
+        },
+        {
+          "name": "NavigationMenuViewport",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "description": "CSS class names for the viewport container.",
+              "default": ""
+            }
+          ]
+        },
+        {
+          "name": "NavigationMenuIndicator",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "description": "CSS class names for the active indicator.",
+              "default": ""
+            }
+          ]
+        }
       ]
     },
     "context-menu": {
       "name": "Context Menu",
-      "selector": "g-context-menu",
+      "selector": "ui-context-menu",
       "type": "navigation",
-      "description": "Right-click context menu",
+      "description": "Context menu wrapper with styled trigger/content components and a Radix NG-powered item directive.",
       "files": [
         "context-menu.component.ts",
         "index.ts"
@@ -327,13 +1730,71 @@
       ],
       "peerDependencies": [],
       "exports": [
-        "ContextMenuComponent"
+        "ContextMenuComponent",
+        "ContextMenuTriggerComponent",
+        "ContextMenuContentComponent",
+        "ContextMenuItemComponent"
+      ],
+      "category": "navigation",
+      "props": [],
+      "children": [
+        {
+          "name": "ContextMenuTrigger",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "description": "CSS class names for the trigger wrapper.",
+              "default": ""
+            }
+          ]
+        },
+        {
+          "name": "ContextMenuContent",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "description": "CSS class names for the content wrapper.",
+              "default": ""
+            }
+          ]
+        },
+        {
+          "name": "ContextMenuItem",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "description": "CSS class names for the item.",
+              "default": ""
+            },
+            {
+              "name": "inset",
+              "type": {
+                "kind": "primitive",
+                "name": "boolean"
+              },
+              "description": "Applies inset spacing for nested content alignment.",
+              "default": false
+            }
+          ]
+        }
       ]
     },
     "popover": {
       "name": "Popover",
-      "selector": "g-popover",
-      "type": "modal-overlay",
+      "selector": "ui-popover",
+      "type": "navigation",
       "description": "Popover component for contextual information",
       "files": [
         "index.ts",
@@ -344,14 +1805,66 @@
       ],
       "peerDependencies": [],
       "exports": [
-        "PopoverComponent"
+        "PopoverComponent",
+        "PopoverTriggerComponent",
+        "PopoverContentComponent"
+      ],
+      "category": "navigation",
+      "props": [
+        {
+          "name": "open",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": false,
+          "description": "Controlled open state."
+        },
+        {
+          "name": "openChange",
+          "type": {
+            "kind": "function",
+            "signature": "(open: boolean) => void"
+          },
+          "description": "Emitted when the open state changes."
+        }
+      ],
+      "children": [
+        {
+          "name": "PopoverTrigger",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the trigger."
+            }
+          ]
+        },
+        {
+          "name": "PopoverContent",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the content."
+            }
+          ]
+        }
       ]
     },
     "tooltip": {
       "name": "Tooltip",
-      "selector": "g-tooltip",
-      "type": "modal-overlay",
-      "description": "Tooltip component for hover information (directive-based with Radix support)",
+      "selector": "ui-tooltip",
+      "type": "navigation",
+      "description": "Tooltip components and directives built on Radix NG tooltip primitives.",
       "files": [
         "index.ts",
         "tooltip.component.ts",
@@ -363,6 +1876,8 @@
       "peerDependencies": [],
       "exports": [
         "TooltipComponent",
+        "TooltipTriggerComponent",
+        "TooltipContentComponent",
         "UiTooltipRootDirective",
         "UiTooltipTriggerDirective",
         "UiTooltipContentDirective"
@@ -370,7 +1885,241 @@
       "providers": {
         "import": "import { provideRdxTooltipConfig } from '@radix-ng/primitives/tooltip2';",
         "function": "provideRdxTooltipConfig({})"
-      }
+      },
+      "category": "navigation",
+      "props": [],
+      "children": [
+        {
+          "name": "TooltipTrigger",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the trigger element."
+            }
+          ]
+        },
+        {
+          "name": "TooltipContent",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the tooltip content."
+            }
+          ]
+        },
+        {
+          "name": "UiTooltipRootDirective",
+          "props": [
+            {
+              "name": "defaultOpen",
+              "type": {
+                "kind": "primitive",
+                "name": "boolean"
+              },
+              "default": false,
+              "description": "Initial open state for uncontrolled usage."
+            },
+            {
+              "name": "open",
+              "type": {
+                "kind": "primitive",
+                "name": "boolean"
+              },
+              "description": "Controlled open state."
+            },
+            {
+              "name": "openDelay",
+              "type": {
+                "kind": "primitive",
+                "name": "number"
+              },
+              "default": 700,
+              "description": "Delay in milliseconds before opening."
+            },
+            {
+              "name": "closeDelay",
+              "type": {
+                "kind": "primitive",
+                "name": "number"
+              },
+              "default": 300,
+              "description": "Delay in milliseconds before closing."
+            },
+            {
+              "name": "externalControl",
+              "type": {
+                "kind": "primitive",
+                "name": "boolean"
+              },
+              "description": "Whether the tooltip state is controlled externally."
+            },
+            {
+              "name": "cssAnimation",
+              "type": {
+                "kind": "primitive",
+                "name": "boolean"
+              },
+              "default": false,
+              "description": "Whether to consider CSS animations."
+            },
+            {
+              "name": "cssOpeningAnimation",
+              "type": {
+                "kind": "primitive",
+                "name": "boolean"
+              },
+              "default": false,
+              "description": "Whether to consider opening animations."
+            },
+            {
+              "name": "cssClosingAnimation",
+              "type": {
+                "kind": "primitive",
+                "name": "boolean"
+              },
+              "default": false,
+              "description": "Whether to consider closing animations."
+            }
+          ]
+        },
+        {
+          "name": "UiTooltipContentDirective",
+          "props": [
+            {
+              "name": "side",
+              "type": {
+                "kind": "union",
+                "values": [
+                  {
+                    "kind": "literal",
+                    "value": "top"
+                  },
+                  {
+                    "kind": "literal",
+                    "value": "right"
+                  },
+                  {
+                    "kind": "literal",
+                    "value": "bottom"
+                  },
+                  {
+                    "kind": "literal",
+                    "value": "left"
+                  }
+                ]
+              },
+              "description": "Preferred side for the tooltip content."
+            },
+            {
+              "name": "align",
+              "type": {
+                "kind": "union",
+                "values": [
+                  {
+                    "kind": "literal",
+                    "value": "start"
+                  },
+                  {
+                    "kind": "literal",
+                    "value": "center"
+                  },
+                  {
+                    "kind": "literal",
+                    "value": "end"
+                  }
+                ]
+              },
+              "default": "center",
+              "description": "Preferred alignment relative to the trigger."
+            },
+            {
+              "name": "sideOffset",
+              "type": {
+                "kind": "primitive",
+                "name": "number"
+              },
+              "description": "Offset in pixels from the trigger."
+            },
+            {
+              "name": "alignOffset",
+              "type": {
+                "kind": "primitive",
+                "name": "number"
+              },
+              "description": "Offset in pixels from the alignment edge."
+            },
+            {
+              "name": "alternatePositionsDisabled",
+              "type": {
+                "kind": "primitive",
+                "name": "boolean"
+              },
+              "default": false,
+              "description": "Disable alternate overlay positions."
+            },
+            {
+              "name": "onOverlayEscapeKeyDownDisabled",
+              "type": {
+                "kind": "primitive",
+                "name": "boolean"
+              },
+              "default": false,
+              "description": "Disable overlay escape handling."
+            },
+            {
+              "name": "onOverlayOutsideClickDisabled",
+              "type": {
+                "kind": "primitive",
+                "name": "boolean"
+              },
+              "default": false,
+              "description": "Disable outside click handling."
+            },
+            {
+              "name": "onOverlayEscapeKeyDown",
+              "type": {
+                "kind": "function",
+                "signature": "(event: KeyboardEvent) => void"
+              },
+              "description": "Emitted when Escape is pressed on the overlay."
+            },
+            {
+              "name": "onOverlayOutsideClick",
+              "type": {
+                "kind": "function",
+                "signature": "(event: MouseEvent) => void"
+              },
+              "description": "Emitted when clicking outside the overlay."
+            },
+            {
+              "name": "onOpen",
+              "type": {
+                "kind": "function",
+                "signature": "() => void"
+              },
+              "description": "Emitted after the overlay opens."
+            },
+            {
+              "name": "onClosed",
+              "type": {
+                "kind": "function",
+                "signature": "() => void"
+              },
+              "description": "Emitted after the overlay closes."
+            }
+          ]
+        }
+      ]
     },
     "line-chart": {
       "name": "LineChart",
@@ -391,7 +2140,214 @@
       "exports": [
         "LineChartComponent"
       ],
-      "category": "charts"
+      "category": "charts",
+      "props": [
+        {
+          "name": "data",
+          "type": {
+            "kind": "custom",
+            "name": "ChartData"
+          },
+          "description": "Chart data including labels and datasets."
+        },
+        {
+          "name": "height",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Chart height in pixels.",
+          "default": 300
+        },
+        {
+          "name": "width",
+          "type": {
+            "kind": "custom",
+            "name": "number | string"
+          },
+          "description": "Chart width for fixed or responsive layouts.",
+          "default": "100%"
+        },
+        {
+          "name": "theme",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "light"
+              },
+              {
+                "kind": "literal",
+                "value": "dark"
+              }
+            ]
+          },
+          "description": "Theme mode used by the chart.",
+          "default": "light"
+        },
+        {
+          "name": "legend",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether to show the legend.",
+          "default": true
+        },
+        {
+          "name": "legendPosition",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "top"
+              },
+              {
+                "kind": "literal",
+                "value": "bottom"
+              },
+              {
+                "kind": "literal",
+                "value": "left"
+              },
+              {
+                "kind": "literal",
+                "value": "right"
+              }
+            ]
+          },
+          "description": "Legend position.",
+          "default": "top"
+        },
+        {
+          "name": "grid",
+          "type": {
+            "kind": "custom",
+            "name": "boolean | GridConfig"
+          },
+          "description": "Grid configuration or toggle.",
+          "default": true
+        },
+        {
+          "name": "tooltip",
+          "type": {
+            "kind": "custom",
+            "name": "boolean | TooltipConfig"
+          },
+          "description": "Tooltip configuration or toggle.",
+          "default": true
+        },
+        {
+          "name": "animation",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether chart animations are enabled.",
+          "default": true
+        },
+        {
+          "name": "loading",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether the loading state is shown.",
+          "default": false
+        },
+        {
+          "name": "emptyText",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Text shown when there is no data.",
+          "default": "No data available"
+        },
+        {
+          "name": "zoom",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether zoom interactions are enabled.",
+          "default": false
+        },
+        {
+          "name": "options",
+          "type": {
+            "kind": "custom",
+            "name": "Record<string, any>"
+          },
+          "description": "Framework-specific advanced chart options.",
+          "default": "{}"
+        },
+        {
+          "name": "smooth",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether lines are rendered as smooth curves.",
+          "default": true
+        },
+        {
+          "name": "showPoints",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether data points are shown.",
+          "default": true
+        },
+        {
+          "name": "pointSize",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Size of data point markers.",
+          "default": 6
+        },
+        {
+          "name": "area",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether to fill the area under the line.",
+          "default": false
+        },
+        {
+          "name": "stack",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether datasets are stacked.",
+          "default": false
+        },
+        {
+          "name": "dataLabels",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether to show labels on points.",
+          "default": false
+        },
+        {
+          "name": "className",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "className applied to the chart container.",
+          "default": ""
+        }
+      ]
     },
     "bar-chart": {
       "name": "BarChart",
@@ -412,7 +2368,176 @@
       "exports": [
         "BarChartComponent"
       ],
-      "category": "charts"
+      "category": "charts",
+      "props": [
+        {
+          "name": "data",
+          "type": {
+            "kind": "custom",
+            "name": "ChartData"
+          },
+          "description": "Chart data including labels and datasets."
+        },
+        {
+          "name": "height",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Chart height in pixels.",
+          "default": 300
+        },
+        {
+          "name": "width",
+          "type": {
+            "kind": "custom",
+            "name": "number | string"
+          },
+          "description": "Chart width for fixed or responsive layouts.",
+          "default": "100%"
+        },
+        {
+          "name": "theme",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "light"
+              },
+              {
+                "kind": "literal",
+                "value": "dark"
+              }
+            ]
+          },
+          "description": "Theme mode used by the chart.",
+          "default": "light"
+        },
+        {
+          "name": "legend",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether to show the legend.",
+          "default": true
+        },
+        {
+          "name": "legendPosition",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "top"
+              },
+              {
+                "kind": "literal",
+                "value": "bottom"
+              },
+              {
+                "kind": "literal",
+                "value": "left"
+              },
+              {
+                "kind": "literal",
+                "value": "right"
+              }
+            ]
+          },
+          "description": "Legend position.",
+          "default": "top"
+        },
+        {
+          "name": "grid",
+          "type": {
+            "kind": "custom",
+            "name": "boolean | any"
+          },
+          "description": "Grid configuration or toggle."
+        },
+        {
+          "name": "tooltip",
+          "type": {
+            "kind": "custom",
+            "name": "boolean | any"
+          },
+          "description": "Tooltip configuration or toggle."
+        },
+        {
+          "name": "animation",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether chart animations are enabled.",
+          "default": true
+        },
+        {
+          "name": "horizontal",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether to render horizontal bars.",
+          "default": false
+        },
+        {
+          "name": "stacked",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether datasets are stacked.",
+          "default": false
+        },
+        {
+          "name": "showDataLabels",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether to show data labels on bars.",
+          "default": false
+        },
+        {
+          "name": "loading",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether the loading state is shown.",
+          "default": false
+        },
+        {
+          "name": "emptyText",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Text shown when there is no data.",
+          "default": "No data available"
+        },
+        {
+          "name": "class",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "CSS classes applied to the chart container.",
+          "default": ""
+        },
+        {
+          "name": "options",
+          "type": {
+            "kind": "custom",
+            "name": "any"
+          },
+          "description": "Framework-specific advanced chart options.",
+          "default": "{}"
+        }
+      ]
     },
     "pie-chart": {
       "name": "PieChart",
@@ -433,14 +2558,189 @@
       "exports": [
         "PieChartComponent"
       ],
-      "category": "charts"
+      "category": "charts",
+      "props": [
+        {
+          "name": "data",
+          "type": {
+            "kind": "custom",
+            "name": "ChartData"
+          },
+          "description": "Chart data including labels and datasets."
+        },
+        {
+          "name": "height",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Chart height in pixels.",
+          "default": 300
+        },
+        {
+          "name": "width",
+          "type": {
+            "kind": "custom",
+            "name": "number | string"
+          },
+          "description": "Chart width for fixed or responsive layouts.",
+          "default": "100%"
+        },
+        {
+          "name": "theme",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "light"
+              },
+              {
+                "kind": "literal",
+                "value": "dark"
+              }
+            ]
+          },
+          "description": "Theme mode used by the chart.",
+          "default": "light"
+        },
+        {
+          "name": "legend",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether to show the legend.",
+          "default": true
+        },
+        {
+          "name": "legendPosition",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "top"
+              },
+              {
+                "kind": "literal",
+                "value": "bottom"
+              },
+              {
+                "kind": "literal",
+                "value": "left"
+              },
+              {
+                "kind": "literal",
+                "value": "right"
+              }
+            ]
+          },
+          "description": "Legend position.",
+          "default": "right"
+        },
+        {
+          "name": "animation",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether chart animations are enabled.",
+          "default": true
+        },
+        {
+          "name": "innerRadius",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Inner radius percentage.",
+          "default": 0
+        },
+        {
+          "name": "outerRadius",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Outer radius percentage.",
+          "default": 70
+        },
+        {
+          "name": "showPercentage",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether to show percentage labels.",
+          "default": true
+        },
+        {
+          "name": "labelPosition",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "inside"
+              },
+              {
+                "kind": "literal",
+                "value": "outside"
+              },
+              {
+                "kind": "literal",
+                "value": "center"
+              }
+            ]
+          },
+          "description": "Label position.",
+          "default": "outside"
+        },
+        {
+          "name": "loading",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether the loading state is shown.",
+          "default": false
+        },
+        {
+          "name": "emptyText",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Text shown when there is no data.",
+          "default": "No data available"
+        },
+        {
+          "name": "class",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "CSS classes applied to the chart container.",
+          "default": ""
+        },
+        {
+          "name": "options",
+          "type": {
+            "kind": "custom",
+            "name": "Record<string, any>"
+          },
+          "description": "Framework-specific advanced chart options.",
+          "default": "{}"
+        }
+      ]
     },
     "donut-chart": {
       "name": "DonutChart",
       "type": "chart",
       "description": "Display proportional data as a donut chart with a hollow center",
       "dependencies": [
-        "vue-echarts",
+        "ngx-echarts",
         "echarts"
       ],
       "devDependencies": [],
@@ -451,7 +2751,187 @@
         "utils.ts",
         "index.ts"
       ],
-      "category": "charts"
+      "category": "charts",
+      "props": [
+        {
+          "name": "data",
+          "type": {
+            "kind": "custom",
+            "name": "ChartData"
+          },
+          "description": "Chart data including labels and datasets."
+        },
+        {
+          "name": "height",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Chart height in pixels.",
+          "default": 300
+        },
+        {
+          "name": "width",
+          "type": {
+            "kind": "custom",
+            "name": "number | string"
+          },
+          "description": "Chart width for fixed or responsive layouts.",
+          "default": "100%"
+        },
+        {
+          "name": "theme",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "light"
+              },
+              {
+                "kind": "literal",
+                "value": "dark"
+              }
+            ]
+          },
+          "description": "Theme mode used by the chart.",
+          "default": "light"
+        },
+        {
+          "name": "legend",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether to show the legend.",
+          "default": true
+        },
+        {
+          "name": "legendPosition",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "top"
+              },
+              {
+                "kind": "literal",
+                "value": "bottom"
+              },
+              {
+                "kind": "literal",
+                "value": "left"
+              },
+              {
+                "kind": "literal",
+                "value": "right"
+              }
+            ]
+          },
+          "description": "Legend position.",
+          "default": "right"
+        },
+        {
+          "name": "animation",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether chart animations are enabled.",
+          "default": true
+        },
+        {
+          "name": "innerRadius",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Inner radius percentage.",
+          "default": 50
+        },
+        {
+          "name": "outerRadius",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Outer radius percentage.",
+          "default": 70
+        },
+        {
+          "name": "showPercentage",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether to show percentage labels.",
+          "default": true
+        },
+        {
+          "name": "labelPosition",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "inside"
+              },
+              {
+                "kind": "literal",
+                "value": "outside"
+              },
+              {
+                "kind": "literal",
+                "value": "center"
+              }
+            ]
+          },
+          "description": "Label position.",
+          "default": "outside"
+        },
+        {
+          "name": "loading",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether the loading state is shown.",
+          "default": false
+        },
+        {
+          "name": "emptyText",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Text shown when there is no data.",
+          "default": "No data available"
+        },
+        {
+          "name": "class",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "CSS classes applied to the chart container.",
+          "default": ""
+        },
+        {
+          "name": "options",
+          "type": {
+            "kind": "custom",
+            "name": "Record<string, any>"
+          },
+          "description": "Framework-specific advanced chart options.",
+          "default": "{}"
+        }
+      ],
+      "selector": "ui-donut-chart",
+      "peerDependencies": [],
+      "exports": [
+        "DonutChartComponent"
+      ]
     },
     "area-chart": {
       "name": "AreaChart",
@@ -472,7 +2952,214 @@
       "exports": [
         "AreaChartComponent"
       ],
-      "category": "charts"
+      "category": "charts",
+      "props": [
+        {
+          "name": "data",
+          "type": {
+            "kind": "custom",
+            "name": "ChartData"
+          },
+          "description": "Chart data including labels and datasets."
+        },
+        {
+          "name": "height",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Chart height in pixels.",
+          "default": 300
+        },
+        {
+          "name": "width",
+          "type": {
+            "kind": "custom",
+            "name": "number | string"
+          },
+          "description": "Chart width for fixed or responsive layouts.",
+          "default": "100%"
+        },
+        {
+          "name": "theme",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "light"
+              },
+              {
+                "kind": "literal",
+                "value": "dark"
+              }
+            ]
+          },
+          "description": "Theme mode used by the chart.",
+          "default": "light"
+        },
+        {
+          "name": "legend",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether to show the legend.",
+          "default": true
+        },
+        {
+          "name": "legendPosition",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "top"
+              },
+              {
+                "kind": "literal",
+                "value": "bottom"
+              },
+              {
+                "kind": "literal",
+                "value": "left"
+              },
+              {
+                "kind": "literal",
+                "value": "right"
+              }
+            ]
+          },
+          "description": "Legend position.",
+          "default": "top"
+        },
+        {
+          "name": "grid",
+          "type": {
+            "kind": "custom",
+            "name": "boolean | GridConfig"
+          },
+          "description": "Grid configuration or toggle.",
+          "default": true
+        },
+        {
+          "name": "tooltip",
+          "type": {
+            "kind": "custom",
+            "name": "boolean | TooltipConfig"
+          },
+          "description": "Tooltip configuration or toggle.",
+          "default": true
+        },
+        {
+          "name": "animation",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether chart animations are enabled.",
+          "default": true
+        },
+        {
+          "name": "loading",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether the loading state is shown.",
+          "default": false
+        },
+        {
+          "name": "emptyText",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Text shown when there is no data.",
+          "default": "No data available"
+        },
+        {
+          "name": "zoom",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether zoom interactions are enabled.",
+          "default": false
+        },
+        {
+          "name": "options",
+          "type": {
+            "kind": "custom",
+            "name": "Record<string, any>"
+          },
+          "description": "Framework-specific advanced chart options.",
+          "default": "{}"
+        },
+        {
+          "name": "smooth",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether lines are rendered as smooth curves.",
+          "default": true
+        },
+        {
+          "name": "showPoints",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether data points are shown.",
+          "default": true
+        },
+        {
+          "name": "pointSize",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Size of data point markers.",
+          "default": 6
+        },
+        {
+          "name": "stack",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether datasets are stacked.",
+          "default": false
+        },
+        {
+          "name": "opacity",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Fill opacity for the area.",
+          "default": 0.6
+        },
+        {
+          "name": "gradient",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether to use gradient area fills.",
+          "default": false
+        },
+        {
+          "name": "class",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "CSS classes applied to the chart container.",
+          "default": ""
+        }
+      ]
     },
     "radar-chart": {
       "name": "RadarChart",
@@ -493,7 +3180,177 @@
       "exports": [
         "RadarChartComponent"
       ],
-      "category": "charts"
+      "category": "charts",
+      "props": [
+        {
+          "name": "data",
+          "type": {
+            "kind": "custom",
+            "name": "ChartData"
+          },
+          "description": "Chart data including labels and datasets."
+        },
+        {
+          "name": "height",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Chart height in pixels.",
+          "default": 300
+        },
+        {
+          "name": "width",
+          "type": {
+            "kind": "custom",
+            "name": "number | string"
+          },
+          "description": "Chart width for fixed or responsive layouts.",
+          "default": "100%"
+        },
+        {
+          "name": "theme",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "light"
+              },
+              {
+                "kind": "literal",
+                "value": "dark"
+              }
+            ]
+          },
+          "description": "Theme mode used by the chart.",
+          "default": "light"
+        },
+        {
+          "name": "legend",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether to show the legend.",
+          "default": true
+        },
+        {
+          "name": "legendPosition",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "top"
+              },
+              {
+                "kind": "literal",
+                "value": "bottom"
+              },
+              {
+                "kind": "literal",
+                "value": "left"
+              },
+              {
+                "kind": "literal",
+                "value": "right"
+              }
+            ]
+          },
+          "description": "Legend position.",
+          "default": "top"
+        },
+        {
+          "name": "loading",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether the loading state is shown.",
+          "default": false
+        },
+        {
+          "name": "emptyText",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Text shown when there is no data.",
+          "default": "No data available"
+        },
+        {
+          "name": "shape",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "polygon"
+              },
+              {
+                "kind": "literal",
+                "value": "circle"
+              }
+            ]
+          },
+          "description": "Radar grid shape.",
+          "default": "polygon"
+        },
+        {
+          "name": "splitNumber",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Number of split lines.",
+          "default": 4
+        },
+        {
+          "name": "maxValue",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Maximum indicator value."
+        },
+        {
+          "name": "fill",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether to fill the radar area.",
+          "default": true
+        },
+        {
+          "name": "opacity",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Fill opacity.",
+          "default": 0.3
+        },
+        {
+          "name": "class",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "CSS classes applied to the chart container.",
+          "default": ""
+        },
+        {
+          "name": "options",
+          "type": {
+            "kind": "custom",
+            "name": "Record<string, any>"
+          },
+          "description": "Framework-specific advanced chart options.",
+          "default": "{}"
+        }
+      ]
     },
     "scatter-chart": {
       "name": "ScatterChart",
@@ -514,7 +3371,158 @@
       "exports": [
         "ScatterChartComponent"
       ],
-      "category": "charts"
+      "category": "charts",
+      "props": [
+        {
+          "name": "data",
+          "type": {
+            "kind": "custom",
+            "name": "ChartData"
+          },
+          "description": "Chart data including labels and datasets."
+        },
+        {
+          "name": "height",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Chart height in pixels.",
+          "default": 300
+        },
+        {
+          "name": "width",
+          "type": {
+            "kind": "custom",
+            "name": "number | string"
+          },
+          "description": "Chart width for fixed or responsive layouts.",
+          "default": "100%"
+        },
+        {
+          "name": "theme",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "light"
+              },
+              {
+                "kind": "literal",
+                "value": "dark"
+              }
+            ]
+          },
+          "description": "Theme mode used by the chart.",
+          "default": "light"
+        },
+        {
+          "name": "legend",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether to show the legend.",
+          "default": true
+        },
+        {
+          "name": "legendPosition",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "top"
+              },
+              {
+                "kind": "literal",
+                "value": "bottom"
+              },
+              {
+                "kind": "literal",
+                "value": "left"
+              },
+              {
+                "kind": "literal",
+                "value": "right"
+              }
+            ]
+          },
+          "description": "Legend position.",
+          "default": "top"
+        },
+        {
+          "name": "loading",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether the loading state is shown.",
+          "default": false
+        },
+        {
+          "name": "emptyText",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Text shown when there is no data.",
+          "default": "No data available"
+        },
+        {
+          "name": "symbolSize",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Size of scatter points.",
+          "default": 10
+        },
+        {
+          "name": "opacity",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Opacity of scatter points.",
+          "default": 0.8
+        },
+        {
+          "name": "xAxisLabel",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Label for the X axis."
+        },
+        {
+          "name": "yAxisLabel",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Label for the Y axis."
+        },
+        {
+          "name": "class",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "CSS classes applied to the chart container.",
+          "default": ""
+        },
+        {
+          "name": "options",
+          "type": {
+            "kind": "custom",
+            "name": "Record<string, any>"
+          },
+          "description": "Framework-specific advanced chart options.",
+          "default": "{}"
+        }
+      ]
     },
     "mixed-chart": {
       "name": "MixedChart",
@@ -535,13 +3543,157 @@
       "exports": [
         "MixedChartComponent"
       ],
-      "category": "charts"
+      "category": "charts",
+      "props": [
+        {
+          "name": "data",
+          "type": {
+            "kind": "custom",
+            "name": "ChartData"
+          },
+          "description": "Chart data including labels and datasets."
+        },
+        {
+          "name": "height",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Chart height in pixels.",
+          "default": 300
+        },
+        {
+          "name": "width",
+          "type": {
+            "kind": "custom",
+            "name": "number | string"
+          },
+          "description": "Chart width for fixed or responsive layouts.",
+          "default": "100%"
+        },
+        {
+          "name": "theme",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "light"
+              },
+              {
+                "kind": "literal",
+                "value": "dark"
+              }
+            ]
+          },
+          "description": "Theme mode used by the chart.",
+          "default": "light"
+        },
+        {
+          "name": "legend",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether to show the legend.",
+          "default": true
+        },
+        {
+          "name": "legendPosition",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "top"
+              },
+              {
+                "kind": "literal",
+                "value": "bottom"
+              },
+              {
+                "kind": "literal",
+                "value": "left"
+              },
+              {
+                "kind": "literal",
+                "value": "right"
+              }
+            ]
+          },
+          "description": "Legend position.",
+          "default": "top"
+        },
+        {
+          "name": "grid",
+          "type": {
+            "kind": "custom",
+            "name": "boolean | GridConfig"
+          },
+          "description": "Grid configuration or toggle.",
+          "default": true
+        },
+        {
+          "name": "tooltip",
+          "type": {
+            "kind": "custom",
+            "name": "boolean | TooltipConfig"
+          },
+          "description": "Tooltip configuration or toggle.",
+          "default": true
+        },
+        {
+          "name": "animation",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether chart animations are enabled.",
+          "default": true
+        },
+        {
+          "name": "loading",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether the loading state is shown.",
+          "default": false
+        },
+        {
+          "name": "emptyText",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Text shown when there is no data.",
+          "default": "No data available"
+        },
+        {
+          "name": "class",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "CSS classes applied to the chart container.",
+          "default": ""
+        },
+        {
+          "name": "options",
+          "type": {
+            "kind": "custom",
+            "name": "Record<string, any>"
+          },
+          "description": "Framework-specific advanced chart options.",
+          "default": "{}"
+        }
+      ]
     },
     "dialog": {
       "name": "Dialog",
-      "selector": "g-dialog",
-      "type": "modal-overlay",
-      "description": "Modal dialog using Radix template API (uses rdxDialogTrigger directive - see Angular docs for usage)",
+      "selector": "ui-dialog",
+      "type": "layout",
+      "description": "Dialog components and directives built on Radix NG dialog primitives.",
       "files": [
         "dialog.component.ts",
         "dialog.directive.ts",
@@ -550,9 +3702,7 @@
       "dependencies": [
         "@radix-ng/primitives"
       ],
-      "peerDependencies": [
-        "lucide-angular"
-      ],
+      "peerDependencies": [],
       "exports": [
         "DialogComponent",
         "DialogTriggerComponent",
@@ -560,18 +3710,165 @@
         "DialogTitleComponent",
         "DialogDescriptionComponent",
         "DialogHeaderComponent",
-        "DialogFooterComponent"
+        "DialogFooterComponent",
+        "UiDialogTriggerDirective",
+        "UiDialogContentDirective",
+        "UiDialogTitleDirective",
+        "UiDialogDescriptionDirective",
+        "UiDialogCloseDirective",
+        "UiDialogHeaderDirective",
+        "UiDialogFooterDirective",
+        "DialogTriggerDirective"
       ],
       "providers": {
         "import": "import { provideRdxDialogConfig } from '@radix-ng/primitives/dialog';",
         "function": "provideRdxDialogConfig()"
-      }
+      },
+      "category": "layout",
+      "props": [
+        {
+          "name": "open",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": false,
+          "description": "Controlled open state for the dialog root component."
+        },
+        {
+          "name": "openChange",
+          "type": {
+            "kind": "function",
+            "signature": "(open: boolean) => void"
+          },
+          "description": "Emitted when the open state changes."
+        }
+      ],
+      "children": [
+        {
+          "name": "DialogTrigger",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the trigger button component."
+            }
+          ]
+        },
+        {
+          "name": "DialogContent",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the dialog content container."
+            }
+          ]
+        },
+        {
+          "name": "DialogTitle",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the dialog title."
+            }
+          ]
+        },
+        {
+          "name": "DialogDescription",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the dialog description."
+            }
+          ]
+        },
+        {
+          "name": "DialogHeader",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the header container."
+            }
+          ]
+        },
+        {
+          "name": "DialogFooter",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the footer container."
+            }
+          ]
+        },
+        {
+          "name": "DialogTriggerDirective",
+          "props": [
+            {
+              "name": "id",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "description": "Optional id for the trigger directive."
+            },
+            {
+              "name": "uiDialogTrigger",
+              "type": {
+                "kind": "custom",
+                "name": "TemplateRef<unknown>"
+              },
+              "description": "Template reference opened by the trigger directive."
+            },
+            {
+              "name": "dialogConfig",
+              "type": {
+                "kind": "custom",
+                "name": "RdxDialogConfig"
+              },
+              "description": "Radix NG dialog configuration for the trigger directive."
+            }
+          ]
+        },
+        {
+          "name": "UiDialogCloseDirective",
+          "props": []
+        }
+      ]
     },
     "alert-dialog": {
       "name": "Alert Dialog",
-      "selector": "g-alert-dialog",
-      "type": "modal-overlay",
-      "description": "Alert dialog for confirmations",
+      "selector": "ui-alert-dialog",
+      "type": "feedback",
+      "description": "Alert dialog components built on Radix NG alert-dialog primitives.",
       "files": [
         "alert-dialog.component.ts",
         "index.ts"
@@ -581,7 +3878,157 @@
       ],
       "peerDependencies": [],
       "exports": [
-        "AlertDialogComponent"
+        "AlertDialogComponent",
+        "AlertDialogTriggerComponent",
+        "AlertDialogContentComponent",
+        "AlertDialogTitleComponent",
+        "AlertDialogDescriptionComponent",
+        "AlertDialogActionComponent",
+        "AlertDialogCancelComponent",
+        "AlertDialogHeaderComponent",
+        "AlertDialogFooterComponent"
+      ],
+      "category": "feedback",
+      "props": [
+        {
+          "name": "open",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": false,
+          "description": "Declared open state input on the root component. Note: the current wrapper template does not bind it to the Radix NG directive."
+        },
+        {
+          "name": "openChange",
+          "type": {
+            "kind": "function",
+            "signature": "(open: boolean) => void"
+          },
+          "description": "Declared open state output on the root component. Note: the current wrapper template does not emit from the Radix NG directive."
+        }
+      ],
+      "children": [
+        {
+          "name": "AlertDialogTrigger",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the trigger button."
+            }
+          ]
+        },
+        {
+          "name": "AlertDialogContent",
+          "props": [
+            {
+              "name": "maxWidth",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "description": "Maximum width supported by the underlying Radix NG content directive, but not exposed by the current wrapper component."
+            },
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the content container."
+            }
+          ]
+        },
+        {
+          "name": "AlertDialogTitle",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the title."
+            }
+          ]
+        },
+        {
+          "name": "AlertDialogDescription",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the description."
+            }
+          ]
+        },
+        {
+          "name": "AlertDialogAction",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the action button. The current wrapper uses the cancel directive, so it closes like cancel."
+            }
+          ]
+        },
+        {
+          "name": "AlertDialogCancel",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the cancel button."
+            }
+          ]
+        },
+        {
+          "name": "AlertDialogHeader",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the header container."
+            }
+          ]
+        },
+        {
+          "name": "AlertDialogFooter",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the footer container."
+            }
+          ]
+        }
       ]
     },
     "progress": {
@@ -597,13 +4044,46 @@
         "progress.component.ts",
         "index.ts"
       ],
-      "category": "feedback"
+      "category": "feedback",
+      "props": [
+        {
+          "name": "value",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "default": 0,
+          "description": "Current progress value."
+        },
+        {
+          "name": "max",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "default": 100,
+          "description": "Maximum progress value."
+        },
+        {
+          "name": "class",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "default": "",
+          "description": "CSS class names for the progress root."
+        }
+      ],
+      "selector": "ui-progress",
+      "exports": [
+        "ProgressComponent"
+      ]
     },
     "hover-card": {
       "name": "Hover Card",
-      "selector": "g-hover-card",
-      "type": "modal-overlay",
-      "description": "Hover card with rich content preview",
+      "selector": "ui-hover-card",
+      "type": "data-display",
+      "description": "Hover card wrappers built on Radix NG hover-card primitives.",
       "files": [
         "hover-card.component.ts",
         "index.ts"
@@ -613,13 +4093,83 @@
       ],
       "peerDependencies": [],
       "exports": [
-        "HoverCardComponent"
+        "HoverCardComponent",
+        "HoverCardTriggerComponent",
+        "HoverCardContentComponent"
+      ],
+      "category": "data-display",
+      "props": [
+        {
+          "name": "open",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": false,
+          "description": "Controlled open state."
+        },
+        {
+          "name": "openDelay",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "default": 700,
+          "description": "Delay in milliseconds before opening."
+        },
+        {
+          "name": "closeDelay",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "default": 300,
+          "description": "Delay in milliseconds before closing."
+        },
+        {
+          "name": "openChange",
+          "type": {
+            "kind": "function",
+            "signature": "(open: boolean) => void"
+          },
+          "description": "Emitted when the open state changes."
+        }
+      ],
+      "children": [
+        {
+          "name": "HoverCardTrigger",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the trigger container."
+            }
+          ]
+        },
+        {
+          "name": "HoverCardContent",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the content container."
+            }
+          ]
+        }
       ]
     },
     "avatar": {
       "name": "Avatar",
-      "selector": "g-avatar",
-      "type": "other",
+      "selector": "ui-avatar",
+      "type": "data-display",
       "description": "Avatar component for user profile pictures",
       "files": [
         "avatar.component.ts",
@@ -633,6 +4183,55 @@
         "AvatarComponent",
         "AvatarImageComponent",
         "AvatarFallbackComponent"
+      ],
+      "category": "data-display",
+      "props": [
+        {
+          "name": "class",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "default": "",
+          "description": "CSS class names for the avatar root."
+        }
+      ],
+      "children": [
+        {
+          "name": "AvatarImage",
+          "props": [
+            {
+              "name": "src",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "description": "Image source URL."
+            },
+            {
+              "name": "alt",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "description": "Alternative text for the image."
+            }
+          ]
+        },
+        {
+          "name": "AvatarFallback",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the fallback."
+            }
+          ]
+        }
       ]
     },
     "scroll-area": {
@@ -644,12 +4243,39 @@
         "scroll-area.component.ts",
         "index.ts"
       ],
-      "dependencies": [
-        "@radix-ng/primitives"
-      ],
+      "dependencies": [],
       "peerDependencies": [],
       "exports": [
         "ScrollAreaComponent"
+      ],
+      "props": [
+        {
+          "name": "orientation",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "horizontal"
+              },
+              {
+                "kind": "literal",
+                "value": "vertical"
+              }
+            ]
+          },
+          "default": "vertical",
+          "description": "Primary scroll direction hint."
+        },
+        {
+          "name": "class",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "default": "",
+          "description": "CSS class names for the scroll area container."
+        }
       ]
     },
     "aspect-ratio": {
@@ -667,6 +4293,26 @@
       "peerDependencies": [],
       "exports": [
         "AspectRatioComponent"
+      ],
+      "props": [
+        {
+          "name": "ratio",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "default": 1.7777777777777777,
+          "description": "Desired aspect ratio exposed by the wrapper."
+        },
+        {
+          "name": "class",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "default": "",
+          "description": "CSS class names for the host element."
+        }
       ]
     },
     "toggle": {
@@ -684,6 +4330,84 @@
       "peerDependencies": [],
       "exports": [
         "ToggleComponent"
+      ],
+      "category": "interactive",
+      "props": [
+        {
+          "name": "pressed",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": false,
+          "description": "Controlled pressed state."
+        },
+        {
+          "name": "disabled",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": false,
+          "description": "Disables the toggle."
+        },
+        {
+          "name": "variant",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "default"
+              },
+              {
+                "kind": "literal",
+                "value": "outline"
+              }
+            ]
+          },
+          "default": "default",
+          "description": "Visual style variant."
+        },
+        {
+          "name": "size",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "default"
+              },
+              {
+                "kind": "literal",
+                "value": "sm"
+              },
+              {
+                "kind": "literal",
+                "value": "lg"
+              }
+            ]
+          },
+          "default": "default",
+          "description": "Size variant."
+        },
+        {
+          "name": "class",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "default": "",
+          "description": "CSS class names for the toggle."
+        },
+        {
+          "name": "pressedChange",
+          "type": {
+            "kind": "function",
+            "signature": "(pressed: boolean) => void"
+          },
+          "description": "Emitted when the pressed state changes."
+        }
       ]
     },
     "toggle-group": {
@@ -702,25 +4426,352 @@
       "exports": [
         "ToggleGroupComponent",
         "ToggleGroupItemComponent"
+      ],
+      "category": "interactive",
+      "props": [
+        {
+          "name": "type",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "single"
+              },
+              {
+                "kind": "literal",
+                "value": "multiple"
+              }
+            ]
+          },
+          "default": "single",
+          "description": "Selection behavior for the group."
+        },
+        {
+          "name": "value",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "primitive",
+                "name": "string"
+              },
+              {
+                "kind": "array",
+                "of": {
+                  "kind": "primitive",
+                  "name": "string"
+                }
+              }
+            ]
+          },
+          "description": "Controlled selected value or values."
+        },
+        {
+          "name": "variant",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "default"
+              },
+              {
+                "kind": "literal",
+                "value": "outline"
+              }
+            ]
+          },
+          "default": "default",
+          "description": "Shared visual style variant for items."
+        },
+        {
+          "name": "size",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "default"
+              },
+              {
+                "kind": "literal",
+                "value": "sm"
+              },
+              {
+                "kind": "literal",
+                "value": "lg"
+              }
+            ]
+          },
+          "default": "default",
+          "description": "Shared size variant for items."
+        },
+        {
+          "name": "class",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "default": "",
+          "description": "CSS class names for the group."
+        },
+        {
+          "name": "valueChange",
+          "type": {
+            "kind": "function",
+            "signature": "(value: string | string[]) => void"
+          },
+          "description": "Emitted when the selected value changes."
+        }
+      ],
+      "children": [
+        {
+          "name": "ToggleGroupItem",
+          "props": [
+            {
+              "name": "value",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "description": "Unique item value."
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "kind": "primitive",
+                "name": "boolean"
+              },
+              "default": false,
+              "description": "Disables the item."
+            },
+            {
+              "name": "variant",
+              "type": {
+                "kind": "union",
+                "values": [
+                  {
+                    "kind": "literal",
+                    "value": "default"
+                  },
+                  {
+                    "kind": "literal",
+                    "value": "outline"
+                  }
+                ]
+              },
+              "default": "default",
+              "description": "Visual style override for the item."
+            },
+            {
+              "name": "size",
+              "type": {
+                "kind": "union",
+                "values": [
+                  {
+                    "kind": "literal",
+                    "value": "default"
+                  },
+                  {
+                    "kind": "literal",
+                    "value": "sm"
+                  },
+                  {
+                    "kind": "literal",
+                    "value": "lg"
+                  }
+                ]
+              },
+              "default": "default",
+              "description": "Size override for the item."
+            },
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the item."
+            }
+          ]
+        }
       ]
     },
     "resizable": {
       "name": "Resizable",
-      "selector": "ui-resizable",
+      "selector": "ui-resizable-panel-group",
       "type": "layout",
-      "description": "Accessible resizable panel groups and layouts with keyboard support",
+      "description": "Resizable panel group wrappers built on angular-split, normalized toward the shared group/panel/handle API.",
       "files": [
         "resizable.component.ts",
         "index.ts"
       ],
       "dependencies": [
-        "@radix-ng/primitives"
+        "angular-split"
       ],
       "peerDependencies": [],
       "exports": [
         "ResizablePanelGroupComponent",
         "ResizablePanelComponent",
         "ResizableHandleComponent"
+      ],
+      "category": "layout",
+      "props": [],
+      "children": [
+        {
+          "name": "ResizablePanelGroup",
+          "props": [
+            {
+              "name": "direction",
+              "type": {
+                "kind": "union",
+                "values": [
+                  {
+                    "kind": "literal",
+                    "value": "horizontal"
+                  },
+                  {
+                    "kind": "literal",
+                    "value": "vertical"
+                  }
+                ]
+              },
+              "description": "Panel group layout direction.",
+              "default": "horizontal"
+            },
+            {
+              "name": "gutterSize",
+              "type": {
+                "kind": "primitive",
+                "name": "number"
+              },
+              "description": "Gutter size in pixels used by the Angular wrapper.",
+              "default": 10
+            },
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "description": "CSS class names for the panel group.",
+              "default": ""
+            },
+            {
+              "name": "layoutChange",
+              "type": {
+                "kind": "function",
+                "signature": "(sizes: number[]) => void"
+              },
+              "description": "Event emitted when panel layout changes."
+            }
+          ]
+        },
+        {
+          "name": "ResizablePanel",
+          "props": [
+            {
+              "name": "defaultSize",
+              "type": {
+                "kind": "primitive",
+                "name": "number"
+              },
+              "description": "Initial panel size percentage."
+            },
+            {
+              "name": "size",
+              "type": {
+                "kind": "primitive",
+                "name": "number"
+              },
+              "description": "Alias for initial panel size percentage kept for backward compatibility."
+            },
+            {
+              "name": "minSize",
+              "type": {
+                "kind": "primitive",
+                "name": "number"
+              },
+              "description": "Minimum panel size percentage."
+            },
+            {
+              "name": "maxSize",
+              "type": {
+                "kind": "primitive",
+                "name": "number"
+              },
+              "description": "Maximum panel size percentage."
+            },
+            {
+              "name": "collapsible",
+              "type": {
+                "kind": "primitive",
+                "name": "boolean"
+              },
+              "description": "Whether the panel can collapse.",
+              "default": false
+            },
+            {
+              "name": "collapsedSize",
+              "type": {
+                "kind": "primitive",
+                "name": "number"
+              },
+              "description": "Size percentage when collapsed."
+            },
+            {
+              "name": "order",
+              "type": {
+                "kind": "primitive",
+                "name": "number"
+              },
+              "description": "Panel ordering index."
+            },
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "description": "CSS class names for the panel.",
+              "default": ""
+            }
+          ]
+        },
+        {
+          "name": "ResizableHandle",
+          "props": [
+            {
+              "name": "disabled",
+              "type": {
+                "kind": "primitive",
+                "name": "boolean"
+              },
+              "description": "Disables resizing through the handle.",
+              "default": false
+            },
+            {
+              "name": "withHandle",
+              "type": {
+                "kind": "primitive",
+                "name": "boolean"
+              },
+              "description": "Show the grip handle affordance.",
+              "default": false
+            },
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "description": "CSS class names for the resize handle.",
+              "default": ""
+            }
+          ]
+        }
       ]
     },
     "empty": {
@@ -737,7 +4788,35 @@
       "exports": [
         "EmptyComponent"
       ],
-      "category": "feedback"
+      "category": "feedback",
+      "props": [
+        {
+          "name": "class",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "default": "",
+          "description": "CSS class names for the container."
+        },
+        {
+          "name": "description",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Empty state description text."
+        },
+        {
+          "name": "imageAlt",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "default": "Empty",
+          "description": "Accessible label for the default illustration."
+        }
+      ]
     },
     "skeleton": {
       "name": "Skeleton",
@@ -753,7 +4832,98 @@
       "exports": [
         "SkeletonComponent"
       ],
-      "category": "feedback"
+      "category": "feedback",
+      "props": [
+        {
+          "name": "variant",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "default"
+              },
+              {
+                "kind": "literal",
+                "value": "circle"
+              },
+              {
+                "kind": "literal",
+                "value": "text"
+              }
+            ]
+          },
+          "default": "default",
+          "description": "Skeleton shape variant."
+        },
+        {
+          "name": "class",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "default": "",
+          "description": "CSS class names for the skeleton."
+        }
+      ]
+    },
+    "spinner": {
+      "name": "Spinner",
+      "selector": "ui-spinner",
+      "type": "feedback",
+      "description": "Animated loading spinner.",
+      "files": [
+        "spinner.component.ts",
+        "index.ts"
+      ],
+      "dependencies": [],
+      "peerDependencies": [],
+      "exports": [
+        "SpinnerComponent"
+      ],
+      "category": "feedback",
+      "props": [
+        {
+          "name": "size",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "sm"
+              },
+              {
+                "kind": "literal",
+                "value": "default"
+              },
+              {
+                "kind": "literal",
+                "value": "lg"
+              }
+            ]
+          },
+          "default": "default",
+          "description": "Visual size of the spinner."
+        },
+        {
+          "name": "label",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "default": "Loading...",
+          "description": "Accessible label announced to assistive technology."
+        },
+        {
+          "name": "class",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "default": "",
+          "description": "CSS class names for the spinner."
+        }
+      ]
     },
     "kbd": {
       "name": "Kbd",
@@ -769,7 +4939,40 @@
       "exports": [
         "KbdComponent"
       ],
-      "category": "data-display"
+      "category": "data-display",
+      "props": [
+        {
+          "name": "class",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "default": "",
+          "description": "CSS class names for the kbd element."
+        },
+        {
+          "name": "size",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "sm"
+              },
+              {
+                "kind": "literal",
+                "value": "default"
+              },
+              {
+                "kind": "literal",
+                "value": "lg"
+              }
+            ]
+          },
+          "default": "default",
+          "description": "Size variant."
+        }
+      ]
     },
     "typography": {
       "name": "Typography",
@@ -785,7 +4988,72 @@
       "exports": [
         "TypographyComponent"
       ],
-      "category": "data-display"
+      "category": "data-display",
+      "props": [
+        {
+          "name": "variant",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "h1"
+              },
+              {
+                "kind": "literal",
+                "value": "h2"
+              },
+              {
+                "kind": "literal",
+                "value": "h3"
+              },
+              {
+                "kind": "literal",
+                "value": "h4"
+              },
+              {
+                "kind": "literal",
+                "value": "p"
+              },
+              {
+                "kind": "literal",
+                "value": "blockquote"
+              },
+              {
+                "kind": "literal",
+                "value": "code"
+              },
+              {
+                "kind": "literal",
+                "value": "lead"
+              },
+              {
+                "kind": "literal",
+                "value": "large"
+              },
+              {
+                "kind": "literal",
+                "value": "small"
+              },
+              {
+                "kind": "literal",
+                "value": "muted"
+              }
+            ]
+          },
+          "default": "p",
+          "description": "Typography style variant."
+        },
+        {
+          "name": "class",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "default": "",
+          "description": "CSS class names for the rendered element."
+        }
+      ]
     },
     "pagination": {
       "name": "Pagination",
@@ -801,7 +5069,53 @@
       "exports": [
         "PaginationComponent"
       ],
-      "category": "navigation"
+      "category": "navigation",
+      "props": [
+        {
+          "name": "class",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "default": "",
+          "description": "CSS class names for the pagination nav."
+        },
+        {
+          "name": "currentPage",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "default": 1,
+          "description": "Current page number, 1-indexed."
+        },
+        {
+          "name": "totalPages",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "default": 1,
+          "description": "Total number of pages."
+        },
+        {
+          "name": "siblingCount",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "default": 1,
+          "description": "Number of sibling pages shown around the current page."
+        },
+        {
+          "name": "pageChange",
+          "type": {
+            "kind": "function",
+            "signature": "(page: number) => void"
+          },
+          "description": "Emitted when the page changes."
+        }
+      ]
     },
     "table": {
       "name": "Table",
@@ -824,7 +5138,118 @@
         "TableCellDirective",
         "TableCaptionDirective"
       ],
-      "category": "data-display"
+      "category": "data-display",
+      "props": [
+        {
+          "name": "class",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "default": "",
+          "description": "CSS class names for the table element."
+        }
+      ],
+      "children": [
+        {
+          "name": "TableHeaderDirective",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the table header section."
+            }
+          ]
+        },
+        {
+          "name": "TableBodyDirective",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the table body section."
+            }
+          ]
+        },
+        {
+          "name": "TableFooterDirective",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the table footer section."
+            }
+          ]
+        },
+        {
+          "name": "TableRowDirective",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the table row."
+            }
+          ]
+        },
+        {
+          "name": "TableHeadDirective",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the header cell."
+            }
+          ]
+        },
+        {
+          "name": "TableCellDirective",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the data cell."
+            }
+          ]
+        },
+        {
+          "name": "TableCaptionDirective",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the caption."
+            }
+          ]
+        }
+      ]
     },
     "calendar": {
       "name": "Calendar",
@@ -840,7 +5265,34 @@
       "exports": [
         "CalendarComponent"
       ],
-      "category": "form"
+      "category": "form",
+      "props": [
+        {
+          "name": "selectedDate",
+          "type": {
+            "kind": "custom",
+            "name": "Date"
+          },
+          "description": "Currently selected date."
+        },
+        {
+          "name": "class",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "default": "",
+          "description": "CSS class names for the calendar root."
+        },
+        {
+          "name": "dateChange",
+          "type": {
+            "kind": "function",
+            "signature": "(date: Date) => void"
+          },
+          "description": "Emitted when the selected date changes."
+        }
+      ]
     },
     "calendar-range": {
       "name": "Calendar Range",
@@ -856,7 +5308,35 @@
       "exports": [
         "CalendarRangeComponent"
       ],
-      "category": "form"
+      "category": "form",
+      "props": [
+        {
+          "name": "class",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "CSS class names for the calendar root.",
+          "default": ""
+        },
+        {
+          "name": "range",
+          "type": {
+            "kind": "custom",
+            "name": "DateRange"
+          },
+          "description": "Selected date range with start and end values.",
+          "default": "{ start: null, end: null }"
+        },
+        {
+          "name": "rangeChange",
+          "type": {
+            "kind": "function",
+            "signature": "(range: DateRange) => void"
+          },
+          "description": "Event emitted when the selected range changes."
+        }
+      ]
     },
     "command": {
       "name": "Command",
@@ -872,7 +5352,35 @@
       "exports": [
         "CommandComponent"
       ],
-      "category": "navigation"
+      "category": "navigation",
+      "props": [
+        {
+          "name": "class",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "CSS class names for the command root.",
+          "default": ""
+        },
+        {
+          "name": "placeholder",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Placeholder text for the search input.",
+          "default": "Type a command or search..."
+        },
+        {
+          "name": "search",
+          "type": {
+            "kind": "function",
+            "signature": "(value: string) => void"
+          },
+          "description": "Event emitted when the search value changes."
+        }
+      ]
     },
     "sheet": {
       "name": "Sheet",
@@ -888,7 +5396,61 @@
       "exports": [
         "SheetComponent"
       ],
-      "category": "layout"
+      "category": "layout",
+      "props": [
+        {
+          "name": "open",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": false,
+          "description": "Controlled open state."
+        },
+        {
+          "name": "side",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "top"
+              },
+              {
+                "kind": "literal",
+                "value": "right"
+              },
+              {
+                "kind": "literal",
+                "value": "bottom"
+              },
+              {
+                "kind": "literal",
+                "value": "left"
+              }
+            ]
+          },
+          "default": "right",
+          "description": "Side from which the sheet enters."
+        },
+        {
+          "name": "class",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "default": "",
+          "description": "CSS class names for the sheet panel."
+        },
+        {
+          "name": "openChange",
+          "type": {
+            "kind": "function",
+            "signature": "(open: boolean) => void"
+          },
+          "description": "Emitted when the sheet requests to close."
+        }
+      ]
     },
     "toolbar": {
       "name": "Toolbar",
@@ -904,7 +5466,18 @@
       "exports": [
         "ToolbarComponent"
       ],
-      "category": "layout"
+      "category": "layout",
+      "props": [
+        {
+          "name": "class",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "default": "",
+          "description": "CSS class names for the toolbar root."
+        }
+      ]
     },
     "tags-input": {
       "name": "Tags Input",
@@ -920,7 +5493,60 @@
       "exports": [
         "TagsInputComponent"
       ],
-      "category": "form"
+      "category": "form",
+      "props": [
+        {
+          "name": "class",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "CSS classes applied to the tags container.",
+          "default": ""
+        },
+        {
+          "name": "value",
+          "type": {
+            "kind": "custom",
+            "name": "string[]"
+          },
+          "description": "Current tag values.",
+          "default": "[]"
+        },
+        {
+          "name": "placeholder",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Placeholder text for the input.",
+          "default": "Add tag..."
+        },
+        {
+          "name": "valueChange",
+          "type": {
+            "kind": "function",
+            "signature": "(value: string[]) => void"
+          },
+          "description": "Event emitted when the tag list changes."
+        },
+        {
+          "name": "tagAdd",
+          "type": {
+            "kind": "function",
+            "signature": "(tag: string) => void"
+          },
+          "description": "Event emitted when a tag is added."
+        },
+        {
+          "name": "tagRemove",
+          "type": {
+            "kind": "function",
+            "signature": "(tag: string) => void"
+          },
+          "description": "Event emitted when a tag is removed."
+        }
+      ]
     },
     "card": {
       "name": "Card",
@@ -941,7 +5567,90 @@
         "CardContentComponent",
         "CardFooterComponent"
       ],
-      "category": "layout"
+      "category": "layout",
+      "props": [
+        {
+          "name": "class",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "default": "",
+          "description": "CSS class names for the card host."
+        }
+      ],
+      "children": [
+        {
+          "name": "CardHeader",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the header."
+            }
+          ]
+        },
+        {
+          "name": "CardTitle",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the title."
+            }
+          ]
+        },
+        {
+          "name": "CardDescription",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the description."
+            }
+          ]
+        },
+        {
+          "name": "CardContent",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the content area."
+            }
+          ]
+        },
+        {
+          "name": "CardFooter",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the footer."
+            }
+          ]
+        }
+      ]
     },
     "badge": {
       "name": "Badge",
@@ -960,7 +5669,44 @@
       "exports": [
         "BadgeComponent"
       ],
-      "category": "feedback"
+      "category": "feedback",
+      "props": [
+        {
+          "name": "variant",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "default"
+              },
+              {
+                "kind": "literal",
+                "value": "secondary"
+              },
+              {
+                "kind": "literal",
+                "value": "destructive"
+              },
+              {
+                "kind": "literal",
+                "value": "outline"
+              }
+            ]
+          },
+          "default": "default",
+          "description": "Visual style variant for the badge."
+        },
+        {
+          "name": "class",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "default": "",
+          "description": "CSS class names for the badge host."
+        }
+      ]
     },
     "alert": {
       "name": "Alert",
@@ -981,11 +5727,70 @@
         "AlertTitleComponent",
         "AlertDescriptionComponent"
       ],
-      "category": "feedback"
+      "category": "feedback",
+      "props": [
+        {
+          "name": "variant",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "default"
+              },
+              {
+                "kind": "literal",
+                "value": "destructive"
+              }
+            ]
+          },
+          "default": "default",
+          "description": "Visual style variant for the alert."
+        },
+        {
+          "name": "class",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "default": "",
+          "description": "CSS class names for the alert host."
+        }
+      ],
+      "children": [
+        {
+          "name": "AlertTitle",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the alert title."
+            }
+          ]
+        },
+        {
+          "name": "AlertDescription",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the alert description."
+            }
+          ]
+        }
+      ]
     },
     "breadcrumb": {
       "name": "Breadcrumb",
-      "selector": "ui-breadcrumb",
+      "selector": "nav[ui-breadcrumb]",
       "type": "navigation",
       "description": "Displays the path to the current resource using a hierarchy of links",
       "files": [
@@ -1003,7 +5808,103 @@
         "BreadcrumbSeparatorComponent",
         "BreadcrumbEllipsisComponent"
       ],
-      "category": "navigation"
+      "category": "navigation",
+      "props": [],
+      "children": [
+        {
+          "name": "BreadcrumbList",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the list."
+            }
+          ]
+        },
+        {
+          "name": "BreadcrumbItem",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the item."
+            }
+          ]
+        },
+        {
+          "name": "BreadcrumbLink",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the link."
+            }
+          ]
+        },
+        {
+          "name": "BreadcrumbPage",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the current page label."
+            }
+          ]
+        },
+        {
+          "name": "BreadcrumbSeparator",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the separator."
+            },
+            {
+              "name": "hasContent",
+              "type": {
+                "kind": "primitive",
+                "name": "boolean"
+              },
+              "default": false,
+              "description": "Whether projected content is provided instead of the default chevron icon."
+            }
+          ]
+        },
+        {
+          "name": "BreadcrumbEllipsis",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the ellipsis."
+            }
+          ]
+        }
+      ]
     },
     "toast": {
       "name": "Toast",
@@ -1021,12 +5922,36 @@
       "exports": [
         "ToastComponent"
       ],
-      "category": "feedback"
+      "category": "feedback",
+      "props": [
+        {
+          "name": "theme",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "light"
+              },
+              {
+                "kind": "literal",
+                "value": "dark"
+              },
+              {
+                "kind": "literal",
+                "value": "system"
+              }
+            ]
+          },
+          "default": "light",
+          "description": "Visual theme for the toaster."
+        }
+      ]
     },
     "form": {
       "name": "Form",
-      "selector": "ui-form",
-      "type": "input",
+      "selector": "form[ui-form]",
+      "type": "form",
       "description": "Building forms with proper validation and accessibility",
       "files": [
         "form.component.ts",
@@ -1041,7 +5966,85 @@
         "FormDescriptionComponent",
         "FormMessageComponent"
       ],
-      "category": "forms"
+      "category": "form",
+      "props": [
+        {
+          "name": "class",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "default": "",
+          "description": "CSS class names applied to the host form element."
+        }
+      ],
+      "children": [
+        {
+          "name": "FormItem",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the form item container."
+            }
+          ]
+        },
+        {
+          "name": "FormLabel",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the label."
+            },
+            {
+              "name": "error",
+              "type": {
+                "kind": "primitive",
+                "name": "boolean"
+              },
+              "default": false,
+              "description": "Applies error styling to the label."
+            }
+          ]
+        },
+        {
+          "name": "FormDescription",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the description."
+            }
+          ]
+        },
+        {
+          "name": "FormMessage",
+          "props": [
+            {
+              "name": "class",
+              "type": {
+                "kind": "primitive",
+                "name": "string"
+              },
+              "default": "",
+              "description": "CSS class names for the message."
+            }
+          ]
+        }
+      ]
     },
     "gauge-chart": {
       "name": "GaugeChart",
@@ -1062,7 +6065,192 @@
       "exports": [
         "GaugeChartComponent"
       ],
-      "category": "charts"
+      "category": "charts",
+      "props": [
+        {
+          "name": "value",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Current gauge value."
+        },
+        {
+          "name": "height",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Chart height in pixels.",
+          "default": 300
+        },
+        {
+          "name": "width",
+          "type": {
+            "kind": "custom",
+            "name": "number | string"
+          },
+          "description": "Chart width for fixed or responsive layouts.",
+          "default": "100%"
+        },
+        {
+          "name": "theme",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "light"
+              },
+              {
+                "kind": "literal",
+                "value": "dark"
+              }
+            ]
+          },
+          "description": "Theme mode used by the chart.",
+          "default": "light"
+        },
+        {
+          "name": "min",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Minimum gauge value.",
+          "default": 0
+        },
+        {
+          "name": "max",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Maximum gauge value.",
+          "default": 100
+        },
+        {
+          "name": "startAngle",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Start angle for the gauge arc.",
+          "default": 225
+        },
+        {
+          "name": "endAngle",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "End angle for the gauge arc.",
+          "default": -45
+        },
+        {
+          "name": "splitNumber",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Number of gauge split lines.",
+          "default": 5
+        },
+        {
+          "name": "showProgress",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether to show the progress arc.",
+          "default": true
+        },
+        {
+          "name": "showPointer",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether to show the gauge pointer.",
+          "default": true
+        },
+        {
+          "name": "title",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Optional gauge title."
+        },
+        {
+          "name": "unit",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Optional value unit."
+        },
+        {
+          "name": "zones",
+          "type": {
+            "kind": "custom",
+            "name": "Array<{ from: number; to: number; color: string }>"
+          },
+          "description": "Color ranges for the gauge."
+        },
+        {
+          "name": "color",
+          "type": {
+            "kind": "custom",
+            "name": "string | string[]"
+          },
+          "description": "Single color or gradient colors for the gauge."
+        },
+        {
+          "name": "formatter",
+          "type": {
+            "kind": "function",
+            "signature": "(value: number) => string"
+          },
+          "description": "Custom formatter for the displayed value."
+        },
+        {
+          "name": "animation",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether chart animations are enabled.",
+          "default": true
+        },
+        {
+          "name": "loading",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether the loading state is shown.",
+          "default": false
+        },
+        {
+          "name": "emptyText",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Text shown when there is no data.",
+          "default": "No data available"
+        },
+        {
+          "name": "class",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "CSS classes applied to the chart container.",
+          "default": ""
+        }
+      ]
     }
   },
   "groups": {
