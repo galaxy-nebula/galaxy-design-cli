@@ -6775,6 +6775,7 @@
       "registryDependencies": [],
       "files": [
         "Toggle.tsx",
+        "variants.ts",
         "index.ts"
       ],
       "category": "interactive",
@@ -7510,6 +7511,7 @@
       "registryDependencies": [],
       "files": [
         "Badge.tsx",
+        "variants.ts",
         "index.ts"
       ],
       "category": "feedback",
