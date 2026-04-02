@@ -1,61 +1,94 @@
 # Galaxy UI CLI
 
-A modern, framework-agnostic CLI tool for adding beautiful, accessible UI components to your projects. Inspired by shadcn/ui, but supporting React, Vue, Angular, Next.js, and Nuxt.js.
+CLI for initializing Galaxy UI and copying framework-specific components into your project.
 
-## 🌟 Features
+## Features
 
-- 🚀 **Multi-framework support**: React, Vue, Angular, Next.js, and Nuxt.js
-- 📦 **41 production-ready components** across 8 categories
-- 🎨 **Built with Radix UI primitives** (radix-ui for React/Next.js, radix-vue for Vue/Nuxt.js, radix-ng for Angular)
-- 🌙 **Dark mode support** out of the box
-- 📱 **Responsive design** with mobile-first approach
-- ♿ **Accessibility-focused** (WAI-ARIA compliant)
-- 🎯 **TypeScript strict mode** support
-- 💅 **Tailwind CSS** for styling
-- 📝 **Customizable** - components are copied to your project
+- Supports `init`, `add`, and `migrate tailwind`
+- Detects React, Next.js, Vue, Nuxt.js, and Angular projects
+- Stores project settings in `components.json`
+- Scaffolds Tailwind in v4-first mode while preserving existing v3 projects
+- Copies components into your source tree so they remain editable
+- Fails clearly when remote component files cannot be fetched
 
-## 📦 Installation
+## Framework Mapping
+
+`nextjs` and `nuxtjs` are CLI target frameworks, not separate published component packages.
+
+- `nextjs` reuses the React source registry and adds Next-specific transforms such as `'use client'` when required
+- `nuxtjs` reuses the Vue source registry and keeps Vue/Nuxt-specific file structure intact
+
+That means the package/source-of-truth layer is still React for Next.js and Vue for Nuxt.js, while the CLI adapts the copied files for the target app.
+
+## Installation
 
 ```bash
-# Using npx (recommended - no installation needed)
 npx galaxy-design@latest init
+```
 
-# Or install globally
+Or install globally:
+
+```bash
 npm install -g galaxy-design
 bun add -g galaxy-design
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
-### 1. Initialize Galaxy UI in your project
+### 1. Initialize
 
 ```bash
 npx galaxy-design@latest init
 ```
 
-This interactive command will:
+`init` currently does the following:
 
-- ✅ Detect your framework (React, Vue, Angular, Next.js, or Nuxt.js)
-- ✅ Detect your package manager (npm, pnpm, yarn, or bun)
-- ✅ Install required dependencies (lucide icons, clsx, tailwind-merge, radix primitives)
-- ✅ Create component directory structure
-- ✅ Setup Tailwind CSS configuration
-- ✅ Create utility files (cn helper, etc.)
+- Detects the framework
+- Creates `components.json`
+- Installs core dependencies
+- Creates `components/ui` and the `cn()` utility
+- Detects Tailwind v3/v4 and scaffolds the matching mode
 
-### 2. Add components
+Tailwind behavior:
+
+- Existing Tailwind v3 project: stays on v3
+- Existing Tailwind v4 project: stays on v4
+- No Tailwind detected: installs/scaffolds v4 by default
+
+### 1.5 Migrate Tailwind v3 To v4
 
 ```bash
-# Add single component
-npx galaxy-design@latest add button
-
-# Add multiple components
-npx galaxy-design@latest add button input card
-
-# Interactive mode (select from list)
-npx galaxy-design@latest add
+npx galaxy-design@latest migrate tailwind --dry-run
+npx galaxy-design@latest migrate tailwind --yes
 ```
 
-## 📚 Available Components (41 total)
+`migrate tailwind` currently focuses on the safe scaffold layer:
+
+- Detects whether the current project still uses Tailwind v3
+- Rewrites the global CSS entry from `@tailwind ...` directives to `@import "tailwindcss";`
+- Rewrites the PostCSS config to use `@tailwindcss/postcss`
+- Updates `components.json` Tailwind version metadata when present
+- Reports utility classes that may need manual review in Tailwind v4
+
+It does not try to auto-rewrite every potentially breaking utility class.
+
+### 2. Add Components
+
+```bash
+# Add one component
+npx galaxy-design@latest add button
+
+# Add several components
+npx galaxy-design@latest add button input card
+
+# Interactive selection
+npx galaxy-design@latest add
+
+# Add everything in the current registry
+npx galaxy-design@latest add --all
+```
+
+## Available Components
 
 ### 🎨 Form Components (9)
 
@@ -126,13 +159,13 @@ npx galaxy-design@latest add
 - `toggle` - Toggle buttons
 - `toggle-group` - Toggle button groups
 
-## 🎯 Framework-Specific Examples
+## Framework Examples
 
 ### React
 
 ```tsx
-import {Button} from '@/components/ui/button'
-import {Input} from '@/components/ui/input'
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 export function MyComponent() {
   return (
@@ -142,7 +175,7 @@ export function MyComponent() {
       </Button>
       <Input placeholder="Enter text..." />
     </div>
-  )
+  );
 }
 ```
 
@@ -150,8 +183,8 @@ export function MyComponent() {
 
 ```vue
 <script setup lang="ts">
-import {Button} from '@/components/ui/button'
-import {Input} from '@/components/ui/input'
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 </script>
 
 <template>
@@ -165,9 +198,9 @@ import {Input} from '@/components/ui/input'
 ### Angular
 
 ```typescript
-import {Component} from '@angular/core';
-import {ButtonDirective} from '@/components/ui/button';
-import {InputComponent} from '@/components/ui/input';
+import { Component } from '@angular/core';
+import { ButtonDirective } from '@/components/ui/button';
+import { InputComponent } from '@/components/ui/input';
 
 @Component({
   selector: 'app-my-component',
@@ -186,10 +219,10 @@ export class MyComponent {}
 ### Next.js
 
 ```tsx
-'use client'
+'use client';
 
-import {Button} from '@/components/ui/button'
-import {Input} from '@/components/ui/input'
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 export default function MyComponent() {
   return (
@@ -199,18 +232,20 @@ export default function MyComponent() {
       </Button>
       <Input placeholder="Enter text..." />
     </div>
-  )
+  );
 }
 ```
 
-**Note:** Galaxy UI CLI automatically adds the `'use client'` directive to components that use client-side features (hooks, event handlers, browser APIs). Server-compatible components won't have this directive added.
+`add` automatically preserves framework-specific transformations such as `'use client'` for Next.js components when needed.
+
+Next.js support is implemented as a React-source target inside the CLI, not as a separate `@galaxy-ui/nextjs` package.
 
 ### Nuxt.js
 
 ```vue
 <script setup lang="ts">
-import {Button} from '@/components/ui/button'
-import {Input} from '@/components/ui/input'
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 </script>
 
 <template>
@@ -221,11 +256,13 @@ import {Input} from '@/components/ui/input'
 </template>
 ```
 
-**Note:** Components work seamlessly with Nuxt 3's auto-import feature. Make sure to configure the `@/` alias in your `nuxt.config.ts`.
+Nuxt users should make sure the `@/` alias is available in `nuxt.config.ts`.
 
-## ⚙️ Configuration
+Nuxt.js support is implemented as a Vue-source target inside the CLI, not as a separate `@galaxy-ui/nuxtjs` package.
 
-Galaxy UI stores configuration in `components.json` at your project root:
+## Configuration
+
+Galaxy UI stores project settings in `components.json`:
 
 ```json
 {
@@ -233,8 +270,9 @@ Galaxy UI stores configuration in `components.json` at your project root:
   "framework": "react",
   "typescript": true,
   "tailwind": {
-    "config": "tailwind.config.js",
-    "css": "src/app/globals.css",
+    "version": 4,
+    "config": "",
+    "css": "src/index.css",
     "baseColor": "slate",
     "cssVariables": true,
     "prefix": ""
@@ -249,24 +287,25 @@ Galaxy UI stores configuration in `components.json` at your project root:
 }
 ```
 
-### Configuration Options
+## Configuration Options
 
-| Option | Description | Default |
-|--------|-------------|---------|
-| `framework` | Your framework (react/vue/angular) | Auto-detected |
-| `typescript` | Use TypeScript | `true` |
-| `tailwind.config` | Tailwind config path | `tailwind.config.js` |
-| `tailwind.css` | Global CSS file | Framework-specific |
-| `tailwind.baseColor` | Base color scheme | `slate` |
-| `aliases.components` | Components alias | `@/components` |
-| `aliases.utils` | Utils alias | `@/lib/utils` |
-| `iconLibrary` | Icon library to use | `lucide` |
+| Option               | Description            | Default            |
+| -------------------- | ---------------------- | ------------------ |
+| `framework`          | Your framework         | Auto-detected      |
+| `typescript`         | Use TypeScript         | `true`             |
+| `tailwind.version`   | Tailwind major version | Auto-detected      |
+| `tailwind.config`    | Tailwind config path   | Framework-specific |
+| `tailwind.css`       | Global CSS file        | Framework-specific |
+| `tailwind.baseColor` | Base color scheme      | `slate`            |
+| `aliases.components` | Components alias       | `@/components`     |
+| `aliases.utils`      | Utils alias            | `@/lib/utils`      |
+| `iconLibrary`        | Icon library to use    | `lucide`           |
 
-## 🔧 CLI Commands
+## CLI Commands
 
 ### `init`
 
-Initialize Galaxy UI in your project.
+Initialize Galaxy UI in your project and scaffold `components.json`.
 
 ```bash
 npx galaxy-design@latest init
@@ -277,7 +316,7 @@ npx galaxy-design@latest init --yes
 
 ### `add`
 
-Add components to your project.
+Add registry components to your project.
 
 ```bash
 # Interactive mode
@@ -288,20 +327,11 @@ npx galaxy-design@latest add button input
 
 # Add all components
 npx galaxy-design@latest add --all
-
-# Overwrite existing components
-npx galaxy-design@latest add button --overwrite
 ```
 
-### `diff`
+There is currently no `diff` command and no `--overwrite` option on `add`.
 
-Check which components have updates available.
-
-```bash
-npx galaxy-design@latest diff button
-```
-
-## 🌈 Styling & Theming
+## Styling And Theming
 
 Galaxy UI uses Tailwind CSS with CSS variables for theming. After running `init`, you can customize colors in your CSS file:
 
@@ -323,7 +353,7 @@ Galaxy UI uses Tailwind CSS with CSS variables for theming. After running `init`
 }
 ```
 
-## 🎨 Customization
+## Customization
 
 Components are copied to your project, so you have full control:
 
@@ -332,29 +362,17 @@ Components are copied to your project, so you have full control:
 3. **Add features** - Extend components with your own functionality
 4. **No lock-in** - Components are yours to modify
 
-## 📖 Documentation & Examples
+## Documentation
 
-- **Live Examples**: Check `examples/` folder for complete React, Vue, and Angular apps
-- **Docs Website**: <https://galaxy-design.vercel.app>
-- **GitHub**: <https://github.com/buikevin/galaxy-design-cli>
+- Docs Website: <https://galaxy-design.vercel.app>
+- Repository: <https://github.com/buikevin/galaxy-design>
 
-## 🤝 Contributing
+## Notes
 
-Contributions are welcome! Please read our [Contributing Guide](../../CONTRIBUTING.md).
+- `add` currently fetches component source files from GitHub at runtime.
+- The CLI now fails explicitly if required files cannot be fetched.
+- `components.json` is the active configuration system. Legacy `galaxy.config.*` flow has been removed from source.
 
-## 📝 License
+## License
 
 MIT License - see [LICENSE](../../LICENSE) for details
-
-## 🙏 Credits
-
-- Inspired by [shadcn/ui](<https://ui.shadcn.com>)
-- Built with [Radix UI](<https://radix-ui.com>), [Radix Vue](<https://radix-vue.com>), and [Spartan NG](<https://spartan.ng>)
-- Icons from [Lucide](<https://lucide.dev>)
-- Styling with [Tailwind CSS](<https://tailwindcss.com>)
-
----
-
-**Made with ❤️ by the Galaxy UI team**
-
-For issues and feature requests, please visit our [GitHub Issues](<https://github.com/buikevin/galaxy-design-cli/issues>)

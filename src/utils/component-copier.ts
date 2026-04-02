@@ -1,42 +1,185 @@
-import { copyFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
-import { dirname, join, relative } from 'path';
-import type { Platform } from './platform-detector';
-import { getComponentSourceDir, isMobilePlatform } from './platform-detector';
-import { getComponent, validateComponentDependencies } from './registry-loader';
 import {
-	fetchAndSaveFile,
-	getComponentGitHubPath,
-	checkGitHubConnection,
-} from './github-fetcher';
-import { transformComponent } from './component-transformer';
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  unlinkSync,
+  writeFileSync,
+} from 'fs';
+import { dirname, join, relative } from 'path';
+import type { Platform } from './platform-detector.js';
+import { getComponentSourceDir } from './platform-detector.js';
+import {
+  getFrameworkComponent,
+  validateFrameworkComponentDependencies,
+} from './framework-registry-service.js';
+import {
+  fetchFileFromGitHub,
+  getComponentGitHubPath,
+} from './github-fetcher.js';
+import { transformComponent } from './component-transformer.js';
 
 /**
  * Component copy options
  */
 export interface ComponentCopyOptions {
-	/** Target directory to copy components to */
-	targetDir: string;
-	/** Platform to copy for */
-	platform: Platform;
-	/** Overwrite existing files */
-	overwrite?: boolean;
-	/** Dry run (don't actually copy) */
-	dryRun?: boolean;
-	/** Registry directory (for testing) */
-	registryDir?: string;
-	/** Source packages directory (for testing) */
-	packagesDir?: string;
+  /** Target directory to copy components to */
+  targetDir: string;
+  /** Platform to copy for */
+  platform: Platform;
+  /** Overwrite existing files */
+  overwrite?: boolean;
+  /** Dry run (don't actually copy) */
+  dryRun?: boolean;
+  /** Registry directory (for testing) */
+  registryDir?: string;
+  /** Source packages directory (for testing) */
+  packagesDir?: string;
 }
 
 /**
  * Copy result for a single component
  */
 export interface ComponentCopyResult {
-	componentName: string;
-	success: boolean;
-	filesCopied: string[];
-	errors: string[];
-	skipped: string[];
+  componentName: string;
+  success: boolean;
+  filesCopied: string[];
+  errors: string[];
+  skipped: string[];
+}
+
+export interface CopyComponentFilesOptions {
+  componentName: string;
+  componentFiles: string[];
+  componentType?: string;
+  sourcePlatform: Platform;
+  targetPlatform: Platform;
+  targetDirectory: string;
+  relativeTo: string;
+  overwrite?: boolean;
+  dryRun?: boolean;
+  packagesDir?: string;
+  onSkippedFile?: (fileName: string, targetFile: string) => void;
+  onTransformedFile?: (fileName: string, notes: string[]) => void;
+}
+
+export interface CopyComponentFilesResult {
+  success: boolean;
+  filesCopied: string[];
+  errors: string[];
+  skipped: string[];
+}
+
+function normalizeSourcePlatform(platform: Platform): Platform {
+  if (platform === 'nextjs') {
+    return 'react';
+  }
+
+  if (platform === 'nuxtjs') {
+    return 'vue';
+  }
+
+  return platform;
+}
+
+export async function copyComponentFilesToDirectory(
+  options: CopyComponentFilesOptions,
+): Promise<CopyComponentFilesResult> {
+  const result: CopyComponentFilesResult = {
+    success: false,
+    filesCopied: [],
+    errors: [],
+    skipped: [],
+  };
+
+  const useGitHub = !options.packagesDir;
+  const writtenFiles: string[] = [];
+  const sourcePlatform = normalizeSourcePlatform(options.sourcePlatform);
+  const sourceType =
+    options.componentType === 'block' ? 'blocks' : 'components';
+
+  for (const file of options.componentFiles) {
+    const targetFile = join(options.targetDirectory, file);
+
+    if (existsSync(targetFile) && !options.overwrite) {
+      const relativeTarget = relative(options.relativeTo, targetFile);
+      result.skipped.push(relativeTarget);
+      options.onSkippedFile?.(file, targetFile);
+      continue;
+    }
+
+    if (options.dryRun) {
+      result.filesCopied.push(relative(options.relativeTo, targetFile));
+      continue;
+    }
+
+    const targetDir = dirname(targetFile);
+    if (!existsSync(targetDir)) {
+      mkdirSync(targetDir, { recursive: true });
+    }
+
+    try {
+      let fileContent: string;
+
+      if (useGitHub) {
+        const githubPath = getComponentGitHubPath(
+          sourcePlatform,
+          options.componentName,
+          file,
+          sourceType,
+        );
+        fileContent = await fetchFileFromGitHub(githubPath);
+      } else {
+        const componentSourceDir = getComponentSourceDir(sourcePlatform);
+        const sourceFile = join(
+          options.packagesDir!,
+          componentSourceDir,
+          options.componentName,
+          file,
+        );
+
+        if (!existsSync(sourceFile)) {
+          result.errors.push(`${file}: Source file not found: ${sourceFile}`);
+          continue;
+        }
+
+        fileContent = readFileSync(sourceFile, 'utf-8');
+      }
+
+      const transformResult = transformComponent(fileContent, {
+        platform: options.targetPlatform,
+        componentName: options.componentName,
+        filePath: targetFile,
+      });
+
+      writeFileSync(targetFile, transformResult.content, 'utf-8');
+
+      if (transformResult.modified && transformResult.notes.length > 0) {
+        options.onTransformedFile?.(file, transformResult.notes);
+      }
+
+      result.filesCopied.push(relative(options.relativeTo, targetFile));
+      writtenFiles.push(targetFile);
+    } catch (error) {
+      result.errors.push(
+        `${file}: ${error instanceof Error ? error.message : 'Unknown error'}`,
+      );
+    }
+  }
+
+  if (result.errors.length > 0) {
+    for (const writtenFile of writtenFiles) {
+      try {
+        unlinkSync(writtenFile);
+      } catch {
+        // Ignore cleanup failures and preserve the original copy errors.
+      }
+    }
+
+    result.filesCopied = [];
+  }
+
+  result.success = result.errors.length === 0;
+  return result;
 }
 
 /**
@@ -47,124 +190,69 @@ export interface ComponentCopyResult {
  * @returns Copy result
  */
 export async function copyComponent(
-	componentName: string,
-	options: ComponentCopyOptions,
+  componentName: string,
+  options: ComponentCopyOptions,
 ): Promise<ComponentCopyResult> {
-	const result: ComponentCopyResult = {
-		componentName,
-		success: false,
-		filesCopied: [],
-		errors: [],
-		skipped: [],
-	};
+  const result: ComponentCopyResult = {
+    componentName,
+    success: false,
+    filesCopied: [],
+    errors: [],
+    skipped: [],
+  };
 
-	// Get component metadata
-	const component = getComponent(componentName, options.platform, options.registryDir);
+  // Get component metadata
+  const component = getFrameworkComponent(options.platform, componentName, {
+    registryDir: options.registryDir,
+  });
 
-	if (!component) {
-		result.errors.push(`Component "${componentName}" not found in registry`);
-		return result;
-	}
+  if (!component) {
+    result.errors.push(`Component "${componentName}" not found in registry`);
+    return result;
+  }
 
-	// Validate dependencies
-	const validation = validateComponentDependencies(
-		componentName,
-		options.platform,
-		options.registryDir,
-	);
+  // Validate dependencies
+  const validation = validateFrameworkComponentDependencies(
+    options.platform,
+    componentName,
+    { registryDir: options.registryDir },
+  );
 
-	if (!validation.valid) {
-		result.errors.push(
-			`Missing dependencies: ${validation.missing.join(', ')}. Please add these components first.`,
-		);
-		return result;
-	}
+  if (!validation.valid) {
+    result.errors.push(
+      `Missing dependencies: ${validation.missing.join(', ')}. Please add these components first.`,
+    );
+    return result;
+  }
 
-	// Determine target directory based on platform
-	const componentsTargetDir = getComponentsTargetDir(options.platform, options.targetDir);
+  // Determine target directory based on platform
+  const componentsTargetDir = getComponentsTargetDir(
+    options.platform,
+    options.targetDir,
+  );
 
-	// Determine source mode: GitHub or local
-	const useGitHub = !options.packagesDir;
+  const componentTargetDir = join(componentsTargetDir, componentName);
+  const copyResult = await copyComponentFilesToDirectory({
+    componentName,
+    componentFiles: component.files,
+    componentType: component.type,
+    sourcePlatform: options.platform,
+    targetPlatform: options.platform,
+    targetDirectory: componentTargetDir,
+    relativeTo: options.targetDir,
+    overwrite: options.overwrite,
+    dryRun: options.dryRun,
+    packagesDir: options.packagesDir,
+    onTransformedFile: (file, notes) => {
+      console.log(`  📝 ${file}: ${notes.join(', ')}`);
+    },
+  });
 
-	// Copy each file
-	for (const file of component.files) {
-		const targetFile = join(componentsTargetDir, file);
-
-		// Check if target already exists
-		if (existsSync(targetFile) && !options.overwrite) {
-			result.skipped.push(relative(options.targetDir, targetFile));
-			continue;
-		}
-
-		// Dry run - don't actually copy
-		if (options.dryRun) {
-			result.filesCopied.push(relative(options.targetDir, targetFile));
-			continue;
-		}
-
-		// Create target directory if needed
-		const targetDir = dirname(targetFile);
-		if (!existsSync(targetDir)) {
-			mkdirSync(targetDir, { recursive: true });
-		}
-
-		// Copy file - from GitHub or local
-		try {
-			let fileContent: string;
-
-			if (useGitHub) {
-				// Fetch from GitHub
-				const githubPath = getComponentGitHubPath(options.platform, componentName, file);
-				const success = await fetchAndSaveFile(githubPath, targetFile);
-
-				if (!success) {
-					result.errors.push(`Failed to fetch ${file} from GitHub`);
-					continue;
-				}
-
-				// Read the fetched content for transformation
-				fileContent = readFileSync(targetFile, 'utf-8');
-			} else {
-				// Copy from local packages directory (for development)
-				const packagesDir = options.packagesDir!;
-				const componentSourceDir = getComponentSourceDir(options.platform);
-				const sourceDir = join(packagesDir, componentSourceDir);
-				const sourceFile = join(sourceDir, file);
-
-				if (!existsSync(sourceFile)) {
-					result.errors.push(`Source file not found: ${sourceFile}`);
-					continue;
-				}
-
-				fileContent = readFileSync(sourceFile, 'utf-8');
-			}
-
-			// Transform component if needed (Next.js, Nuxt.js)
-			const transformResult = transformComponent(fileContent, {
-				platform: options.platform,
-				componentName,
-				filePath: targetFile,
-			});
-
-			// Write the transformed content
-			writeFileSync(targetFile, transformResult.content, 'utf-8');
-
-			// Log transformation notes if modified
-			if (transformResult.modified && transformResult.notes.length > 0) {
-				// Store notes for later display (optional)
-				console.log(`  📝 ${file}: ${transformResult.notes.join(', ')}`);
-			}
-
-			result.filesCopied.push(relative(options.targetDir, targetFile));
-		} catch (error) {
-			result.errors.push(
-				`Failed to copy ${file}: ${error instanceof Error ? error.message : 'Unknown error'}`,
-			);
-		}
-	}
-
-	result.success = result.errors.length === 0;
-	return result;
+  result.filesCopied = copyResult.filesCopied;
+  result.errors = copyResult.errors;
+  result.skipped = copyResult.skipped;
+  result.success = copyResult.success;
+  return result;
 }
 
 /**
@@ -175,22 +263,22 @@ export async function copyComponent(
  * @returns Array of copy results
  */
 export async function copyComponents(
-	componentNames: string[],
-	options: ComponentCopyOptions,
+  componentNames: string[],
+  options: ComponentCopyOptions,
 ): Promise<ComponentCopyResult[]> {
-	const results: ComponentCopyResult[] = [];
+  const results: ComponentCopyResult[] = [];
 
-	for (const name of componentNames) {
-		const result = await copyComponent(name, options);
-		results.push(result);
+  for (const name of componentNames) {
+    const result = await copyComponent(name, options);
+    results.push(result);
 
-		// If this component failed, log warning but continue
-		if (!result.success) {
-			console.warn(`⚠️  Failed to copy component "${name}"`);
-		}
-	}
+    // If this component failed, log warning but continue
+    if (!result.success) {
+      console.warn(`⚠️  Failed to copy component "${name}"`);
+    }
+  }
 
-	return results;
+  return results;
 }
 
 /**
@@ -200,46 +288,49 @@ export async function copyComponents(
  * @param projectRoot - Project root directory
  * @returns Target directory for components
  */
-function getComponentsTargetDir(platform: Platform, projectRoot: string): string {
-	switch (platform) {
-		case 'react-native':
-			// React Native: src/components or components
-			if (existsSync(join(projectRoot, 'src'))) {
-				return join(projectRoot, 'src', 'components');
-			}
-			return join(projectRoot, 'components');
+function getComponentsTargetDir(
+  platform: Platform,
+  projectRoot: string,
+): string {
+  switch (platform) {
+    case 'react-native':
+      // React Native: src/components or components
+      if (existsSync(join(projectRoot, 'src'))) {
+        return join(projectRoot, 'src', 'components');
+      }
+      return join(projectRoot, 'components');
 
-		case 'flutter':
-			// Flutter: lib/components
-			return join(projectRoot, 'lib', 'components');
+    case 'flutter':
+      // Flutter: lib/components
+      return join(projectRoot, 'lib', 'components');
 
-		case 'vue':
-		case 'nuxtjs':
-			// Vue/Nuxt: src/components or components
-			if (existsSync(join(projectRoot, 'src'))) {
-				return join(projectRoot, 'src', 'components');
-			}
-			return join(projectRoot, 'components');
+    case 'vue':
+    case 'nuxtjs':
+      // Vue/Nuxt: src/components or components
+      if (existsSync(join(projectRoot, 'src'))) {
+        return join(projectRoot, 'src', 'components');
+      }
+      return join(projectRoot, 'components');
 
-		case 'react':
-		case 'nextjs':
-			// React/Next.js: src/components or components
-			if (existsSync(join(projectRoot, 'src'))) {
-				return join(projectRoot, 'src', 'components');
-			}
-			return join(projectRoot, 'components');
+    case 'react':
+    case 'nextjs':
+      // React/Next.js: src/components or components
+      if (existsSync(join(projectRoot, 'src'))) {
+        return join(projectRoot, 'src', 'components');
+      }
+      return join(projectRoot, 'components');
 
-		case 'angular':
-			// Angular: src/components or components
-			if (existsSync(join(projectRoot, 'src', 'app'))) {
-				return join(projectRoot, 'src', 'app', 'components');
-			}
-			return join(projectRoot, 'components');
+    case 'angular':
+      // Angular: src/components or components
+      if (existsSync(join(projectRoot, 'src', 'app'))) {
+        return join(projectRoot, 'src', 'app', 'components');
+      }
+      return join(projectRoot, 'components');
 
-		default:
-			// Default: components at root
-			return join(projectRoot, 'components');
-	}
+    default:
+      // Default: components at root
+      return join(projectRoot, 'components');
+  }
 }
 
 /**
@@ -251,41 +342,43 @@ function getComponentsTargetDir(platform: Platform, projectRoot: string): string
  * @returns Import statement
  */
 export function generateImportStatement(
-	componentName: string,
-	platform: Platform,
-	options?: { registryDir?: string },
+  componentName: string,
+  platform: Platform,
+  options?: { registryDir?: string },
 ): string {
-	const component = getComponent(componentName, platform, options?.registryDir);
+  const component = getFrameworkComponent(platform, componentName, {
+    registryDir: options?.registryDir,
+  });
 
-	if (!component) {
-		return `// Component "${componentName}" not found`;
-	}
+  if (!component) {
+    return `// Component "${componentName}" not found`;
+  }
 
-	const exports = component.exports;
+  const exports = component.exports;
 
-	switch (platform) {
-		case 'react-native':
-		case 'react':
-		case 'nextjs':
-			// TypeScript/JSX import
-			return `import { ${exports.join(', ')} } from '@/components/${componentName}';`;
+  switch (platform) {
+    case 'react-native':
+    case 'react':
+    case 'nextjs':
+      // TypeScript/JSX import
+      return `import { ${exports.join(', ')} } from '@/components/${componentName}';`;
 
-		case 'flutter':
-			// Dart import
-			return `import 'package:your_app/components/${componentName}/${componentName.replace(/-/g, '_')}.dart';`;
+    case 'flutter':
+      // Dart import
+      return `import 'package:your_app/components/${componentName}/${componentName.replace(/-/g, '_')}.dart';`;
 
-		case 'vue':
-		case 'nuxtjs':
-			// Vue import
-			return `import { ${exports.join(', ')} } from '@/components/${componentName}';`;
+    case 'vue':
+    case 'nuxtjs':
+      // Vue import
+      return `import { ${exports.join(', ')} } from '@/components/${componentName}';`;
 
-		case 'angular':
-			// Angular import
-			return `import { ${exports.join(', ')} } from './components/${componentName}';`;
+    case 'angular':
+      // Angular import
+      return `import { ${exports.join(', ')} } from './components/${componentName}';`;
 
-		default:
-			return `// Import for platform "${platform}" not supported`;
-	}
+    default:
+      return `// Import for platform "${platform}" not supported`;
+  }
 }
 
 /**
@@ -296,26 +389,28 @@ export function generateImportStatement(
  * @param options - Additional config options
  */
 export function createComponentsConfig(
-	platform: Platform,
-	projectRoot: string,
-	options?: {
-		framework?: string;
-		typescript?: boolean;
-		styling?: 'tailwind' | 'css' | 'styled-components';
-	},
+  platform: Platform,
+  projectRoot: string,
+  options?: {
+    framework?: string;
+    typescript?: boolean;
+    styling?: 'tailwind' | 'css' | 'styled-components';
+  },
 ): void {
-	const config = {
-		$schema: 'https://galaxy-design.vercel.app/schema.json',
-		platform: platform,
-		framework: options?.framework || platform,
-		typescript: options?.typescript !== false,
-		styling: options?.styling || (isMobilePlatform(platform) ? 'styled-components' : 'tailwind'),
-		components: getComponentsTargetDir(platform, projectRoot),
-		utils: join(projectRoot, isMobilePlatform(platform) ? 'lib' : 'src', 'lib'),
-	};
+  const config = {
+    $schema: 'https://galaxy-design.vercel.app/schema.json',
+    platform: platform,
+    framework: options?.framework || platform,
+    typescript: options?.typescript !== false,
+    styling:
+      options?.styling ||
+      (isMobilePlatform(platform) ? 'styled-components' : 'tailwind'),
+    components: getComponentsTargetDir(platform, projectRoot),
+    utils: join(projectRoot, isMobilePlatform(platform) ? 'lib' : 'src', 'lib'),
+  };
 
-	const configPath = join(projectRoot, 'components.json');
-	writeFileSync(configPath, JSON.stringify(config, null, 2), 'utf-8');
+  const configPath = join(projectRoot, 'components.json');
+  writeFileSync(configPath, JSON.stringify(config, null, 2), 'utf-8');
 }
 
 /**
@@ -325,17 +420,17 @@ export function createComponentsConfig(
  * @returns Config object or null if not found
  */
 export function readComponentsConfig(projectRoot: string): any | null {
-	const configPath = join(projectRoot, 'components.json');
+  const configPath = join(projectRoot, 'components.json');
 
-	if (!existsSync(configPath)) {
-		return null;
-	}
+  if (!existsSync(configPath)) {
+    return null;
+  }
 
-	try {
-		const content = readFileSync(configPath, 'utf-8');
-		return JSON.parse(content);
-	} catch (error) {
-		console.error('Failed to read components.json:', error);
-		return null;
-	}
+  try {
+    const content = readFileSync(configPath, 'utf-8');
+    return JSON.parse(content);
+  } catch (error) {
+    console.error('Failed to read components.json:', error);
+    return null;
+  }
 }

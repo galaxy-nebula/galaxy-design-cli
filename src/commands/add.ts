@@ -1,35 +1,39 @@
 import prompts from 'prompts';
 import chalk from 'chalk';
 import ora from 'ora';
-import { resolve, join, dirname } from 'path';
-import { existsSync } from 'fs';
-import { fileURLToPath } from 'url';
-import { loadConfig, configExists } from '../utils/config.js';
+import { resolve, join } from 'path';
 import {
   loadComponentsConfig,
   hasComponentsConfig,
-  getFrameworkFromConfig,
 } from '../utils/components-config.js';
 import { hasSrcDirectory } from '../utils/detect.js';
 import {
-  loadFrameworkRegistry,
   getFrameworkComponent,
   getFrameworkComponentDependencies,
   getAllFrameworkComponents,
-} from '../utils/framework-registry.js';
-import { writeFile, fileExists, readFile, ensureDir } from '../utils/files.js';
-import { installDependencies } from '../utils/package-manager.js';
-import type { Framework } from '../utils/config-schema.js';
-import { fetchFileFromGitHub, getComponentGitHubPath } from '../utils/github-fetcher.js';
-import { transformComponent } from '../utils/component-transformer.js';
+  resolveFrameworkComponentGraph,
+  resolveFrameworkComponentName,
+} from '../utils/framework-registry-service.js';
+import { ensureDir } from '../utils/files.js';
+import {
+  detectPackageManager,
+  formatInstallCommand,
+  installDependencies,
+} from '../utils/package-manager.js';
+import { copyComponentFilesToDirectory } from '../utils/component-copier.js';
 import { generateAngularProvidersIndex } from '../utils/angular-provider-manager.js';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 
 interface AddOptions {
   all?: boolean;
   cwd: string;
+}
+
+interface AddResult {
+  name: string;
+  success: boolean;
+  path?: string;
+  error?: string;
+  details?: string[];
 }
 
 export async function addCommand(components: string[], options: AddOptions) {
@@ -38,7 +42,11 @@ export async function addCommand(components: string[], options: AddOptions) {
   // Check if components.json exists (new config system)
   if (!hasComponentsConfig(cwd)) {
     console.log(chalk.red('❌ Galaxy UI is not initialized in this project.'));
-    console.log(chalk.gray('Run') + chalk.cyan(' galaxy-design init ') + chalk.gray('first.'));
+    console.log(
+      chalk.gray('Run') +
+        chalk.cyan(' galaxy-design init ') +
+        chalk.gray('first.'),
+    );
     return;
   }
 
@@ -52,8 +60,6 @@ export async function addCommand(components: string[], options: AddOptions) {
   const framework = componentsConfig.framework;
   console.log(chalk.gray(`Framework detected: ${chalk.cyan(framework)}\n`));
 
-  // Load framework-specific registry
-  const registry = loadFrameworkRegistry(framework);
   const allComponents = getAllFrameworkComponents(framework);
 
   // Determine which components to add
@@ -79,7 +85,9 @@ export async function addCommand(components: string[], options: AddOptions) {
 
     for (const [category, items] of categories) {
       choices.push({
-        title: chalk.bold.cyan(category.charAt(0).toUpperCase() + category.slice(1)),
+        title: chalk.bold.cyan(
+          category.charAt(0).toUpperCase() + category.slice(1),
+        ),
         value: `category:${category}`,
         disabled: true,
       });
@@ -110,11 +118,14 @@ export async function addCommand(components: string[], options: AddOptions) {
   } else {
     // Add specified components
     for (const input of components) {
-      // Check if component exists in registry
-      if (allComponents[input]) {
-        componentsToAdd.push(input);
+      const resolvedName = resolveFrameworkComponentName(framework, input);
+
+      if (resolvedName && allComponents[resolvedName]) {
+        componentsToAdd.push(resolvedName);
       } else {
-        console.log(chalk.yellow(`⚠ Component "${input}" not found. Skipping.`));
+        console.log(
+          chalk.yellow(`⚠ Component "${input}" not found. Skipping.`),
+        );
       }
     }
   }
@@ -127,37 +138,22 @@ export async function addCommand(components: string[], options: AddOptions) {
   // Remove duplicates
   componentsToAdd = [...new Set(componentsToAdd)];
 
-  // Resolve registry dependencies
-  const resolvedComponents = new Set<string>(componentsToAdd);
-  const toProcess = [...componentsToAdd];
+  componentsToAdd = resolveFrameworkComponentGraph(framework, componentsToAdd);
 
-  while (toProcess.length > 0) {
-    const componentKey = toProcess.pop()!;
-    const component = getFrameworkComponent(framework, componentKey);
-
-    if (component && component.registryDependencies && component.registryDependencies.length > 0) {
-      for (const depKey of component.registryDependencies) {
-        if (!resolvedComponents.has(depKey)) {
-          resolvedComponents.add(depKey);
-          toProcess.push(depKey);
-        }
-      }
-    }
-  }
-
-  componentsToAdd = Array.from(resolvedComponents);
-
-  console.log(chalk.bold.cyan(`\n📦 Adding ${componentsToAdd.length} component(s)...\n`));
+  console.log(
+    chalk.bold.cyan(`\n📦 Adding ${componentsToAdd.length} component(s)...\n`),
+  );
 
   // Collect all dependencies
   const allDependencies: string[] = [];
   const allDevDependencies: string[] = [];
 
   // Add each component
-  const results: { name: string; success: boolean; path?: string; error?: string }[] = [];
+  const results: AddResult[] = [];
 
   for (const componentKey of componentsToAdd) {
     const component = getFrameworkComponent(framework, componentKey);
+    let componentFileErrors: string[] = [];
 
     if (!component) {
       results.push({
@@ -181,84 +177,37 @@ export async function addCommand(components: string[], options: AddOptions) {
       const fullDestPath = resolve(cwd, baseDir + destPath, 'ui');
       ensureDir(fullDestPath);
 
-      // Get file extension based on framework
-      const fileExtensions: Record<Framework, string> = {
-        vue: '.vue',
-        react: '.tsx',
-        angular: '.component.ts',
-        'react-native': '.tsx',
-        flutter: '.dart',
-      };
-      const ext = fileExtensions[framework];
-
       // Create component folder
       const componentFolderPath = join(fullDestPath, componentKey);
       ensureDir(componentFolderPath);
 
-      // Map framework to actual package framework for GitHub path
-      // Next.js uses React components, Nuxt.js uses Vue components
-      let packageFramework = framework;
-      if (framework === 'nextjs') packageFramework = 'react';
-      if (framework === 'nuxtjs') packageFramework = 'vue';
-
-      // Copy component files from GitHub
-      for (const file of component.files) {
-        const fileName = file.includes('/') ? file.split('/').pop()! : file;
-        const destFilePath = join(componentFolderPath, fileName);
-
-        // Check if file already exists
-        if (fileExists(destFilePath)) {
+      const copyResult = await copyComponentFilesToDirectory({
+        componentName: componentKey,
+        componentFiles: component.files,
+        componentType: component.type,
+        sourcePlatform: framework,
+        targetPlatform: framework,
+        targetDirectory: componentFolderPath,
+        relativeTo: cwd,
+        overwrite: false,
+        onSkippedFile: (fileName) => {
           spinner.warn(
-            `${chalk.cyan(component.name)} - File already exists: ${fileName}`
+            `${chalk.cyan(component.name)} - File already exists: ${fileName}`,
           );
-          continue;
-        }
+        },
+      });
 
-        try {
-          // Fetch file from GitHub (use packageFramework for correct path)
-          const sourceFolder = component.type === 'block' ? 'blocks' : 'components';
-          const githubPath = `packages/${packageFramework}/src/${sourceFolder}/${componentKey}/${file}`;
-          let content = await fetchFileFromGitHub(githubPath);
-
-          // Apply transformations (import path fixes, 'use client' for Next.js, etc.)
-          const transformResult = transformComponent(content, {
-            platform: framework,
-            componentName: componentKey,
-            filePath: destFilePath,
-          });
-          content = transformResult.content;
-
-          writeFile(destFilePath, content);
-        } catch (error) {
-          // Try with capitalized file name
-          try {
-            const capitalizedFile = file.charAt(0).toUpperCase() + file.slice(1);
-            const sourceFolder = component.type === 'block' ? 'blocks' : 'components';
-            const githubPath = `packages/${packageFramework}/src/${sourceFolder}/${componentKey}/${capitalizedFile}`;
-            let content = await fetchFileFromGitHub(githubPath);
-
-            // Apply transformations (import path fixes, 'use client' for Next.js, etc.)
-            const transformResult = transformComponent(content, {
-              platform: framework,
-              componentName: componentKey,
-              filePath: destFilePath,
-            });
-            content = transformResult.content;
-
-            writeFile(destFilePath, content);
-          } catch (capitalizedError) {
-            // If both attempts fail, write a placeholder
-            const placeholderContent = `// ${component.name} component for ${framework}\n// TODO: Failed to fetch component from GitHub: ${error instanceof Error ? error.message : 'Unknown error'}\n`;
-            writeFile(destFilePath, placeholderContent);
-            spinner.warn(`${chalk.yellow('⚠')} Failed to fetch ${file} from GitHub, created placeholder`);
-          }
-        }
+      if (!copyResult.success) {
+        componentFileErrors = [...copyResult.errors];
+        throw new Error(
+          `Missing or invalid files: ${copyResult.errors.length}`,
+        );
       }
 
       spinner.succeed(
         `${chalk.green('✓')} Added ${chalk.cyan(component.name)} to ${chalk.gray(
-          destPath + '/ui/' + componentKey + '/'
-        )}`
+          destPath + '/ui/' + componentKey + '/',
+        )}`,
       );
 
       results.push({
@@ -277,6 +226,7 @@ export async function addCommand(components: string[], options: AddOptions) {
         name: component.name,
         success: false,
         error: error instanceof Error ? error.message : 'Unknown error',
+        details: componentFileErrors,
       });
     }
   }
@@ -291,40 +241,62 @@ export async function addCommand(components: string[], options: AddOptions) {
 
     try {
       if (uniqueDependencies.length > 0) {
-        await installDependencies(uniqueDependencies, { cwd, dev: false, silent: true });
+        await installDependencies(uniqueDependencies, {
+          cwd,
+          dev: false,
+          silent: true,
+        });
       }
       if (uniqueDevDependencies.length > 0) {
-        await installDependencies(uniqueDevDependencies, { cwd, dev: true, silent: true });
+        await installDependencies(uniqueDevDependencies, {
+          cwd,
+          dev: true,
+          silent: true,
+        });
       }
       installSpinner.succeed('Dependencies installed');
     } catch (error) {
       installSpinner.fail('Failed to install dependencies');
       console.log(chalk.yellow('Please install them manually:'));
+      const packageManager = detectPackageManager(cwd);
       if (uniqueDependencies.length > 0) {
-        console.log(chalk.gray(`  npm install ${uniqueDependencies.join(' ')}`));
+        console.log(
+          chalk.gray(
+            `  ${formatInstallCommand(packageManager, uniqueDependencies)}`,
+          ),
+        );
       }
       if (uniqueDevDependencies.length > 0) {
-        console.log(chalk.gray(`  npm install -D ${uniqueDevDependencies.join(' ')}`));
+        console.log(
+          chalk.gray(
+            `  ${formatInstallCommand(packageManager, uniqueDevDependencies, true)}`,
+          ),
+        );
       }
     }
   }
 
   // Summary
-  const successful = results.filter(r => r.success).length;
-  const failed = results.filter(r => !r.success).length;
+  const successful = results.filter((r) => r.success).length;
+  const failed = results.filter((r) => !r.success).length;
 
   console.log('\n');
 
   if (successful > 0) {
     console.log(
-      chalk.green.bold(`✓ Successfully added ${successful} component(s)`)
+      chalk.green.bold(`✓ Successfully added ${successful} component(s)`),
     );
   }
 
   if (failed > 0) {
     console.log(chalk.red.bold(`✗ Failed to add ${failed} component(s)`));
-    for (const result of results.filter(r => !r.success)) {
+    for (const result of results.filter((r) => !r.success)) {
       console.log(chalk.red(`  - ${result.name}: ${result.error}`));
+      if (result.details && result.details.length > 0) {
+        for (const detail of result.details) {
+          console.log(chalk.gray(`    ${detail}`));
+        }
+      }
     }
   }
 
@@ -343,7 +315,10 @@ export async function addCommand(components: string[], options: AddOptions) {
       const success = generateAngularProvidersIndex(fullDestPath, framework);
 
       if (success) {
-        providerSpinner.succeed('Generated providers index at ' + chalk.cyan(`${destPath}/ui/index.ts`));
+        providerSpinner.succeed(
+          'Generated providers index at ' +
+            chalk.cyan(`${destPath}/ui/index.ts`),
+        );
       } else {
         providerSpinner.warn('Could not generate providers index');
       }
@@ -356,22 +331,48 @@ export async function addCommand(components: string[], options: AddOptions) {
   if (successful > 0) {
     console.log('\n' + chalk.gray('Next steps:'));
 
+    const nextSteps: string[] = [];
+
     switch (framework) {
       case 'vue':
-        console.log(chalk.gray('  1. Import the components in your Vue component'));
-        console.log(chalk.gray('  2. Use them in your template'));
+      case 'nuxtjs':
+        nextSteps.push('Import the components in your Vue component');
+        nextSteps.push('Use them in your template');
         break;
       case 'react':
-        console.log(chalk.gray('  1. Import the components in your React component'));
-        console.log(chalk.gray('  2. Use them in your JSX'));
+      case 'nextjs':
+        nextSteps.push('Import the components in your React component');
+        nextSteps.push('Use them in your JSX');
         break;
       case 'angular':
-        console.log(chalk.gray('  1. Import provideGalaxyComponents() in your app.config.ts providers array'));
-        console.log(chalk.gray('  2. Import the components in your Angular component'));
-        console.log(chalk.gray('  3. Use them in your templates'));
+        nextSteps.push(
+          'Import provideGalaxyComponents() in your app.config.ts providers array',
+        );
+        nextSteps.push('Import the components in your Angular component');
+        nextSteps.push('Use them in your templates');
+        break;
+      case 'react-native':
+        nextSteps.push(
+          'Import the components in your React Native screen or component',
+        );
+        nextSteps.push(
+          'Ensure your NativeWind and alias configuration resolves `@/*` imports',
+        );
+        break;
+      case 'flutter':
+        nextSteps.push('Import the generated widgets in your Dart files');
+        nextSteps.push(
+          'Run `flutter pub get` if new Dart dependencies were added',
+        );
         break;
     }
 
-    console.log(chalk.gray('  4. Enjoy building with Galaxy UI! 🚀\n'));
+    nextSteps.push('Enjoy building with Galaxy UI!');
+
+    nextSteps.forEach((step, index) => {
+      console.log(chalk.gray(`  ${index + 1}. ${step}`));
+    });
+
+    console.log('');
   }
 }

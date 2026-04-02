@@ -3,7 +3,12 @@
   "title": "Galaxy UI Configuration",
   "description": "Configuration file for Galaxy UI components",
   "type": "object",
-  "required": ["framework", "typescript", "tailwind", "aliases"],
+  "required": [
+    "framework",
+    "typescript",
+    "tailwind",
+    "aliases"
+  ],
   "properties": {
     "$schema": {
       "type": "string",
@@ -11,7 +16,15 @@
     },
     "framework": {
       "type": "string",
-      "enum": ["vue", "react", "angular"],
+      "enum": [
+        "vue",
+        "react",
+        "angular",
+        "react-native",
+        "flutter",
+        "nextjs",
+        "nuxtjs"
+      ],
       "description": "The framework used in the project"
     },
     "typescript": {
@@ -21,11 +34,26 @@
     },
     "tailwind": {
       "type": "object",
-      "required": ["config", "css"],
+      "required": [
+        "config",
+        "css"
+      ],
       "properties": {
+        "version": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "enum": [
+            3,
+            4,
+            null
+          ],
+          "description": "Detected or selected Tailwind major version"
+        },
         "config": {
           "type": "string",
-          "description": "Path to the Tailwind configuration file",
+          "description": "Path to the Tailwind configuration file. May be empty when using Tailwind v4 CSS-first setup.",
           "default": "tailwind.config.js"
         },
         "css": {
@@ -40,7 +68,13 @@
         "baseColor": {
           "type": "string",
           "description": "Base color for components",
-          "enum": ["slate", "gray", "zinc", "neutral", "stone"],
+          "enum": [
+            "slate",
+            "gray",
+            "zinc",
+            "neutral",
+            "stone"
+          ],
           "default": "slate"
         },
         "cssVariables": {
@@ -57,33 +91,54 @@
     },
     "aliases": {
       "type": "object",
-      "required": ["components", "utils"],
+      "required": [
+        "components",
+        "utils"
+      ],
       "properties": {
         "components": {
           "type": "string",
           "description": "Import alias for components directory",
-          "examples": ["@/components", "~/components", "src/components"]
+          "examples": [
+            "@/components",
+            "~/components",
+            "src/components"
+          ]
         },
         "utils": {
           "type": "string",
           "description": "Import alias for utils directory",
-          "examples": ["@/lib/utils", "@/utils", "~/lib/utils"]
+          "examples": [
+            "@/lib/utils",
+            "@/utils",
+            "~/lib/utils"
+          ]
         },
         "ui": {
           "type": "string",
           "description": "Import alias for UI components directory",
-          "examples": ["@/components/ui", "~/components/ui"]
+          "examples": [
+            "@/components/ui",
+            "~/components/ui"
+          ]
         },
         "lib": {
           "type": "string",
           "description": "Import alias for lib directory",
-          "examples": ["@/lib", "~/lib"]
+          "examples": [
+            "@/lib",
+            "~/lib"
+          ]
         }
       }
     },
     "iconLibrary": {
       "type": "string",
-      "enum": ["lucide", "heroicons", "radix-icons"],
+      "enum": [
+        "lucide",
+        "heroicons",
+        "radix-icons"
+      ],
       "description": "Icon library to use",
       "default": "lucide"
     }

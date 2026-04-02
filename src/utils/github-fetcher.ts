@@ -19,6 +19,24 @@ export function getGitHubRawUrl(filePath: string): string {
   return `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${filePath}?v=${cacheBust}`;
 }
 
+function getCandidateFileNames(filePath: string): string[] {
+  const segments = filePath.split('/');
+  const fileName = segments.pop();
+
+  if (!fileName) {
+    return [filePath];
+  }
+
+  const candidates = [fileName];
+  const capitalized = fileName.charAt(0).toUpperCase() + fileName.slice(1);
+
+  if (!candidates.includes(capitalized)) {
+    candidates.push(capitalized);
+  }
+
+  return candidates.map((candidate) => [...segments, candidate].join('/'));
+}
+
 /**
  * Fetch file content from GitHub
  *
@@ -26,31 +44,46 @@ export function getGitHubRawUrl(filePath: string): string {
  * @returns File content as string
  */
 export async function fetchFileFromGitHub(filePath: string): Promise<string> {
-  const url = getGitHubRawUrl(filePath);
+  const errors: string[] = [];
 
-  try {
-    const response = await fetch(url, {
-      cache: 'no-store',
-      headers: {
-        'Cache-Control': 'no-cache',
-        Pragma: 'no-cache',
-      },
-    });
+  for (const candidatePath of getCandidateFileNames(filePath)) {
+    const url = getGitHubRawUrl(candidatePath);
 
-    if (!response.ok) {
-      if (response.status === 404) {
-        throw new Error(`File not found: ${filePath}`);
+    for (let attempt = 1; attempt <= 2; attempt += 1) {
+      try {
+        const response = await fetch(url, {
+          cache: 'no-store',
+          headers: {
+            'Cache-Control': 'no-cache',
+            Pragma: 'no-cache',
+          },
+        });
+
+        if (!response.ok) {
+          if (response.status === 404) {
+            errors.push(`404 ${candidatePath}`);
+            break;
+          }
+
+          throw new Error(
+            `Failed to fetch ${candidatePath}: ${response.status} ${response.statusText}`,
+          );
+        }
+
+        return await response.text();
+      } catch (error) {
+        const message =
+          error instanceof Error ? error.message : 'Unknown error';
+        errors.push(`${candidatePath} (attempt ${attempt}): ${message}`);
+
+        if (attempt === 2) {
+          break;
+        }
       }
-      throw new Error(`Failed to fetch ${filePath}: ${response.statusText}`);
     }
-
-    return await response.text();
-  } catch (error) {
-    if (error instanceof Error) {
-      throw new Error(`GitHub fetch error: ${error.message}`);
-    }
-    throw new Error(`Unknown error fetching ${filePath}`);
   }
+
+  throw new Error(`GitHub fetch error: ${errors.join(' | ')}`);
 }
 
 /**
@@ -125,19 +158,19 @@ export function getComponentGitHubPath(
   platform: string,
   componentName: string,
   fileName: string,
+  sourceType: 'components' | 'blocks' = 'components',
 ): string {
   // Map platform to package directory
   const platformMap: Record<string, string> = {
-    vue: 'packages/vue/src/components',
-    react: 'packages/react/src/components',
-    angular: 'packages/angular/src/components',
-    'react-native': 'packages/react-native/src/components',
-    flutter: 'packages/flutter/lib/components',
+    vue: 'packages/vue/src',
+    react: 'packages/react/src',
+    angular: 'packages/angular/src',
+    'react-native': 'packages/react-native/src',
+    flutter: 'packages/flutter/lib',
   };
 
-  const basePath =
-    platformMap[platform] || `packages/${platform}/src/components`;
-  return `${basePath}/${componentName}/${fileName}`;
+  const basePath = platformMap[platform] || `packages/${platform}/src`;
+  return `${basePath}/${sourceType}/${componentName}/${fileName}`;
 }
 
 /**

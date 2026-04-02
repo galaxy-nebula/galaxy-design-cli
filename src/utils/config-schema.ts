@@ -1,19 +1,61 @@
 import { z } from 'zod';
 
+export const frameworkValues = [
+  'vue',
+  'react',
+  'angular',
+  'react-native',
+  'flutter',
+  'nextjs',
+  'nuxtjs',
+] as const;
+
 // Framework types
-export const frameworkSchema = z.enum(['vue', 'react', 'angular', 'react-native', 'flutter', 'nextjs', 'nuxtjs']);
+export const frameworkSchema = z.enum(frameworkValues);
 export type Framework = z.infer<typeof frameworkSchema>;
 
+export const baseColorValues = [
+  'slate',
+  'gray',
+  'zinc',
+  'neutral',
+  'stone',
+] as const;
+
 // Base color types
-export const baseColorSchema = z.enum(['slate', 'gray', 'zinc', 'neutral', 'stone']);
+export const baseColorSchema = z.enum(baseColorValues);
 export type BaseColor = z.infer<typeof baseColorSchema>;
 
+export const iconLibraryValues = [
+  'lucide',
+  'heroicons',
+  'radix-icons',
+] as const;
+
 // Icon library types
-export const iconLibrarySchema = z.enum(['lucide', 'heroicons', 'radix-icons']);
+export const iconLibrarySchema = z.enum(iconLibraryValues);
 export type IconLibrary = z.infer<typeof iconLibrarySchema>;
+
+export interface JsonSchemaObject {
+  [key: string]: JsonSchemaValue;
+}
+
+export type JsonSchemaValue =
+  | string
+  | number
+  | boolean
+  | null
+  | JsonSchemaObject
+  | JsonSchemaValue[];
+
+export const tailwindVersionSchema = z
+  .union([z.literal(3), z.literal(4)])
+  .nullable();
+export type TailwindVersion = z.infer<typeof tailwindVersionSchema>;
 
 // Tailwind configuration
 export const tailwindConfigSchema = z.object({
+  version: tailwindVersionSchema.optional(),
   config: z.string().default('tailwind.config.js'),
   css: z.string(),
   baseColor: baseColorSchema.default('slate'),
@@ -42,12 +84,113 @@ export const componentsConfigSchema = z.object({
 });
 export type ComponentsConfig = z.infer<typeof componentsConfigSchema>;
 
+export function createComponentsJsonSchema(): JsonSchemaObject {
+  return {
+    $schema: 'http://json-schema.org/draft-07/schema#',
+    title: 'Galaxy UI Configuration',
+    description: 'Configuration file for Galaxy UI components',
+    type: 'object',
+    required: ['framework', 'typescript', 'tailwind', 'aliases'],
+    properties: {
+      $schema: {
+        type: 'string',
+        description: 'Path to the schema file',
+      },
+      framework: {
+        type: 'string',
+        enum: [...frameworkValues],
+        description: 'The framework used in the project',
+      },
+      typescript: {
+        type: 'boolean',
+        description: 'Whether TypeScript is used',
+        default: true,
+      },
+      tailwind: {
+        type: 'object',
+        required: ['config', 'css'],
+        properties: {
+          version: {
+            type: ['integer', 'null'],
+            enum: [3, 4, null],
+            description: 'Detected or selected Tailwind major version',
+          },
+          config: {
+            type: 'string',
+            description:
+              'Path to the Tailwind configuration file. May be empty when using Tailwind v4 CSS-first setup.',
+            default: 'tailwind.config.js',
+          },
+          css: {
+            type: 'string',
+            description: 'Path to the global CSS file',
+            examples: [
+              'src/styles/globals.css',
+              'src/assets/styles/global.css',
+              'src/app/globals.css',
+            ],
+          },
+          baseColor: {
+            type: 'string',
+            description: 'Base color for components',
+            enum: [...baseColorValues],
+            default: 'slate',
+          },
+          cssVariables: {
+            type: 'boolean',
+            description: 'Use CSS variables for theming',
+            default: true,
+          },
+          prefix: {
+            type: 'string',
+            description: 'Prefix for Tailwind utility classes',
+            default: '',
+          },
+        },
+      },
+      aliases: {
+        type: 'object',
+        required: ['components', 'utils'],
+        properties: {
+          components: {
+            type: 'string',
+            description: 'Import alias for components directory',
+            examples: ['@/components', '~/components', 'src/components'],
+          },
+          utils: {
+            type: 'string',
+            description: 'Import alias for utils directory',
+            examples: ['@/lib/utils', '@/utils', '~/lib/utils'],
+          },
+          ui: {
+            type: 'string',
+            description: 'Import alias for UI components directory',
+            examples: ['@/components/ui', '~/components/ui'],
+          },
+          lib: {
+            type: 'string',
+            description: 'Import alias for lib directory',
+            examples: ['@/lib', '~/lib'],
+          },
+        },
+      },
+      iconLibrary: {
+        type: 'string',
+        enum: [...iconLibraryValues],
+        description: 'Icon library to use',
+        default: 'lucide',
+      },
+    },
+  };
+}
+
 // Default configurations per framework
 export const defaultConfigs: Record<Framework, Partial<ComponentsConfig>> = {
   vue: {
     framework: 'vue',
     typescript: true,
     tailwind: {
+      version: 4,
       config: 'tailwind.config.js',
       css: 'src/style.css',
       baseColor: 'slate',
@@ -66,6 +209,7 @@ export const defaultConfigs: Record<Framework, Partial<ComponentsConfig>> = {
     framework: 'react',
     typescript: true,
     tailwind: {
+      version: 4,
       config: 'tailwind.config.js',
       css: 'src/index.css',
       baseColor: 'slate',
@@ -84,6 +228,7 @@ export const defaultConfigs: Record<Framework, Partial<ComponentsConfig>> = {
     framework: 'angular',
     typescript: true,
     tailwind: {
+      version: 4,
       config: 'tailwind.config.js',
       css: 'src/styles.css',
       baseColor: 'slate',
@@ -102,6 +247,7 @@ export const defaultConfigs: Record<Framework, Partial<ComponentsConfig>> = {
     framework: 'react-native',
     typescript: true,
     tailwind: {
+      version: 4,
       config: 'tailwind.config.js',
       css: 'global.css',
       baseColor: 'slate',
@@ -120,6 +266,7 @@ export const defaultConfigs: Record<Framework, Partial<ComponentsConfig>> = {
     framework: 'flutter',
     typescript: false, // Flutter uses Dart
     tailwind: {
+      version: null,
       config: '', // Flutter doesn't use Tailwind
       css: '',
       baseColor: 'slate',
@@ -138,6 +285,7 @@ export const defaultConfigs: Record<Framework, Partial<ComponentsConfig>> = {
     framework: 'nextjs',
     typescript: true,
     tailwind: {
+      version: 4,
       config: 'tailwind.config.ts',
       css: 'app/globals.css', // Next.js App Router
       baseColor: 'slate',
@@ -156,6 +304,7 @@ export const defaultConfigs: Record<Framework, Partial<ComponentsConfig>> = {
     framework: 'nuxtjs',
     typescript: true,
     tailwind: {
+      version: 4,
       config: 'tailwind.config.js',
       css: 'assets/css/main.css', // Nuxt 3 default
       baseColor: 'slate',
@@ -194,7 +343,7 @@ export function validateConfig(config: unknown): ComponentsConfig {
       throw new Error(
         `Invalid components.json configuration:\n${error.issues
           .map((e: z.ZodIssue) => `  - ${e.path.join('.')}: ${e.message}`)
-          .join('\n')}`
+          .join('\n')}`,
       );
     }
     throw error;
@@ -204,7 +353,10 @@ export function validateConfig(config: unknown): ComponentsConfig {
 /**
  * Get framework-specific file extensions
  */
-export function getFileExtensions(framework: Framework, typescript: boolean): string[] {
+export function getFileExtensions(
+  framework: Framework,
+  typescript: boolean,
+): string[] {
   const ext = typescript ? 'ts' : 'js';
 
   switch (framework) {

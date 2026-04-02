@@ -2,12 +2,18 @@ import { execa } from 'execa';
 import { existsSync } from 'fs';
 import { join } from 'path';
 
-export type PackageManager = 'npm' | 'pnpm' | 'yarn' | 'bun';
+export type PackageManager = 'npm' | 'pnpm' | 'yarn' | 'bun' | 'pub';
 
 /**
  * Detect which package manager is being used in the project
  */
-export function detectPackageManager(cwd: string = process.cwd()): PackageManager {
+export function detectPackageManager(
+  cwd: string = process.cwd(),
+): PackageManager {
+  if (existsSync(join(cwd, 'pubspec.yaml'))) {
+    return 'pub';
+  }
+
   // Check for lock files
   if (existsSync(join(cwd, 'bun.lockb')) || existsSync(join(cwd, 'bun.lock'))) {
     return 'bun';
@@ -29,8 +35,13 @@ export function detectPackageManager(cwd: string = process.cwd()): PackageManage
 /**
  * Get the install command for the detected package manager
  */
-export function getInstallCommand(packageManager: PackageManager, packages: string[]): string[] {
+export function getInstallCommand(
+  packageManager: PackageManager,
+  packages: string[],
+): string[] {
   switch (packageManager) {
+    case 'pub':
+      return ['flutter', 'pub', 'add', ...packages];
     case 'bun':
       return ['bun', 'add', ...packages];
     case 'pnpm':
@@ -43,6 +54,37 @@ export function getInstallCommand(packageManager: PackageManager, packages: stri
   }
 }
 
+export function formatInstallCommand(
+  packageManager: PackageManager,
+  packages: string[],
+  dev: boolean = false,
+): string {
+  switch (packageManager) {
+    case 'pub':
+      return [
+        'flutter',
+        'pub',
+        'add',
+        ...(dev ? ['--dev'] : []),
+        ...packages,
+      ].join(' ');
+    case 'bun':
+      return ['bun', 'add', ...(dev ? ['-D'] : []), ...packages].join(' ');
+    case 'pnpm':
+      return ['pnpm', 'add', ...(dev ? ['-D'] : []), ...packages].join(' ');
+    case 'yarn':
+      return ['yarn', 'add', ...(dev ? ['-D'] : []), ...packages].join(' ');
+    case 'npm':
+    default:
+      return [
+        'npm',
+        'install',
+        ...(dev ? ['--save-dev'] : []),
+        ...packages,
+      ].join(' ');
+  }
+}
+
 /**
  * Install dependencies using the detected package manager
  */
@@ -52,7 +94,7 @@ export async function installDependencies(
     cwd?: string;
     dev?: boolean;
     silent?: boolean;
-  } = {}
+  } = {},
 ): Promise<void> {
   const { cwd = process.cwd(), dev = false, silent = false } = options;
 
@@ -65,6 +107,10 @@ export async function installDependencies(
   let args: string[];
 
   switch (packageManager) {
+    case 'pub':
+      command = ['flutter'];
+      args = ['pub', 'add', ...(dev ? ['--dev'] : []), ...packages];
+      break;
     case 'bun':
       command = ['bun'];
       args = ['add', ...(dev ? ['-D'] : []), ...packages];
@@ -93,7 +139,9 @@ export async function installDependencies(
     let executable = command[0];
     if (packageManager === 'bun') {
       const bunPaths = [
-        process.env.BUN_INSTALL ? `${process.env.BUN_INSTALL}/.bun/bin/bun` : null,
+        process.env.BUN_INSTALL
+          ? `${process.env.BUN_INSTALL}/.bun/bin/bun`
+          : null,
         process.env.HOME ? `${process.env.HOME}/.bun/bin/bun` : null,
         '/Users/buitronghieu/.bun/bin/bun',
       ].filter(Boolean) as string[];
@@ -126,16 +174,21 @@ export async function installDependencies(
 /**
  * Get the package manager executable name
  */
-export function getPackageManagerExecutable(packageManager: PackageManager): string {
-  return packageManager;
+export function getPackageManagerExecutable(
+  packageManager: PackageManager,
+): string {
+  return packageManager === 'pub' ? 'flutter' : packageManager;
 }
 
 /**
  * Check if a package manager is available
  */
-export async function isPackageManagerAvailable(packageManager: PackageManager): Promise<boolean> {
+export async function isPackageManagerAvailable(
+  packageManager: PackageManager,
+): Promise<boolean> {
   try {
-    await execa(packageManager, ['--version'], { stdio: 'ignore' });
+    const executable = packageManager === 'pub' ? 'flutter' : packageManager;
+    await execa(executable, ['--version'], { stdio: 'ignore' });
     return true;
   } catch {
     return false;

@@ -10,13 +10,7 @@
     },
     "framework": {
       "type": "string",
-      "enum": [
-        "react",
-        "vue",
-        "angular",
-        "react-native",
-        "flutter"
-      ]
+      "enum": ["react", "vue", "angular", "react-native", "flutter"]
     },
     "components": {
       "type": "object",
@@ -48,6 +42,19 @@
       },
       "additionalProperties": false
     },
+    "providerConfig": {
+      "type": "object",
+      "required": ["import", "function"],
+      "properties": {
+        "import": {
+          "type": "string"
+        },
+        "function": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
     "frameworkComponent": {
       "type": "object",
       "required": [
@@ -66,6 +73,9 @@
         },
         "selector": {
           "type": "string"
+        },
+        "providers": {
+          "$ref": "#/definitions/providerConfig"
         },
         "type": {
           "type": "string",
