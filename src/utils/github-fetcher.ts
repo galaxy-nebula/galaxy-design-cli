@@ -5,18 +5,18 @@ import { dirname } from 'path';
  * GitHub repository configuration
  */
 const GITHUB_CONFIG = {
-	owner: 'buikevin',
-	repo: 'galaxy-design',
-	branch: 'main',
+  owner: 'buikevin',
+  repo: 'galaxy-design',
+  branch: 'main',
 };
 
 /**
  * Get GitHub raw content URL
  */
 export function getGitHubRawUrl(filePath: string): string {
-	const { owner, repo, branch } = GITHUB_CONFIG;
-	const cacheBust = Date.now();
-	return `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${filePath}?v=${cacheBust}`;
+  const { owner, repo, branch } = GITHUB_CONFIG;
+  const cacheBust = Date.now();
+  return `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${filePath}?v=${cacheBust}`;
 }
 
 /**
@@ -26,31 +26,31 @@ export function getGitHubRawUrl(filePath: string): string {
  * @returns File content as string
  */
 export async function fetchFileFromGitHub(filePath: string): Promise<string> {
-	const url = getGitHubRawUrl(filePath);
+  const url = getGitHubRawUrl(filePath);
 
-	try {
-		const response = await fetch(url, {
-			cache: 'no-store',
-			headers: {
-				'Cache-Control': 'no-cache',
-				Pragma: 'no-cache',
-			},
-		});
+  try {
+    const response = await fetch(url, {
+      cache: 'no-store',
+      headers: {
+        'Cache-Control': 'no-cache',
+        Pragma: 'no-cache',
+      },
+    });
 
-		if (!response.ok) {
-			if (response.status === 404) {
-				throw new Error(`File not found: ${filePath}`);
-			}
-			throw new Error(`Failed to fetch ${filePath}: ${response.statusText}`);
-		}
+    if (!response.ok) {
+      if (response.status === 404) {
+        throw new Error(`File not found: ${filePath}`);
+      }
+      throw new Error(`Failed to fetch ${filePath}: ${response.statusText}`);
+    }
 
-		return await response.text();
-	} catch (error) {
-		if (error instanceof Error) {
-			throw new Error(`GitHub fetch error: ${error.message}`);
-		}
-		throw new Error(`Unknown error fetching ${filePath}`);
-	}
+    return await response.text();
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(`GitHub fetch error: ${error.message}`);
+    }
+    throw new Error(`Unknown error fetching ${filePath}`);
+  }
 }
 
 /**
@@ -61,25 +61,25 @@ export async function fetchFileFromGitHub(filePath: string): Promise<string> {
  * @returns True if successful
  */
 export async function fetchAndSaveFile(
-	sourceFilePath: string,
-	targetFilePath: string,
+  sourceFilePath: string,
+  targetFilePath: string,
 ): Promise<boolean> {
-	try {
-		const content = await fetchFileFromGitHub(sourceFilePath);
+  try {
+    const content = await fetchFileFromGitHub(sourceFilePath);
 
-		// Create directory if it doesn't exist
-		const dir = dirname(targetFilePath);
-		if (!existsSync(dir)) {
-			mkdirSync(dir, { recursive: true });
-		}
+    // Create directory if it doesn't exist
+    const dir = dirname(targetFilePath);
+    if (!existsSync(dir)) {
+      mkdirSync(dir, { recursive: true });
+    }
 
-		// Write file
-		writeFileSync(targetFilePath, content, 'utf-8');
-		return true;
-	} catch (error) {
-		console.error(`Failed to fetch and save ${sourceFilePath}:`, error);
-		return false;
-	}
+    // Write file
+    writeFileSync(targetFilePath, content, 'utf-8');
+    return true;
+  } catch (error) {
+    console.error(`Failed to fetch and save ${sourceFilePath}:`, error);
+    return false;
+  }
 }
 
 /**
@@ -89,28 +89,28 @@ export async function fetchAndSaveFile(
  * @returns Results for each file
  */
 export async function fetchMultipleFiles(
-	files: Array<{ source: string; target: string }>,
+  files: Array<{ source: string; target: string }>,
 ): Promise<Array<{ file: string; success: boolean; error?: string }>> {
-	const results = await Promise.all(
-		files.map(async ({ source, target }) => {
-			try {
-				const success = await fetchAndSaveFile(source, target);
-				return {
-					file: source,
-					success,
-					error: success ? undefined : 'Failed to fetch',
-				};
-			} catch (error) {
-				return {
-					file: source,
-					success: false,
-					error: error instanceof Error ? error.message : 'Unknown error',
-				};
-			}
-		}),
-	);
+  const results = await Promise.all(
+    files.map(async ({ source, target }) => {
+      try {
+        const success = await fetchAndSaveFile(source, target);
+        return {
+          file: source,
+          success,
+          error: success ? undefined : 'Failed to fetch',
+        };
+      } catch (error) {
+        return {
+          file: source,
+          success: false,
+          error: error instanceof Error ? error.message : 'Unknown error',
+        };
+      }
+    }),
+  );
 
-	return results;
+  return results;
 }
 
 /**
@@ -122,32 +122,33 @@ export async function fetchMultipleFiles(
  * @returns GitHub repository path
  */
 export function getComponentGitHubPath(
-	platform: string,
-	componentName: string,
-	fileName: string,
+  platform: string,
+  componentName: string,
+  fileName: string,
 ): string {
-	// Map platform to package directory
-	const platformMap: Record<string, string> = {
-		vue: 'packages/vue/src/components',
-		react: 'packages/react/src/components',
-		angular: 'packages/angular/src/components',
-		'react-native': 'packages/react-native/src/components',
-		flutter: 'packages/flutter/lib/components',
-	};
+  // Map platform to package directory
+  const platformMap: Record<string, string> = {
+    vue: 'packages/vue/src/components',
+    react: 'packages/react/src/components',
+    angular: 'packages/angular/src/components',
+    'react-native': 'packages/react-native/src/components',
+    flutter: 'packages/flutter/lib/components',
+  };
 
-	const basePath = platformMap[platform] || `packages/${platform}/src/components`;
-	return `${basePath}/${componentName}/${fileName}`;
+  const basePath =
+    platformMap[platform] || `packages/${platform}/src/components`;
+  return `${basePath}/${componentName}/${fileName}`;
 }
 
 /**
  * Check if GitHub repository is accessible
  */
 export async function checkGitHubConnection(): Promise<boolean> {
-	try {
-		const url = getGitHubRawUrl('README.md');
-		const response = await fetch(url, { method: 'HEAD' });
-		return response.ok;
-	} catch {
-		return false;
-	}
+  try {
+    const url = getGitHubRawUrl('README.md');
+    const response = await fetch(url, { method: 'HEAD' });
+    return response.ok;
+  } catch {
+    return false;
+  }
 }
