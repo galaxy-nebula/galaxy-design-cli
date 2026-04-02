@@ -15,7 +15,8 @@ const GITHUB_CONFIG = {
  */
 export function getGitHubRawUrl(filePath: string): string {
 	const { owner, repo, branch } = GITHUB_CONFIG;
-	return `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${filePath}`;
+	const cacheBust = Date.now();
+	return `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${filePath}?v=${cacheBust}`;
 }
 
 /**
@@ -28,7 +29,13 @@ export async function fetchFileFromGitHub(filePath: string): Promise<string> {
 	const url = getGitHubRawUrl(filePath);
 
 	try {
-		const response = await fetch(url);
+		const response = await fetch(url, {
+			cache: 'no-store',
+			headers: {
+				'Cache-Control': 'no-cache',
+				Pragma: 'no-cache',
+			},
+		});
 
 		if (!response.ok) {
 			if (response.status === 404) {
