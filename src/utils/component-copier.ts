@@ -25,6 +25,7 @@ import {
   resolveRegistryUrl,
 } from './registry-fetcher.js';
 import { transformComponent } from './component-transformer.js';
+import { transformIconImports } from './icon-transformer.js';
 
 /**
  * Component copy options
@@ -44,6 +45,8 @@ export interface ComponentCopyOptions {
   packagesDir?: string;
   /** Versioned registry CDN base URL (optional integrity-verified distribution) */
   registryUrl?: string;
+  /** Icon library to transform imports to (defaults to lucide) */
+  iconLibrary?: string;
 }
 
 /**
@@ -72,6 +75,8 @@ export interface CopyComponentFilesOptions {
   onTransformedFile?: (fileName: string, notes: string[]) => void;
   /** Versioned registry CDN base URL (optional integrity-verified distribution) */
   registryUrl?: string;
+  /** Icon library to transform imports to (defaults to lucide) */
+  iconLibrary?: string;
 }
 
 export interface CopyComponentFilesResult {
@@ -135,6 +140,10 @@ export async function copyComponentFilesToDirectory(
     sourceType === 'blocks'
       ? normalizeBlockSourceName(sourcePlatform, options.componentName)
       : options.componentName;
+  const iconLibrary =
+    options.iconLibrary && options.iconLibrary !== 'lucide'
+      ? options.iconLibrary
+      : undefined;
 
   for (const file of options.componentFiles) {
     const targetFile = join(options.targetDirectory, file);
@@ -202,7 +211,19 @@ export async function copyComponentFilesToDirectory(
         filePath: targetFile,
       });
 
-      writeFileSync(targetFile, transformResult.content, 'utf-8');
+      let finalContent = transformResult.content;
+      if (iconLibrary) {
+        const iconResult = transformIconImports(
+          finalContent,
+          options.targetPlatform,
+          iconLibrary,
+        );
+        if (iconResult.transformed) {
+          finalContent = iconResult.content;
+        }
+      }
+
+      writeFileSync(targetFile, finalContent, 'utf-8');
 
       if (transformResult.modified && transformResult.notes.length > 0) {
         options.onTransformedFile?.(file, transformResult.notes);

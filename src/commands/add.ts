@@ -184,7 +184,9 @@ export async function addCommand(components: string[], options: AddOptions) {
       // Detect if project uses src/ directory and adjust path
       const usesSrcDir = hasSrcDirectory(cwd);
       const baseDir = usesSrcDir ? 'src/' : '';
-      const fullDestPath = resolve(cwd, baseDir + destPath, 'ui');
+      const uiAlias = componentsConfig.aliases.ui || `${componentsAlias}/ui`;
+      const uiPath = uiAlias.replace(/^@\//, '');
+      const fullDestPath = resolve(cwd, baseDir + uiPath);
       ensureDir(fullDestPath);
 
       // Create component folder
@@ -201,6 +203,7 @@ export async function addCommand(components: string[], options: AddOptions) {
         relativeTo: cwd,
         overwrite: options.overwrite === true,
         registryUrl: options.registryUrl,
+        iconLibrary: componentsConfig.iconLibrary,
         onSkippedFile: (fileName) => {
           spinner.warn(
             `${chalk.cyan(component.name)} - File already exists: ${fileName}`,
