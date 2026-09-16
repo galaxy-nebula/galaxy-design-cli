@@ -1510,6 +1510,33 @@
         }
       ]
     },
+    "combobox": {
+      "id": "combobox",
+      "name": "Combobox",
+      "type": "form",
+      "description": "Searchable select with filtering, combining a text input with a dropdown list.",
+      "files": [
+        "Combobox.tsx",
+        "index.ts"
+      ],
+      "exports": [
+        "Combobox",
+        "ComboboxProps",
+        "ComboboxOption"
+      ],
+      "dependencies": [
+        "cmdk"
+      ],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [
+        "command",
+        "popover",
+        "button"
+      ],
+      "category": "form",
+      "props": []
+    },
     "command": {
       "id": "command",
       "name": "command",

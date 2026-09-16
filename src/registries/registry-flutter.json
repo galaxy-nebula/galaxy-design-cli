@@ -3594,6 +3594,25 @@
         }
       ]
     },
+    "toast": {
+      "id": "toast",
+      "name": "Toast",
+      "type": "feedback",
+      "description": "Brief, auto-dismissing notification surfaced at the edge of the screen.",
+      "files": [
+        "toast.dart"
+      ],
+      "exports": [
+        "GalaxyToast",
+        "GalaxyToastVariant"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "feedback",
+      "props": []
+    },
     "toggle-group": {
       "id": "toggle-group",
       "name": "toggle-group",

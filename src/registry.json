@@ -843,7 +843,9 @@
         "nextjs",
         "vue",
         "nuxtjs",
-        "angular"
+        "angular",
+        "react-native",
+        "flutter"
       ]
     },
     "skeleton": {

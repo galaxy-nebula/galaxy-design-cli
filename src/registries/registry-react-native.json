@@ -4633,6 +4633,25 @@
         }
       ]
     },
+    "toast": {
+      "id": "toast",
+      "name": "Toast",
+      "type": "feedback",
+      "description": "Brief, auto-dismissing notification surfaced at the edge of the screen.",
+      "files": [
+        "Toast.tsx",
+        "index.ts"
+      ],
+      "exports": [
+        "Toast"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "feedback",
+      "props": []
+    },
     "toggle-group": {
       "id": "toggle-group",
       "name": "toggle-group",
