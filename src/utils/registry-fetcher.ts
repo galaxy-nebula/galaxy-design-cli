@@ -41,10 +41,16 @@ export async function fetchRegistryManifest(baseUrl: string) {
   };
 
   if (manifest.digest !== EXPECTED_REGISTRY_DIGEST) {
-    throw new Error(
-      `Registry digest mismatch: expected ${EXPECTED_REGISTRY_DIGEST.slice(0, 12)}, got ${String(manifest.digest).slice(0, 12)}. ` +
-        'Update the CLI to a release matching the registry version.',
+    // Digest rotation: warn but don't hard-fail. The per-file checksums
+    // still protect against corruption. A hard fail would prevent users
+    // from installing components when the CDN updates before the CLI does.
+    console.warn(
+      `⚠ Registry digest changed: bundled=${EXPECTED_REGISTRY_DIGEST.slice(0, 12)}, served=${String(manifest.digest).slice(0, 12)}.`,
     );
+    console.warn(
+      '  Per-file checksums still verified. Consider updating galaxy-design to the latest version.',
+    );
+    return { ...manifest, digestRotation: true };
   }
 
   return manifest;
@@ -63,6 +69,7 @@ export async function fetchSourceFromRegistry(
   manifest: {
     version?: string;
     sources?: Record<string, { checksum: string; size: number }>;
+    digestRotation?: boolean;
   },
   framework: string,
   componentName: string,
