@@ -46,6 +46,15 @@ program
   .argument('[components...]', 'Component names to add')
   .option('-a, --all', 'Add all components')
   .option('-c, --cwd <path>', 'Current working directory', process.cwd())
+  .option(
+    '--overwrite',
+    'Overwrite existing component files (with backup)',
+    false,
+  )
+  .option(
+    '--registry-url <url>',
+    'Fetch component source from a versioned registry CDN (integrity-verified)',
+  )
   .action(addCommand);
 
 program

@@ -27,6 +27,8 @@ import { generateAngularProvidersIndex } from '../utils/angular-provider-manager
 interface AddOptions {
   all?: boolean;
   cwd: string;
+  overwrite?: boolean;
+  registryUrl?: string;
 }
 
 interface AddResult {
@@ -197,7 +199,8 @@ export async function addCommand(components: string[], options: AddOptions) {
         targetPlatform: framework,
         targetDirectory: componentFolderPath,
         relativeTo: cwd,
-        overwrite: false,
+        overwrite: options.overwrite === true,
+        registryUrl: options.registryUrl,
         onSkippedFile: (fileName) => {
           spinner.warn(
             `${chalk.cyan(component.name)} - File already exists: ${fileName}`,
@@ -217,6 +220,24 @@ export async function addCommand(components: string[], options: AddOptions) {
           destPath + '/ui/' + componentKey + '/',
         )}`,
       );
+
+      if (options.overwrite === true) {
+        // Backup replaced files so users can roll back a forced overwrite.
+        const backupDir = resolve(
+          cwd,
+          '.galaxy/backups/add',
+          String(Date.now()),
+          componentKey,
+        );
+        for (const file of component.files) {
+          const localPath = join(componentFolderPath, file);
+          if (existsSync(localPath)) {
+            const backupPath = join(backupDir, file);
+            mkdirSync(dirname(backupPath), { recursive: true });
+            writeFileSync(backupPath, readFileSync(localPath, 'utf-8'));
+          }
+        }
+      }
 
       // Record installed file manifest for `update`/`diff` tracking
       const installedManifestPath = resolve(

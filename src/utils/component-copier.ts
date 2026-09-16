@@ -19,6 +19,11 @@ import {
   fetchFileFromGitHub,
   getComponentGitHubPath,
 } from './github-fetcher.js';
+import {
+  fetchRegistryManifest,
+  fetchSourceFromRegistry,
+  resolveRegistryUrl,
+} from './registry-fetcher.js';
 import { transformComponent } from './component-transformer.js';
 
 /**
@@ -37,6 +42,8 @@ export interface ComponentCopyOptions {
   registryDir?: string;
   /** Source packages directory (for testing) */
   packagesDir?: string;
+  /** Versioned registry CDN base URL (optional integrity-verified distribution) */
+  registryUrl?: string;
 }
 
 /**
@@ -63,6 +70,8 @@ export interface CopyComponentFilesOptions {
   packagesDir?: string;
   onSkippedFile?: (fileName: string, targetFile: string) => void;
   onTransformedFile?: (fileName: string, notes: string[]) => void;
+  /** Versioned registry CDN base URL (optional integrity-verified distribution) */
+  registryUrl?: string;
 }
 
 export interface CopyComponentFilesResult {
@@ -111,6 +120,13 @@ export async function copyComponentFilesToDirectory(
   };
 
   const useGitHub = !options.packagesDir;
+  const registryUrl = options.registryUrl
+    ? resolveRegistryUrl(options.registryUrl)
+    : resolveRegistryUrl(undefined);
+  const useRegistry = registryUrl !== null;
+  let registryManifest: Awaited<
+    ReturnType<typeof fetchRegistryManifest>
+  > | null = null;
   const writtenFiles: string[] = [];
   const sourcePlatform = normalizeSourcePlatform(options.sourcePlatform);
   const sourceType =
@@ -143,7 +159,18 @@ export async function copyComponentFilesToDirectory(
     try {
       let fileContent: string;
 
-      if (useGitHub) {
+      if (useRegistry) {
+        if (!registryManifest) {
+          registryManifest = await fetchRegistryManifest(registryUrl!);
+        }
+        fileContent = await fetchSourceFromRegistry(
+          registryUrl!,
+          registryManifest,
+          sourcePlatform,
+          sourceComponentName,
+          file,
+        );
+      } else if (useGitHub) {
         const githubPath = getComponentGitHubPath(
           sourcePlatform,
           sourceComponentName,
@@ -152,10 +179,9 @@ export async function copyComponentFilesToDirectory(
         );
         fileContent = await fetchFileFromGitHub(githubPath);
       } else {
-        const componentSourceDir = getComponentSourceDir(sourcePlatform).replace(
-          /components$/,
-          sourceType,
-        );
+        const componentSourceDir = getComponentSourceDir(
+          sourcePlatform,
+        ).replace(/components$/, sourceType);
         const sourceFile = join(
           options.packagesDir!,
           componentSourceDir,
