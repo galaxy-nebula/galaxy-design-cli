@@ -1666,6 +1666,26 @@
         }
       ]
     },
+    "data-table": {
+      "id": "data-table",
+      "name": "Data Table",
+      "type": "data-display",
+      "description": "Sortable, filterable, paginated data table.",
+      "files": [
+        "DataTable.tsx",
+        "types.ts",
+        "index.ts"
+      ],
+      "exports": [
+        "DataTable"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "data-display",
+      "props": []
+    },
     "date-picker": {
       "id": "date-picker",
       "name": "Date Picker",
