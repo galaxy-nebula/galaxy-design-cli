@@ -3,6 +3,7 @@ import {
   mkdirSync,
   readdirSync,
   readFileSync,
+  unlinkSync,
   writeFileSync,
 } from 'fs';
 import { resolve, join, extname, relative, dirname } from 'path';
@@ -14,10 +15,11 @@ import {
 } from './tailwind-detector.js';
 import {
   loadComponentsConfig,
-  saveComponentsConfig,
 } from './components-config.js';
+import { getTailwindV4ThemeBridge } from './tailwind-scaffold.js';
 
 const TAILWIND_V4_RANGE = '^4.1.16';
+const TW_ANIMATE_CSS_RANGE = '^1.4.0';
 
 export interface TailwindAuditFinding {
   filePath: string;
@@ -45,6 +47,7 @@ export interface TailwindMigrationResult {
   removedPackages: string[];
   auditFindings: TailwindAuditFinding[];
   componentsConfigUpdated: boolean;
+  backupDirectory: string;
 }
 
 interface PackageJsonShape {
@@ -61,6 +64,12 @@ interface AuditPattern {
 
 interface AuditTarget {
   filePath: string;
+  content: string;
+}
+
+interface FileSnapshot {
+  relativePath: string;
+  existed: boolean;
   content: string;
 }
 
@@ -242,6 +251,40 @@ function getPostcssV4Content(cwd: string, configPath: string): string {
   const useEsm =
     extension === '.mjs' || (extension === '.js' && data.type === 'module');
 
+  const fullPath = resolve(cwd, configPath);
+  if (existsSync(fullPath)) {
+    const existing = readFileSync(fullPath, 'utf-8');
+    const tailwindObjectPlugin = /(["']?tailwindcss["']?)\s*:\s*\{\s*\}/;
+
+    if (!tailwindObjectPlugin.test(existing)) {
+      if (existing.includes('@tailwindcss/postcss')) {
+        return existing;
+      }
+
+      throw new Error(
+        `Could not safely migrate ${configPath}. Use an object-style PostCSS plugins config or update it manually before retrying.`,
+      );
+    }
+
+    let migrated = existing
+      .replace(
+        /(["']?tailwindcss["']?)\s*:\s*\{\s*\}/g,
+        '"@tailwindcss/postcss": {}',
+      )
+      .replace(
+        /^\s*["']?autoprefixer["']?\s*:\s*\{\s*\},?\s*\n?/gm,
+        '',
+      );
+
+    if (useEsm && /\bmodule\.exports\s*=/.test(migrated)) {
+      migrated = migrated.replace(/\bmodule\.exports\s*=/, 'export default');
+    } else if (!useEsm && /^\s*export\s+default\s+/m.test(migrated)) {
+      migrated = migrated.replace(/^\s*export\s+default\s+/m, 'module.exports = ');
+    }
+
+    return migrated;
+  }
+
   if (useEsm) {
     return `export default {
   plugins: {
@@ -259,32 +302,57 @@ function getPostcssV4Content(cwd: string, configPath: string): string {
 `;
 }
 
-function rewriteCssToV4(content: string): string {
-  if (/[@]import\s+['"]tailwindcss['"]/.test(content)) {
-    return content;
-  }
-
+function rewriteCssToV4(
+  content: string,
+  legacyConfigReference?: string,
+): string {
   const lines = content.split('\n');
   const rewritten: string[] = [];
-  let insertedImport = false;
 
   for (const line of lines) {
     if (/^\s*[@]tailwind\s+(base|components|utilities);?\s*$/.test(line)) {
-      if (!insertedImport) {
-        rewritten.push('@import "tailwindcss";');
-        insertedImport = true;
-      }
+      continue;
+    }
+
+    if (/^\s*[@]import\s+['"](?:tailwindcss|tw-animate-css)['"];?\s*$/.test(line)) {
       continue;
     }
 
     rewritten.push(line);
   }
 
-  if (!insertedImport) {
-    rewritten.unshift('@import "tailwindcss";');
+  const header = ['@import "tailwindcss";', '@import "tw-animate-css";'];
+  if (legacyConfigReference && !/[@]config\s+['"]/.test(content)) {
+    header.push(`@config "${legacyConfigReference}";`);
+  }
+  if (!/[@]custom-variant\s+dark\b/.test(content)) {
+    header.push('@custom-variant dark (&:is(.dark *));');
+  }
+  if (!/--color-background\s*:/.test(content)) {
+    header.push(getTailwindV4ThemeBridge().replace(/^@custom-variant[^\n]+;\n\n/, ''));
   }
 
-  return `${rewritten.join('\n').replace(/^\n+/, '').trimEnd()}\n`;
+  const body = rewritten.join('\n').replace(/^\n+/, '').trimEnd();
+  return `${header.join('\n\n')}\n\n${body}\n`;
+}
+
+function getLegacyConfigReference(
+  cwd: string,
+  cssPath: string,
+  configPath?: string,
+): string | undefined {
+  if (!configPath || !existsSync(resolve(cwd, configPath))) {
+    return undefined;
+  }
+
+  let reference = relative(
+    dirname(resolve(cwd, cssPath)),
+    resolve(cwd, configPath),
+  ).replaceAll('\\', '/');
+  if (!reference.startsWith('.')) {
+    reference = `./${reference}`;
+  }
+  return reference;
 }
 
 function collectFiles(root: string): string[] {
@@ -411,6 +479,12 @@ function computePackageChanges(packageJson: PackageJsonShape): {
     addedDevDependencies.push(`@tailwindcss/postcss@${TAILWIND_V4_RANGE}`);
   }
 
+  if (updated.devDependencies?.['tw-animate-css'] !== TW_ANIMATE_CSS_RANGE) {
+    updated.devDependencies = updated.devDependencies || {};
+    updated.devDependencies['tw-animate-css'] = TW_ANIMATE_CSS_RANGE;
+    addedDevDependencies.push(`tw-animate-css@${TW_ANIMATE_CSS_RANGE}`);
+  }
+
   for (const dependencySection of [
     'dependencies',
     'devDependencies',
@@ -429,10 +503,10 @@ function computePackageChanges(packageJson: PackageJsonShape): {
   };
 }
 
-function updateComponentsConfigVersion(cwd: string): boolean {
+function getUpdatedComponentsConfigContent(cwd: string): string | null {
   const config = loadComponentsConfig(cwd);
   if (!config) {
-    return false;
+    return null;
   }
 
   const updatedConfig: ComponentsConfig = {
@@ -442,8 +516,7 @@ function updateComponentsConfigVersion(cwd: string): boolean {
       version: 4,
     },
   };
-  saveComponentsConfig(cwd, updatedConfig);
-  return true;
+  return `${JSON.stringify(updatedConfig, null, 2)}\n`;
 }
 
 export function planTailwindMigration(cwd: string): TailwindMigrationPlan {
@@ -503,6 +576,41 @@ export function planTailwindMigration(cwd: string): TailwindMigrationPlan {
   };
 }
 
+function createMigrationBackup(
+  cwd: string,
+  relativePaths: string[],
+): { directory: string; snapshots: FileSnapshot[] } {
+  const directory = `.galaxy/backups/tailwind-v3-${Date.now()}`;
+  const snapshots: FileSnapshot[] = [];
+
+  for (const relativePath of [...new Set(relativePaths)]) {
+    const sourcePath = resolve(cwd, relativePath);
+    const existed = existsSync(sourcePath);
+    const content = existed ? readFileSync(sourcePath, 'utf-8') : '';
+    snapshots.push({ relativePath, existed, content });
+
+    if (existed) {
+      const backupPath = resolve(cwd, directory, relativePath);
+      mkdirSync(dirname(backupPath), { recursive: true });
+      writeFileSync(backupPath, content, 'utf-8');
+    }
+  }
+
+  return { directory, snapshots };
+}
+
+function restoreSnapshots(cwd: string, snapshots: FileSnapshot[]): void {
+  for (const snapshot of snapshots) {
+    const fullPath = resolve(cwd, snapshot.relativePath);
+    if (snapshot.existed) {
+      mkdirSync(dirname(fullPath), { recursive: true });
+      writeFileSync(fullPath, snapshot.content, 'utf-8');
+    } else if (existsSync(fullPath)) {
+      unlinkSync(fullPath);
+    }
+  }
+}
+
 export function applyTailwindMigration(cwd: string): TailwindMigrationResult {
   const plan = planTailwindMigration(cwd);
 
@@ -514,28 +622,52 @@ export function applyTailwindMigration(cwd: string): TailwindMigrationResult {
 
   const { path: packageJsonPath, data: packageJson } = getPackageJson(cwd);
   const packageChanges = computePackageChanges(packageJson);
-  writeFileSync(
-    packageJsonPath,
-    `${JSON.stringify(packageChanges.updated, null, 2)}\n`,
-    'utf-8',
-  );
-
   const cssFullPath = resolve(cwd, plan.cssPath);
-  mkdirSync(dirname(cssFullPath), { recursive: true });
   const existingCss = existsSync(cssFullPath)
     ? readFileSync(cssFullPath, 'utf-8')
     : '';
-  writeFileSync(cssFullPath, rewriteCssToV4(existingCss), 'utf-8');
-
   const postcssFullPath = resolve(cwd, plan.postcssConfigPath);
-  mkdirSync(dirname(postcssFullPath), { recursive: true });
-  writeFileSync(
-    postcssFullPath,
-    getPostcssV4Content(cwd, plan.postcssConfigPath),
-    'utf-8',
+  const legacyConfigReference = getLegacyConfigReference(
+    cwd,
+    plan.cssPath,
+    plan.detection.configPath,
   );
+  const migratedCss = rewriteCssToV4(existingCss, legacyConfigReference);
+  const migratedPostcss = getPostcssV4Content(cwd, plan.postcssConfigPath);
+  const componentsConfigContent = getUpdatedComponentsConfigContent(cwd);
+  const componentsConfigPath = resolve(cwd, 'components.json');
 
-  const componentsConfigUpdated = updateComponentsConfigVersion(cwd);
+  const backupTargets = [
+    'package.json',
+    plan.cssPath,
+    plan.postcssConfigPath,
+    ...(componentsConfigContent ? ['components.json'] : []),
+    ...(plan.detection.configPath ? [plan.detection.configPath] : []),
+  ];
+  const backup = createMigrationBackup(cwd, backupTargets);
+
+  try {
+    writeFileSync(
+      packageJsonPath,
+      `${JSON.stringify(packageChanges.updated, null, 2)}\n`,
+      'utf-8',
+    );
+
+    mkdirSync(dirname(cssFullPath), { recursive: true });
+    writeFileSync(cssFullPath, migratedCss, 'utf-8');
+
+    mkdirSync(dirname(postcssFullPath), { recursive: true });
+    writeFileSync(postcssFullPath, migratedPostcss, 'utf-8');
+
+    if (componentsConfigContent) {
+      writeFileSync(componentsConfigPath, componentsConfigContent, 'utf-8');
+    }
+  } catch (error) {
+    restoreSnapshots(cwd, backup.snapshots);
+    throw error;
+  }
+
+  const componentsConfigUpdated = Boolean(componentsConfigContent);
 
   return {
     filesUpdated: plan.filesToUpdate,
@@ -543,5 +675,6 @@ export function applyTailwindMigration(cwd: string): TailwindMigrationResult {
     removedPackages: plan.removedPackages,
     auditFindings: plan.auditFindings,
     componentsConfigUpdated,
+    backupDirectory: backup.directory,
   };
 }

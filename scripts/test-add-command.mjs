@@ -80,6 +80,12 @@ async function testFailureCleanup(addCommand) {
     await withTempProject('add-failure', async (targetDir) => {
       await setupReactProject(targetDir);
       await addCommand(['input'], { cwd: targetDir });
+      assert.equal(
+        process.exitCode,
+        1,
+        'failed add should set a non-zero exit code',
+      );
+      process.exitCode = undefined;
 
       const inputDir = path.join(targetDir, 'src', 'components', 'ui', 'input');
       assert.equal(
@@ -116,7 +122,21 @@ async function testNextjsDirectivePlacement(addCommand) {
         'badge',
         'Badge.tsx',
       );
+      const badgeVariantsFile = path.join(
+        targetDir,
+        'src',
+        'components',
+        'ui',
+        'badge',
+        'variants.ts',
+      );
       const badgeContent = readFileSync(badgeFile, 'utf-8');
+
+      assert.equal(
+        existsSync(badgeVariantsFile),
+        true,
+        'nextjs add should copy badge sidecar files such as variants.ts',
+      );
 
       assert.match(
         badgeContent,

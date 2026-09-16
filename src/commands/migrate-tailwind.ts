@@ -29,6 +29,7 @@ export async function migrateTailwindCommand(options: MigrateTailwindOptions) {
         `❌ ${error instanceof Error ? error.message : 'Failed to plan Tailwind migration.'}`,
       ),
     );
+    process.exitCode = 1;
     return;
   }
 
@@ -108,8 +109,11 @@ export async function migrateTailwindCommand(options: MigrateTailwindOptions) {
   } catch (error) {
     migrateSpinner.fail('Failed to apply Tailwind migration');
     console.error(chalk.red(error));
+    process.exitCode = 1;
     return;
   }
+
+  console.log(chalk.gray(`Backup created at: ${result.backupDirectory}`));
 
   if (result.addedDevDependencies.length > 0) {
     const dependencySpinner = ora(
@@ -131,6 +135,10 @@ export async function migrateTailwindCommand(options: MigrateTailwindOptions) {
           `Run manually: ${formatInstallCommand(packageManager, result.addedDevDependencies, true)}`,
         ),
       );
+      console.log(
+        chalk.yellow(`Migration backup is available at ${result.backupDirectory}`),
+      );
+      process.exitCode = 1;
     }
   }
 

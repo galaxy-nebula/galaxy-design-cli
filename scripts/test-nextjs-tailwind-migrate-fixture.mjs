@@ -1,3 +1,4 @@
+import { existsSync } from 'node:fs';
 import assert from 'node:assert/strict';
 import { cp, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import os from 'node:os';
@@ -8,6 +9,13 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const workspaceRoot = path.resolve(__dirname, '..', '..');
 const fixtureRoot = path.join(workspaceRoot, 'test', 'galaxy-nextjs-lint');
+
+if (!existsSync(fixtureRoot)) {
+  // FIXTURE-SKIP: fixture dirs are not part of the repo; skip when absent.
+  console.log(`SKIP galaxy-nextjs-lint (fixture not found)`);
+  process.exit(0);
+}
+
 
 async function main() {
   const tempRoot = await mkdtemp(
@@ -107,6 +115,10 @@ export default config;
       'utf-8',
     );
     assert.match(globalsAfter, /@import "tailwindcss";/);
+    assert.match(globalsAfter, /@import "tw-animate-css";/);
+    assert.match(globalsAfter, /@theme inline/);
+    assert.match(globalsAfter, /--color-border: hsl\(var\(--border\)\)/);
+    assert.match(globalsAfter, /@config "\.\.\/\.\.\/tailwind\.config\.ts";/);
     assert.doesNotMatch(globalsAfter, /@tailwind base;/);
     assert.match(globalsAfter, /@layer utilities/);
 

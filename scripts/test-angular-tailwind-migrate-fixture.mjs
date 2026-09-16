@@ -1,3 +1,4 @@
+import { existsSync } from 'node:fs';
 import assert from 'node:assert/strict';
 import { cp, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { spawnSync } from 'node:child_process';
@@ -10,6 +11,13 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const workspaceRoot = path.resolve(__dirname, '..', '..');
 const fixtureRoot = path.join(workspaceRoot, 'test', 'galaxy-angular-lint');
+
+if (!existsSync(fixtureRoot)) {
+  // FIXTURE-SKIP: fixture dirs are not part of the repo; skip when absent.
+  console.log(`SKIP galaxy-angular-lint (fixture not found)`);
+  process.exit(0);
+}
+
 
 function run(command, args, cwd) {
   const result = spawnSync(command, args, {
@@ -151,6 +159,9 @@ async function main() {
       'utf-8',
     );
     assert.match(migratedStyles, /@import "tailwindcss";/);
+    assert.match(migratedStyles, /@import "tw-animate-css";/);
+    assert.match(migratedStyles, /@theme inline/);
+    assert.match(migratedStyles, /--color-border: hsl\(var\(--border\)\)/);
     assert.match(migratedStyles, /@layer utilities/);
     assert.doesNotMatch(migratedStyles, /@tailwind base;/);
 

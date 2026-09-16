@@ -1,7 +1,8 @@
 import prompts from 'prompts';
 import chalk from 'chalk';
 import ora from 'ora';
-import { resolve, join } from 'path';
+import { resolve, join, dirname } from 'path';
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
 import {
   loadComponentsConfig,
   hasComponentsConfig,
@@ -47,6 +48,7 @@ export async function addCommand(components: string[], options: AddOptions) {
         chalk.cyan(' galaxy-design init ') +
         chalk.gray('first.'),
     );
+    process.exitCode = 1;
     return;
   }
 
@@ -54,6 +56,7 @@ export async function addCommand(components: string[], options: AddOptions) {
   const componentsConfig = loadComponentsConfig(cwd);
   if (!componentsConfig) {
     console.log(chalk.red('❌ Failed to load components.json configuration.'));
+    process.exitCode = 1;
     return;
   }
 
@@ -64,6 +67,7 @@ export async function addCommand(components: string[], options: AddOptions) {
 
   // Determine which components to add
   let componentsToAdd: string[] = [];
+  let invalidComponentRequested = false;
 
   if (options.all) {
     // Add all components
@@ -123,6 +127,7 @@ export async function addCommand(components: string[], options: AddOptions) {
       if (resolvedName && allComponents[resolvedName]) {
         componentsToAdd.push(resolvedName);
       } else {
+        invalidComponentRequested = true;
         console.log(
           chalk.yellow(`⚠ Component "${input}" not found. Skipping.`),
         );
@@ -132,6 +137,9 @@ export async function addCommand(components: string[], options: AddOptions) {
 
   if (componentsToAdd.length === 0) {
     console.log(chalk.yellow('No valid components to add.'));
+    if (components.length > 0) {
+      process.exitCode = 1;
+    }
     return;
   }
 
@@ -210,6 +218,32 @@ export async function addCommand(components: string[], options: AddOptions) {
         )}`,
       );
 
+      // Record installed file manifest for `update`/`diff` tracking
+      const installedManifestPath = resolve(
+        cwd,
+        '.galaxy',
+        'installed-components.json',
+      );
+      let installedManifest: Record<string, string[]> = {};
+      if (existsSync(installedManifestPath)) {
+        try {
+          installedManifest = JSON.parse(
+            readFileSync(installedManifestPath, 'utf-8'),
+          );
+        } catch {
+          installedManifest = {};
+        }
+      }
+      installedManifest[componentKey] = component.files;
+      const installedDir = dirname(installedManifestPath);
+      if (!existsSync(installedDir)) {
+        mkdirSync(installedDir, { recursive: true });
+      }
+      writeFileSync(
+        installedManifestPath,
+        `${JSON.stringify(installedManifest, null, 2)}\n`,
+      );
+
       results.push({
         name: component.name,
         success: true,
@@ -257,6 +291,7 @@ export async function addCommand(components: string[], options: AddOptions) {
       installSpinner.succeed('Dependencies installed');
     } catch (error) {
       installSpinner.fail('Failed to install dependencies');
+      process.exitCode = 1;
       console.log(chalk.yellow('Please install them manually:'));
       const packageManager = detectPackageManager(cwd);
       if (uniqueDependencies.length > 0) {
@@ -289,6 +324,7 @@ export async function addCommand(components: string[], options: AddOptions) {
   }
 
   if (failed > 0) {
+    process.exitCode = 1;
     console.log(chalk.red.bold(`✗ Failed to add ${failed} component(s)`));
     for (const result of results.filter((r) => !r.success)) {
       console.log(chalk.red(`  - ${result.name}: ${result.error}`));
@@ -298,6 +334,10 @@ export async function addCommand(components: string[], options: AddOptions) {
         }
       }
     }
+  }
+
+  if (invalidComponentRequested) {
+    process.exitCode = 1;
   }
 
   // For Angular, generate/update the components/ui/index.ts file with providers

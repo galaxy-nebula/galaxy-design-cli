@@ -12,6 +12,13 @@ const __dirname = path.dirname(__filename);
 const workspaceRoot = path.resolve(__dirname, '..', '..');
 const fixtureRoot = path.join(workspaceRoot, 'test', 'galaxy-vite-vue-lint');
 
+if (!existsSync(fixtureRoot)) {
+  // FIXTURE-SKIP: fixture dirs are not part of the repo; skip when absent.
+  console.log(`SKIP galaxy-vite-vue-lint (fixture not found)`);
+  process.exit(0);
+}
+
+
 function run(command, args, cwd) {
   const result = spawnSync(command, args, {
     cwd,

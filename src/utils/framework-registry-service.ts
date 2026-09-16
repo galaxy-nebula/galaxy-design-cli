@@ -14,7 +14,7 @@ export type RegistryFramework =
   | 'react-native'
   | 'flutter';
 
-export type RegistryTarget = Framework | Exclude<Platform, 'unknown'>;
+export type RegistryTarget = Framework | Platform;
 
 export interface FrameworkComponentProvider {
   import: string;

@@ -55,6 +55,7 @@ async function testTailwindMigrationPlanAndApply() {
   plugins: {
     tailwindcss: {},
     autoprefixer: {},
+    "postcss-nesting": {},
   },
 };
 `,
@@ -107,6 +108,10 @@ body {
       plan.addedDevDependencies.includes('@tailwindcss/postcss@^4.1.16'),
       true,
     );
+    assert.equal(
+      plan.addedDevDependencies.includes('tw-animate-css@^1.4.0'),
+      true,
+    );
     assert.equal(plan.removedPackages.includes('autoprefixer'), true);
     assert.equal(plan.auditFindings.length >= 6, true);
     assert.equal(
@@ -134,6 +139,7 @@ body {
 
     const result = migration.applyTailwindMigration(targetDir);
     assert.equal(result.componentsConfigUpdated, true);
+    assert.match(result.backupDirectory, /^\.galaxy\/backups\/tailwind-v3-/);
 
     const packageJson = JSON.parse(
       readFileSync(path.join(targetDir, 'package.json'), 'utf-8'),
@@ -143,6 +149,7 @@ body {
       packageJson.devDependencies['@tailwindcss/postcss'],
       '^4.1.16',
     );
+    assert.equal(packageJson.devDependencies['tw-animate-css'], '^1.4.0');
     assert.equal('autoprefixer' in packageJson.devDependencies, false);
 
     assert.match(
@@ -154,8 +161,24 @@ body {
       /autoprefixer/,
     );
     assert.match(
+      readFileSync(path.join(targetDir, 'postcss.config.js'), 'utf-8'),
+      /postcss-nesting/,
+    );
+    assert.match(
       readFileSync(path.join(targetDir, 'src', 'index.css'), 'utf-8'),
       /@import "tailwindcss";/,
+    );
+    assert.match(
+      readFileSync(path.join(targetDir, 'src', 'index.css'), 'utf-8'),
+      /@import "tw-animate-css";/,
+    );
+    assert.match(
+      readFileSync(path.join(targetDir, 'src', 'index.css'), 'utf-8'),
+      /@config "\.\.\/tailwind\.config\.js";/,
+    );
+    assert.match(
+      readFileSync(path.join(targetDir, 'src', 'index.css'), 'utf-8'),
+      /@theme inline/,
     );
     assert.doesNotMatch(
       readFileSync(path.join(targetDir, 'src', 'index.css'), 'utf-8'),
@@ -166,6 +189,13 @@ body {
       readFileSync(path.join(targetDir, 'components.json'), 'utf-8'),
     );
     assert.equal(componentsConfig.tailwind.version, 4);
+    assert.equal(
+      readFileSync(
+        path.join(targetDir, result.backupDirectory, 'package.json'),
+        'utf-8',
+      ).includes('^3.4.3'),
+      true,
+    );
   });
 
   await withTempProject('tailwind-migrate-v4-noop', async (targetDir) => {

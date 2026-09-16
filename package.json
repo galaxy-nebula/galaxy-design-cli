@@ -1,6 +1,6 @@
 {
   "name": "galaxy-design",
-  "version": "0.2.73",
+  "version": "0.3.0",
   "description": "CLI tool for adding Galaxy UI components to your Vue, React, Angular, Next.js, Nuxt.js, React Native, or Flutter project",
   "author": "Bùi Trọng Hiếu (kevinbui) <kevinbui210191@gmail.com>",
   "license": "MIT",
@@ -62,7 +62,11 @@
   "scripts": {
     "audit:registry": "node scripts/audit-registries.cjs",
     "generate:components-schema": "npm run build && node scripts/generate-components-schema.mjs",
-    "build": "swc src -d dist --config-file .swcrc --strip-leading-paths && cp src/registry.json dist/ && cp src/registries/registry-*.json dist/ && cp -r src/registries dist/ && cp -r src/schemas dist/ && cp -r src/templates dist/",
+    "clean": "node scripts/clean-dist.mjs",
+    "build:js": "npm run clean && swc src -d dist --config-file .swcrc --strip-leading-paths && node scripts/copy-build-assets.mjs",
+    "build:types": "tsc -p tsconfig.json",
+    "build": "npm run build:js && npm run build:types",
+    "typecheck": "tsc -p tsconfig.json --noEmit --declaration false --declarationMap false --emitDeclarationOnly false",
     "check:components-schema": "npm run build && node scripts/generate-components-schema.mjs --check",
     "test:component-copier": "npm run build && node scripts/test-component-copier.mjs",
     "test:add-command": "npm run build && node scripts/test-add-command.mjs",
@@ -95,6 +99,9 @@
   "devDependencies": {
     "@swc/cli": "^0.4.1-nightly.20240914",
     "@swc/core": "^1.9.3",
+    "@types/node": "^26.4.1",
+    "@types/prompts": "^2.4.9",
+    "tailwindcss": "^4.1.16",
     "typescript": "^5.7.3"
   }
 }

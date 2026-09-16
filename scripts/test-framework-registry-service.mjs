@@ -39,9 +39,9 @@ async function testAngularProviderMetadata(service) {
   const tooltip = service.getFrameworkComponent('angular', 'tooltip');
   const dialog = service.getFrameworkComponent('angular', 'dialog');
 
-  assert.equal(typeof tooltip?.providers?.import, 'string');
-  assert.equal(typeof tooltip?.providers?.function, 'string');
-  assert.match(tooltip.providers.import, /provideRdxTooltipConfig/);
+  // Radix NG tooltip has no config provider; the previous registry entry
+  // referenced the nonexistent `provideRdxTooltipConfig` from `tooltip2`.
+  assert.equal(tooltip?.providers, undefined);
 
   assert.equal(typeof dialog?.providers?.import, 'string');
   assert.equal(typeof dialog?.providers?.function, 'string');

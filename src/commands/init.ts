@@ -26,6 +26,7 @@ import {
 import { scaffoldInitFrameworkRuntime } from '../utils/init-runtime.js';
 import {
   getTailwindDevDependencies,
+  getTailwindMergeDependency,
   type TailwindMode,
 } from '../utils/tailwind-scaffold.js';
 
@@ -73,6 +74,7 @@ export async function initCommand(options: InitOptions) {
         `❌ ${error instanceof Error ? error.message : 'Failed to inspect project.'}`,
       ),
     );
+    process.exitCode = 1;
     return;
   }
 
@@ -158,6 +160,7 @@ export async function initCommand(options: InitOptions) {
   } catch (error) {
     spinner.fail('Failed to install dependencies');
     console.error(chalk.red(error));
+    process.exitCode = 1;
     return;
   }
 
@@ -171,6 +174,7 @@ export async function initCommand(options: InitOptions) {
   } catch (error) {
     dirSpinner.fail('Failed to create directories');
     console.error(chalk.red(error));
+    process.exitCode = 1;
     return;
   }
 
@@ -194,6 +198,7 @@ export async function initCommand(options: InitOptions) {
   } catch (error) {
     utilsSpinner.fail('Failed to create utility functions');
     console.error(chalk.red(error));
+    process.exitCode = 1;
     return;
   }
 
@@ -206,6 +211,7 @@ export async function initCommand(options: InitOptions) {
   } catch (error) {
     configSpinner.fail('Failed to create components.json');
     console.error(chalk.red(error));
+    process.exitCode = 1;
     return;
   }
 
@@ -240,6 +246,7 @@ export async function initCommand(options: InitOptions) {
           : 'Failed to create Tailwind CSS configuration',
       );
       console.error(chalk.red(error));
+      process.exitCode = 1;
       return;
     }
   }
@@ -303,12 +310,17 @@ export function getInitDependencyPlan(options: {
   const { framework, iconLibrary, typescript, tailwindMode } = options;
   const dependencies: string[] = [];
   const devDependencies: string[] = [];
+  const webTailwindMode = tailwindMode || 'v4';
 
   switch (framework) {
     case 'vue':
     case 'nuxtjs':
-      dependencies.push('clsx', 'tailwind-merge', 'radix-vue');
-      devDependencies.push(...getTailwindDevDependencies(tailwindMode || 'v4'));
+      dependencies.push(
+        'clsx',
+        getTailwindMergeDependency(webTailwindMode),
+        'radix-vue',
+      );
+      devDependencies.push(...getTailwindDevDependencies(webTailwindMode));
       if (iconLibrary === 'lucide') {
         dependencies.push('lucide-vue-next');
       }
@@ -318,8 +330,12 @@ export function getInitDependencyPlan(options: {
       break;
     case 'react':
     case 'nextjs':
-      dependencies.push('clsx', 'tailwind-merge', '@radix-ui/react-slot');
-      devDependencies.push(...getTailwindDevDependencies(tailwindMode || 'v4'));
+      dependencies.push(
+        'clsx',
+        getTailwindMergeDependency(webTailwindMode),
+        '@radix-ui/react-slot',
+      );
+      devDependencies.push(...getTailwindDevDependencies(webTailwindMode));
       if (iconLibrary === 'lucide') {
         dependencies.push('lucide-react');
       }
@@ -328,8 +344,12 @@ export function getInitDependencyPlan(options: {
       }
       break;
     case 'angular':
-      dependencies.push('clsx', 'tailwind-merge', '@radix-ng/primitives');
-      devDependencies.push(...getTailwindDevDependencies(tailwindMode || 'v4'));
+      dependencies.push(
+        'clsx',
+        getTailwindMergeDependency(webTailwindMode),
+        '@radix-ng/primitives',
+      );
+      devDependencies.push(...getTailwindDevDependencies(webTailwindMode));
       if (iconLibrary === 'lucide') {
         dependencies.push('lucide-angular');
       }

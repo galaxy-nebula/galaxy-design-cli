@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { cp, mkdtemp, readFile, rm } from 'node:fs/promises';
+import { cp, mkdtemp, readFile, readdir, rm } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { existsSync } from 'node:fs';
@@ -10,6 +10,13 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const workspaceRoot = path.resolve(__dirname, '..', '..');
 const fixtureRoot = path.join(workspaceRoot, 'test', 'galaxy-nextjs-lint');
+
+if (!existsSync(fixtureRoot)) {
+  // FIXTURE-SKIP: fixture dirs are not part of the repo; skip when absent.
+  console.log(`SKIP galaxy-nextjs-lint (fixture not found)`);
+  process.exit(0);
+}
+
 
 async function main() {
   const restoreFetch = installFetchFromRepoSource();
@@ -39,7 +46,14 @@ async function main() {
       'badge',
       'Badge.tsx',
     );
+    const badgeFiles = (await readdir(badgeDir)).sort();
     const badgeContent = await readFile(badgeFile, 'utf-8');
+
+    assert.deepEqual(
+      badgeFiles,
+      ['Badge.tsx', 'index.ts', 'variants.ts'],
+      'nextjs fixture should copy all badge source files, including sidecar variants.ts',
+    );
 
     assert.match(
       badgeContent,

@@ -19,6 +19,13 @@ const REGISTRY_FILES = {
   flutter: path.join(CLI_SRC, 'registries', 'registry-flutter.json'),
 };
 
+const BLOCK_REGISTRY_FILES = Object.fromEntries(
+  Object.keys(REGISTRY_FILES).map((framework) => [
+    framework,
+    path.join(CLI_SRC, 'registries', `blocks-${framework}.json`),
+  ]),
+);
+
 const COMPONENT_ROOTS = {
   react: path.join(DESIGN_ROOT, 'packages', 'react', 'src', 'components'),
   vue: path.join(DESIGN_ROOT, 'packages', 'vue', 'src', 'components'),
@@ -32,6 +39,31 @@ const COMPONENT_ROOTS = {
   ),
   flutter: path.join(DESIGN_ROOT, 'packages', 'flutter', 'lib', 'components'),
 };
+
+const BLOCK_ROOTS = {
+  react: path.join(DESIGN_ROOT, 'packages', 'react', 'src', 'blocks'),
+  vue: path.join(DESIGN_ROOT, 'packages', 'vue', 'src', 'blocks'),
+  angular: path.join(DESIGN_ROOT, 'packages', 'angular', 'src', 'blocks'),
+  'react-native': path.join(
+    DESIGN_ROOT,
+    'packages',
+    'react-native',
+    'src',
+    'blocks',
+  ),
+  flutter: path.join(DESIGN_ROOT, 'packages', 'flutter', 'lib', 'blocks'),
+};
+
+const FRAMEWORK_RUNTIME_PACKAGES = new Set([
+  '@angular/common',
+  '@angular/core',
+  '@angular/forms',
+  'react',
+  'react-dom',
+  'react-native',
+  'rxjs',
+  'vue',
+]);
 
 function readJson(file) {
   return JSON.parse(fs.readFileSync(file, 'utf8'));
@@ -69,14 +101,112 @@ function parseNamedExports(indexPath, language) {
   return { explicit: true, names: [...new Set(names)] };
 }
 
-function auditFiles(framework, components, issues) {
-  const root = COMPONENT_ROOTS[framework];
+function normalizeBlockSourceName(framework, componentName) {
+  if (framework === 'react-native' && componentName === 'sidebar') {
+    return 'drawer';
+  }
+  if (framework === 'flutter' && componentName === 'chat-ui') {
+    return 'chat_ui';
+  }
+  if (framework === 'flutter' && componentName === 'sidebar') {
+    return 'drawer';
+  }
+  return componentName;
+}
+
+function getPackageName(specifier) {
+  if (
+    specifier.startsWith('.') ||
+    specifier.startsWith('@/') ||
+    specifier.startsWith('~/') ||
+    specifier.startsWith('package:') ||
+    specifier.startsWith('node:')
+  ) {
+    return null;
+  }
+  return specifier.startsWith('@')
+    ? specifier.split('/').slice(0, 2).join('/')
+    : specifier.split('/')[0];
+}
+
+function auditFiles(framework, components, issues, options = {}) {
+  const root = options.blocks
+    ? BLOCK_ROOTS[framework]
+    : COMPONENT_ROOTS[framework];
 
   for (const [componentName, component] of Object.entries(components)) {
+    const sourceName = options.blocks
+      ? normalizeBlockSourceName(framework, componentName)
+      : componentName;
+    const declaredPackages = new Set(
+      [
+        ...(component.dependencies || []),
+        ...(component.devDependencies || []),
+        ...(component.peerDependencies || []),
+      ]
+        .map(getPackageName)
+        .filter(Boolean),
+    );
+
     for (const file of component.files || []) {
-      const fullPath = path.join(root, componentName, file);
+      const fullPath = path.join(root, sourceName, file);
       if (!fs.existsSync(fullPath)) {
-        issues.push(`[${framework}] missing file: ${componentName}/${file}`);
+        issues.push(
+          `[${framework}${options.blocks ? '/blocks' : ''}] missing file: ${sourceName}/${file}`,
+        );
+        continue;
+      }
+
+      const source = fs.readFileSync(fullPath, 'utf8');
+      const importPattern = /(?:from\s+|import\s*\()['"]([^'"]+)['"]/g;
+      for (const match of source.matchAll(importPattern)) {
+        const packageName = getPackageName(match[1]);
+        if (
+          packageName &&
+          !FRAMEWORK_RUNTIME_PACKAGES.has(packageName) &&
+          !declaredPackages.has(packageName)
+        ) {
+          issues.push(
+            `[${framework}${options.blocks ? '/blocks' : ''}] undeclared package for ${componentName}: ${packageName}`,
+          );
+        }
+      }
+    }
+  }
+}
+
+function auditRegistryDocument(file, registry, issues) {
+  if (!registry.$schema) {
+    issues.push(`[schema] missing $schema in ${path.basename(file)}`);
+  } else {
+    const schemaPath = path.resolve(path.dirname(file), registry.$schema);
+    if (!fs.existsSync(schemaPath)) {
+      issues.push(
+        `[schema] unresolved $schema in ${path.basename(file)}: ${registry.$schema}`,
+      );
+    }
+  }
+
+  for (const [groupName, group] of Object.entries(registry.groups || {})) {
+    for (const componentName of group.components || []) {
+      if (!registry.components?.[componentName]) {
+        issues.push(
+          `[${registry.name || path.basename(file)}] group ${groupName} references missing component: ${componentName}`,
+        );
+      }
+    }
+  }
+}
+
+function auditRegistryDependencies(framework, registry, baseRegistry, issues) {
+  for (const [componentName, component] of Object.entries(
+    registry.components || {},
+  )) {
+    for (const dependency of component.registryDependencies || []) {
+      if (!baseRegistry.components?.[dependency]) {
+        issues.push(
+          `[${framework}] ${componentName} references missing registry dependency: ${dependency}`,
+        );
       }
     }
   }
@@ -202,8 +332,16 @@ function main() {
   const registries = {};
 
   for (const [framework, file] of Object.entries(REGISTRY_FILES)) {
-    registries[framework] = readJson(file).components;
-    auditFiles(framework, registries[framework], issues);
+    const registry = readJson(file);
+    registries[framework] = registry.components;
+    auditRegistryDocument(file, registry, issues);
+    auditFiles(framework, registry.components, issues);
+
+    const blockFile = BLOCK_REGISTRY_FILES[framework];
+    const blockRegistry = readJson(blockFile);
+    auditRegistryDocument(blockFile, blockRegistry, issues);
+    auditRegistryDependencies(framework, blockRegistry, registry, issues);
+    auditFiles(framework, blockRegistry.components, issues, { blocks: true });
   }
 
   auditAngular(registries.angular, issues);

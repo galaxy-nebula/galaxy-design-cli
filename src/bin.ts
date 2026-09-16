@@ -6,6 +6,10 @@ import { fileURLToPath } from 'url';
 import { initCommand } from './commands/init.js';
 import { addCommand } from './commands/add.js';
 import { migrateTailwindCommand } from './commands/migrate-tailwind.js';
+import { listCommand } from './commands/list.js';
+import { doctorCommand } from './commands/doctor.js';
+import { diffCommand } from './commands/diff.js';
+import { updateCommand } from './commands/update.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -43,6 +47,34 @@ program
   .option('-a, --all', 'Add all components')
   .option('-c, --cwd <path>', 'Current working directory', process.cwd())
   .action(addCommand);
+
+program
+  .command('list')
+  .description('List available Galaxy UI components')
+  .option('-c, --cwd <path>', 'Current working directory', process.cwd())
+  .option('--framework <framework>', 'Framework to list components for')
+  .option('--category <category>', 'Filter by category/group')
+  .action(listCommand);
+
+program
+  .command('doctor')
+  .description('Diagnose your Galaxy UI setup')
+  .option('-c, --cwd <path>', 'Current working directory', process.cwd())
+  .action(doctorCommand);
+
+program
+  .command('diff')
+  .description('Diff installed components against the registry source')
+  .argument('[components...]', 'Component names to diff')
+  .option('-c, --cwd <path>', 'Current working directory', process.cwd())
+  .action(diffCommand);
+
+program
+  .command('update')
+  .description('Update installed components from the registry (with backup)')
+  .argument('[components...]', 'Component names to update')
+  .option('-c, --cwd <path>', 'Current working directory', process.cwd())
+  .action(updateCommand);
 
 program
   .command('migrate')

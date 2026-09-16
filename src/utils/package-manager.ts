@@ -140,10 +140,9 @@ export async function installDependencies(
     if (packageManager === 'bun') {
       const bunPaths = [
         process.env.BUN_INSTALL
-          ? `${process.env.BUN_INSTALL}/.bun/bin/bun`
+          ? `${process.env.BUN_INSTALL}/bin/bun`
           : null,
         process.env.HOME ? `${process.env.HOME}/.bun/bin/bun` : null,
-        '/Users/buitronghieu/.bun/bin/bun',
       ].filter(Boolean) as string[];
 
       for (const bunPath of bunPaths) {

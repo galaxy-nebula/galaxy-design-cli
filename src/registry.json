@@ -203,6 +203,9 @@
       "frameworks": [
         "react",
         "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular",
         "react-native",
         "flutter"
       ]
@@ -214,7 +217,10 @@
       "category": "form",
       "frameworks": [
         "react",
-        "nextjs"
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular"
       ]
     },
     "time-picker": {
@@ -224,7 +230,10 @@
       "category": "form",
       "frameworks": [
         "react",
-        "nextjs"
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular"
       ]
     },
     "date-time-picker": {
@@ -234,7 +243,10 @@
       "category": "form",
       "frameworks": [
         "react",
-        "nextjs"
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular"
       ]
     },
     "tags-input": {
@@ -741,6 +753,10 @@
       "description": "Display data as a gauge chart with customizable ranges and styling",
       "category": "charts",
       "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
         "angular",
         "react-native",
         "flutter"

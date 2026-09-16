@@ -1,5 +1,5 @@
 {
-  "$schema": "../schemas/registry-schema.json",
+  "$schema": "../schemas/registry-framework-schema.json",
   "name": "react-native-blocks",
   "components": {
     "chat-ui": {
@@ -12,8 +12,6 @@
       "files": [
         "types.ts",
         "ChatMessage.tsx",
-        "MessageList.tsx",
-        "MessageInput.tsx",
         "ChatUI.tsx",
         "index.ts"
       ],
@@ -28,7 +26,6 @@
       "registryDependencies": ["button"],
       "files": [
         "types.ts",
-        "DrawerItem.tsx",
         "Drawer.tsx",
         "index.ts"
       ],
@@ -43,8 +40,6 @@
       "registryDependencies": ["button", "input", "label", "checkbox"],
       "files": [
         "types.ts",
-        "LoginForm.tsx",
-        "RegisterForm.tsx",
         "AuthForm.tsx",
         "index.ts"
       ],

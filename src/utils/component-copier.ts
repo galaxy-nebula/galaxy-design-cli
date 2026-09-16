@@ -7,7 +7,10 @@ import {
 } from 'fs';
 import { dirname, join, relative } from 'path';
 import type { Platform } from './platform-detector.js';
-import { getComponentSourceDir } from './platform-detector.js';
+import {
+  getComponentSourceDir,
+  isMobilePlatform,
+} from './platform-detector.js';
 import {
   getFrameworkComponent,
   validateFrameworkComponentDependencies,
@@ -81,6 +84,22 @@ function normalizeSourcePlatform(platform: Platform): Platform {
   return platform;
 }
 
+function normalizeBlockSourceName(
+  platform: Platform,
+  componentName: string,
+): string {
+  if (platform === 'react-native' && componentName === 'sidebar') {
+    return 'drawer';
+  }
+
+  if (platform === 'flutter') {
+    if (componentName === 'chat-ui') return 'chat_ui';
+    if (componentName === 'sidebar') return 'drawer';
+  }
+
+  return componentName;
+}
+
 export async function copyComponentFilesToDirectory(
   options: CopyComponentFilesOptions,
 ): Promise<CopyComponentFilesResult> {
@@ -96,6 +115,10 @@ export async function copyComponentFilesToDirectory(
   const sourcePlatform = normalizeSourcePlatform(options.sourcePlatform);
   const sourceType =
     options.componentType === 'block' ? 'blocks' : 'components';
+  const sourceComponentName =
+    sourceType === 'blocks'
+      ? normalizeBlockSourceName(sourcePlatform, options.componentName)
+      : options.componentName;
 
   for (const file of options.componentFiles) {
     const targetFile = join(options.targetDirectory, file);
@@ -123,20 +146,22 @@ export async function copyComponentFilesToDirectory(
       if (useGitHub) {
         const githubPath = getComponentGitHubPath(
           sourcePlatform,
-          options.componentName,
+          sourceComponentName,
           file,
           sourceType,
         );
         fileContent = await fetchFileFromGitHub(githubPath);
       } else {
-        const componentSourceDir = getComponentSourceDir(sourcePlatform);
+        const componentSourceDir = getComponentSourceDir(sourcePlatform).replace(
+          /components$/,
+          sourceType,
+        );
         const sourceFile = join(
           options.packagesDir!,
           componentSourceDir,
-          options.componentName,
+          sourceComponentName,
           file,
         );
-
         if (!existsSync(sourceFile)) {
           result.errors.push(`${file}: Source file not found: ${sourceFile}`);
           continue;
@@ -354,7 +379,7 @@ export function generateImportStatement(
     return `// Component "${componentName}" not found`;
   }
 
-  const exports = component.exports;
+  const exports = component.exports || [];
 
   switch (platform) {
     case 'react-native':

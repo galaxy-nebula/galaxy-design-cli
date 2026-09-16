@@ -53,8 +53,21 @@ async function testTailwindDetection() {
 }
 
 async function testTailwindScaffold() {
-  const { scaffoldTailwindFiles } =
+  const {
+    getTailwindDevDependencies,
+    getTailwindMergeDependency,
+    scaffoldTailwindFiles,
+  } =
     await import('../dist/utils/tailwind-scaffold.js');
+  const { compile } = await import('tailwindcss');
+
+  assert.deepEqual(getTailwindDevDependencies('v4'), [
+    'tailwindcss',
+    '@tailwindcss/postcss',
+    'tw-animate-css',
+  ]);
+  assert.equal(getTailwindMergeDependency('v4'), 'tailwind-merge@^3.3.1');
+  assert.equal(getTailwindMergeDependency('v3'), 'tailwind-merge@^2.6.0');
 
   await withTempProject('tailwind-scaffold-v4', async (targetDir) => {
     const result = scaffoldTailwindFiles({
@@ -69,10 +82,32 @@ async function testTailwindScaffold() {
     assert.ok(result.written.includes('postcss.config.mjs'));
     assert.ok(result.written.includes('app/globals.css'));
     assert.equal(existsSync(path.join(targetDir, 'tailwind.config.ts')), false);
-    assert.match(
-      readFileSync(path.join(targetDir, 'app', 'globals.css'), 'utf-8'),
-      /@import "tailwindcss"/,
+    const css = readFileSync(
+      path.join(targetDir, 'app', 'globals.css'),
+      'utf-8',
     );
+    assert.match(css, /@import "tailwindcss"/);
+    assert.match(css, /@import "tw-animate-css"/);
+    assert.match(css, /@custom-variant dark/);
+    assert.match(css, /@theme inline/);
+    assert.match(css, /--color-border: hsl\(var\(--border\)\)/);
+    assert.match(css, /--color-background: hsl\(var\(--background\)\)/);
+
+    const compilableCss = css
+      .replace('@import "tailwindcss";', '@tailwind utilities;')
+      .replace('@import "tw-animate-css";', '');
+    const compiler = await compile(compilableCss);
+    const output = compiler.build([
+      'border-border',
+      'bg-background',
+      'text-foreground',
+      'rounded-lg',
+      'dark:bg-background',
+    ]);
+    assert.match(output, /\.border-border/);
+    assert.match(output, /\.bg-background/);
+    assert.match(output, /\.text-foreground/);
+    assert.match(output, /\.rounded-lg/);
   });
 
   await withTempProject('tailwind-scaffold-v3', async (targetDir) => {
@@ -91,6 +126,16 @@ async function testTailwindScaffold() {
     assert.match(
       readFileSync(path.join(targetDir, 'src', 'index.css'), 'utf-8'),
       /@tailwind base;/,
+    );
+    assert.match(
+      readFileSync(path.join(targetDir, 'tailwind.config.js'), 'utf-8'),
+      /tailwindcss-animate/,
+    );
+    assert.equal(
+      getTailwindDevDependencies('v3').includes(
+        'tailwindcss-animate@^1.0.7',
+      ),
+      true,
     );
   });
 

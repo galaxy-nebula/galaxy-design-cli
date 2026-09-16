@@ -1,23 +1,29 @@
 {
+  "$schema": "../schemas/registry-framework-schema.json",
+  "name": "flutter",
   "platform": "flutter",
   "version": "1.0.0",
   "components": {
     "accordion": {
-      "name": "Accordion",
-      "type": "layout",
-      "description": "Collapsible accordion component for expandable content sections",
+      "id": "accordion",
+      "name": "accordion",
+      "type": "other",
+      "description": "accordion",
       "files": [
         "accordion.dart"
       ],
+      "exports": [
+        "GalaxyAccordion",
+        "_GalaxyAccordionState",
+        "GalaxyAccordionItem"
+      ],
       "dependencies": [],
+      "devDependencies": [],
       "peerDependencies": [
         "flutter"
       ],
-      "exports": [
-        "GalaxyAccordion",
-        "GalaxyAccordionItem"
-      ],
-      "category": "layout",
+      "registryDependencies": [],
+      "category": "other",
       "props": [
         {
           "name": "items",
@@ -39,142 +45,27 @@
           "default": false,
           "description": "Allow multiple items expanded at once."
         }
-      ],
-      "children": [
-        {
-          "name": "AccordionItem",
-          "props": [
-            {
-              "name": "title",
-              "type": {
-                "kind": "custom",
-                "name": "Widget"
-              },
-              "description": "Accordion item title widget."
-            },
-            {
-              "name": "content",
-              "type": {
-                "kind": "custom",
-                "name": "Widget"
-              },
-              "description": "Accordion item content widget."
-            }
-          ]
-        }
-      ]
-    },
-    "alert": {
-      "name": "Alert",
-      "type": "feedback",
-      "description": "Alert component for displaying important messages with variants",
-      "files": [
-        "alert.dart"
-      ],
-      "dependencies": [],
-      "peerDependencies": [
-        "flutter"
-      ],
-      "exports": [
-        "GalaxyAlert"
-      ],
-      "category": "feedback",
-      "props": [
-        {
-          "name": "child",
-          "type": {
-            "kind": "custom",
-            "name": "Widget"
-          },
-          "description": "Alert content widget."
-        },
-        {
-          "name": "variant",
-          "type": {
-            "kind": "union",
-            "values": [
-              {
-                "kind": "literal",
-                "value": "default_"
-              },
-              {
-                "kind": "literal",
-                "value": "destructive"
-              }
-            ]
-          },
-          "default": "default_",
-          "description": "Visual style variant for the alert."
-        },
-        {
-          "name": "padding",
-          "type": {
-            "kind": "custom",
-            "name": "EdgeInsetsGeometry"
-          },
-          "description": "Padding inside the alert container."
-        }
-      ],
-      "children": [
-        {
-          "name": "AlertTitle",
-          "props": [
-            {
-              "name": "title",
-              "type": {
-                "kind": "primitive",
-                "name": "string"
-              },
-              "description": "Title text."
-            },
-            {
-              "name": "style",
-              "type": {
-                "kind": "custom",
-                "name": "TextStyle"
-              },
-              "description": "Optional text style override."
-            }
-          ]
-        },
-        {
-          "name": "AlertDescription",
-          "props": [
-            {
-              "name": "description",
-              "type": {
-                "kind": "primitive",
-                "name": "string"
-              },
-              "description": "Description text."
-            },
-            {
-              "name": "style",
-              "type": {
-                "kind": "custom",
-                "name": "TextStyle"
-              },
-              "description": "Optional text style override."
-            }
-          ]
-        }
       ]
     },
     "alert-dialog": {
-      "name": "Alert Dialog",
-      "type": "overlay",
-      "description": "Modal alert dialog for important confirmations and decisions",
+      "id": "alert-dialog",
+      "name": "alert-dialog",
+      "type": "other",
+      "description": "alert-dialog",
       "files": [
         "alert_dialog.dart"
       ],
+      "exports": [
+        "GalaxyAlertDialog",
+        "AlertDialogVariant"
+      ],
       "dependencies": [],
+      "devDependencies": [],
       "peerDependencies": [
         "flutter"
       ],
-      "exports": [
-        "GalaxyAlertDialog"
-      ],
-      "category": "feedback",
+      "registryDependencies": [],
+      "category": "other",
       "props": [
         {
           "name": "title",
@@ -244,149 +135,35 @@
         }
       ]
     },
-    "aspect-ratio": {
-      "name": "Aspect Ratio",
-      "type": "layout",
-      "description": "Container that maintains a specific aspect ratio for its content",
+    "alert": {
+      "id": "alert",
+      "name": "alert",
+      "type": "other",
+      "description": "alert",
       "files": [
-        "aspect_ratio.dart"
+        "alert.dart"
+      ],
+      "exports": [
+        "GalaxyAlert",
+        "GalaxyAlertTitle",
+        "GalaxyAlertDescription",
+        "AlertVariant"
       ],
       "dependencies": [],
+      "devDependencies": [],
       "peerDependencies": [
         "flutter"
       ],
-      "exports": [
-        "GalaxyAspectRatio"
-      ],
-      "category": "layout",
+      "registryDependencies": [],
+      "category": "other",
       "props": [
-        {
-          "name": "ratio",
-          "type": {
-            "kind": "primitive",
-            "name": "number"
-          },
-          "description": "Desired aspect ratio."
-        },
         {
           "name": "child",
           "type": {
             "kind": "custom",
             "name": "Widget"
           },
-          "description": "Content constrained by the ratio."
-        }
-      ]
-    },
-    "avatar": {
-      "name": "Avatar",
-      "type": "data-display",
-      "description": "Avatar component for displaying user profile images with fallback",
-      "files": [
-        "avatar.dart"
-      ],
-      "dependencies": [],
-      "peerDependencies": [
-        "flutter"
-      ],
-      "exports": [
-        "GalaxyAvatar"
-      ],
-      "category": "data-display",
-      "props": [
-        {
-          "name": "imageUrl",
-          "type": {
-            "kind": "primitive",
-            "name": "string"
-          },
-          "description": "Image source URL."
-        },
-        {
-          "name": "fallbackText",
-          "type": {
-            "kind": "primitive",
-            "name": "string"
-          },
-          "description": "Fallback text used when no image is available."
-        },
-        {
-          "name": "size",
-          "type": {
-            "kind": "union",
-            "values": [
-              {
-                "kind": "literal",
-                "value": "sm"
-              },
-              {
-                "kind": "literal",
-                "value": "md"
-              },
-              {
-                "kind": "literal",
-                "value": "lg"
-              },
-              {
-                "kind": "literal",
-                "value": "xl"
-              }
-            ]
-          },
-          "default": "md",
-          "description": "Avatar size variant."
-        },
-        {
-          "name": "backgroundColor",
-          "type": {
-            "kind": "custom",
-            "name": "Color"
-          },
-          "description": "Background color of the avatar."
-        },
-        {
-          "name": "foregroundColor",
-          "type": {
-            "kind": "custom",
-            "name": "Color"
-          },
-          "description": "Foreground color of the fallback text."
-        }
-      ]
-    },
-    "badge": {
-      "name": "Badge",
-      "type": "data-display",
-      "description": "Badge component for status indicators, counts, and labels",
-      "files": [
-        "badge.dart"
-      ],
-      "dependencies": [],
-      "peerDependencies": [
-        "flutter"
-      ],
-      "exports": [
-        "GalaxyBadge",
-        "GalaxyBadgeCount",
-        "GalaxyBadgePositioned"
-      ],
-      "category": "data-display",
-      "props": [
-        {
-          "name": "text",
-          "type": {
-            "kind": "primitive",
-            "name": "string"
-          },
-          "description": "Badge text content."
-        },
-        {
-          "name": "child",
-          "type": {
-            "kind": "custom",
-            "name": "Widget"
-          },
-          "description": "Custom badge content widget."
+          "description": "Alert content widget."
         },
         {
           "name": "variant",
@@ -396,132 +173,15 @@
               {
                 "kind": "literal",
                 "value": "default_"
-              },
-              {
-                "kind": "literal",
-                "value": "secondary"
               },
               {
                 "kind": "literal",
                 "value": "destructive"
-              },
-              {
-                "kind": "literal",
-                "value": "outline"
               }
             ]
           },
           "default": "default_",
-          "description": "Visual style variant for the badge."
-        },
-        {
-          "name": "padding",
-          "type": {
-            "kind": "custom",
-            "name": "EdgeInsets"
-          },
-          "description": "Padding inside the badge."
-        }
-      ]
-    },
-    "button": {
-      "name": "Button",
-      "type": "form",
-      "description": "Button component with multiple variants, sizes, and states",
-      "files": [
-        "button.dart"
-      ],
-      "dependencies": [],
-      "peerDependencies": [
-        "flutter"
-      ],
-      "exports": [
-        "GalaxyButton"
-      ],
-      "props": [
-        {
-          "name": "variant",
-          "type": {
-            "kind": "union",
-            "values": [
-              "primary",
-              "destructive",
-              "outline",
-              "secondary",
-              "ghost",
-              "link"
-            ]
-          },
-          "default": "primary",
-          "description": "Visual style variant."
-        },
-        {
-          "name": "size",
-          "type": {
-            "kind": "union",
-            "values": [
-              "defaultSize",
-              "sm",
-              "lg",
-              "icon"
-            ]
-          },
-          "default": "defaultSize",
-          "description": "Size variant."
-        },
-        {
-          "name": "onPressed",
-          "type": {
-            "kind": "function",
-            "signature": "() => void"
-          },
-          "description": "Press handler."
-        },
-        {
-          "name": "disabled",
-          "type": {
-            "kind": "primitive",
-            "name": "boolean"
-          },
-          "default": false,
-          "description": "Disables the button."
-        },
-        {
-          "name": "child",
-          "type": {
-            "kind": "custom",
-            "name": "Widget"
-          },
-          "description": "Button content."
-        }
-      ]
-    },
-    "card": {
-      "name": "Card",
-      "type": "layout",
-      "description": "Card container with header, content, and footer sections",
-      "files": [
-        "card.dart"
-      ],
-      "dependencies": [],
-      "peerDependencies": [
-        "flutter"
-      ],
-      "exports": [
-        "GalaxyCard",
-        "GalaxyCardHeader",
-        "GalaxyCardContent",
-        "GalaxyCardFooter"
-      ],
-      "category": "layout",
-      "props": [
-        {
-          "name": "child",
-          "type": {
-            "kind": "custom",
-            "name": "Widget"
-          },
-          "description": "Card content widget."
+          "description": "Visual style variant for the alert."
         },
         {
           "name": "padding",
@@ -529,3224 +189,43 @@
             "kind": "custom",
             "name": "EdgeInsetsGeometry"
           },
-          "description": "Optional padding applied around the child."
-        },
-        {
-          "name": "elevation",
-          "type": {
-            "kind": "primitive",
-            "name": "number"
-          },
-          "default": 1,
-          "description": "Card elevation."
-        }
-      ],
-      "children": [
-        {
-          "name": "CardHeader",
-          "props": [
-            {
-              "name": "child",
-              "type": {
-                "kind": "custom",
-                "name": "Widget"
-              },
-              "description": "Header content widget."
-            },
-            {
-              "name": "padding",
-              "type": {
-                "kind": "custom",
-                "name": "EdgeInsetsGeometry"
-              },
-              "description": "Padding for the header section."
-            }
-          ]
-        },
-        {
-          "name": "CardTitle",
-          "props": [
-            {
-              "name": "title",
-              "type": {
-                "kind": "primitive",
-                "name": "string"
-              },
-              "description": "Title text."
-            },
-            {
-              "name": "style",
-              "type": {
-                "kind": "custom",
-                "name": "TextStyle"
-              },
-              "description": "Optional text style override."
-            }
-          ]
-        },
-        {
-          "name": "CardDescription",
-          "props": [
-            {
-              "name": "description",
-              "type": {
-                "kind": "primitive",
-                "name": "string"
-              },
-              "description": "Description text."
-            },
-            {
-              "name": "style",
-              "type": {
-                "kind": "custom",
-                "name": "TextStyle"
-              },
-              "description": "Optional text style override."
-            }
-          ]
-        },
-        {
-          "name": "CardContent",
-          "props": [
-            {
-              "name": "child",
-              "type": {
-                "kind": "custom",
-                "name": "Widget"
-              },
-              "description": "Content widget."
-            },
-            {
-              "name": "padding",
-              "type": {
-                "kind": "custom",
-                "name": "EdgeInsetsGeometry"
-              },
-              "description": "Padding for the content section."
-            }
-          ]
-        },
-        {
-          "name": "CardFooter",
-          "props": [
-            {
-              "name": "child",
-              "type": {
-                "kind": "custom",
-                "name": "Widget"
-              },
-              "description": "Footer content widget."
-            },
-            {
-              "name": "padding",
-              "type": {
-                "kind": "custom",
-                "name": "EdgeInsetsGeometry"
-              },
-              "description": "Padding for the footer section."
-            }
-          ]
+          "description": "Padding inside the alert container."
         }
       ]
-    },
-    "checkbox": {
-      "name": "Checkbox",
-      "type": "form",
-      "description": "Checkbox input with label and indeterminate state support",
-      "files": [
-        "checkbox.dart"
-      ],
-      "dependencies": [],
-      "peerDependencies": [
-        "flutter"
-      ],
-      "exports": [
-        "GalaxyCheckbox"
-      ],
-      "props": [
-        {
-          "name": "value",
-          "type": {
-            "kind": "primitive",
-            "name": "boolean"
-          },
-          "description": "Controlled checked state."
-        },
-        {
-          "name": "onChanged",
-          "type": {
-            "kind": "function",
-            "signature": "(value: boolean | null) => void"
-          },
-          "description": "Called when the checked state changes."
-        },
-        {
-          "name": "label",
-          "type": {
-            "kind": "primitive",
-            "name": "string"
-          },
-          "description": "Label text."
-        },
-        {
-          "name": "disabled",
-          "type": {
-            "kind": "primitive",
-            "name": "boolean"
-          },
-          "default": false,
-          "description": "Disables the checkbox."
-        }
-      ]
-    },
-    "collapsible": {
-      "name": "Collapsible",
-      "type": "layout",
-      "description": "Collapsible container for showing and hiding content",
-      "files": [
-        "collapsible.dart"
-      ],
-      "dependencies": [],
-      "peerDependencies": [
-        "flutter"
-      ],
-      "exports": [
-        "GalaxyCollapsible"
-      ],
-      "category": "layout",
-      "props": [
-        {
-          "name": "trigger",
-          "type": {
-            "kind": "custom",
-            "name": "Widget"
-          },
-          "description": "Widget used to toggle the collapsible state."
-        },
-        {
-          "name": "content",
-          "type": {
-            "kind": "custom",
-            "name": "Widget"
-          },
-          "description": "Widget revealed when expanded."
-        },
-        {
-          "name": "initiallyExpanded",
-          "type": {
-            "kind": "primitive",
-            "name": "boolean"
-          },
-          "default": false,
-          "description": "Whether the collapsible starts expanded."
-        },
-        {
-          "name": "onExpansionChanged",
-          "type": {
-            "kind": "function",
-            "signature": "(expanded: bool) => void"
-          },
-          "description": "Called when the expansion state changes."
-        }
-      ]
-    },
-    "context-menu": {
-      "name": "Context Menu",
-      "type": "overlay",
-      "description": "Context menu triggered by long press gesture",
-      "files": [
-        "context_menu.dart"
-      ],
-      "dependencies": [],
-      "peerDependencies": [
-        "flutter"
-      ],
-      "exports": [
-        "GalaxyContextMenu",
-        "GalaxyContextMenuItem"
-      ],
-      "category": "navigation",
-      "props": [
-        {
-          "name": "child",
-          "type": {
-            "kind": "custom",
-            "name": "Widget"
-          },
-          "description": "Widget that receives the long-press or secondary-tap gesture."
-        },
-        {
-          "name": "items",
-          "type": {
-            "kind": "custom",
-            "name": "List<GalaxyContextMenuItem<T>>"
-          },
-          "description": "Items shown in the context menu."
-        },
-        {
-          "name": "onSelected",
-          "type": {
-            "kind": "function",
-            "signature": "(T value) => void"
-          },
-          "description": "Called when a menu item is selected."
-        }
-      ],
-      "children": [
-        {
-          "name": "GalaxyContextMenuItem",
-          "props": [
-            {
-              "name": "value",
-              "type": {
-                "kind": "custom",
-                "name": "T"
-              },
-              "description": "Value returned when the item is selected."
-            },
-            {
-              "name": "child",
-              "type": {
-                "kind": "custom",
-                "name": "Widget"
-              },
-              "description": "Main item content."
-            },
-            {
-              "name": "leading",
-              "type": {
-                "kind": "custom",
-                "name": "Widget"
-              },
-              "description": "Optional leading widget."
-            },
-            {
-              "name": "trailing",
-              "type": {
-                "kind": "custom",
-                "name": "Widget"
-              },
-              "description": "Optional trailing widget."
-            },
-            {
-              "name": "disabled",
-              "type": {
-                "kind": "primitive",
-                "name": "boolean"
-              },
-              "description": "Disables the item.",
-              "default": false
-            }
-          ]
-        }
-      ]
-    },
-    "date-picker": {
-      "name": "Date Picker",
-      "type": "form",
-      "description": "Date picker with single date and date range selection",
-      "files": [
-        "date_picker.dart"
-      ],
-      "dependencies": [],
-      "peerDependencies": [
-        "flutter",
-        "intl"
-      ],
-      "exports": [
-        "GalaxyDatePicker",
-        "GalaxyDateRangePicker"
-      ],
-      "category": "form",
-      "props": [
-        {
-          "name": "selected",
-          "type": {
-            "kind": "custom",
-            "name": "DateTime"
-          },
-          "description": "Selected date for the single-date picker."
-        },
-        {
-          "name": "minDate",
-          "type": {
-            "kind": "custom",
-            "name": "DateTime"
-          },
-          "description": "Earliest date available for selection."
-        },
-        {
-          "name": "maxDate",
-          "type": {
-            "kind": "custom",
-            "name": "DateTime"
-          },
-          "description": "Latest date available for selection."
-        },
-        {
-          "name": "onChanged",
-          "type": {
-            "kind": "function",
-            "signature": "(date: DateTime?) => void"
-          },
-          "description": "Called when the selected date changes."
-        },
-        {
-          "name": "format",
-          "type": {
-            "kind": "primitive",
-            "name": "string"
-          },
-          "description": "Date format pattern used for display."
-        },
-        {
-          "name": "placeholder",
-          "type": {
-            "kind": "primitive",
-            "name": "string"
-          },
-          "description": "Placeholder text shown when no date is selected."
-        },
-        {
-          "name": "header",
-          "type": {
-            "kind": "custom",
-            "name": "Widget"
-          },
-          "description": "Optional header widget rendered above the picker."
-        }
-      ],
-      "children": [
-        {
-          "name": "DateRangePicker",
-          "props": [
-            {
-              "name": "selected",
-              "type": {
-                "kind": "custom",
-                "name": "DateTimeRange"
-              },
-              "description": "Selected date range."
-            },
-            {
-              "name": "minDate",
-              "type": {
-                "kind": "custom",
-                "name": "DateTime"
-              },
-              "description": "Earliest date available for range selection."
-            },
-            {
-              "name": "maxDate",
-              "type": {
-                "kind": "custom",
-                "name": "DateTime"
-              },
-              "description": "Latest date available for range selection."
-            },
-            {
-              "name": "onChanged",
-              "type": {
-                "kind": "function",
-                "signature": "(range: DateTimeRange?) => void"
-              },
-              "description": "Called when the selected date range changes."
-            },
-            {
-              "name": "format",
-              "type": {
-                "kind": "primitive",
-                "name": "string"
-              },
-              "description": "Date format pattern used for display."
-            },
-            {
-              "name": "placeholder",
-              "type": {
-                "kind": "primitive",
-                "name": "string"
-              },
-              "description": "Placeholder text shown when no range is selected."
-            },
-            {
-              "name": "header",
-              "type": {
-                "kind": "custom",
-                "name": "Widget"
-              },
-              "description": "Optional header widget rendered above the picker."
-            }
-          ]
-        }
-      ]
-    },
-    "dialog": {
-      "name": "Dialog",
-      "type": "overlay",
-      "description": "Modal dialog for displaying content over the main interface",
-      "files": [
-        "dialog.dart"
-      ],
-      "dependencies": [],
-      "peerDependencies": [
-        "flutter"
-      ],
-      "exports": [
-        "GalaxyDialog"
-      ],
-      "category": "layout",
-      "props": [
-        {
-          "name": "title",
-          "type": {
-            "kind": "custom",
-            "name": "Widget"
-          },
-          "description": "Optional widget rendered as the dialog title."
-        },
-        {
-          "name": "content",
-          "type": {
-            "kind": "custom",
-            "name": "Widget"
-          },
-          "description": "Optional widget rendered as the main dialog content."
-        },
-        {
-          "name": "actions",
-          "type": {
-            "kind": "array",
-            "of": {
-              "kind": "custom",
-              "name": "Widget"
-            }
-          },
-          "description": "Optional action widgets rendered in the footer row."
-        },
-        {
-          "name": "contentPadding",
-          "type": {
-            "kind": "custom",
-            "name": "EdgeInsetsGeometry"
-          },
-          "description": "Padding applied around the content widget."
-        }
-      ]
-    },
-    "dropdown-menu": {
-      "name": "Dropdown Menu",
-      "type": "overlay",
-      "description": "Dropdown menu for displaying a list of actions or options",
-      "files": [
-        "dropdown_menu.dart"
-      ],
-      "dependencies": [],
-      "peerDependencies": [
-        "flutter"
-      ],
-      "exports": [
-        "GalaxyDropdownMenu",
-        "GalaxyDropdownMenuItem"
-      ],
-      "category": "navigation",
-      "props": [
-        {
-          "name": "trigger",
-          "type": {
-            "kind": "custom",
-            "name": "Widget"
-          },
-          "description": "Widget used to open the menu."
-        },
-        {
-          "name": "items",
-          "type": {
-            "kind": "array",
-            "of": {
-              "kind": "custom",
-              "name": "GalaxyDropdownMenuItem<T>"
-            }
-          },
-          "description": "Menu items rendered in the popup."
-        },
-        {
-          "name": "onSelected",
-          "type": {
-            "kind": "function",
-            "signature": "(value: T) => void"
-          },
-          "description": "Called when an item is selected."
-        }
-      ],
-      "children": [
-        {
-          "name": "GalaxyDropdownMenuItem",
-          "props": [
-            {
-              "name": "value",
-              "type": {
-                "kind": "custom",
-                "name": "T"
-              },
-              "description": "Value returned when the item is selected."
-            },
-            {
-              "name": "child",
-              "type": {
-                "kind": "custom",
-                "name": "Widget"
-              },
-              "description": "Primary content widget."
-            },
-            {
-              "name": "leading",
-              "type": {
-                "kind": "custom",
-                "name": "Widget"
-              },
-              "description": "Optional leading widget."
-            },
-            {
-              "name": "trailing",
-              "type": {
-                "kind": "custom",
-                "name": "Widget"
-              },
-              "description": "Optional trailing widget."
-            },
-            {
-              "name": "disabled",
-              "type": {
-                "kind": "primitive",
-                "name": "boolean"
-              },
-              "default": false,
-              "description": "Disables the item."
-            }
-          ]
-        }
-      ]
-    },
-    "empty": {
-      "name": "Empty",
-      "type": "data-display",
-      "description": "Empty state component with presets for no data, errors, and offline states",
-      "files": [
-        "empty.dart"
-      ],
-      "dependencies": [],
-      "peerDependencies": [
-        "flutter"
-      ],
-      "exports": [
-        "GalaxyEmpty"
-      ],
-      "category": "feedback",
-      "props": [
-        {
-          "name": "icon",
-          "type": {
-            "kind": "custom",
-            "name": "Widget"
-          },
-          "description": "Optional icon widget."
-        },
-        {
-          "name": "title",
-          "type": {
-            "kind": "primitive",
-            "name": "string"
-          },
-          "description": "Optional title text."
-        },
-        {
-          "name": "description",
-          "type": {
-            "kind": "primitive",
-            "name": "string"
-          },
-          "description": "Optional description text."
-        },
-        {
-          "name": "action",
-          "type": {
-            "kind": "custom",
-            "name": "Widget"
-          },
-          "description": "Optional action widget."
-        },
-        {
-          "name": "padding",
-          "type": {
-            "kind": "custom",
-            "name": "EdgeInsets"
-          },
-          "default": "EdgeInsets.all(32)",
-          "description": "Padding around the empty state content."
-        },
-        {
-          "name": "iconSize",
-          "type": {
-            "kind": "primitive",
-            "name": "number"
-          },
-          "default": 64,
-          "description": "Size applied to the icon theme."
-        },
-        {
-          "name": "spacing",
-          "type": {
-            "kind": "primitive",
-            "name": "number"
-          },
-          "default": 16,
-          "description": "Base spacing used between sections."
-        }
-      ],
-      "children": [
-        {
-          "name": "GalaxyEmpty.noData",
-          "props": []
-        },
-        {
-          "name": "GalaxyEmpty.noResults",
-          "props": []
-        },
-        {
-          "name": "GalaxyEmpty.error",
-          "props": []
-        },
-        {
-          "name": "GalaxyEmpty.offline",
-          "props": []
-        },
-        {
-          "name": "GalaxyEmpty.emptyList",
-          "props": []
-        }
-      ]
-    },
-    "hover-card": {
-      "name": "Hover Card",
-      "type": "overlay",
-      "description": "Hover card for displaying additional information on press",
-      "files": [
-        "hover_card.dart"
-      ],
-      "dependencies": [],
-      "peerDependencies": [
-        "flutter"
-      ],
-      "exports": [
-        "GalaxyHoverCard"
-      ],
-      "category": "data-display",
-      "props": [
-        {
-          "name": "trigger",
-          "type": {
-            "kind": "custom",
-            "name": "Widget"
-          },
-          "description": "Widget used as the hover or tap trigger."
-        },
-        {
-          "name": "content",
-          "type": {
-            "kind": "custom",
-            "name": "Widget"
-          },
-          "description": "Widget displayed inside the hover card."
-        },
-        {
-          "name": "width",
-          "type": {
-            "kind": "primitive",
-            "name": "number"
-          },
-          "description": "Optional width of the hover card."
-        },
-        {
-          "name": "padding",
-          "type": {
-            "kind": "custom",
-            "name": "EdgeInsets"
-          },
-          "description": "Padding inside the hover card."
-        },
-        {
-          "name": "openDelay",
-          "type": {
-            "kind": "custom",
-            "name": "Duration"
-          },
-          "description": "Configured open delay; currently declared but not applied by the implementation."
-        }
-      ]
-    },
-    "input": {
-      "name": "Input",
-      "type": "form",
-      "description": "Text input component with label, placeholder, and error states",
-      "files": [
-        "input.dart"
-      ],
-      "dependencies": [],
-      "peerDependencies": [
-        "flutter"
-      ],
-      "exports": [
-        "GalaxyInput"
-      ],
-      "props": [
-        {
-          "name": "controller",
-          "type": {
-            "kind": "custom",
-            "name": "TextEditingController"
-          },
-          "description": "Controller for the text field."
-        },
-        {
-          "name": "label",
-          "type": {
-            "kind": "primitive",
-            "name": "string"
-          },
-          "description": "Label text."
-        },
-        {
-          "name": "placeholder",
-          "type": {
-            "kind": "primitive",
-            "name": "string"
-          },
-          "description": "Placeholder text."
-        },
-        {
-          "name": "error",
-          "type": {
-            "kind": "primitive",
-            "name": "string"
-          },
-          "description": "Error text."
-        },
-        {
-          "name": "enabled",
-          "type": {
-            "kind": "primitive",
-            "name": "boolean"
-          },
-          "default": true,
-          "description": "Whether the input is enabled."
-        },
-        {
-          "name": "obscureText",
-          "type": {
-            "kind": "primitive",
-            "name": "boolean"
-          },
-          "default": false,
-          "description": "Obscures the input text."
-        },
-        {
-          "name": "keyboardType",
-          "type": {
-            "kind": "custom",
-            "name": "TextInputType"
-          },
-          "description": "Keyboard type."
-        },
-        {
-          "name": "maxLines",
-          "type": {
-            "kind": "primitive",
-            "name": "number"
-          },
-          "default": 1,
-          "description": "Max lines."
-        },
-        {
-          "name": "onChanged",
-          "type": {
-            "kind": "function",
-            "signature": "(value: string) => void"
-          },
-          "description": "Change handler."
-        },
-        {
-          "name": "onSubmitted",
-          "type": {
-            "kind": "function",
-            "signature": "(value: string) => void"
-          },
-          "description": "Submit handler."
-        }
-      ]
-    },
-    "label": {
-      "name": "Label",
-      "type": "form",
-      "description": "Label component for form inputs",
-      "files": [
-        "label.dart"
-      ],
-      "dependencies": [],
-      "peerDependencies": [
-        "flutter"
-      ],
-      "exports": [
-        "GalaxyLabel"
-      ],
-      "props": [
-        {
-          "name": "text",
-          "type": {
-            "kind": "primitive",
-            "name": "string"
-          },
-          "description": "Label text."
-        },
-        {
-          "name": "required",
-          "type": {
-            "kind": "primitive",
-            "name": "boolean"
-          },
-          "default": false,
-          "description": "Marks label as required and appends an asterisk."
-        },
-        {
-          "name": "style",
-          "type": {
-            "kind": "custom",
-            "name": "TextStyle"
-          },
-          "description": "Text style."
-        },
-        {
-          "name": "color",
-          "type": {
-            "kind": "custom",
-            "name": "Color"
-          },
-          "description": "Text color."
-        }
-      ]
-    },
-    "menubar": {
-      "name": "Menubar",
-      "type": "navigation",
-      "description": "Menubar component for horizontal navigation menus",
-      "files": [
-        "menubar.dart"
-      ],
-      "dependencies": [],
-      "peerDependencies": [
-        "flutter"
-      ],
-      "exports": [
-        "GalaxyMenubar",
-        "GalaxyMenubarMenu"
-      ],
-      "category": "navigation",
-      "props": [
-        {
-          "name": "menus",
-          "type": {
-            "kind": "array",
-            "of": {
-              "kind": "custom",
-              "name": "GalaxyMenubarMenu"
-            }
-          },
-          "description": "Menus rendered in the menubar."
-        }
-      ],
-      "children": [
-        {
-          "name": "GalaxyMenubarMenu",
-          "props": [
-            {
-              "name": "label",
-              "type": {
-                "kind": "primitive",
-                "name": "string"
-              },
-              "description": "Visible label for the menu trigger."
-            },
-            {
-              "name": "items",
-              "type": {
-                "kind": "array",
-                "of": {
-                  "kind": "custom",
-                  "name": "PopupMenuEntry"
-                }
-              },
-              "description": "Popup menu entries."
-            },
-            {
-              "name": "onSelected",
-              "type": {
-                "kind": "function",
-                "signature": "(value: dynamic) => void"
-              },
-              "description": "Called when an item is selected."
-            }
-          ]
-        }
-      ]
-    },
-    "navigation-menu": {
-      "name": "Navigation Menu",
-      "type": "navigation",
-      "description": "Navigation menu with bottom tab and drawer variants",
-      "files": [
-        "navigation_menu.dart"
-      ],
-      "dependencies": [],
-      "peerDependencies": [
-        "flutter"
-      ],
-      "exports": [
-        "GalaxyNavigationMenu",
-        "NavigationMenuItem",
-        "NavigationMenuVariant",
-        "showGalaxyDrawer"
-      ],
-      "category": "navigation",
-      "props": [
-        {
-          "name": "items",
-          "type": {
-            "kind": "custom",
-            "name": "List<NavigationMenuItem>"
-          },
-          "description": "Items rendered in the navigation menu."
-        },
-        {
-          "name": "selectedId",
-          "type": {
-            "kind": "primitive",
-            "name": "string"
-          },
-          "description": "Currently selected item id."
-        },
-        {
-          "name": "onSelect",
-          "type": {
-            "kind": "function",
-            "signature": "(String id) => void"
-          },
-          "description": "Called when a navigation item is selected."
-        },
-        {
-          "name": "variant",
-          "type": {
-            "kind": "custom",
-            "name": "NavigationMenuVariant"
-          },
-          "description": "Visual variant of the navigation menu.",
-          "default": "NavigationMenuVariant.bottom"
-        },
-        {
-          "name": "header",
-          "type": {
-            "kind": "custom",
-            "name": "Widget"
-          },
-          "description": "Optional header widget for the drawer variant."
-        },
-        {
-          "name": "footer",
-          "type": {
-            "kind": "custom",
-            "name": "Widget"
-          },
-          "description": "Optional footer widget for the drawer variant."
-        }
-      ],
-      "children": [
-        {
-          "name": "NavigationMenuItem",
-          "props": [
-            {
-              "name": "id",
-              "type": {
-                "kind": "primitive",
-                "name": "string"
-              },
-              "description": "Unique item id."
-            },
-            {
-              "name": "label",
-              "type": {
-                "kind": "primitive",
-                "name": "string"
-              },
-              "description": "Item label text."
-            },
-            {
-              "name": "icon",
-              "type": {
-                "kind": "custom",
-                "name": "IconData"
-              },
-              "description": "Item icon."
-            },
-            {
-              "name": "badge",
-              "type": {
-                "kind": "primitive",
-                "name": "string"
-              },
-              "description": "Optional badge text."
-            },
-            {
-              "name": "disabled",
-              "type": {
-                "kind": "primitive",
-                "name": "boolean"
-              },
-              "description": "Disables the item.",
-              "default": false
-            }
-          ]
-        },
-        {
-          "name": "showGalaxyDrawer",
-          "props": [
-            {
-              "name": "context",
-              "type": {
-                "kind": "custom",
-                "name": "BuildContext"
-              },
-              "description": "Build context used to present the drawer."
-            },
-            {
-              "name": "items",
-              "type": {
-                "kind": "custom",
-                "name": "List<NavigationMenuItem>"
-              },
-              "description": "Items rendered in the drawer."
-            },
-            {
-              "name": "selectedId",
-              "type": {
-                "kind": "primitive",
-                "name": "string"
-              },
-              "description": "Currently selected item id."
-            },
-            {
-              "name": "onSelect",
-              "type": {
-                "kind": "function",
-                "signature": "(String id) => void"
-              },
-              "description": "Called when a navigation item is selected."
-            },
-            {
-              "name": "header",
-              "type": {
-                "kind": "custom",
-                "name": "Widget"
-              },
-              "description": "Optional header widget for the drawer."
-            },
-            {
-              "name": "footer",
-              "type": {
-                "kind": "custom",
-                "name": "Widget"
-              },
-              "description": "Optional footer widget for the drawer."
-            }
-          ]
-        }
-      ]
-    },
-    "pagination": {
-      "name": "Pagination",
-      "type": "navigation",
-      "description": "Pagination component with compact, full, and load more variants",
-      "files": [
-        "pagination.dart"
-      ],
-      "dependencies": [],
-      "peerDependencies": [
-        "flutter"
-      ],
-      "exports": [
-        "GalaxyPagination"
-      ],
-      "category": "navigation",
-      "props": [
-        {
-          "name": "currentPage",
-          "type": {
-            "kind": "primitive",
-            "name": "number"
-          },
-          "description": "Current page number."
-        },
-        {
-          "name": "totalPages",
-          "type": {
-            "kind": "primitive",
-            "name": "number"
-          },
-          "description": "Total number of pages."
-        },
-        {
-          "name": "onPageChange",
-          "type": {
-            "kind": "function",
-            "signature": "(page: int) => void"
-          },
-          "description": "Called when the page changes."
-        },
-        {
-          "name": "variant",
-          "type": {
-            "kind": "union",
-            "values": [
-              {
-                "kind": "literal",
-                "value": "compact"
-              },
-              {
-                "kind": "literal",
-                "value": "full"
-              },
-              {
-                "kind": "literal",
-                "value": "loadMore"
-              }
-            ]
-          },
-          "default": "compact",
-          "description": "Pagination presentation variant."
-        },
-        {
-          "name": "visiblePages",
-          "type": {
-            "kind": "primitive",
-            "name": "number"
-          },
-          "default": 5,
-          "description": "Number of visible pages in compact mode."
-        },
-        {
-          "name": "loadMoreText",
-          "type": {
-            "kind": "primitive",
-            "name": "string"
-          },
-          "description": "Label for load-more mode."
-        },
-        {
-          "name": "isLoading",
-          "type": {
-            "kind": "primitive",
-            "name": "boolean"
-          },
-          "default": false,
-          "description": "Loading state for load-more mode."
-        }
-      ],
-      "children": [
-        {
-          "name": "GalaxyPagination.compact",
-          "props": []
-        },
-        {
-          "name": "GalaxyPagination.full",
-          "props": []
-        },
-        {
-          "name": "GalaxyPagination.loadMore",
-          "props": []
-        }
-      ]
-    },
-    "popover": {
-      "name": "Popover",
-      "type": "overlay",
-      "description": "Popover component for displaying floating content",
-      "files": [
-        "popover.dart"
-      ],
-      "dependencies": [],
-      "peerDependencies": [
-        "flutter"
-      ],
-      "exports": [
-        "GalaxyPopover"
-      ],
-      "category": "navigation",
-      "props": [
-        {
-          "name": "trigger",
-          "type": {
-            "kind": "custom",
-            "name": "Widget"
-          },
-          "description": "Widget that opens the popover."
-        },
-        {
-          "name": "content",
-          "type": {
-            "kind": "custom",
-            "name": "Widget"
-          },
-          "description": "Popover content widget."
-        },
-        {
-          "name": "width",
-          "type": {
-            "kind": "primitive",
-            "name": "number"
-          },
-          "description": "Optional width of the popover panel."
-        },
-        {
-          "name": "padding",
-          "type": {
-            "kind": "custom",
-            "name": "EdgeInsets"
-          },
-          "description": "Padding inside the popover panel."
-        }
-      ]
-    },
-    "progress": {
-      "name": "Progress",
-      "type": "feedback",
-      "description": "Progress bar and circular progress component",
-      "files": [
-        "progress.dart"
-      ],
-      "dependencies": [],
-      "peerDependencies": [
-        "flutter"
-      ],
-      "exports": [
-        "GalaxyProgress"
-      ],
-      "category": "feedback",
-      "props": [
-        {
-          "name": "value",
-          "type": {
-            "kind": "primitive",
-            "name": "number"
-          },
-          "description": "Progress value between 0 and 1, or null for indeterminate."
-        },
-        {
-          "name": "backgroundColor",
-          "type": {
-            "kind": "custom",
-            "name": "Color"
-          },
-          "description": "Background color of the progress track."
-        },
-        {
-          "name": "valueColor",
-          "type": {
-            "kind": "custom",
-            "name": "Color"
-          },
-          "description": "Color of the progress indicator."
-        },
-        {
-          "name": "height",
-          "type": {
-            "kind": "primitive",
-            "name": "number"
-          },
-          "default": 4,
-          "description": "Height of the progress bar."
-        }
-      ]
-    },
-    "radio-group": {
-      "name": "Radio Group",
-      "type": "form",
-      "description": "Radio button group for single selection from multiple options",
-      "files": [
-        "radio_group.dart"
-      ],
-      "dependencies": [],
-      "peerDependencies": [
-        "flutter"
-      ],
-      "exports": [
-        "GalaxyRadioGroup",
-        "GalaxyRadio"
-      ],
-      "props": [
-        {
-          "name": "value",
-          "type": {
-            "kind": "custom",
-            "name": "T?"
-          },
-          "description": "Controlled selected value."
-        },
-        {
-          "name": "onChanged",
-          "type": {
-            "kind": "function",
-            "signature": "(value: T?) => void"
-          },
-          "description": "Called when the value changes."
-        },
-        {
-          "name": "options",
-          "type": {
-            "kind": "array",
-            "of": {
-              "kind": "custom",
-              "name": "GalaxyRadioOption<T>"
-            }
-          },
-          "description": "Radio options."
-        },
-        {
-          "name": "direction",
-          "type": {
-            "kind": "custom",
-            "name": "Axis"
-          },
-          "default": "Axis.vertical",
-          "description": "Layout direction."
-        }
-      ],
-      "children": [
-        {
-          "name": "RadioGroupItem",
-          "props": [
-            {
-              "name": "value",
-              "type": {
-                "kind": "custom",
-                "name": "T"
-              },
-              "description": "Item value."
-            },
-            {
-              "name": "label",
-              "type": {
-                "kind": "primitive",
-                "name": "string"
-              },
-              "description": "Item label."
-            },
-            {
-              "name": "disabled",
-              "type": {
-                "kind": "primitive",
-                "name": "boolean"
-              },
-              "default": false,
-              "description": "Disables the item."
-            }
-          ]
-        }
-      ]
-    },
-    "select": {
-      "name": "Select",
-      "type": "form",
-      "description": "Select dropdown component for choosing from a list of options",
-      "files": [
-        "select.dart"
-      ],
-      "dependencies": [],
-      "peerDependencies": [
-        "flutter"
-      ],
-      "exports": [
-        "GalaxySelect",
-        "GalaxySelectItem"
-      ],
-      "props": [
-        {
-          "name": "value",
-          "type": {
-            "kind": "custom",
-            "name": "T?"
-          },
-          "description": "Controlled selected value."
-        },
-        {
-          "name": "items",
-          "type": {
-            "kind": "array",
-            "of": {
-              "kind": "custom",
-              "name": "GalaxySelectItem<T>"
-            }
-          },
-          "description": "Selectable items."
-        },
-        {
-          "name": "onChanged",
-          "type": {
-            "kind": "function",
-            "signature": "(value: T?) => void"
-          },
-          "description": "Called when the value changes."
-        },
-        {
-          "name": "label",
-          "type": {
-            "kind": "primitive",
-            "name": "string"
-          },
-          "description": "Label text shown above the select."
-        },
-        {
-          "name": "placeholder",
-          "type": {
-            "kind": "primitive",
-            "name": "string"
-          },
-          "default": "Select an option",
-          "description": "Placeholder when no value is selected."
-        },
-        {
-          "name": "enabled",
-          "type": {
-            "kind": "primitive",
-            "name": "boolean"
-          },
-          "default": true,
-          "description": "Whether the select is enabled."
-        }
-      ],
-      "children": [
-        {
-          "name": "SelectItem",
-          "props": [
-            {
-              "name": "value",
-              "type": {
-                "kind": "custom",
-                "name": "T"
-              },
-              "description": "Item value."
-            },
-            {
-              "name": "label",
-              "type": {
-                "kind": "primitive",
-                "name": "string"
-              },
-              "description": "Item label."
-            }
-          ]
-        }
-      ]
-    },
-    "separator": {
-      "name": "Separator",
-      "type": "layout",
-      "description": "Visual separator line for dividing content",
-      "files": [
-        "separator.dart"
-      ],
-      "dependencies": [],
-      "peerDependencies": [
-        "flutter"
-      ],
-      "exports": [
-        "GalaxySeparator"
-      ],
-      "category": "layout",
-      "props": [
-        {
-          "name": "orientation",
-          "type": {
-            "kind": "union",
-            "values": [
-              {
-                "kind": "literal",
-                "value": "horizontal"
-              },
-              {
-                "kind": "literal",
-                "value": "vertical"
-              }
-            ]
-          },
-          "default": "horizontal",
-          "description": "Separator orientation."
-        },
-        {
-          "name": "thickness",
-          "type": {
-            "kind": "primitive",
-            "name": "number"
-          },
-          "description": "Line thickness."
-        },
-        {
-          "name": "color",
-          "type": {
-            "kind": "custom",
-            "name": "Color"
-          },
-          "description": "Separator color."
-        },
-        {
-          "name": "indent",
-          "type": {
-            "kind": "primitive",
-            "name": "number"
-          },
-          "description": "Leading inset for the divider."
-        },
-        {
-          "name": "endIndent",
-          "type": {
-            "kind": "primitive",
-            "name": "number"
-          },
-          "description": "Trailing inset for the divider."
-        }
-      ]
-    },
-    "sheet": {
-      "name": "Sheet",
-      "type": "overlay",
-      "description": "Bottom sheet and side sheet component with header and footer",
-      "files": [
-        "sheet.dart"
-      ],
-      "dependencies": [],
-      "peerDependencies": [
-        "flutter"
-      ],
-      "exports": [
-        "GalaxySheet",
-        "GalaxySheetContent",
-        "GalaxySheetHeader",
-        "GalaxySheetFooter"
-      ],
-      "category": "layout",
-      "props": [
-        {
-          "name": "show",
-          "type": {
-            "kind": "function",
-            "signature": "({ context, builder, side, isDismissible, enableDrag, backgroundColor, elevation, shape, constraints }) => Future<T?>"
-          },
-          "description": "Static API to present a modal or side sheet."
-        }
-      ],
-      "children": [
-        {
-          "name": "GalaxySheetContent",
-          "props": [
-            {
-              "name": "header",
-              "type": {
-                "kind": "custom",
-                "name": "Widget"
-              },
-              "description": "Optional header widget."
-            },
-            {
-              "name": "body",
-              "type": {
-                "kind": "custom",
-                "name": "Widget"
-              },
-              "description": "Main sheet body."
-            },
-            {
-              "name": "footer",
-              "type": {
-                "kind": "custom",
-                "name": "Widget"
-              },
-              "description": "Optional footer widget."
-            },
-            {
-              "name": "padding",
-              "type": {
-                "kind": "custom",
-                "name": "EdgeInsets"
-              },
-              "default": "EdgeInsets.all(16)",
-              "description": "Padding inside the sheet."
-            },
-            {
-              "name": "showCloseButton",
-              "type": {
-                "kind": "primitive",
-                "name": "boolean"
-              },
-              "default": true,
-              "description": "Whether to show the close button."
-            },
-            {
-              "name": "onClose",
-              "type": {
-                "kind": "function",
-                "signature": "() => void"
-              },
-              "description": "Custom close handler."
-            }
-          ]
-        },
-        {
-          "name": "GalaxySheetHeader",
-          "props": [
-            {
-              "name": "title",
-              "type": {
-                "kind": "primitive",
-                "name": "string"
-              },
-              "description": "Header title text."
-            },
-            {
-              "name": "description",
-              "type": {
-                "kind": "primitive",
-                "name": "string"
-              },
-              "description": "Optional header description text."
-            }
-          ]
-        },
-        {
-          "name": "GalaxySheetFooter",
-          "props": [
-            {
-              "name": "children",
-              "type": {
-                "kind": "array",
-                "of": {
-                  "kind": "custom",
-                  "name": "Widget"
-                }
-              },
-              "description": "Footer action widgets."
-            },
-            {
-              "name": "mainAxisAlignment",
-              "type": {
-                "kind": "custom",
-                "name": "MainAxisAlignment"
-              },
-              "description": "Alignment of footer actions."
-            }
-          ]
-        }
-      ]
-    },
-    "skeleton": {
-      "name": "Skeleton",
-      "type": "feedback",
-      "description": "Skeleton loading placeholder component",
-      "files": [
-        "skeleton.dart"
-      ],
-      "dependencies": [],
-      "peerDependencies": [
-        "flutter"
-      ],
-      "exports": [
-        "GalaxySkeleton"
-      ],
-      "props": [
-        {
-          "name": "width",
-          "type": {
-            "kind": "primitive",
-            "name": "number"
-          },
-          "description": "Explicit width for the skeleton."
-        },
-        {
-          "name": "height",
-          "type": {
-            "kind": "primitive",
-            "name": "number"
-          },
-          "default": 16,
-          "description": "Explicit height for the skeleton."
-        },
-        {
-          "name": "borderRadius",
-          "type": {
-            "kind": "primitive",
-            "name": "number"
-          },
-          "default": 4,
-          "description": "Border radius of the skeleton shape."
-        },
-        {
-          "name": "baseColor",
-          "type": {
-            "kind": "custom",
-            "name": "Color"
-          },
-          "description": "Base shimmer color."
-        },
-        {
-          "name": "highlightColor",
-          "type": {
-            "kind": "custom",
-            "name": "Color"
-          },
-          "description": "Highlight shimmer color."
-        }
-      ]
-    },
-    "spinner": {
-      "name": "Spinner",
-      "type": "feedback",
-      "description": "Animated loading spinner.",
-      "files": [
-        "spinner.dart"
-      ],
-      "dependencies": [],
-      "peerDependencies": [
-        "flutter"
-      ],
-      "exports": [
-        "GalaxySpinner"
-      ],
-      "props": [
-        {
-          "name": "size",
-          "type": {
-            "kind": "union",
-            "values": [
-              {
-                "kind": "literal",
-                "value": "sm"
-              },
-              {
-                "kind": "literal",
-                "value": "default"
-              },
-              {
-                "kind": "literal",
-                "value": "lg"
-              }
-            ]
-          },
-          "default": "default",
-          "description": "Visual size of the spinner."
-        },
-        {
-          "name": "label",
-          "type": {
-            "kind": "primitive",
-            "name": "string"
-          },
-          "default": "Loading...",
-          "description": "Accessibility label announced to assistive technology."
-        },
-        {
-          "name": "color",
-          "type": {
-            "kind": "custom",
-            "name": "Color"
-          },
-          "description": "Override color for the spinner stroke."
-        }
-      ]
-    },
-    "slider": {
-      "name": "Slider",
-      "type": "form",
-      "description": "Slider component for selecting a value from a range",
-      "files": [
-        "slider.dart"
-      ],
-      "dependencies": [],
-      "peerDependencies": [
-        "flutter"
-      ],
-      "exports": [
-        "GalaxySlider"
-      ],
-      "category": "form",
-      "props": [
-        {
-          "name": "value",
-          "type": {
-            "kind": "primitive",
-            "name": "number"
-          },
-          "description": "Current slider value."
-        },
-        {
-          "name": "onChanged",
-          "type": {
-            "kind": "function",
-            "signature": "(value: number) => void"
-          },
-          "description": "Called when the slider value changes."
-        },
-        {
-          "name": "min",
-          "type": {
-            "kind": "primitive",
-            "name": "number"
-          },
-          "default": 0,
-          "description": "Minimum value."
-        },
-        {
-          "name": "max",
-          "type": {
-            "kind": "primitive",
-            "name": "number"
-          },
-          "default": 100,
-          "description": "Maximum value."
-        },
-        {
-          "name": "divisions",
-          "type": {
-            "kind": "primitive",
-            "name": "number"
-          },
-          "description": "Number of discrete divisions."
-        },
-        {
-          "name": "label",
-          "type": {
-            "kind": "primitive",
-            "name": "string"
-          },
-          "description": "Optional label rendered above the slider."
-        },
-        {
-          "name": "disabled",
-          "type": {
-            "kind": "primitive",
-            "name": "boolean"
-          },
-          "default": false,
-          "description": "Disables the slider."
-        }
-      ]
-    },
-    "switch": {
-      "name": "Switch",
-      "type": "form",
-      "description": "Toggle switch component for boolean input",
-      "files": [
-        "switch.dart"
-      ],
-      "dependencies": [],
-      "peerDependencies": [
-        "flutter"
-      ],
-      "exports": [
-        "GalaxySwitch"
-      ],
-      "props": [
-        {
-          "name": "value",
-          "type": {
-            "kind": "primitive",
-            "name": "boolean"
-          },
-          "description": "Controlled checked state."
-        },
-        {
-          "name": "onChanged",
-          "type": {
-            "kind": "function",
-            "signature": "(value: boolean) => void"
-          },
-          "description": "Called when the checked state changes."
-        },
-        {
-          "name": "activeColor",
-          "type": {
-            "kind": "custom",
-            "name": "Color"
-          },
-          "description": "Active thumb color."
-        },
-        {
-          "name": "inactiveColor",
-          "type": {
-            "kind": "custom",
-            "name": "Color"
-          },
-          "description": "Inactive thumb color."
-        },
-        {
-          "name": "trackColor",
-          "type": {
-            "kind": "custom",
-            "name": "Color"
-          },
-          "description": "Active track color."
-        },
-        {
-          "name": "disabled",
-          "type": {
-            "kind": "primitive",
-            "name": "boolean"
-          },
-          "default": false,
-          "description": "Disables the switch."
-        }
-      ]
-    },
-    "table": {
-      "name": "Table",
-      "type": "data-display",
-      "description": "Table component for displaying structured data",
-      "files": [
-        "table.dart"
-      ],
-      "dependencies": [],
-      "peerDependencies": [
-        "flutter"
-      ],
-      "exports": [
-        "GalaxyTable",
-        "GalaxyTableRow",
-        "GalaxyTableCell"
-      ],
-      "category": "data-display",
-      "props": [
-        {
-          "name": "columns",
-          "type": {
-            "kind": "array",
-            "of": {
-              "kind": "custom",
-              "name": "GalaxyTableColumn"
-            }
-          },
-          "description": "Column definitions."
-        },
-        {
-          "name": "rows",
-          "type": {
-            "kind": "array",
-            "of": {
-              "kind": "custom",
-              "name": "GalaxyTableRow"
-            }
-          },
-          "description": "Table rows."
-        },
-        {
-          "name": "caption",
-          "type": {
-            "kind": "primitive",
-            "name": "string"
-          },
-          "description": "Optional caption displayed below the table."
-        },
-        {
-          "name": "showBorder",
-          "type": {
-            "kind": "primitive",
-            "name": "boolean"
-          },
-          "default": true,
-          "description": "Whether to show the data table border."
-        }
-      ],
-      "children": [
-        {
-          "name": "GalaxyTableColumn",
-          "props": [
-            {
-              "name": "label",
-              "type": {
-                "kind": "primitive",
-                "name": "string"
-              },
-              "description": "Column label."
-            }
-          ]
-        },
-        {
-          "name": "GalaxyTableRow",
-          "props": [
-            {
-              "name": "cells",
-              "type": {
-                "kind": "array",
-                "of": {
-                  "kind": "custom",
-                  "name": "Widget"
-                }
-              },
-              "description": "Cell widgets for the row."
-            }
-          ]
-        }
-      ]
-    },
-    "tabs": {
-      "name": "Tabs",
-      "type": "navigation",
-      "description": "Tabs component for organizing content into sections",
-      "files": [
-        "tabs.dart"
-      ],
-      "dependencies": [],
-      "peerDependencies": [
-        "flutter"
-      ],
-      "exports": [
-        "GalaxyTabs",
-        "GalaxyTab"
-      ],
-      "category": "layout",
-      "props": [
-        {
-          "name": "tabs",
-          "type": {
-            "kind": "array",
-            "of": {
-              "kind": "custom",
-              "name": "GalaxyTab"
-            }
-          },
-          "description": "Tab definitions rendered by the widget."
-        },
-        {
-          "name": "initialIndex",
-          "type": {
-            "kind": "primitive",
-            "name": "number"
-          },
-          "default": 0,
-          "description": "Initial selected tab index."
-        },
-        {
-          "name": "onTabChanged",
-          "type": {
-            "kind": "function",
-            "signature": "(index: int) => void"
-          },
-          "description": "Called when the selected tab changes."
-        }
-      ],
-      "children": [
-        {
-          "name": "GalaxyTab",
-          "props": [
-            {
-              "name": "label",
-              "type": {
-                "kind": "primitive",
-                "name": "string"
-              },
-              "description": "Visible text for the tab."
-            },
-            {
-              "name": "content",
-              "type": {
-                "kind": "custom",
-                "name": "Widget"
-              },
-              "description": "Widget rendered inside the tab panel."
-            },
-            {
-              "name": "icon",
-              "type": {
-                "kind": "custom",
-                "name": "Widget"
-              },
-              "description": "Optional icon shown in the tab trigger."
-            }
-          ]
-        }
-      ]
-    },
-    "textarea": {
-      "name": "Textarea",
-      "type": "form",
-      "description": "Multi-line text input component",
-      "files": [
-        "textarea.dart"
-      ],
-      "dependencies": [],
-      "peerDependencies": [
-        "flutter"
-      ],
-      "exports": [
-        "GalaxyTextarea"
-      ],
-      "category": "form",
-      "props": [
-        {
-          "name": "controller",
-          "type": {
-            "kind": "custom",
-            "name": "TextEditingController"
-          },
-          "description": "Optional controller for the textarea value."
-        },
-        {
-          "name": "label",
-          "type": {
-            "kind": "primitive",
-            "name": "string"
-          },
-          "description": "Optional label rendered above the textarea."
-        },
-        {
-          "name": "placeholder",
-          "type": {
-            "kind": "primitive",
-            "name": "string"
-          },
-          "description": "Placeholder text."
-        },
-        {
-          "name": "error",
-          "type": {
-            "kind": "primitive",
-            "name": "string"
-          },
-          "description": "Optional error message rendered below the textarea."
-        },
-        {
-          "name": "enabled",
-          "type": {
-            "kind": "primitive",
-            "name": "boolean"
-          },
-          "default": true,
-          "description": "Whether the textarea is enabled."
-        },
-        {
-          "name": "maxLines",
-          "type": {
-            "kind": "primitive",
-            "name": "number"
-          },
-          "description": "Maximum number of visible lines."
-        },
-        {
-          "name": "minLines",
-          "type": {
-            "kind": "primitive",
-            "name": "number"
-          },
-          "default": 3,
-          "description": "Minimum number of visible lines."
-        },
-        {
-          "name": "maxLength",
-          "type": {
-            "kind": "primitive",
-            "name": "number"
-          },
-          "description": "Maximum number of characters allowed."
-        },
-        {
-          "name": "keyboardType",
-          "type": {
-            "kind": "custom",
-            "name": "TextInputType"
-          },
-          "description": "Keyboard type used by the text field."
-        },
-        {
-          "name": "onChanged",
-          "type": {
-            "kind": "function",
-            "signature": "(value: string) => void"
-          },
-          "description": "Called when the textarea value changes."
-        },
-        {
-          "name": "onSubmitted",
-          "type": {
-            "kind": "function",
-            "signature": "(value: string) => void"
-          },
-          "description": "Called when the value is submitted."
-        }
-      ]
-    },
-    "toggle": {
-      "name": "Toggle",
-      "type": "form",
-      "description": "Toggle button for binary state changes",
-      "files": [
-        "toggle.dart"
-      ],
-      "dependencies": [],
-      "peerDependencies": [
-        "flutter"
-      ],
-      "exports": [
-        "GalaxyToggle"
-      ],
-      "category": "interactive",
-      "props": [
-        {
-          "name": "value",
-          "type": {
-            "kind": "primitive",
-            "name": "boolean"
-          },
-          "description": "Controlled toggle state."
-        },
-        {
-          "name": "onPressed",
-          "type": {
-            "kind": "function",
-            "signature": "(value: bool) => void"
-          },
-          "description": "Called when the toggle is pressed."
-        },
-        {
-          "name": "child",
-          "type": {
-            "kind": "custom",
-            "name": "Widget"
-          },
-          "description": "Toggle content."
-        },
-        {
-          "name": "variant",
-          "type": {
-            "kind": "union",
-            "values": [
-              {
-                "kind": "literal",
-                "value": "default_"
-              },
-              {
-                "kind": "literal",
-                "value": "outline"
-              }
-            ]
-          },
-          "default": "default_",
-          "description": "Visual style variant."
-        },
-        {
-          "name": "size",
-          "type": {
-            "kind": "union",
-            "values": [
-              {
-                "kind": "literal",
-                "value": "default_"
-              },
-              {
-                "kind": "literal",
-                "value": "sm"
-              },
-              {
-                "kind": "literal",
-                "value": "lg"
-              }
-            ]
-          },
-          "default": "default_",
-          "description": "Size variant."
-        },
-        {
-          "name": "disabled",
-          "type": {
-            "kind": "primitive",
-            "name": "boolean"
-          },
-          "default": false,
-          "description": "Disables the toggle."
-        }
-      ]
-    },
-    "toggle-group": {
-      "name": "Toggle Group",
-      "type": "form",
-      "description": "Group of toggle buttons for single or multiple selection",
-      "files": [
-        "toggle_group.dart"
-      ],
-      "dependencies": [],
-      "peerDependencies": [
-        "flutter"
-      ],
-      "exports": [
-        "GalaxyToggleGroup"
-      ],
-      "category": "interactive",
-      "props": [
-        {
-          "name": "value",
-          "type": {
-            "kind": "custom",
-            "name": "T?"
-          },
-          "description": "Currently selected value."
-        },
-        {
-          "name": "onValueChanged",
-          "type": {
-            "kind": "function",
-            "signature": "(value: T?) => void"
-          },
-          "description": "Called when the selected value changes."
-        },
-        {
-          "name": "items",
-          "type": {
-            "kind": "array",
-            "of": {
-              "kind": "custom",
-              "name": "GalaxyToggleGroupItem<T>"
-            }
-          },
-          "description": "Toggle items."
-        },
-        {
-          "name": "variant",
-          "type": {
-            "kind": "union",
-            "values": [
-              {
-                "kind": "literal",
-                "value": "default_"
-              },
-              {
-                "kind": "literal",
-                "value": "outline"
-              }
-            ]
-          },
-          "default": "default_",
-          "description": "Shared visual style variant for items."
-        },
-        {
-          "name": "size",
-          "type": {
-            "kind": "union",
-            "values": [
-              {
-                "kind": "literal",
-                "value": "default_"
-              },
-              {
-                "kind": "literal",
-                "value": "sm"
-              },
-              {
-                "kind": "literal",
-                "value": "lg"
-              }
-            ]
-          },
-          "default": "default_",
-          "description": "Shared size variant for items."
-        },
-        {
-          "name": "allowDeselect",
-          "type": {
-            "kind": "primitive",
-            "name": "boolean"
-          },
-          "default": false,
-          "description": "Allow clearing the current selection."
-        }
-      ],
-      "children": [
-        {
-          "name": "GalaxyToggleGroupItem",
-          "props": [
-            {
-              "name": "value",
-              "type": {
-                "kind": "custom",
-                "name": "T"
-              },
-              "description": "Unique item value."
-            },
-            {
-              "name": "child",
-              "type": {
-                "kind": "custom",
-                "name": "Widget"
-              },
-              "description": "Item content."
-            },
-            {
-              "name": "disabled",
-              "type": {
-                "kind": "primitive",
-                "name": "boolean"
-              },
-              "default": false,
-              "description": "Disables the item."
-            }
-          ]
-        }
-      ]
-    },
-    "tooltip": {
-      "name": "Tooltip",
-      "type": "overlay",
-      "description": "Tooltip component for displaying helpful information on press",
-      "files": [
-        "tooltip.dart"
-      ],
-      "dependencies": [],
-      "peerDependencies": [
-        "flutter"
-      ],
-      "exports": [
-        "GalaxyTooltip"
-      ],
-      "category": "navigation",
-      "props": [
-        {
-          "name": "child",
-          "type": {
-            "kind": "custom",
-            "name": "Widget"
-          },
-          "description": "Widget that triggers the tooltip."
-        },
-        {
-          "name": "message",
-          "type": {
-            "kind": "primitive",
-            "name": "string"
-          },
-          "description": "Tooltip text."
-        },
-        {
-          "name": "padding",
-          "type": {
-            "kind": "custom",
-            "name": "EdgeInsetsGeometry"
-          },
-          "description": "Padding inside the tooltip bubble."
-        },
-        {
-          "name": "margin",
-          "type": {
-            "kind": "custom",
-            "name": "EdgeInsetsGeometry"
-          },
-          "description": "Margin around the tooltip bubble."
-        },
-        {
-          "name": "height",
-          "type": {
-            "kind": "primitive",
-            "name": "number"
-          },
-          "description": "Tooltip height override."
-        },
-        {
-          "name": "preferBelow",
-          "type": {
-            "kind": "primitive",
-            "name": "boolean"
-          },
-          "description": "Prefer showing the tooltip below the trigger."
-        },
-        {
-          "name": "waitDuration",
-          "type": {
-            "kind": "custom",
-            "name": "Duration"
-          },
-          "description": "Delay before showing the tooltip."
-        },
-        {
-          "name": "showDuration",
-          "type": {
-            "kind": "custom",
-            "name": "Duration"
-          },
-          "description": "How long the tooltip remains visible."
-        }
-      ]
-    },
-    "typography": {
-      "name": "Typography",
-      "type": "data-display",
-      "description": "Typography component with 11 text variants (h1-h4, p, lead, large, small, muted, blockquote, code)",
-      "files": [
-        "typography.dart"
-      ],
-      "dependencies": [],
-      "peerDependencies": [
-        "flutter"
-      ],
-      "exports": [
-        "GalaxyTypography"
-      ],
-      "props": [
-        {
-          "name": "text",
-          "type": {
-            "kind": "primitive",
-            "name": "string"
-          },
-          "description": "Text content."
-        },
-        {
-          "name": "variant",
-          "type": {
-            "kind": "union",
-            "values": [
-              {
-                "kind": "literal",
-                "value": "h1"
-              },
-              {
-                "kind": "literal",
-                "value": "h2"
-              },
-              {
-                "kind": "literal",
-                "value": "h3"
-              },
-              {
-                "kind": "literal",
-                "value": "h4"
-              },
-              {
-                "kind": "literal",
-                "value": "p"
-              },
-              {
-                "kind": "literal",
-                "value": "lead"
-              },
-              {
-                "kind": "literal",
-                "value": "large"
-              },
-              {
-                "kind": "literal",
-                "value": "small"
-              },
-              {
-                "kind": "literal",
-                "value": "muted"
-              },
-              {
-                "kind": "literal",
-                "value": "blockquote"
-              },
-              {
-                "kind": "literal",
-                "value": "code"
-              }
-            ]
-          },
-          "default": "p",
-          "description": "Typography style variant."
-        },
-        {
-          "name": "weight",
-          "type": {
-            "kind": "union",
-            "values": [
-              {
-                "kind": "literal",
-                "value": "normal"
-              },
-              {
-                "kind": "literal",
-                "value": "medium"
-              },
-              {
-                "kind": "literal",
-                "value": "semiBold"
-              },
-              {
-                "kind": "literal",
-                "value": "bold"
-              }
-            ]
-          },
-          "description": "Optional weight override."
-        },
-        {
-          "name": "color",
-          "type": {
-            "kind": "custom",
-            "name": "Color"
-          },
-          "description": "Text color override."
-        },
-        {
-          "name": "textAlign",
-          "type": {
-            "kind": "custom",
-            "name": "TextAlign"
-          },
-          "description": "Text alignment."
-        },
-        {
-          "name": "maxLines",
-          "type": {
-            "kind": "primitive",
-            "name": "number"
-          },
-          "description": "Maximum number of lines."
-        },
-        {
-          "name": "overflow",
-          "type": {
-            "kind": "custom",
-            "name": "TextOverflow"
-          },
-          "description": "Overflow behavior."
-        },
-        {
-          "name": "softWrap",
-          "type": {
-            "kind": "primitive",
-            "name": "boolean"
-          },
-          "description": "Whether text should soft wrap."
-        }
-      ],
-      "children": [
-        {
-          "name": "GalaxyTypography.h1",
-          "props": []
-        },
-        {
-          "name": "GalaxyTypography.h2",
-          "props": []
-        },
-        {
-          "name": "GalaxyTypography.h3",
-          "props": []
-        },
-        {
-          "name": "GalaxyTypography.h4",
-          "props": []
-        },
-        {
-          "name": "GalaxyTypography.p",
-          "props": []
-        },
-        {
-          "name": "GalaxyTypography.lead",
-          "props": []
-        },
-        {
-          "name": "GalaxyTypography.large",
-          "props": []
-        },
-        {
-          "name": "GalaxyTypography.small",
-          "props": []
-        },
-        {
-          "name": "GalaxyTypography.muted",
-          "props": []
-        },
-        {
-          "name": "GalaxyTypography.blockquote",
-          "props": []
-        },
-        {
-          "name": "GalaxyTypography.code",
-          "props": []
-        }
-      ]
-    },
-    "line-chart": {
-      "name": "LineChart",
-      "type": "chart",
-      "description": "Display data as a responsive line chart with smooth curves and customizable styling",
-      "files": [
-        "line_chart.dart",
-        "types.dart",
-        "utils.dart",
-        "index.dart"
-      ],
-      "dependencies": [
-        "fl_chart: ^0.68.0"
-      ],
-      "peerDependencies": [
-        "flutter"
-      ],
-      "exports": [
-        "GalaxyLineChart"
-      ],
-      "props": [
-        {
-          "name": "data",
-          "type": {
-            "kind": "custom",
-            "name": "ChartData"
-          },
-          "description": "Chart data including labels and datasets."
-        },
-        {
-          "name": "height",
-          "type": {
-            "kind": "primitive",
-            "name": "number"
-          },
-          "description": "Chart height in pixels.",
-          "default": 300
-        },
-        {
-          "name": "width",
-          "type": {
-            "kind": "primitive",
-            "name": "number"
-          },
-          "description": "Chart width in pixels."
-        },
-        {
-          "name": "theme",
-          "type": {
-            "kind": "custom",
-            "name": "ChartTheme"
-          },
-          "description": "Theme mode used by the chart.",
-          "default": "ChartTheme.light"
-        },
-        {
-          "name": "legend",
-          "type": {
-            "kind": "primitive",
-            "name": "boolean"
-          },
-          "description": "Whether to show the legend.",
-          "default": true
-        },
-        {
-          "name": "legendPosition",
-          "type": {
-            "kind": "custom",
-            "name": "LegendPosition"
-          },
-          "description": "Legend position.",
-          "default": "LegendPosition.top"
-        },
-        {
-          "name": "grid",
-          "type": {
-            "kind": "custom",
-            "name": "GridConfig"
-          },
-          "description": "Grid configuration."
-        },
-        {
-          "name": "tooltip",
-          "type": {
-            "kind": "custom",
-            "name": "TooltipConfig"
-          },
-          "description": "Tooltip configuration."
-        },
-        {
-          "name": "animation",
-          "type": {
-            "kind": "primitive",
-            "name": "boolean"
-          },
-          "description": "Whether chart animations are enabled.",
-          "default": true
-        },
-        {
-          "name": "smooth",
-          "type": {
-            "kind": "primitive",
-            "name": "boolean"
-          },
-          "description": "Whether lines are rendered as smooth curves.",
-          "default": true
-        },
-        {
-          "name": "showPoints",
-          "type": {
-            "kind": "primitive",
-            "name": "boolean"
-          },
-          "description": "Whether data points are shown.",
-          "default": true
-        },
-        {
-          "name": "pointSize",
-          "type": {
-            "kind": "primitive",
-            "name": "number"
-          },
-          "description": "Size of data point markers.",
-          "default": 4
-        },
-        {
-          "name": "area",
-          "type": {
-            "kind": "primitive",
-            "name": "boolean"
-          },
-          "description": "Whether to fill the area under the line.",
-          "default": false
-        },
-        {
-          "name": "loading",
-          "type": {
-            "kind": "primitive",
-            "name": "boolean"
-          },
-          "description": "Whether the loading state is shown.",
-          "default": false
-        },
-        {
-          "name": "emptyText",
-          "type": {
-            "kind": "primitive",
-            "name": "string"
-          },
-          "description": "Text shown when there is no data.",
-          "default": "No data available"
-        },
-        {
-          "name": "padding",
-          "type": {
-            "kind": "custom",
-            "name": "EdgeInsets"
-          },
-          "description": "Padding inside the chart container."
-        }
-      ],
-      "category": "charts"
-    },
-    "bar-chart": {
-      "name": "BarChart",
-      "type": "chart",
-      "description": "Display data as vertical or horizontal bars with support for stacked and grouped layouts",
-      "files": [
-        "bar_chart.dart",
-        "types.dart",
-        "utils.dart",
-        "index.dart"
-      ],
-      "dependencies": [
-        "fl_chart: ^0.68.0"
-      ],
-      "peerDependencies": [
-        "flutter"
-      ],
-      "exports": [
-        "GalaxyBarChart"
-      ],
-      "props": [
-        {
-          "name": "data",
-          "type": {
-            "kind": "custom",
-            "name": "ChartData"
-          },
-          "description": "Chart data including labels and datasets."
-        },
-        {
-          "name": "height",
-          "type": {
-            "kind": "primitive",
-            "name": "number"
-          },
-          "description": "Chart height in pixels.",
-          "default": 300
-        },
-        {
-          "name": "width",
-          "type": {
-            "kind": "primitive",
-            "name": "number"
-          },
-          "description": "Chart width in pixels."
-        },
-        {
-          "name": "theme",
-          "type": {
-            "kind": "custom",
-            "name": "ChartTheme"
-          },
-          "description": "Theme mode used by the chart.",
-          "default": "ChartTheme.light"
-        },
-        {
-          "name": "legend",
-          "type": {
-            "kind": "primitive",
-            "name": "boolean"
-          },
-          "description": "Whether to show the legend.",
-          "default": true
-        },
-        {
-          "name": "legendPosition",
-          "type": {
-            "kind": "custom",
-            "name": "LegendPosition"
-          },
-          "description": "Legend position.",
-          "default": "LegendPosition.top"
-        },
-        {
-          "name": "grid",
-          "type": {
-            "kind": "custom",
-            "name": "GridConfig"
-          },
-          "description": "Grid configuration."
-        },
-        {
-          "name": "tooltip",
-          "type": {
-            "kind": "custom",
-            "name": "TooltipConfig"
-          },
-          "description": "Tooltip configuration."
-        },
-        {
-          "name": "animation",
-          "type": {
-            "kind": "primitive",
-            "name": "boolean"
-          },
-          "description": "Whether chart animations are enabled.",
-          "default": true
-        },
-        {
-          "name": "horizontal",
-          "type": {
-            "kind": "primitive",
-            "name": "boolean"
-          },
-          "description": "Whether to render horizontal bars.",
-          "default": false
-        },
-        {
-          "name": "stacked",
-          "type": {
-            "kind": "primitive",
-            "name": "boolean"
-          },
-          "description": "Whether datasets are stacked.",
-          "default": false
-        },
-        {
-          "name": "showDataLabels",
-          "type": {
-            "kind": "primitive",
-            "name": "boolean"
-          },
-          "description": "Whether to show data labels on bars.",
-          "default": false
-        },
-        {
-          "name": "loading",
-          "type": {
-            "kind": "primitive",
-            "name": "boolean"
-          },
-          "description": "Whether the loading state is shown.",
-          "default": false
-        },
-        {
-          "name": "emptyText",
-          "type": {
-            "kind": "primitive",
-            "name": "string"
-          },
-          "description": "Text shown when there is no data.",
-          "default": "No data available"
-        },
-        {
-          "name": "padding",
-          "type": {
-            "kind": "custom",
-            "name": "EdgeInsets"
-          },
-          "description": "Padding inside the chart container."
-        }
-      ],
-      "category": "charts"
-    },
-    "pie-chart": {
-      "name": "PieChart",
-      "type": "chart",
-      "description": "Display proportional data as a pie or donut chart with customizable labels and legend",
-      "files": [
-        "pie_chart.dart",
-        "types.dart",
-        "utils.dart",
-        "index.dart"
-      ],
-      "dependencies": [
-        "fl_chart: ^0.68.0"
-      ],
-      "peerDependencies": [
-        "flutter"
-      ],
-      "exports": [
-        "GalaxyPieChart"
-      ],
-      "props": [
-        {
-          "name": "data",
-          "type": {
-            "kind": "custom",
-            "name": "ChartData"
-          },
-          "description": "Chart data including labels and datasets."
-        },
-        {
-          "name": "height",
-          "type": {
-            "kind": "primitive",
-            "name": "number"
-          },
-          "description": "Chart height in pixels.",
-          "default": 300
-        },
-        {
-          "name": "width",
-          "type": {
-            "kind": "primitive",
-            "name": "number"
-          },
-          "description": "Chart width in pixels."
-        },
-        {
-          "name": "theme",
-          "type": {
-            "kind": "custom",
-            "name": "ChartTheme"
-          },
-          "description": "Theme mode used by the chart.",
-          "default": "ChartTheme.light"
-        },
-        {
-          "name": "legend",
-          "type": {
-            "kind": "primitive",
-            "name": "boolean"
-          },
-          "description": "Whether to show the legend.",
-          "default": true
-        },
-        {
-          "name": "legendPosition",
-          "type": {
-            "kind": "custom",
-            "name": "LegendPosition"
-          },
-          "description": "Legend position.",
-          "default": "LegendPosition.right"
-        },
-        {
-          "name": "animation",
-          "type": {
-            "kind": "primitive",
-            "name": "boolean"
-          },
-          "description": "Whether chart animations are enabled.",
-          "default": true
-        },
-        {
-          "name": "innerRadius",
-          "type": {
-            "kind": "primitive",
-            "name": "number"
-          },
-          "description": "Inner radius percentage.",
-          "default": 0
-        },
-        {
-          "name": "outerRadius",
-          "type": {
-            "kind": "primitive",
-            "name": "number"
-          },
-          "description": "Outer radius percentage.",
-          "default": 70
-        },
-        {
-          "name": "showPercentage",
-          "type": {
-            "kind": "primitive",
-            "name": "boolean"
-          },
-          "description": "Whether to show percentage labels.",
-          "default": true
-        },
-        {
-          "name": "loading",
-          "type": {
-            "kind": "primitive",
-            "name": "boolean"
-          },
-          "description": "Whether the loading state is shown.",
-          "default": false
-        },
-        {
-          "name": "emptyText",
-          "type": {
-            "kind": "primitive",
-            "name": "string"
-          },
-          "description": "Text shown when there is no data.",
-          "default": "No data available"
-        },
-        {
-          "name": "padding",
-          "type": {
-            "kind": "custom",
-            "name": "EdgeInsets"
-          },
-          "description": "Padding inside the chart container."
-        }
-      ],
-      "category": "charts"
     },
     "area-chart": {
-      "name": "AreaChart",
-      "type": "chart",
-      "description": "Visualize cumulative totals over time with filled areas and gradient support",
+      "id": "area-chart",
+      "name": "area-chart",
+      "type": "other",
+      "description": "area-chart",
       "files": [
         "area_chart.dart",
         "types.dart",
         "utils.dart",
         "index.dart"
       ],
+      "exports": [
+        "GalaxyAreaChart",
+        "ChartDataset",
+        "ChartData",
+        "GridConfig",
+        "TooltipConfig",
+        "AxisConfig",
+        "BaseChartProps",
+        "ChartColorSchemes",
+        "ThemeColors",
+        "ChartTheme",
+        "LegendPosition"
+      ],
       "dependencies": [
         "fl_chart: ^0.68.0"
       ],
+      "devDependencies": [],
       "peerDependencies": [
         "flutter"
       ],
-      "exports": [
-        "GalaxyAreaChart"
-      ],
+      "registryDependencies": [],
+      "category": "other",
       "props": [
         {
           "name": "data",
@@ -3889,275 +368,232 @@
           },
           "description": "Padding inside the chart container."
         }
-      ],
-      "category": "charts"
+      ]
     },
-    "radar-chart": {
-      "name": "RadarChart",
-      "type": "chart",
-      "description": "Display multi-dimensional data comparison on a radial grid",
+    "aspect-ratio": {
+      "id": "aspect-ratio",
+      "name": "aspect-ratio",
+      "type": "other",
+      "description": "aspect-ratio",
       "files": [
-        "radar_chart.dart",
-        "types.dart",
-        "utils.dart",
-        "index.dart"
+        "aspect_ratio.dart"
       ],
-      "dependencies": [
-        "fl_chart: ^0.68.0"
+      "exports": [
+        "GalaxyAspectRatio"
       ],
+      "dependencies": [],
+      "devDependencies": [],
       "peerDependencies": [
         "flutter"
       ],
-      "exports": [
-        "GalaxyRadarChart"
-      ],
+      "registryDependencies": [],
+      "category": "other",
       "props": [
         {
-          "name": "data",
+          "name": "ratio",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Desired aspect ratio."
+        },
+        {
+          "name": "child",
           "type": {
             "kind": "custom",
-            "name": "ChartData"
+            "name": "Widget"
           },
-          "description": "Chart data including labels and datasets."
-        },
-        {
-          "name": "height",
-          "type": {
-            "kind": "primitive",
-            "name": "number"
-          },
-          "description": "Chart height in pixels.",
-          "default": 300
-        },
-        {
-          "name": "width",
-          "type": {
-            "kind": "primitive",
-            "name": "number"
-          },
-          "description": "Chart width in pixels."
-        },
-        {
-          "name": "theme",
-          "type": {
-            "kind": "custom",
-            "name": "ChartTheme"
-          },
-          "description": "Theme mode used by the chart.",
-          "default": "ChartTheme.light"
-        },
-        {
-          "name": "legend",
-          "type": {
-            "kind": "primitive",
-            "name": "boolean"
-          },
-          "description": "Whether to show the legend.",
-          "default": true
-        },
-        {
-          "name": "legendPosition",
-          "type": {
-            "kind": "custom",
-            "name": "LegendPosition"
-          },
-          "description": "Legend position.",
-          "default": "LegendPosition.top"
-        },
-        {
-          "name": "loading",
-          "type": {
-            "kind": "primitive",
-            "name": "boolean"
-          },
-          "description": "Whether the loading state is shown.",
-          "default": false
-        },
-        {
-          "name": "emptyText",
-          "type": {
-            "kind": "primitive",
-            "name": "string"
-          },
-          "description": "Text shown when there is no data.",
-          "default": "No data available"
-        },
-        {
-          "name": "fill",
-          "type": {
-            "kind": "primitive",
-            "name": "boolean"
-          },
-          "description": "Whether to fill the radar area.",
-          "default": true
-        },
-        {
-          "name": "opacity",
-          "type": {
-            "kind": "primitive",
-            "name": "number"
-          },
-          "description": "Fill opacity.",
-          "default": 0.3
-        },
-        {
-          "name": "numberOfConcentriccircles",
-          "type": {
-            "kind": "primitive",
-            "name": "number"
-          },
-          "description": "Number of concentric guide circles.",
-          "default": 4
+          "description": "Content constrained by the ratio."
         }
-      ],
-      "category": "charts"
+      ]
     },
-    "scatter-chart": {
-      "name": "ScatterChart",
-      "type": "chart",
-      "description": "Display distribution and correlation analysis with scatter plots",
+    "avatar": {
+      "id": "avatar",
+      "name": "avatar",
+      "type": "other",
+      "description": "avatar",
       "files": [
-        "scatter_chart.dart",
-        "types.dart",
-        "utils.dart",
-        "index.dart"
+        "avatar.dart"
       ],
-      "dependencies": [
-        "fl_chart: ^0.68.0"
+      "exports": [
+        "GalaxyAvatar",
+        "AvatarSize"
       ],
+      "dependencies": [],
+      "devDependencies": [],
       "peerDependencies": [
         "flutter"
       ],
-      "exports": [
-        "GalaxyScatterChart"
-      ],
+      "registryDependencies": [],
+      "category": "other",
       "props": [
         {
-          "name": "data",
-          "type": {
-            "kind": "custom",
-            "name": "ChartData"
-          },
-          "description": "Chart data including labels and datasets."
-        },
-        {
-          "name": "height",
-          "type": {
-            "kind": "primitive",
-            "name": "number"
-          },
-          "description": "Chart height in pixels.",
-          "default": 300
-        },
-        {
-          "name": "width",
-          "type": {
-            "kind": "primitive",
-            "name": "number"
-          },
-          "description": "Chart width in pixels."
-        },
-        {
-          "name": "theme",
-          "type": {
-            "kind": "custom",
-            "name": "ChartTheme"
-          },
-          "description": "Theme mode used by the chart.",
-          "default": "ChartTheme.light"
-        },
-        {
-          "name": "legend",
-          "type": {
-            "kind": "primitive",
-            "name": "boolean"
-          },
-          "description": "Whether to show the legend.",
-          "default": true
-        },
-        {
-          "name": "legendPosition",
-          "type": {
-            "kind": "custom",
-            "name": "LegendPosition"
-          },
-          "description": "Legend position.",
-          "default": "LegendPosition.top"
-        },
-        {
-          "name": "loading",
-          "type": {
-            "kind": "primitive",
-            "name": "boolean"
-          },
-          "description": "Whether the loading state is shown.",
-          "default": false
-        },
-        {
-          "name": "emptyText",
+          "name": "imageUrl",
           "type": {
             "kind": "primitive",
             "name": "string"
           },
-          "description": "Text shown when there is no data.",
-          "default": "No data available"
+          "description": "Image source URL."
         },
         {
-          "name": "symbolSize",
-          "type": {
-            "kind": "primitive",
-            "name": "number"
-          },
-          "description": "Size of scatter points.",
-          "default": 8
-        },
-        {
-          "name": "opacity",
-          "type": {
-            "kind": "primitive",
-            "name": "number"
-          },
-          "description": "Opacity of scatter points.",
-          "default": 0.8
-        },
-        {
-          "name": "xAxisLabel",
+          "name": "fallbackText",
           "type": {
             "kind": "primitive",
             "name": "string"
           },
-          "description": "Label for the X axis."
+          "description": "Fallback text used when no image is available."
         },
         {
-          "name": "yAxisLabel",
+          "name": "size",
           "type": {
-            "kind": "primitive",
-            "name": "string"
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "sm"
+              },
+              {
+                "kind": "literal",
+                "value": "md"
+              },
+              {
+                "kind": "literal",
+                "value": "lg"
+              },
+              {
+                "kind": "literal",
+                "value": "xl"
+              }
+            ]
           },
-          "description": "Label for the Y axis."
+          "default": "md",
+          "description": "Avatar size variant."
+        },
+        {
+          "name": "backgroundColor",
+          "type": {
+            "kind": "custom",
+            "name": "Color"
+          },
+          "description": "Background color of the avatar."
+        },
+        {
+          "name": "foregroundColor",
+          "type": {
+            "kind": "custom",
+            "name": "Color"
+          },
+          "description": "Foreground color of the fallback text."
         }
-      ],
-      "category": "charts"
+      ]
     },
-    "mixed-chart": {
-      "name": "MixedChart",
-      "type": "chart",
-      "description": "Combine multiple chart types (line, bar, area) in a single visualization",
+    "badge": {
+      "id": "badge",
+      "name": "badge",
+      "type": "other",
+      "description": "badge",
       "files": [
-        "mixed_chart.dart",
+        "badge.dart"
+      ],
+      "exports": [
+        "GalaxyBadge",
+        "GalaxyBadgeCount",
+        "GalaxyBadgePositioned",
+        "BadgeVariant"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [
+        "flutter"
+      ],
+      "registryDependencies": [],
+      "category": "other",
+      "props": [
+        {
+          "name": "text",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Badge text content."
+        },
+        {
+          "name": "child",
+          "type": {
+            "kind": "custom",
+            "name": "Widget"
+          },
+          "description": "Custom badge content widget."
+        },
+        {
+          "name": "variant",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "default_"
+              },
+              {
+                "kind": "literal",
+                "value": "secondary"
+              },
+              {
+                "kind": "literal",
+                "value": "destructive"
+              },
+              {
+                "kind": "literal",
+                "value": "outline"
+              }
+            ]
+          },
+          "default": "default_",
+          "description": "Visual style variant for the badge."
+        },
+        {
+          "name": "padding",
+          "type": {
+            "kind": "custom",
+            "name": "EdgeInsets"
+          },
+          "description": "Padding inside the badge."
+        }
+      ]
+    },
+    "bar-chart": {
+      "id": "bar-chart",
+      "name": "bar-chart",
+      "type": "other",
+      "description": "bar-chart",
+      "files": [
+        "bar_chart.dart",
         "types.dart",
         "utils.dart",
         "index.dart"
       ],
+      "exports": [
+        "GalaxyBarChart",
+        "ChartDataset",
+        "ChartData",
+        "GridConfig",
+        "TooltipConfig",
+        "AxisConfig",
+        "BaseChartProps",
+        "ChartColorSchemes",
+        "ThemeColors",
+        "ChartTheme",
+        "LegendPosition"
+      ],
       "dependencies": [
         "fl_chart: ^0.68.0"
       ],
+      "devDependencies": [],
       "peerDependencies": [
         "flutter"
       ],
-      "exports": [
-        "GalaxyMixedChart"
-      ],
+      "registryDependencies": [],
+      "category": "other",
       "props": [
         {
           "name": "data",
@@ -4237,6 +673,33 @@
           "default": true
         },
         {
+          "name": "horizontal",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether to render horizontal bars.",
+          "default": false
+        },
+        {
+          "name": "stacked",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether datasets are stacked.",
+          "default": false
+        },
+        {
+          "name": "showDataLabels",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether to show data labels on bars.",
+          "default": false
+        },
+        {
           "name": "loading",
           "type": {
             "kind": "primitive",
@@ -4262,25 +725,458 @@
           },
           "description": "Padding inside the chart container."
         }
+      ]
+    },
+    "button": {
+      "id": "button",
+      "name": "Button",
+      "type": "form",
+      "description": "Displays a button or a component that looks like a button with variants and sizes.",
+      "files": [
+        "button.dart",
+        "button_theme.dart"
       ],
-      "category": "charts"
+      "exports": [
+        "GalaxyButton",
+        "ButtonVariant",
+        "ButtonSize",
+        "GalaxyButtonTheme",
+        "ButtonColors"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "form",
+      "props": [
+        {
+          "name": "variant",
+          "type": {
+            "kind": "union",
+            "values": [
+              "primary",
+              "destructive",
+              "outline",
+              "secondary",
+              "ghost",
+              "link"
+            ]
+          },
+          "default": "primary",
+          "description": "Visual style variant."
+        },
+        {
+          "name": "size",
+          "type": {
+            "kind": "union",
+            "values": [
+              "defaultSize",
+              "sm",
+              "lg",
+              "icon"
+            ]
+          },
+          "default": "defaultSize",
+          "description": "Size variant."
+        },
+        {
+          "name": "onPressed",
+          "type": {
+            "kind": "function",
+            "signature": "() => void"
+          },
+          "description": "Press handler."
+        },
+        {
+          "name": "disabled",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": false,
+          "description": "Disables the button."
+        },
+        {
+          "name": "child",
+          "type": {
+            "kind": "custom",
+            "name": "Widget"
+          },
+          "description": "Button content."
+        }
+      ]
+    },
+    "card": {
+      "id": "card",
+      "name": "card",
+      "type": "other",
+      "description": "card",
+      "files": [
+        "card.dart"
+      ],
+      "exports": [
+        "GalaxyCard",
+        "GalaxyCardHeader",
+        "GalaxyCardTitle",
+        "GalaxyCardDescription",
+        "GalaxyCardContent",
+        "GalaxyCardFooter"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [
+        "flutter"
+      ],
+      "registryDependencies": [],
+      "category": "other",
+      "props": [
+        {
+          "name": "child",
+          "type": {
+            "kind": "custom",
+            "name": "Widget"
+          },
+          "description": "Card content widget."
+        },
+        {
+          "name": "padding",
+          "type": {
+            "kind": "custom",
+            "name": "EdgeInsetsGeometry"
+          },
+          "description": "Optional padding applied around the child."
+        },
+        {
+          "name": "elevation",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "default": 1,
+          "description": "Card elevation."
+        }
+      ]
+    },
+    "checkbox": {
+      "id": "checkbox",
+      "name": "checkbox",
+      "type": "other",
+      "description": "checkbox",
+      "files": [
+        "checkbox.dart"
+      ],
+      "exports": [
+        "GalaxyCheckbox"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [
+        "flutter"
+      ],
+      "registryDependencies": [],
+      "category": "other",
+      "props": [
+        {
+          "name": "value",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Controlled checked state."
+        },
+        {
+          "name": "onChanged",
+          "type": {
+            "kind": "function",
+            "signature": "(value: boolean | null) => void"
+          },
+          "description": "Called when the checked state changes."
+        },
+        {
+          "name": "label",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Label text."
+        },
+        {
+          "name": "disabled",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": false,
+          "description": "Disables the checkbox."
+        }
+      ]
+    },
+    "collapsible": {
+      "id": "collapsible",
+      "name": "collapsible",
+      "type": "other",
+      "description": "collapsible",
+      "files": [
+        "collapsible.dart"
+      ],
+      "exports": [
+        "GalaxyCollapsible",
+        "_GalaxyCollapsibleState"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [
+        "flutter"
+      ],
+      "registryDependencies": [],
+      "category": "other",
+      "props": [
+        {
+          "name": "trigger",
+          "type": {
+            "kind": "custom",
+            "name": "Widget"
+          },
+          "description": "Widget used to toggle the collapsible state."
+        },
+        {
+          "name": "content",
+          "type": {
+            "kind": "custom",
+            "name": "Widget"
+          },
+          "description": "Widget revealed when expanded."
+        },
+        {
+          "name": "initiallyExpanded",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": false,
+          "description": "Whether the collapsible starts expanded."
+        },
+        {
+          "name": "onExpansionChanged",
+          "type": {
+            "kind": "function",
+            "signature": "(expanded: bool) => void"
+          },
+          "description": "Called when the expansion state changes."
+        }
+      ]
+    },
+    "context-menu": {
+      "id": "context-menu",
+      "name": "context-menu",
+      "type": "other",
+      "description": "context-menu",
+      "files": [
+        "context_menu.dart"
+      ],
+      "exports": [
+        "GalaxyContextMenu",
+        "GalaxyContextMenuItem"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [
+        "flutter"
+      ],
+      "registryDependencies": [],
+      "category": "other",
+      "props": [
+        {
+          "name": "child",
+          "type": {
+            "kind": "custom",
+            "name": "Widget"
+          },
+          "description": "Widget that receives the long-press or secondary-tap gesture."
+        },
+        {
+          "name": "items",
+          "type": {
+            "kind": "custom",
+            "name": "List<GalaxyContextMenuItem<T>>"
+          },
+          "description": "Items shown in the context menu."
+        },
+        {
+          "name": "onSelected",
+          "type": {
+            "kind": "function",
+            "signature": "(T value) => void"
+          },
+          "description": "Called when a menu item is selected."
+        }
+      ]
+    },
+    "date-picker": {
+      "id": "date-picker",
+      "name": "Date Picker",
+      "type": "form",
+      "description": "A date picker component with popover and calendar.",
+      "files": [
+        "date_picker.dart"
+      ],
+      "exports": [
+        "GalaxyDatePicker",
+        "DatePickerMode"
+      ],
+      "dependencies": [
+        "intl"
+      ],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "form",
+      "props": [
+        {
+          "name": "selected",
+          "type": {
+            "kind": "custom",
+            "name": "DateTime"
+          },
+          "description": "Selected date for the single-date picker."
+        },
+        {
+          "name": "minDate",
+          "type": {
+            "kind": "custom",
+            "name": "DateTime"
+          },
+          "description": "Earliest date available for selection."
+        },
+        {
+          "name": "maxDate",
+          "type": {
+            "kind": "custom",
+            "name": "DateTime"
+          },
+          "description": "Latest date available for selection."
+        },
+        {
+          "name": "onChanged",
+          "type": {
+            "kind": "function",
+            "signature": "(date: DateTime?) => void"
+          },
+          "description": "Called when the selected date changes."
+        },
+        {
+          "name": "format",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Date format pattern used for display."
+        },
+        {
+          "name": "placeholder",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Placeholder text shown when no date is selected."
+        },
+        {
+          "name": "header",
+          "type": {
+            "kind": "custom",
+            "name": "Widget"
+          },
+          "description": "Optional header widget rendered above the picker."
+        }
+      ]
+    },
+    "dialog": {
+      "id": "dialog",
+      "name": "Dialog",
+      "type": "modal-overlay",
+      "description": "A window overlaid on either the primary window or another dialog window with accessible focus management.",
+      "files": [
+        "dialog.dart"
+      ],
+      "exports": [
+        "GalaxyDialog"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "modal-overlay",
+      "props": [
+        {
+          "name": "title",
+          "type": {
+            "kind": "custom",
+            "name": "Widget"
+          },
+          "description": "Optional widget rendered as the dialog title."
+        },
+        {
+          "name": "content",
+          "type": {
+            "kind": "custom",
+            "name": "Widget"
+          },
+          "description": "Optional widget rendered as the main dialog content."
+        },
+        {
+          "name": "actions",
+          "type": {
+            "kind": "array",
+            "of": {
+              "kind": "custom",
+              "name": "Widget"
+            }
+          },
+          "description": "Optional action widgets rendered in the footer row."
+        },
+        {
+          "name": "contentPadding",
+          "type": {
+            "kind": "custom",
+            "name": "EdgeInsetsGeometry"
+          },
+          "description": "Padding applied around the content widget."
+        }
+      ]
     },
     "donut-chart": {
-      "name": "DonutChart",
-      "type": "chart",
-      "description": "Display data as a donut chart",
+      "id": "donut-chart",
+      "name": "donut-chart",
+      "type": "other",
+      "description": "donut-chart",
       "files": [
         "donut_chart.dart",
         "types.dart",
         "utils.dart",
         "index.dart"
       ],
+      "exports": [
+        "GalaxyDonutChart",
+        "ChartDataset",
+        "ChartData",
+        "GridConfig",
+        "TooltipConfig",
+        "AxisConfig",
+        "BaseChartProps",
+        "ChartColorSchemes",
+        "ThemeColors",
+        "ChartTheme",
+        "LegendPosition"
+      ],
       "dependencies": [
         "fl_chart: ^0.68.0"
       ],
       "devDependencies": [],
+      "peerDependencies": [
+        "flutter"
+      ],
       "registryDependencies": [],
-      "category": "charts",
+      "category": "other",
       "props": [
         {
           "name": "data",
@@ -4396,28 +1292,156 @@
           },
           "description": "Padding inside the chart container."
         }
+      ]
+    },
+    "dropdown-menu": {
+      "id": "dropdown-menu",
+      "name": "dropdown-menu",
+      "type": "other",
+      "description": "dropdown-menu",
+      "files": [
+        "dropdown_menu.dart"
       ],
+      "exports": [
+        "GalaxyDropdownMenu",
+        "GalaxyDropdownMenuItem"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
       "peerDependencies": [
         "flutter"
       ],
+      "registryDependencies": [],
+      "category": "other",
+      "props": [
+        {
+          "name": "trigger",
+          "type": {
+            "kind": "custom",
+            "name": "Widget"
+          },
+          "description": "Widget used to open the menu."
+        },
+        {
+          "name": "items",
+          "type": {
+            "kind": "array",
+            "of": {
+              "kind": "custom",
+              "name": "GalaxyDropdownMenuItem<T>"
+            }
+          },
+          "description": "Menu items rendered in the popup."
+        },
+        {
+          "name": "onSelected",
+          "type": {
+            "kind": "function",
+            "signature": "(value: T) => void"
+          },
+          "description": "Called when an item is selected."
+        }
+      ]
+    },
+    "empty": {
+      "id": "empty",
+      "name": "empty",
+      "type": "other",
+      "description": "empty",
+      "files": [
+        "empty.dart"
+      ],
       "exports": [
-        "GalaxyDonutChart"
+        "GalaxyEmpty"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [
+        "flutter"
+      ],
+      "registryDependencies": [],
+      "category": "other",
+      "props": [
+        {
+          "name": "icon",
+          "type": {
+            "kind": "custom",
+            "name": "Widget"
+          },
+          "description": "Optional icon widget."
+        },
+        {
+          "name": "title",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Optional title text."
+        },
+        {
+          "name": "description",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Optional description text."
+        },
+        {
+          "name": "action",
+          "type": {
+            "kind": "custom",
+            "name": "Widget"
+          },
+          "description": "Optional action widget."
+        },
+        {
+          "name": "padding",
+          "type": {
+            "kind": "custom",
+            "name": "EdgeInsets"
+          },
+          "default": "EdgeInsets.all(32)",
+          "description": "Padding around the empty state content."
+        },
+        {
+          "name": "iconSize",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "default": 64,
+          "description": "Size applied to the icon theme."
+        },
+        {
+          "name": "spacing",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "default": 16,
+          "description": "Base spacing used between sections."
+        }
       ]
     },
     "gauge-chart": {
-      "name": "GaugeChart",
-      "type": "chart",
-      "description": "Display data as a gauge chart",
+      "id": "gauge-chart",
+      "name": "Gauge Chart",
+      "type": "charts",
+      "description": "Gauge chart for displaying KPIs and metrics with a gauge visualization.",
       "files": [
         "gauge_chart.dart",
+        "index.dart",
         "types.dart",
-        "utils.dart",
-        "index.dart"
+        "utils.dart"
       ],
-      "dependencies": [
-        "fl_chart: ^0.68.0"
+      "exports": [
+        "GalaxyGaugeChart",
+        "GaugeZone",
+        "ChartTheme"
       ],
+      "dependencies": [],
       "devDependencies": [],
+      "peerDependencies": [],
       "registryDependencies": [],
       "category": "charts",
       "props": [
@@ -4565,13 +1589,2438 @@
           },
           "description": "Padding inside the chart container."
         }
+      ]
+    },
+    "hover-card": {
+      "id": "hover-card",
+      "name": "hover-card",
+      "type": "other",
+      "description": "hover-card",
+      "files": [
+        "hover_card.dart"
       ],
+      "exports": [
+        "GalaxyHoverCard",
+        "_GalaxyHoverCardState"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
       "peerDependencies": [
         "flutter"
       ],
+      "registryDependencies": [],
+      "category": "other",
+      "props": [
+        {
+          "name": "trigger",
+          "type": {
+            "kind": "custom",
+            "name": "Widget"
+          },
+          "description": "Widget used as the hover or tap trigger."
+        },
+        {
+          "name": "content",
+          "type": {
+            "kind": "custom",
+            "name": "Widget"
+          },
+          "description": "Widget displayed inside the hover card."
+        },
+        {
+          "name": "width",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Optional width of the hover card."
+        },
+        {
+          "name": "padding",
+          "type": {
+            "kind": "custom",
+            "name": "EdgeInsets"
+          },
+          "description": "Padding inside the hover card."
+        },
+        {
+          "name": "openDelay",
+          "type": {
+            "kind": "custom",
+            "name": "Duration"
+          },
+          "description": "Configured open delay; currently declared but not applied by the implementation."
+        }
+      ]
+    },
+    "input": {
+      "id": "input",
+      "name": "input",
+      "type": "other",
+      "description": "input",
+      "files": [
+        "input.dart"
+      ],
       "exports": [
-        "GalaxyGaugeChart",
-        "GaugeZone"
+        "GalaxyInput",
+        "_GalaxyInputState"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [
+        "flutter"
+      ],
+      "registryDependencies": [],
+      "category": "other",
+      "props": [
+        {
+          "name": "controller",
+          "type": {
+            "kind": "custom",
+            "name": "TextEditingController"
+          },
+          "description": "Controller for the text field."
+        },
+        {
+          "name": "label",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Label text."
+        },
+        {
+          "name": "placeholder",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Placeholder text."
+        },
+        {
+          "name": "error",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Error text."
+        },
+        {
+          "name": "enabled",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": true,
+          "description": "Whether the input is enabled."
+        },
+        {
+          "name": "obscureText",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": false,
+          "description": "Obscures the input text."
+        },
+        {
+          "name": "keyboardType",
+          "type": {
+            "kind": "custom",
+            "name": "TextInputType"
+          },
+          "description": "Keyboard type."
+        },
+        {
+          "name": "maxLines",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "default": 1,
+          "description": "Max lines."
+        },
+        {
+          "name": "onChanged",
+          "type": {
+            "kind": "function",
+            "signature": "(value: string) => void"
+          },
+          "description": "Change handler."
+        },
+        {
+          "name": "onSubmitted",
+          "type": {
+            "kind": "function",
+            "signature": "(value: string) => void"
+          },
+          "description": "Submit handler."
+        }
+      ]
+    },
+    "label": {
+      "id": "label",
+      "name": "label",
+      "type": "other",
+      "description": "label",
+      "files": [
+        "label.dart"
+      ],
+      "exports": [
+        "GalaxyLabel"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [
+        "flutter"
+      ],
+      "registryDependencies": [],
+      "category": "other",
+      "props": [
+        {
+          "name": "text",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Label text."
+        },
+        {
+          "name": "required",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": false,
+          "description": "Marks label as required and appends an asterisk."
+        },
+        {
+          "name": "style",
+          "type": {
+            "kind": "custom",
+            "name": "TextStyle"
+          },
+          "description": "Text style."
+        },
+        {
+          "name": "color",
+          "type": {
+            "kind": "custom",
+            "name": "Color"
+          },
+          "description": "Text color."
+        }
+      ]
+    },
+    "line-chart": {
+      "id": "line-chart",
+      "name": "line-chart",
+      "type": "other",
+      "description": "line-chart",
+      "files": [
+        "line_chart.dart",
+        "types.dart",
+        "utils.dart",
+        "index.dart"
+      ],
+      "exports": [
+        "GalaxyLineChart",
+        "ChartDataset",
+        "ChartData",
+        "GridConfig",
+        "TooltipConfig",
+        "AxisConfig",
+        "BaseChartProps",
+        "ChartColorSchemes",
+        "ThemeColors",
+        "ChartTheme",
+        "LegendPosition"
+      ],
+      "dependencies": [
+        "fl_chart: ^0.68.0"
+      ],
+      "devDependencies": [],
+      "peerDependencies": [
+        "flutter"
+      ],
+      "registryDependencies": [],
+      "category": "other",
+      "props": [
+        {
+          "name": "data",
+          "type": {
+            "kind": "custom",
+            "name": "ChartData"
+          },
+          "description": "Chart data including labels and datasets."
+        },
+        {
+          "name": "height",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Chart height in pixels.",
+          "default": 300
+        },
+        {
+          "name": "width",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Chart width in pixels."
+        },
+        {
+          "name": "theme",
+          "type": {
+            "kind": "custom",
+            "name": "ChartTheme"
+          },
+          "description": "Theme mode used by the chart.",
+          "default": "ChartTheme.light"
+        },
+        {
+          "name": "legend",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether to show the legend.",
+          "default": true
+        },
+        {
+          "name": "legendPosition",
+          "type": {
+            "kind": "custom",
+            "name": "LegendPosition"
+          },
+          "description": "Legend position.",
+          "default": "LegendPosition.top"
+        },
+        {
+          "name": "grid",
+          "type": {
+            "kind": "custom",
+            "name": "GridConfig"
+          },
+          "description": "Grid configuration."
+        },
+        {
+          "name": "tooltip",
+          "type": {
+            "kind": "custom",
+            "name": "TooltipConfig"
+          },
+          "description": "Tooltip configuration."
+        },
+        {
+          "name": "animation",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether chart animations are enabled.",
+          "default": true
+        },
+        {
+          "name": "smooth",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether lines are rendered as smooth curves.",
+          "default": true
+        },
+        {
+          "name": "showPoints",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether data points are shown.",
+          "default": true
+        },
+        {
+          "name": "pointSize",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Size of data point markers.",
+          "default": 4
+        },
+        {
+          "name": "area",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether to fill the area under the line.",
+          "default": false
+        },
+        {
+          "name": "loading",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether the loading state is shown.",
+          "default": false
+        },
+        {
+          "name": "emptyText",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Text shown when there is no data.",
+          "default": "No data available"
+        },
+        {
+          "name": "padding",
+          "type": {
+            "kind": "custom",
+            "name": "EdgeInsets"
+          },
+          "description": "Padding inside the chart container."
+        }
+      ]
+    },
+    "menubar": {
+      "id": "menubar",
+      "name": "menubar",
+      "type": "other",
+      "description": "menubar",
+      "files": [
+        "menubar.dart"
+      ],
+      "exports": [
+        "GalaxyMenubar",
+        "GalaxyMenubarMenu"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [
+        "flutter"
+      ],
+      "registryDependencies": [],
+      "category": "other",
+      "props": [
+        {
+          "name": "menus",
+          "type": {
+            "kind": "array",
+            "of": {
+              "kind": "custom",
+              "name": "GalaxyMenubarMenu"
+            }
+          },
+          "description": "Menus rendered in the menubar."
+        }
+      ]
+    },
+    "mixed-chart": {
+      "id": "mixed-chart",
+      "name": "mixed-chart",
+      "type": "other",
+      "description": "mixed-chart",
+      "files": [
+        "mixed_chart.dart",
+        "types.dart",
+        "utils.dart",
+        "index.dart"
+      ],
+      "exports": [
+        "GalaxyMixedChart",
+        "ChartDataset",
+        "ChartData",
+        "GridConfig",
+        "TooltipConfig",
+        "AxisConfig",
+        "BaseChartProps",
+        "ChartColorSchemes",
+        "ThemeColors",
+        "ChartTheme",
+        "LegendPosition"
+      ],
+      "dependencies": [
+        "fl_chart: ^0.68.0"
+      ],
+      "devDependencies": [],
+      "peerDependencies": [
+        "flutter"
+      ],
+      "registryDependencies": [],
+      "category": "other",
+      "props": [
+        {
+          "name": "data",
+          "type": {
+            "kind": "custom",
+            "name": "ChartData"
+          },
+          "description": "Chart data including labels and datasets."
+        },
+        {
+          "name": "height",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Chart height in pixels.",
+          "default": 300
+        },
+        {
+          "name": "width",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Chart width in pixels."
+        },
+        {
+          "name": "theme",
+          "type": {
+            "kind": "custom",
+            "name": "ChartTheme"
+          },
+          "description": "Theme mode used by the chart.",
+          "default": "ChartTheme.light"
+        },
+        {
+          "name": "legend",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether to show the legend.",
+          "default": true
+        },
+        {
+          "name": "legendPosition",
+          "type": {
+            "kind": "custom",
+            "name": "LegendPosition"
+          },
+          "description": "Legend position.",
+          "default": "LegendPosition.top"
+        },
+        {
+          "name": "grid",
+          "type": {
+            "kind": "custom",
+            "name": "GridConfig"
+          },
+          "description": "Grid configuration."
+        },
+        {
+          "name": "tooltip",
+          "type": {
+            "kind": "custom",
+            "name": "TooltipConfig"
+          },
+          "description": "Tooltip configuration."
+        },
+        {
+          "name": "animation",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether chart animations are enabled.",
+          "default": true
+        },
+        {
+          "name": "loading",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether the loading state is shown.",
+          "default": false
+        },
+        {
+          "name": "emptyText",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Text shown when there is no data.",
+          "default": "No data available"
+        },
+        {
+          "name": "padding",
+          "type": {
+            "kind": "custom",
+            "name": "EdgeInsets"
+          },
+          "description": "Padding inside the chart container."
+        }
+      ]
+    },
+    "navigation-menu": {
+      "id": "navigation-menu",
+      "name": "navigation-menu",
+      "type": "other",
+      "description": "navigation-menu",
+      "files": [
+        "navigation_menu.dart"
+      ],
+      "exports": [
+        "NavigationMenuItem",
+        "GalaxyNavigationMenu",
+        "NavigationMenuVariant"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [
+        "flutter"
+      ],
+      "registryDependencies": [],
+      "category": "other",
+      "props": [
+        {
+          "name": "items",
+          "type": {
+            "kind": "custom",
+            "name": "List<NavigationMenuItem>"
+          },
+          "description": "Items rendered in the navigation menu."
+        },
+        {
+          "name": "selectedId",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Currently selected item id."
+        },
+        {
+          "name": "onSelect",
+          "type": {
+            "kind": "function",
+            "signature": "(String id) => void"
+          },
+          "description": "Called when a navigation item is selected."
+        },
+        {
+          "name": "variant",
+          "type": {
+            "kind": "custom",
+            "name": "NavigationMenuVariant"
+          },
+          "description": "Visual variant of the navigation menu.",
+          "default": "NavigationMenuVariant.bottom"
+        },
+        {
+          "name": "header",
+          "type": {
+            "kind": "custom",
+            "name": "Widget"
+          },
+          "description": "Optional header widget for the drawer variant."
+        },
+        {
+          "name": "footer",
+          "type": {
+            "kind": "custom",
+            "name": "Widget"
+          },
+          "description": "Optional footer widget for the drawer variant."
+        }
+      ]
+    },
+    "pagination": {
+      "id": "pagination",
+      "name": "pagination",
+      "type": "other",
+      "description": "pagination",
+      "files": [
+        "pagination.dart"
+      ],
+      "exports": [
+        "GalaxyPagination",
+        "PaginationVariant"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [
+        "flutter"
+      ],
+      "registryDependencies": [],
+      "category": "other",
+      "props": [
+        {
+          "name": "currentPage",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Current page number."
+        },
+        {
+          "name": "totalPages",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Total number of pages."
+        },
+        {
+          "name": "onPageChange",
+          "type": {
+            "kind": "function",
+            "signature": "(page: int) => void"
+          },
+          "description": "Called when the page changes."
+        },
+        {
+          "name": "variant",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "compact"
+              },
+              {
+                "kind": "literal",
+                "value": "full"
+              },
+              {
+                "kind": "literal",
+                "value": "loadMore"
+              }
+            ]
+          },
+          "default": "compact",
+          "description": "Pagination presentation variant."
+        },
+        {
+          "name": "visiblePages",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "default": 5,
+          "description": "Number of visible pages in compact mode."
+        },
+        {
+          "name": "loadMoreText",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Label for load-more mode."
+        },
+        {
+          "name": "isLoading",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": false,
+          "description": "Loading state for load-more mode."
+        }
+      ]
+    },
+    "pie-chart": {
+      "id": "pie-chart",
+      "name": "pie-chart",
+      "type": "other",
+      "description": "pie-chart",
+      "files": [
+        "pie_chart.dart",
+        "types.dart",
+        "utils.dart",
+        "index.dart"
+      ],
+      "exports": [
+        "GalaxyPieChart",
+        "ChartDataset",
+        "ChartData",
+        "GridConfig",
+        "TooltipConfig",
+        "AxisConfig",
+        "BaseChartProps",
+        "ChartColorSchemes",
+        "ThemeColors",
+        "ChartTheme",
+        "LegendPosition"
+      ],
+      "dependencies": [
+        "fl_chart: ^0.68.0"
+      ],
+      "devDependencies": [],
+      "peerDependencies": [
+        "flutter"
+      ],
+      "registryDependencies": [],
+      "category": "other",
+      "props": [
+        {
+          "name": "data",
+          "type": {
+            "kind": "custom",
+            "name": "ChartData"
+          },
+          "description": "Chart data including labels and datasets."
+        },
+        {
+          "name": "height",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Chart height in pixels.",
+          "default": 300
+        },
+        {
+          "name": "width",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Chart width in pixels."
+        },
+        {
+          "name": "theme",
+          "type": {
+            "kind": "custom",
+            "name": "ChartTheme"
+          },
+          "description": "Theme mode used by the chart.",
+          "default": "ChartTheme.light"
+        },
+        {
+          "name": "legend",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether to show the legend.",
+          "default": true
+        },
+        {
+          "name": "legendPosition",
+          "type": {
+            "kind": "custom",
+            "name": "LegendPosition"
+          },
+          "description": "Legend position.",
+          "default": "LegendPosition.right"
+        },
+        {
+          "name": "animation",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether chart animations are enabled.",
+          "default": true
+        },
+        {
+          "name": "innerRadius",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Inner radius percentage.",
+          "default": 0
+        },
+        {
+          "name": "outerRadius",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Outer radius percentage.",
+          "default": 70
+        },
+        {
+          "name": "showPercentage",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether to show percentage labels.",
+          "default": true
+        },
+        {
+          "name": "loading",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether the loading state is shown.",
+          "default": false
+        },
+        {
+          "name": "emptyText",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Text shown when there is no data.",
+          "default": "No data available"
+        },
+        {
+          "name": "padding",
+          "type": {
+            "kind": "custom",
+            "name": "EdgeInsets"
+          },
+          "description": "Padding inside the chart container."
+        }
+      ]
+    },
+    "popover": {
+      "id": "popover",
+      "name": "popover",
+      "type": "other",
+      "description": "popover",
+      "files": [
+        "popover.dart"
+      ],
+      "exports": [
+        "GalaxyPopover"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [
+        "flutter"
+      ],
+      "registryDependencies": [],
+      "category": "other",
+      "props": [
+        {
+          "name": "trigger",
+          "type": {
+            "kind": "custom",
+            "name": "Widget"
+          },
+          "description": "Widget that opens the popover."
+        },
+        {
+          "name": "content",
+          "type": {
+            "kind": "custom",
+            "name": "Widget"
+          },
+          "description": "Popover content widget."
+        },
+        {
+          "name": "width",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Optional width of the popover panel."
+        },
+        {
+          "name": "padding",
+          "type": {
+            "kind": "custom",
+            "name": "EdgeInsets"
+          },
+          "description": "Padding inside the popover panel."
+        }
+      ]
+    },
+    "progress": {
+      "id": "progress",
+      "name": "progress",
+      "type": "other",
+      "description": "progress",
+      "files": [
+        "progress.dart"
+      ],
+      "exports": [
+        "GalaxyProgress"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [
+        "flutter"
+      ],
+      "registryDependencies": [],
+      "category": "other",
+      "props": [
+        {
+          "name": "value",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Progress value between 0 and 1, or null for indeterminate."
+        },
+        {
+          "name": "backgroundColor",
+          "type": {
+            "kind": "custom",
+            "name": "Color"
+          },
+          "description": "Background color of the progress track."
+        },
+        {
+          "name": "valueColor",
+          "type": {
+            "kind": "custom",
+            "name": "Color"
+          },
+          "description": "Color of the progress indicator."
+        },
+        {
+          "name": "height",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "default": 4,
+          "description": "Height of the progress bar."
+        }
+      ]
+    },
+    "radar-chart": {
+      "id": "radar-chart",
+      "name": "radar-chart",
+      "type": "other",
+      "description": "radar-chart",
+      "files": [
+        "radar_chart.dart",
+        "types.dart",
+        "utils.dart",
+        "index.dart"
+      ],
+      "exports": [
+        "GalaxyRadarChart",
+        "ChartDataset",
+        "ChartData",
+        "GridConfig",
+        "TooltipConfig",
+        "AxisConfig",
+        "BaseChartProps",
+        "ChartColorSchemes",
+        "ThemeColors",
+        "ChartTheme",
+        "LegendPosition"
+      ],
+      "dependencies": [
+        "fl_chart: ^0.68.0"
+      ],
+      "devDependencies": [],
+      "peerDependencies": [
+        "flutter"
+      ],
+      "registryDependencies": [],
+      "category": "other",
+      "props": [
+        {
+          "name": "data",
+          "type": {
+            "kind": "custom",
+            "name": "ChartData"
+          },
+          "description": "Chart data including labels and datasets."
+        },
+        {
+          "name": "height",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Chart height in pixels.",
+          "default": 300
+        },
+        {
+          "name": "width",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Chart width in pixels."
+        },
+        {
+          "name": "theme",
+          "type": {
+            "kind": "custom",
+            "name": "ChartTheme"
+          },
+          "description": "Theme mode used by the chart.",
+          "default": "ChartTheme.light"
+        },
+        {
+          "name": "legend",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether to show the legend.",
+          "default": true
+        },
+        {
+          "name": "legendPosition",
+          "type": {
+            "kind": "custom",
+            "name": "LegendPosition"
+          },
+          "description": "Legend position.",
+          "default": "LegendPosition.top"
+        },
+        {
+          "name": "loading",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether the loading state is shown.",
+          "default": false
+        },
+        {
+          "name": "emptyText",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Text shown when there is no data.",
+          "default": "No data available"
+        },
+        {
+          "name": "fill",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether to fill the radar area.",
+          "default": true
+        },
+        {
+          "name": "opacity",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Fill opacity.",
+          "default": 0.3
+        },
+        {
+          "name": "numberOfConcentriccircles",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Number of concentric guide circles.",
+          "default": 4
+        }
+      ]
+    },
+    "radio-group": {
+      "id": "radio-group",
+      "name": "radio-group",
+      "type": "other",
+      "description": "radio-group",
+      "files": [
+        "radio_group.dart"
+      ],
+      "exports": [
+        "GalaxyRadioGroup",
+        "GalaxyRadioOption",
+        "GalaxyRadioItem"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [
+        "flutter"
+      ],
+      "registryDependencies": [],
+      "category": "other",
+      "props": [
+        {
+          "name": "value",
+          "type": {
+            "kind": "custom",
+            "name": "T?"
+          },
+          "description": "Controlled selected value."
+        },
+        {
+          "name": "onChanged",
+          "type": {
+            "kind": "function",
+            "signature": "(value: T?) => void"
+          },
+          "description": "Called when the value changes."
+        },
+        {
+          "name": "options",
+          "type": {
+            "kind": "array",
+            "of": {
+              "kind": "custom",
+              "name": "GalaxyRadioOption<T>"
+            }
+          },
+          "description": "Radio options."
+        },
+        {
+          "name": "direction",
+          "type": {
+            "kind": "custom",
+            "name": "Axis"
+          },
+          "default": "Axis.vertical",
+          "description": "Layout direction."
+        }
+      ]
+    },
+    "scatter-chart": {
+      "id": "scatter-chart",
+      "name": "scatter-chart",
+      "type": "other",
+      "description": "scatter-chart",
+      "files": [
+        "scatter_chart.dart",
+        "types.dart",
+        "utils.dart",
+        "index.dart"
+      ],
+      "exports": [
+        "GalaxyScatterChart",
+        "ChartDataset",
+        "ChartData",
+        "GridConfig",
+        "TooltipConfig",
+        "AxisConfig",
+        "BaseChartProps",
+        "ChartColorSchemes",
+        "ThemeColors",
+        "ChartTheme",
+        "LegendPosition"
+      ],
+      "dependencies": [
+        "fl_chart: ^0.68.0"
+      ],
+      "devDependencies": [],
+      "peerDependencies": [
+        "flutter"
+      ],
+      "registryDependencies": [],
+      "category": "other",
+      "props": [
+        {
+          "name": "data",
+          "type": {
+            "kind": "custom",
+            "name": "ChartData"
+          },
+          "description": "Chart data including labels and datasets."
+        },
+        {
+          "name": "height",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Chart height in pixels.",
+          "default": 300
+        },
+        {
+          "name": "width",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Chart width in pixels."
+        },
+        {
+          "name": "theme",
+          "type": {
+            "kind": "custom",
+            "name": "ChartTheme"
+          },
+          "description": "Theme mode used by the chart.",
+          "default": "ChartTheme.light"
+        },
+        {
+          "name": "legend",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether to show the legend.",
+          "default": true
+        },
+        {
+          "name": "legendPosition",
+          "type": {
+            "kind": "custom",
+            "name": "LegendPosition"
+          },
+          "description": "Legend position.",
+          "default": "LegendPosition.top"
+        },
+        {
+          "name": "loading",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether the loading state is shown.",
+          "default": false
+        },
+        {
+          "name": "emptyText",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Text shown when there is no data.",
+          "default": "No data available"
+        },
+        {
+          "name": "symbolSize",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Size of scatter points.",
+          "default": 8
+        },
+        {
+          "name": "opacity",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Opacity of scatter points.",
+          "default": 0.8
+        },
+        {
+          "name": "xAxisLabel",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Label for the X axis."
+        },
+        {
+          "name": "yAxisLabel",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Label for the Y axis."
+        }
+      ]
+    },
+    "select": {
+      "id": "select",
+      "name": "Select",
+      "type": "form",
+      "description": "A select box component for choosing an option from a list.",
+      "files": [
+        "select.dart"
+      ],
+      "exports": [
+        "GalaxySelect",
+        "GalaxySelectItem"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "form",
+      "props": [
+        {
+          "name": "value",
+          "type": {
+            "kind": "custom",
+            "name": "T?"
+          },
+          "description": "Controlled selected value."
+        },
+        {
+          "name": "items",
+          "type": {
+            "kind": "array",
+            "of": {
+              "kind": "custom",
+              "name": "GalaxySelectItem<T>"
+            }
+          },
+          "description": "Selectable items."
+        },
+        {
+          "name": "onChanged",
+          "type": {
+            "kind": "function",
+            "signature": "(value: T?) => void"
+          },
+          "description": "Called when the value changes."
+        },
+        {
+          "name": "label",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Label text shown above the select."
+        },
+        {
+          "name": "placeholder",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "default": "Select an option",
+          "description": "Placeholder when no value is selected."
+        },
+        {
+          "name": "enabled",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": true,
+          "description": "Whether the select is enabled."
+        }
+      ]
+    },
+    "separator": {
+      "id": "separator",
+      "name": "separator",
+      "type": "other",
+      "description": "separator",
+      "files": [
+        "separator.dart"
+      ],
+      "exports": [
+        "GalaxySeparator",
+        "SeparatorOrientation"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [
+        "flutter"
+      ],
+      "registryDependencies": [],
+      "category": "other",
+      "props": [
+        {
+          "name": "orientation",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "horizontal"
+              },
+              {
+                "kind": "literal",
+                "value": "vertical"
+              }
+            ]
+          },
+          "default": "horizontal",
+          "description": "Separator orientation."
+        },
+        {
+          "name": "thickness",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Line thickness."
+        },
+        {
+          "name": "color",
+          "type": {
+            "kind": "custom",
+            "name": "Color"
+          },
+          "description": "Separator color."
+        },
+        {
+          "name": "indent",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Leading inset for the divider."
+        },
+        {
+          "name": "endIndent",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Trailing inset for the divider."
+        }
+      ]
+    },
+    "sheet": {
+      "id": "sheet",
+      "name": "sheet",
+      "type": "other",
+      "description": "sheet",
+      "files": [
+        "sheet.dart"
+      ],
+      "exports": [
+        "GalaxySheet",
+        "GalaxySheetContent",
+        "GalaxySheetHeader",
+        "GalaxySheetFooter",
+        "SheetSide"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [
+        "flutter"
+      ],
+      "registryDependencies": [],
+      "category": "other",
+      "props": [
+        {
+          "name": "show",
+          "type": {
+            "kind": "function",
+            "signature": "({ context, builder, side, isDismissible, enableDrag, backgroundColor, elevation, shape, constraints }) => Future<T?>"
+          },
+          "description": "Static API to present a modal or side sheet."
+        }
+      ]
+    },
+    "skeleton": {
+      "id": "skeleton",
+      "name": "skeleton",
+      "type": "other",
+      "description": "skeleton",
+      "files": [
+        "skeleton.dart"
+      ],
+      "exports": [
+        "GalaxySkeleton",
+        "_GalaxySkeletonState"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [
+        "flutter"
+      ],
+      "registryDependencies": [],
+      "category": "other",
+      "props": [
+        {
+          "name": "width",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Explicit width for the skeleton."
+        },
+        {
+          "name": "height",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "default": 16,
+          "description": "Explicit height for the skeleton."
+        },
+        {
+          "name": "borderRadius",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "default": 4,
+          "description": "Border radius of the skeleton shape."
+        },
+        {
+          "name": "baseColor",
+          "type": {
+            "kind": "custom",
+            "name": "Color"
+          },
+          "description": "Base shimmer color."
+        },
+        {
+          "name": "highlightColor",
+          "type": {
+            "kind": "custom",
+            "name": "Color"
+          },
+          "description": "Highlight shimmer color."
+        }
+      ]
+    },
+    "slider": {
+      "id": "slider",
+      "name": "slider",
+      "type": "other",
+      "description": "slider",
+      "files": [
+        "slider.dart"
+      ],
+      "exports": [
+        "GalaxySlider"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [
+        "flutter"
+      ],
+      "registryDependencies": [],
+      "category": "other",
+      "props": [
+        {
+          "name": "value",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Current slider value."
+        },
+        {
+          "name": "onChanged",
+          "type": {
+            "kind": "function",
+            "signature": "(value: number) => void"
+          },
+          "description": "Called when the slider value changes."
+        },
+        {
+          "name": "min",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "default": 0,
+          "description": "Minimum value."
+        },
+        {
+          "name": "max",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "default": 100,
+          "description": "Maximum value."
+        },
+        {
+          "name": "divisions",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Number of discrete divisions."
+        },
+        {
+          "name": "label",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Optional label rendered above the slider."
+        },
+        {
+          "name": "disabled",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": false,
+          "description": "Disables the slider."
+        }
+      ]
+    },
+    "spinner": {
+      "id": "spinner",
+      "name": "spinner",
+      "type": "other",
+      "description": "spinner",
+      "files": [
+        "spinner.dart"
+      ],
+      "exports": [
+        "GalaxySpinner",
+        "_GalaxySpinnerState",
+        "_SpinnerPainter",
+        "SpinnerSize"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [
+        "flutter"
+      ],
+      "registryDependencies": [],
+      "category": "other",
+      "props": [
+        {
+          "name": "size",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "sm"
+              },
+              {
+                "kind": "literal",
+                "value": "default"
+              },
+              {
+                "kind": "literal",
+                "value": "lg"
+              }
+            ]
+          },
+          "default": "default",
+          "description": "Visual size of the spinner."
+        },
+        {
+          "name": "label",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "default": "Loading...",
+          "description": "Accessibility label announced to assistive technology."
+        },
+        {
+          "name": "color",
+          "type": {
+            "kind": "custom",
+            "name": "Color"
+          },
+          "description": "Override color for the spinner stroke."
+        }
+      ]
+    },
+    "switch": {
+      "id": "switch",
+      "name": "switch",
+      "type": "other",
+      "description": "switch",
+      "files": [
+        "switch.dart"
+      ],
+      "exports": [
+        "GalaxySwitch"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [
+        "flutter"
+      ],
+      "registryDependencies": [],
+      "category": "other",
+      "props": [
+        {
+          "name": "value",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Controlled checked state."
+        },
+        {
+          "name": "onChanged",
+          "type": {
+            "kind": "function",
+            "signature": "(value: boolean) => void"
+          },
+          "description": "Called when the checked state changes."
+        },
+        {
+          "name": "activeColor",
+          "type": {
+            "kind": "custom",
+            "name": "Color"
+          },
+          "description": "Active thumb color."
+        },
+        {
+          "name": "inactiveColor",
+          "type": {
+            "kind": "custom",
+            "name": "Color"
+          },
+          "description": "Inactive thumb color."
+        },
+        {
+          "name": "trackColor",
+          "type": {
+            "kind": "custom",
+            "name": "Color"
+          },
+          "description": "Active track color."
+        },
+        {
+          "name": "disabled",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": false,
+          "description": "Disables the switch."
+        }
+      ]
+    },
+    "table": {
+      "id": "table",
+      "name": "table",
+      "type": "other",
+      "description": "table",
+      "files": [
+        "table.dart"
+      ],
+      "exports": [
+        "GalaxyTable",
+        "GalaxyTableColumn",
+        "GalaxyTableRow"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [
+        "flutter"
+      ],
+      "registryDependencies": [],
+      "category": "other",
+      "props": [
+        {
+          "name": "columns",
+          "type": {
+            "kind": "array",
+            "of": {
+              "kind": "custom",
+              "name": "GalaxyTableColumn"
+            }
+          },
+          "description": "Column definitions."
+        },
+        {
+          "name": "rows",
+          "type": {
+            "kind": "array",
+            "of": {
+              "kind": "custom",
+              "name": "GalaxyTableRow"
+            }
+          },
+          "description": "Table rows."
+        },
+        {
+          "name": "caption",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Optional caption displayed below the table."
+        },
+        {
+          "name": "showBorder",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": true,
+          "description": "Whether to show the data table border."
+        }
+      ]
+    },
+    "tabs": {
+      "id": "tabs",
+      "name": "tabs",
+      "type": "other",
+      "description": "tabs",
+      "files": [
+        "tabs.dart"
+      ],
+      "exports": [
+        "GalaxyTabs",
+        "_GalaxyTabsState",
+        "GalaxyTab"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [
+        "flutter"
+      ],
+      "registryDependencies": [],
+      "category": "other",
+      "props": [
+        {
+          "name": "tabs",
+          "type": {
+            "kind": "array",
+            "of": {
+              "kind": "custom",
+              "name": "GalaxyTab"
+            }
+          },
+          "description": "Tab definitions rendered by the widget."
+        },
+        {
+          "name": "initialIndex",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "default": 0,
+          "description": "Initial selected tab index."
+        },
+        {
+          "name": "onTabChanged",
+          "type": {
+            "kind": "function",
+            "signature": "(index: int) => void"
+          },
+          "description": "Called when the selected tab changes."
+        }
+      ]
+    },
+    "textarea": {
+      "id": "textarea",
+      "name": "textarea",
+      "type": "other",
+      "description": "textarea",
+      "files": [
+        "textarea.dart"
+      ],
+      "exports": [
+        "GalaxyTextarea",
+        "_GalaxyTextareaState"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [
+        "flutter"
+      ],
+      "registryDependencies": [],
+      "category": "other",
+      "props": [
+        {
+          "name": "controller",
+          "type": {
+            "kind": "custom",
+            "name": "TextEditingController"
+          },
+          "description": "Optional controller for the textarea value."
+        },
+        {
+          "name": "label",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Optional label rendered above the textarea."
+        },
+        {
+          "name": "placeholder",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Placeholder text."
+        },
+        {
+          "name": "error",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Optional error message rendered below the textarea."
+        },
+        {
+          "name": "enabled",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": true,
+          "description": "Whether the textarea is enabled."
+        },
+        {
+          "name": "maxLines",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Maximum number of visible lines."
+        },
+        {
+          "name": "minLines",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "default": 3,
+          "description": "Minimum number of visible lines."
+        },
+        {
+          "name": "maxLength",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Maximum number of characters allowed."
+        },
+        {
+          "name": "keyboardType",
+          "type": {
+            "kind": "custom",
+            "name": "TextInputType"
+          },
+          "description": "Keyboard type used by the text field."
+        },
+        {
+          "name": "onChanged",
+          "type": {
+            "kind": "function",
+            "signature": "(value: string) => void"
+          },
+          "description": "Called when the textarea value changes."
+        },
+        {
+          "name": "onSubmitted",
+          "type": {
+            "kind": "function",
+            "signature": "(value: string) => void"
+          },
+          "description": "Called when the value is submitted."
+        }
+      ]
+    },
+    "toggle-group": {
+      "id": "toggle-group",
+      "name": "toggle-group",
+      "type": "other",
+      "description": "toggle-group",
+      "files": [
+        "toggle_group.dart"
+      ],
+      "exports": [
+        "GalaxyToggleGroup",
+        "GalaxyToggleGroupItem"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [
+        "flutter"
+      ],
+      "registryDependencies": [],
+      "category": "other",
+      "props": [
+        {
+          "name": "value",
+          "type": {
+            "kind": "custom",
+            "name": "T?"
+          },
+          "description": "Currently selected value."
+        },
+        {
+          "name": "onValueChanged",
+          "type": {
+            "kind": "function",
+            "signature": "(value: T?) => void"
+          },
+          "description": "Called when the selected value changes."
+        },
+        {
+          "name": "items",
+          "type": {
+            "kind": "array",
+            "of": {
+              "kind": "custom",
+              "name": "GalaxyToggleGroupItem<T>"
+            }
+          },
+          "description": "Toggle items."
+        },
+        {
+          "name": "variant",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "default_"
+              },
+              {
+                "kind": "literal",
+                "value": "outline"
+              }
+            ]
+          },
+          "default": "default_",
+          "description": "Shared visual style variant for items."
+        },
+        {
+          "name": "size",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "default_"
+              },
+              {
+                "kind": "literal",
+                "value": "sm"
+              },
+              {
+                "kind": "literal",
+                "value": "lg"
+              }
+            ]
+          },
+          "default": "default_",
+          "description": "Shared size variant for items."
+        },
+        {
+          "name": "allowDeselect",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": false,
+          "description": "Allow clearing the current selection."
+        }
+      ]
+    },
+    "toggle": {
+      "id": "toggle",
+      "name": "toggle",
+      "type": "other",
+      "description": "toggle",
+      "files": [
+        "toggle.dart"
+      ],
+      "exports": [
+        "GalaxyToggle",
+        "ToggleVariant",
+        "ToggleSize"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [
+        "flutter"
+      ],
+      "registryDependencies": [],
+      "category": "other",
+      "props": [
+        {
+          "name": "value",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Controlled toggle state."
+        },
+        {
+          "name": "onPressed",
+          "type": {
+            "kind": "function",
+            "signature": "(value: bool) => void"
+          },
+          "description": "Called when the toggle is pressed."
+        },
+        {
+          "name": "child",
+          "type": {
+            "kind": "custom",
+            "name": "Widget"
+          },
+          "description": "Toggle content."
+        },
+        {
+          "name": "variant",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "default_"
+              },
+              {
+                "kind": "literal",
+                "value": "outline"
+              }
+            ]
+          },
+          "default": "default_",
+          "description": "Visual style variant."
+        },
+        {
+          "name": "size",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "default_"
+              },
+              {
+                "kind": "literal",
+                "value": "sm"
+              },
+              {
+                "kind": "literal",
+                "value": "lg"
+              }
+            ]
+          },
+          "default": "default_",
+          "description": "Size variant."
+        },
+        {
+          "name": "disabled",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "default": false,
+          "description": "Disables the toggle."
+        }
+      ]
+    },
+    "tooltip": {
+      "id": "tooltip",
+      "name": "tooltip",
+      "type": "other",
+      "description": "tooltip",
+      "files": [
+        "tooltip.dart"
+      ],
+      "exports": [
+        "GalaxyTooltip"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [
+        "flutter"
+      ],
+      "registryDependencies": [],
+      "category": "other",
+      "props": [
+        {
+          "name": "child",
+          "type": {
+            "kind": "custom",
+            "name": "Widget"
+          },
+          "description": "Widget that triggers the tooltip."
+        },
+        {
+          "name": "message",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Tooltip text."
+        },
+        {
+          "name": "padding",
+          "type": {
+            "kind": "custom",
+            "name": "EdgeInsetsGeometry"
+          },
+          "description": "Padding inside the tooltip bubble."
+        },
+        {
+          "name": "margin",
+          "type": {
+            "kind": "custom",
+            "name": "EdgeInsetsGeometry"
+          },
+          "description": "Margin around the tooltip bubble."
+        },
+        {
+          "name": "height",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Tooltip height override."
+        },
+        {
+          "name": "preferBelow",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Prefer showing the tooltip below the trigger."
+        },
+        {
+          "name": "waitDuration",
+          "type": {
+            "kind": "custom",
+            "name": "Duration"
+          },
+          "description": "Delay before showing the tooltip."
+        },
+        {
+          "name": "showDuration",
+          "type": {
+            "kind": "custom",
+            "name": "Duration"
+          },
+          "description": "How long the tooltip remains visible."
+        }
+      ]
+    },
+    "typography": {
+      "id": "typography",
+      "name": "typography",
+      "type": "other",
+      "description": "typography",
+      "files": [
+        "typography.dart"
+      ],
+      "exports": [
+        "GalaxyTypography",
+        "TypographyVariant",
+        "TypographyWeight"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [
+        "flutter"
+      ],
+      "registryDependencies": [],
+      "category": "other",
+      "props": [
+        {
+          "name": "text",
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          },
+          "description": "Text content."
+        },
+        {
+          "name": "variant",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "h1"
+              },
+              {
+                "kind": "literal",
+                "value": "h2"
+              },
+              {
+                "kind": "literal",
+                "value": "h3"
+              },
+              {
+                "kind": "literal",
+                "value": "h4"
+              },
+              {
+                "kind": "literal",
+                "value": "p"
+              },
+              {
+                "kind": "literal",
+                "value": "lead"
+              },
+              {
+                "kind": "literal",
+                "value": "large"
+              },
+              {
+                "kind": "literal",
+                "value": "small"
+              },
+              {
+                "kind": "literal",
+                "value": "muted"
+              },
+              {
+                "kind": "literal",
+                "value": "blockquote"
+              },
+              {
+                "kind": "literal",
+                "value": "code"
+              }
+            ]
+          },
+          "default": "p",
+          "description": "Typography style variant."
+        },
+        {
+          "name": "weight",
+          "type": {
+            "kind": "union",
+            "values": [
+              {
+                "kind": "literal",
+                "value": "normal"
+              },
+              {
+                "kind": "literal",
+                "value": "medium"
+              },
+              {
+                "kind": "literal",
+                "value": "semiBold"
+              },
+              {
+                "kind": "literal",
+                "value": "bold"
+              }
+            ]
+          },
+          "description": "Optional weight override."
+        },
+        {
+          "name": "color",
+          "type": {
+            "kind": "custom",
+            "name": "Color"
+          },
+          "description": "Text color override."
+        },
+        {
+          "name": "textAlign",
+          "type": {
+            "kind": "custom",
+            "name": "TextAlign"
+          },
+          "description": "Text alignment."
+        },
+        {
+          "name": "maxLines",
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          },
+          "description": "Maximum number of lines."
+        },
+        {
+          "name": "overflow",
+          "type": {
+            "kind": "custom",
+            "name": "TextOverflow"
+          },
+          "description": "Overflow behavior."
+        },
+        {
+          "name": "softWrap",
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          },
+          "description": "Whether text should soft wrap."
+        }
       ]
     }
   },

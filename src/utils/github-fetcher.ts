@@ -7,16 +7,18 @@ import { dirname } from 'path';
 const GITHUB_CONFIG = {
   owner: 'buikevin',
   repo: 'galaxy-design',
-  branch: 'main',
+  // Keep CLI releases reproducible. Override only for explicit development tests.
+  ref:
+    process.env.GALAXY_DESIGN_SOURCE_REF ||
+    'b532037c08de567543d0d2124ba907f54d360d04',
 };
 
 /**
  * Get GitHub raw content URL
  */
 export function getGitHubRawUrl(filePath: string): string {
-  const { owner, repo, branch } = GITHUB_CONFIG;
-  const cacheBust = Date.now();
-  return `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${filePath}?v=${cacheBust}`;
+  const { owner, repo, ref } = GITHUB_CONFIG;
+  return `https://raw.githubusercontent.com/${owner}/${repo}/${ref}/${filePath}`;
 }
 
 function getCandidateFileNames(filePath: string): string[] {

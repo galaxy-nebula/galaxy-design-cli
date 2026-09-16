@@ -70,8 +70,9 @@ export function loadRegistry(): Registry {
 
   const registryPath = resolve(__dirname, '../registry.json');
   const registryContent = readFileSync(registryPath, 'utf-8');
-  cachedRegistry = JSON.parse(registryContent);
-  return cachedRegistry;
+  const registry = JSON.parse(registryContent) as Registry;
+  cachedRegistry = registry;
+  return registry;
 }
 
 /**

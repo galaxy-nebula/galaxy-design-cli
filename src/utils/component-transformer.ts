@@ -383,7 +383,9 @@ export function transformComponentFile(
  */
 export function transformComponentFiles(
   files: string[],
-  options: Omit<TransformOptions, 'filePath' | 'componentName'>,
+  options: Omit<TransformOptions, 'filePath' | 'componentName'> & {
+    componentName?: string;
+  },
 ): Map<string, TransformResult> {
   const results = new Map<string, TransformResult>();
 

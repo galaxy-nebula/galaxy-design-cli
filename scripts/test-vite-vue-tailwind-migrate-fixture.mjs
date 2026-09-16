@@ -1,5 +1,7 @@
+import { existsSync } from 'node:fs';
 import assert from 'node:assert/strict';
 import { cp, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
+import { spawnSync } from 'node:child_process';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -8,6 +10,20 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const workspaceRoot = path.resolve(__dirname, '..', '..');
 const fixtureRoot = path.join(workspaceRoot, 'test', 'galaxy-vite-vue-lint');
+
+if (!existsSync(fixtureRoot)) {
+  // FIXTURE-SKIP: fixture dirs are not part of the repo; skip when absent.
+  console.log(`SKIP galaxy-vite-vue-lint (fixture not found)`);
+  process.exit(0);
+}
+
+
+function run(command, args, cwd) {
+  const result = spawnSync(command, args, { cwd, encoding: 'utf-8' });
+  if (result.status !== 0) {
+    throw new Error([result.stdout, result.stderr].filter(Boolean).join('\n'));
+  }
+}
 
 async function main() {
   const tempRoot = await mkdtemp(
@@ -127,6 +143,9 @@ ${originalCss}`,
       'utf-8',
     );
     assert.match(migratedCss, /@import "tailwindcss";/);
+    assert.match(migratedCss, /@import "tw-animate-css";/);
+    assert.match(migratedCss, /@theme inline/);
+    assert.match(migratedCss, /--color-border: hsl\(var\(--border\)\)/);
     assert.match(migratedCss, /@layer utilities/);
     assert.doesNotMatch(migratedCss, /@tailwind base;/);
 
@@ -135,12 +154,16 @@ ${originalCss}`,
       'utf-8',
     );
     assert.match(migratedPostcss, /"@tailwindcss\/postcss"/);
+    assert.match(migratedPostcss, /export default/);
+    assert.doesNotMatch(migratedPostcss, /module\.exports/);
     assert.doesNotMatch(migratedPostcss, /autoprefixer/);
 
     const componentsConfig = JSON.parse(
       await readFile(path.join(tempRoot, 'components.json'), 'utf-8'),
     );
     assert.equal(componentsConfig.tailwind.version, 4);
+
+    run('npm', ['run', 'build'], tempRoot);
 
     console.log('PASS vite vue tailwind migrate fixture');
   } finally {
