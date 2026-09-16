@@ -8,7 +8,12 @@
       "description": "Complete chat interface with message list, input, user avatars and auto-scroll",
       "dependencies": [],
       "devDependencies": [],
-      "registryDependencies": ["avatar", "button", "scroll-area", "textarea"],
+      "registryDependencies": [
+        "avatar",
+        "button",
+        "scroll-area",
+        "textarea"
+      ],
       "files": [
         "types.ts",
         "chat-ui.component.ts",
@@ -22,7 +27,10 @@
       "description": "Collapsible navigation sidebar with nested menu items, badges, and icons",
       "dependencies": [],
       "devDependencies": [],
-      "registryDependencies": ["button", "separator"],
+      "registryDependencies": [
+        "button",
+        "separator"
+      ],
       "files": [
         "types.ts",
         "sidebar-item.component.ts",
@@ -37,7 +45,13 @@
       "description": "Complete authentication forms with login, register, validation, and social login",
       "dependencies": [],
       "devDependencies": [],
-      "registryDependencies": ["button", "input", "label", "checkbox", "separator"],
+      "registryDependencies": [
+        "button",
+        "input",
+        "label",
+        "checkbox",
+        "separator"
+      ],
       "files": [
         "types.ts",
         "login-form.component.ts",
@@ -46,12 +60,36 @@
         "index.ts"
       ],
       "category": "blocks"
+    },
+    "dashboard-block": {
+      "id": "dashboard-block",
+      "name": "Dashboard Block",
+      "type": "blocks",
+      "description": "Full dashboard page with collapsible sidebar, stat cards, recent activity table, and navigation.",
+      "files": [
+        "dashboard.component.ts",
+        "index.ts"
+      ],
+      "exports": [
+        "DashboardComponent"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "blocks",
+      "props": [],
+      "selector": "ui-dashboard"
     }
   },
   "groups": {
     "all-blocks": {
       "name": "All Blocks",
-      "components": ["chat-ui", "sidebar", "authentication"]
+      "components": [
+        "chat-ui",
+        "sidebar",
+        "authentication"
+      ]
     }
   }
 }

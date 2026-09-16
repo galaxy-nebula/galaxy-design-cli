@@ -8,7 +8,12 @@
       "description": "Complete chat interface with message list, input, user avatars and auto-scroll",
       "dependencies": [],
       "devDependencies": [],
-      "registryDependencies": ["avatar", "button", "scroll-area", "textarea"],
+      "registryDependencies": [
+        "avatar",
+        "button",
+        "scroll-area",
+        "textarea"
+      ],
       "files": [
         "types.ts",
         "ChatMessage.vue",
@@ -25,7 +30,10 @@
       "description": "Collapsible navigation sidebar with nested menu items, badges, and icons",
       "dependencies": [],
       "devDependencies": [],
-      "registryDependencies": ["button", "separator"],
+      "registryDependencies": [
+        "button",
+        "separator"
+      ],
       "files": [
         "types.ts",
         "SidebarItem.vue",
@@ -40,7 +48,13 @@
       "description": "Complete authentication forms with login, register, validation, and social login",
       "dependencies": [],
       "devDependencies": [],
-      "registryDependencies": ["button", "input", "label", "checkbox", "separator"],
+      "registryDependencies": [
+        "button",
+        "input",
+        "label",
+        "checkbox",
+        "separator"
+      ],
       "files": [
         "types.ts",
         "LoginForm.vue",
@@ -56,7 +70,13 @@
       "description": "Gmail-like email interface with inbox, folders, email list, and reading pane",
       "dependencies": [],
       "devDependencies": [],
-      "registryDependencies": ["button", "input", "avatar", "separator", "scroll-area"],
+      "registryDependencies": [
+        "button",
+        "input",
+        "avatar",
+        "separator",
+        "scroll-area"
+      ],
       "files": [
         "types.ts",
         "EmailClient.vue",
@@ -70,7 +90,9 @@
       "description": "Landing page sections including hero and features grid with multiple variants",
       "dependencies": [],
       "devDependencies": [],
-      "registryDependencies": ["button"],
+      "registryDependencies": [
+        "button"
+      ],
       "files": [
         "types.ts",
         "HeroSection.vue",
@@ -78,12 +100,75 @@
         "index.ts"
       ],
       "category": "blocks"
+    },
+    "dashboard-block": {
+      "id": "dashboard-block",
+      "name": "Dashboard Block",
+      "type": "blocks",
+      "description": "Full dashboard page with collapsible sidebar, stat cards, recent activity table, and navigation.",
+      "files": [
+        "DashboardBlock.vue",
+        "index.ts"
+      ],
+      "exports": [
+        "DashboardBlock"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "blocks",
+      "props": []
+    },
+    "login-block": {
+      "id": "login-block",
+      "name": "Login Block",
+      "type": "blocks",
+      "description": "Full login page with email/password form, remember me, and social auth.",
+      "files": [
+        "LoginBlock.vue",
+        "index.ts"
+      ],
+      "exports": [
+        "LoginBlock"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "blocks",
+      "props": []
+    },
+    "pricing-block": {
+      "id": "pricing-block",
+      "name": "Pricing Block",
+      "type": "blocks",
+      "description": "Pricing cards with tiers, feature lists, and highlighted plan.",
+      "files": [
+        "PricingBlock.vue",
+        "index.ts"
+      ],
+      "exports": [
+        "PricingBlock"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "blocks",
+      "props": []
     }
   },
   "groups": {
     "all-blocks": {
       "name": "All Blocks",
-      "components": ["chat-ui", "sidebar", "authentication", "email", "featured"]
+      "components": [
+        "chat-ui",
+        "sidebar",
+        "authentication",
+        "email",
+        "featured"
+      ]
     }
   }
 }

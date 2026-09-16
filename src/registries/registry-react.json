@@ -3419,6 +3419,26 @@
         }
       ]
     },
+    "otp-input": {
+      "id": "otp-input",
+      "name": "OTP Input",
+      "type": "form",
+      "description": "One-time password input with auto-focus, paste support, and completion callback.",
+      "files": [
+        "OTPInput.tsx",
+        "index.ts"
+      ],
+      "exports": [
+        "OTPInput",
+        "OTPInputProps"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "form",
+      "props": []
+    },
     "pagination": {
       "id": "pagination",
       "name": "pagination",
