@@ -26,6 +26,11 @@ import {
 } from './registry-fetcher.js';
 import { transformComponent } from './component-transformer.js';
 import { transformIconImports } from './icon-transformer.js';
+import {
+  shouldTransformToJs,
+  getJsOutputPath,
+  stripTypes,
+} from './js-transformer.js';
 
 /**
  * Component copy options
@@ -61,6 +66,8 @@ export interface ComponentCopyResult {
 }
 
 export interface CopyComponentFilesOptions {
+  /** Whether the target project uses TypeScript (defaults to true) */
+  typescript?: boolean;
   componentName: string;
   componentFiles: string[];
   componentType?: string;
@@ -223,7 +230,14 @@ export async function copyComponentFilesToDirectory(
         }
       }
 
-      writeFileSync(targetFile, finalContent, 'utf-8');
+      // JS mode: strip types, change extension
+      const typescript = options.typescript !== false;
+      if (shouldTransformToJs(targetFile, typescript)) {
+        finalContent = stripTypes(finalContent, targetFile);
+      }
+
+      const outputPath = getJsOutputPath(targetFile, typescript);
+      writeFileSync(outputPath, finalContent, 'utf-8');
 
       if (transformResult.modified && transformResult.notes.length > 0) {
         options.onTransformedFile?.(file, transformResult.notes);

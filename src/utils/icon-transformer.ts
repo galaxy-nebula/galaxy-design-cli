@@ -68,7 +68,10 @@ const MAPPINGS: Partial<Record<IconLibrary, IconMapping>> = {
   },
 };
 
-export function getTargetIconPackage(framework: string, iconLibrary: string): string | null {
+export function getTargetIconPackage(
+  framework: string,
+  iconLibrary: string,
+): string | null {
   if (iconLibrary === 'lucide') return null;
   return ICON_LIBRARY_PACKAGES[iconLibrary]?.[framework] ?? null;
 }

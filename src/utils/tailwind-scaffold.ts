@@ -12,6 +12,8 @@ export interface TailwindScaffoldOptions {
   cssPath: string;
   baseColor: BaseColor;
   overwriteExisting?: boolean;
+  cssVariables?: boolean;
+  prefix?: string;
 }
 
 export interface TailwindScaffoldResult {
@@ -128,11 +130,13 @@ export function scaffoldTailwindFiles(
     result,
   );
 
+  const cssVariables = options.cssVariables !== false;
+
   if (options.mode === 'v3' && options.configPath) {
     writeIfNeeded(
       options.cwd,
       options.configPath,
-      getTailwindConfigContent(options.framework),
+      getTailwindConfigContent(options.framework, options.prefix),
       overwriteExisting,
       result,
     );
@@ -141,14 +145,17 @@ export function scaffoldTailwindFiles(
   ensureTailwindCss(
     options.cwd,
     options.cssPath,
-    getCSSContent(options.baseColor, options.mode),
+    getCSSContentWithOptions(options.baseColor, options.mode, cssVariables),
     result,
   );
 
   return result;
 }
 
-function getTailwindConfigContent(framework: Framework): string {
+function getTailwindConfigContent(
+  framework: Framework,
+  prefix?: string,
+): string {
   const contentPaths =
     framework === 'react' || framework === 'nextjs'
       ? `[
@@ -173,12 +180,15 @@ function getTailwindConfigContent(framework: Framework): string {
   const moduleHeader = usesCommonJs
     ? 'const animate = require("tailwindcss-animate");'
     : 'import animate from "tailwindcss-animate";';
-  const exportStatement = usesCommonJs ? 'module.exports = ' : 'export default ';
+  const exportStatement = usesCommonJs
+    ? 'module.exports = '
+    : 'export default ';
 
   return `${moduleHeader}
 
 /** @type {import('tailwindcss').Config} */
 ${exportStatement}{
+${prefix ? `  prefix: "${prefix.replace(/-$/, '')}-",` : ''}
   darkMode: ["class"],
   content: ${contentPaths},
   theme: {
@@ -292,6 +302,14 @@ export function getTailwindV4ThemeBridge(): string {
 }
 
 function getCSSContent(baseColor: BaseColor, mode: TailwindMode): string {
+  return getCSSContentWithOptions(baseColor, mode, true);
+}
+
+function getCSSContentWithOptions(
+  baseColor: BaseColor,
+  mode: TailwindMode,
+  cssVariables: boolean,
+): string {
   const colorVariables: Record<BaseColor, { light: string; dark: string }> = {
     slate: {
       light: `--background: 0 0% 100%;
