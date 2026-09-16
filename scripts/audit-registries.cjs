@@ -335,10 +335,9 @@ function main() {
     const registry = readJson(file);
     registries[framework] = registry.components;
     auditRegistryDocument(file, registry, issues);
+
     auditFiles(framework, registry.components, issues);
 
-    const blockFile = BLOCK_REGISTRY_FILES[framework];
-    const blockRegistry = readJson(blockFile);
     auditRegistryDocument(blockFile, blockRegistry, issues);
     auditRegistryDependencies(framework, blockRegistry, registry, issues);
     auditFiles(framework, blockRegistry.components, issues, { blocks: true });

@@ -923,9 +923,9 @@
     },
     "calendar": {
       "id": "calendar",
-      "name": "calendar",
-      "type": "other",
-      "description": "calendar",
+      "name": "Calendar",
+      "type": "form",
+      "description": "Full-featured date picker with month navigation and selection.",
       "files": [
         "calendar.component.ts",
         "index.ts"
@@ -937,34 +937,8 @@
       "devDependencies": [],
       "peerDependencies": [],
       "registryDependencies": [],
-      "category": "other",
-      "props": [
-        {
-          "name": "selectedDate",
-          "type": {
-            "kind": "custom",
-            "name": "Date"
-          },
-          "description": "Currently selected date."
-        },
-        {
-          "name": "class",
-          "type": {
-            "kind": "primitive",
-            "name": "string"
-          },
-          "default": "",
-          "description": "CSS class names for the calendar root."
-        },
-        {
-          "name": "dateChange",
-          "type": {
-            "kind": "function",
-            "signature": "(date: Date) => void"
-          },
-          "description": "Emitted when the selected date changes."
-        }
-      ],
+      "category": "form",
+      "props": [],
       "selector": "ui-calendar"
     },
     "card": {
@@ -1248,6 +1222,26 @@
       "category": "other",
       "props": [],
       "selector": "ui-context-menu"
+    },
+    "dashboard-block": {
+      "id": "dashboard-block",
+      "name": "Dashboard Block",
+      "type": "blocks",
+      "description": "Full dashboard page with collapsible sidebar, stat cards, recent activity table, and navigation.",
+      "files": [
+        "dashboard.component.ts",
+        "index.ts"
+      ],
+      "exports": [
+        "DashboardComponent"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "blocks",
+      "props": [],
+      "selector": "ui-dashboard"
     },
     "date-picker": {
       "id": "date-picker",
@@ -4391,9 +4385,9 @@
     },
     "time-picker": {
       "id": "time-picker",
-      "name": "time-picker",
-      "type": "other",
-      "description": "time-picker",
+      "name": "Time Picker",
+      "type": "form",
+      "description": "Hour/minute selection with 12h/24h format.",
       "files": [
         "time-picker.component.ts",
         "index.ts"
@@ -4404,12 +4398,8 @@
       "dependencies": [],
       "devDependencies": [],
       "peerDependencies": [],
-      "registryDependencies": [
-        "button",
-        "popover",
-        "select"
-      ],
-      "category": "other",
+      "registryDependencies": [],
+      "category": "form",
       "props": [],
       "selector": "ui-time-picker"
     },

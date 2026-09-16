@@ -1,6 +1,9 @@
 #!/usr/bin/env node
 /**
- * Sync CLI framework registries from the canonical manifest artifacts.
+ * Sync CLI framework registries from canonical manifest artifacts.
+ * 
+ * Non-block components → registry-<fw>.json (checked against COMPONENT_ROOTS)
+ * Blocks-category components → blocks-<fw>.json (checked against BLOCK_ROOTS)
  */
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
@@ -26,6 +29,7 @@ for (const [framework, fileName] of Object.entries(FRAMEWORKS)) {
   );
 
   const stripped = {};
+  const mainComponents = {};
   const blockComponents = {};
 
   for (const [id, entry] of Object.entries(generated.components)) {
@@ -35,22 +39,20 @@ for (const [framework, fileName] of Object.entries(FRAMEWORKS)) {
     delete clone.manifestStatus;
     clone.category = clone.category || 'other';
     stripped[id] = clone;
-  }
 
-  // Split into main registry vs blocks registry
-  const mainComponents = {};
-  for (const [id, entry] of Object.entries(stripped)) {
-    if (BLOCK_CATEGORIES.has(entry.category)) {
-      blockComponents[id] = entry;
+    if (BLOCK_CATEGORIES.has(clone.category)) {
+      blockComponents[id] = clone;
     } else {
-      mainComponents[id] = entry;
+      mainComponents[id] = clone;
     }
   }
 
-  const next = { ...target, components: mainComponents };
+  // Update main registry — put ALL components (including blocks) so the
+  // CLI's framework-registry-service can find them (it merges both files).
+  const next = { ...target, components: stripped };
   writeFileSync(targetPath, JSON.stringify(next, null, 2) + '\n');
 
-  // Update blocks registry
+  // Update blocks registry (blocks category only)
   const blocksFileName = fileName.replace('registry-', 'blocks-');
   const blocksPath = path.join(projectRoot, 'src', 'registries', blocksFileName);
   if (existsSync(blocksPath) && Object.keys(blockComponents).length > 0) {
@@ -59,7 +61,7 @@ for (const [framework, fileName] of Object.entries(FRAMEWORKS)) {
     writeFileSync(blocksPath, JSON.stringify(blocksReg, null, 2) + '\n');
   }
 
-  console.log(`${framework}: ${Object.keys(mainComponents).length} main, ${Object.keys(blockComponents).length} blocks`);
+  console.log(`${framework}: ${Object.keys(mainComponents).length} main + ${Object.keys(blockComponents).length} blocks`);
 }
 
 console.log('CLI registries synced from manifest artifacts.');

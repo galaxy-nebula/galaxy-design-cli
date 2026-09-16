@@ -179,7 +179,9 @@
         "nextjs",
         "vue",
         "nuxtjs",
-        "angular"
+        "angular",
+        "react-native",
+        "flutter"
       ]
     },
     "calendar-range": {
@@ -233,7 +235,9 @@
         "nextjs",
         "vue",
         "nuxtjs",
-        "angular"
+        "angular",
+        "react-native",
+        "flutter"
       ]
     },
     "date-time-picker": {
@@ -986,6 +990,80 @@
       "description": "Carousel component for image/content slides (antd style)",
       "category": "other",
       "frameworks": []
+    },
+    "combobox": {
+      "name": "Combobox",
+      "type": "form",
+      "description": "Searchable select with filtering",
+      "category": "form",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs"
+      ]
+    },
+    "data-table": {
+      "name": "Data Table",
+      "type": "data-display",
+      "description": "Sortable, filterable, paginated data table",
+      "category": "data-display",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs"
+      ]
+    },
+    "otp-input": {
+      "name": "OTP Input",
+      "type": "form",
+      "description": "One-time password input with auto-focus",
+      "category": "form",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular"
+      ]
+    },
+    "login-block": {
+      "name": "Login Block",
+      "type": "block",
+      "description": "Full login page with email/password form",
+      "category": "blocks",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs"
+      ]
+    },
+    "pricing-block": {
+      "name": "Pricing Block",
+      "type": "block",
+      "description": "Pricing cards with tiers and highlighted plan",
+      "category": "blocks",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs"
+      ]
+    },
+    "dashboard-block": {
+      "name": "Dashboard Block",
+      "type": "block",
+      "description": "Full dashboard page with sidebar and stats",
+      "category": "blocks",
+      "frameworks": [
+        "react",
+        "nextjs",
+        "vue",
+        "nuxtjs",
+        "angular"
+      ]
     }
   },
   "groups": {

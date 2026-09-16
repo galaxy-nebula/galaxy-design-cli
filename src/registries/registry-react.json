@@ -1168,143 +1168,24 @@
     },
     "calendar": {
       "id": "calendar",
-      "name": "calendar",
-      "type": "other",
-      "description": "calendar",
+      "name": "Calendar",
+      "type": "form",
+      "description": "Full-featured date picker with month navigation and selection.",
       "files": [
         "Calendar.tsx",
         "index.ts"
       ],
-      "exports": [],
+      "exports": [
+        "Calendar"
+      ],
       "dependencies": [
-        "react-day-picker",
-        "lucide-react"
+        "react-day-picker"
       ],
       "devDependencies": [],
       "peerDependencies": [],
       "registryDependencies": [],
-      "category": "other",
-      "props": [
-        {
-          "name": "mode",
-          "type": {
-            "kind": "union",
-            "values": [
-              {
-                "kind": "literal",
-                "value": "single"
-              },
-              {
-                "kind": "literal",
-                "value": "multiple"
-              },
-              {
-                "kind": "literal",
-                "value": "range"
-              }
-            ]
-          },
-          "description": "Selection mode for the calendar."
-        },
-        {
-          "name": "selected",
-          "type": {
-            "kind": "custom",
-            "name": "Date | Date[] | DateRange"
-          },
-          "description": "Controlled selected date value."
-        },
-        {
-          "name": "onSelect",
-          "type": {
-            "kind": "function",
-            "signature": "(value: Date | Date[] | DateRange | undefined) => void"
-          },
-          "description": "Called when the selected date changes."
-        },
-        {
-          "name": "month",
-          "type": {
-            "kind": "custom",
-            "name": "Date"
-          },
-          "description": "Controlled visible month."
-        },
-        {
-          "name": "defaultMonth",
-          "type": {
-            "kind": "custom",
-            "name": "Date"
-          },
-          "description": "Initial month to display."
-        },
-        {
-          "name": "onMonthChange",
-          "type": {
-            "kind": "function",
-            "signature": "(month: Date) => void"
-          },
-          "description": "Called when the visible month changes."
-        },
-        {
-          "name": "numberOfMonths",
-          "type": {
-            "kind": "primitive",
-            "name": "number"
-          },
-          "description": "Number of months to display."
-        },
-        {
-          "name": "disabled",
-          "type": {
-            "kind": "custom",
-            "name": "Matcher | Matcher[]"
-          },
-          "description": "Dates that cannot be selected."
-        },
-        {
-          "name": "fromDate",
-          "type": {
-            "kind": "custom",
-            "name": "Date"
-          },
-          "description": "Earliest month or date available for navigation/selection."
-        },
-        {
-          "name": "toDate",
-          "type": {
-            "kind": "custom",
-            "name": "Date"
-          },
-          "description": "Latest month or date available for navigation/selection."
-        },
-        {
-          "name": "showOutsideDays",
-          "type": {
-            "kind": "primitive",
-            "name": "boolean"
-          },
-          "default": true,
-          "description": "Show days outside the current month."
-        },
-        {
-          "name": "className",
-          "type": {
-            "kind": "primitive",
-            "name": "string"
-          },
-          "default": "",
-          "description": "CSS class names for the calendar root."
-        },
-        {
-          "name": "classNames",
-          "type": {
-            "kind": "custom",
-            "name": "Partial<ClassNames>"
-          },
-          "description": "Overrides for DayPicker internal class names."
-        }
-      ]
+      "category": "form",
+      "props": []
     },
     "card": {
       "id": "card",
@@ -1665,6 +1546,27 @@
           "description": "Context menu composition content."
         }
       ]
+    },
+    "dashboard-block": {
+      "id": "dashboard-block",
+      "name": "Dashboard Block",
+      "type": "blocks",
+      "description": "Full dashboard page with collapsible sidebar, stat cards, recent activity table, and navigation.",
+      "files": [
+        "DashboardBlock.tsx",
+        "index.ts"
+      ],
+      "exports": [
+        "DashboardBlock"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [
+        "button"
+      ],
+      "category": "blocks",
+      "props": []
     },
     "data-table": {
       "id": "data-table",
@@ -3037,6 +2939,25 @@
         }
       ]
     },
+    "login-block": {
+      "id": "login-block",
+      "name": "Login Block",
+      "type": "blocks",
+      "description": "Full login page with email/password form, remember me, and social auth.",
+      "files": [
+        "LoginBlock.tsx",
+        "index.ts"
+      ],
+      "exports": [
+        "LoginBlock"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "blocks",
+      "props": []
+    },
     "menubar": {
       "id": "menubar",
       "name": "menubar",
@@ -3767,6 +3688,25 @@
           "description": "Popover composition content."
         }
       ]
+    },
+    "pricing-block": {
+      "id": "pricing-block",
+      "name": "Pricing Block",
+      "type": "blocks",
+      "description": "Pricing cards with tiers, feature lists, and highlighted plan.",
+      "files": [
+        "PricingBlock.tsx",
+        "index.ts"
+      ],
+      "exports": [
+        "PricingBlock"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "blocks",
+      "props": []
     },
     "progress": {
       "id": "progress",
@@ -5416,113 +5356,22 @@
     },
     "time-picker": {
       "id": "time-picker",
-      "name": "time-picker",
-      "type": "other",
-      "description": "time-picker",
+      "name": "Time Picker",
+      "type": "form",
+      "description": "Hour/minute selection with 12h/24h format.",
       "files": [
         "TimePicker.tsx",
         "index.ts"
       ],
       "exports": [
-        "TimePicker",
-        "TimePickerProps"
+        "TimePicker"
       ],
-      "dependencies": [
-        "lucide-react"
-      ],
+      "dependencies": [],
       "devDependencies": [],
       "peerDependencies": [],
-      "registryDependencies": [
-        "popover",
-        "button",
-        "select"
-      ],
-      "category": "other",
-      "props": [
-        {
-          "name": "time",
-          "type": {
-            "kind": "primitive",
-            "name": "string"
-          },
-          "description": "Controlled time value in `HH:mm` or `hh:mm AM/PM` format."
-        },
-        {
-          "name": "onTimeChange",
-          "type": {
-            "kind": "function",
-            "signature": "(time: string | undefined) => void"
-          },
-          "description": "Called when the time value changes."
-        },
-        {
-          "name": "placeholder",
-          "type": {
-            "kind": "primitive",
-            "name": "string"
-          },
-          "description": "Placeholder text shown when no time is selected.",
-          "default": "Pick a time"
-        },
-        {
-          "name": "format",
-          "type": {
-            "kind": "union",
-            "values": [
-              {
-                "kind": "literal",
-                "value": "12h"
-              },
-              {
-                "kind": "literal",
-                "value": "24h"
-              }
-            ]
-          },
-          "description": "Time display and parsing format.",
-          "default": "24h"
-        },
-        {
-          "name": "align",
-          "type": {
-            "kind": "union",
-            "values": [
-              {
-                "kind": "literal",
-                "value": "start"
-              },
-              {
-                "kind": "literal",
-                "value": "center"
-              },
-              {
-                "kind": "literal",
-                "value": "end"
-              }
-            ]
-          },
-          "description": "Alignment of the popover content relative to the trigger.",
-          "default": "start"
-        },
-        {
-          "name": "className",
-          "type": {
-            "kind": "primitive",
-            "name": "string"
-          },
-          "description": "className applied to the trigger button.",
-          "default": ""
-        },
-        {
-          "name": "disabled",
-          "type": {
-            "kind": "primitive",
-            "name": "boolean"
-          },
-          "description": "Disables the trigger button and time selection.",
-          "default": false
-        }
-      ]
+      "registryDependencies": [],
+      "category": "form",
+      "props": []
     },
     "toast": {
       "id": "toast",

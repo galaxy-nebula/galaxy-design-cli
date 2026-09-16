@@ -1132,9 +1132,9 @@
     },
     "calendar": {
       "id": "calendar",
-      "name": "calendar",
-      "type": "other",
-      "description": "calendar",
+      "name": "Calendar",
+      "type": "form",
+      "description": "Full-featured date picker with month navigation and selection.",
       "files": [
         "Calendar.vue",
         "index.ts"
@@ -1143,48 +1143,13 @@
         "Calendar"
       ],
       "dependencies": [
-        "radix-vue",
-        "lucide-vue-next"
+        "radix-vue"
       ],
       "devDependencies": [],
       "peerDependencies": [],
       "registryDependencies": [],
-      "category": "other",
-      "props": [
-        {
-          "name": "modelValue",
-          "type": {
-            "kind": "custom",
-            "name": "Date"
-          },
-          "description": "Controlled selected date. Supports v-model."
-        },
-        {
-          "name": "placeholder",
-          "type": {
-            "kind": "custom",
-            "name": "Date"
-          },
-          "description": "Placeholder date used by the calendar root."
-        },
-        {
-          "name": "class",
-          "type": {
-            "kind": "primitive",
-            "name": "string"
-          },
-          "default": "",
-          "description": "CSS class names for the calendar root."
-        },
-        {
-          "name": "update:modelValue",
-          "type": {
-            "kind": "function",
-            "signature": "(value: Date) => void"
-          },
-          "description": "Emitted when the selected date changes."
-        }
-      ]
+      "category": "form",
+      "props": []
     },
     "card": {
       "id": "card",
@@ -1527,6 +1492,25 @@
         }
       ]
     },
+    "dashboard-block": {
+      "id": "dashboard-block",
+      "name": "Dashboard Block",
+      "type": "blocks",
+      "description": "Full dashboard page with collapsible sidebar, stat cards, recent activity table, and navigation.",
+      "files": [
+        "DashboardBlock.vue",
+        "index.ts"
+      ],
+      "exports": [
+        "DashboardBlock"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "blocks",
+      "props": []
+    },
     "data-table": {
       "id": "data-table",
       "name": "Data Table",
@@ -1617,7 +1601,9 @@
         "DateTimePicker"
       ],
       "dependencies": [
-        "date-fns"
+        "date-fns",
+        "lucide-vue-next",
+        "radix-vue"
       ],
       "devDependencies": [],
       "peerDependencies": [],
@@ -2568,6 +2554,25 @@
         }
       ]
     },
+    "login-block": {
+      "id": "login-block",
+      "name": "Login Block",
+      "type": "blocks",
+      "description": "Full login page with email/password form, remember me, and social auth.",
+      "files": [
+        "LoginBlock.vue",
+        "index.ts"
+      ],
+      "exports": [
+        "LoginBlock"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "blocks",
+      "props": []
+    },
     "menubar": {
       "id": "menubar",
       "name": "menubar",
@@ -3276,6 +3281,25 @@
           "description": "Emitted when the open state changes."
         }
       ]
+    },
+    "pricing-block": {
+      "id": "pricing-block",
+      "name": "Pricing Block",
+      "type": "blocks",
+      "description": "Pricing cards with tiers, feature lists, and highlighted plan.",
+      "files": [
+        "PricingBlock.vue",
+        "index.ts"
+      ],
+      "exports": [
+        "PricingBlock"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "blocks",
+      "props": []
     },
     "progress": {
       "id": "progress",
@@ -4954,29 +4978,24 @@
     },
     "time-picker": {
       "id": "time-picker",
-      "name": "time-picker",
-      "type": "other",
-      "description": "time-picker",
+      "name": "Time Picker",
+      "type": "form",
+      "description": "Hour/minute selection with 12h/24h format.",
       "files": [
-        "index.ts",
         "TimePicker.vue",
-        "types.ts"
+        "index.ts"
       ],
       "exports": [
         "TimePicker"
       ],
       "dependencies": [
-        "lucide-vue-next",
-        "radix-vue"
+        "radix-vue",
+        "lucide-vue-next"
       ],
       "devDependencies": [],
       "peerDependencies": [],
-      "registryDependencies": [
-        "button",
-        "popover",
-        "select"
-      ],
-      "category": "other",
+      "registryDependencies": [],
+      "category": "form",
       "props": []
     },
     "toast": {
