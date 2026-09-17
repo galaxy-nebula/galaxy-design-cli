@@ -1,6 +1,8 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
 import { dirname, resolve } from 'path';
 import type { BaseColor, Framework } from './config-schema.js';
+import { loadThemePreset, isThemePreset } from './theme-presets.js';
+import { buildCSSFromVars } from './theme-css.js';
 
 export type TailwindMode = 'v3' | 'v4';
 
@@ -14,6 +16,7 @@ export interface TailwindScaffoldOptions {
   overwriteExisting?: boolean;
   cssVariables?: boolean;
   prefix?: string;
+  theme?: string;
 }
 
 export interface TailwindScaffoldResult {
@@ -145,7 +148,7 @@ export function scaffoldTailwindFiles(
   ensureTailwindCss(
     options.cwd,
     options.cssPath,
-    getCSSContentWithOptions(options.baseColor, options.mode, cssVariables),
+    getCSSContentWithOptions(options.baseColor, options.mode, cssVariables, options.theme),
     result,
   );
 
@@ -309,7 +312,19 @@ function getCSSContentWithOptions(
   baseColor: BaseColor,
   mode: TailwindMode,
   cssVariables: boolean,
+  theme?: string,
 ): string {
+  if (theme && theme !== 'default') {
+    try {
+      if (isThemePreset(theme)) {
+        const preset = loadThemePreset(theme);
+        return buildCSSFromVars(preset.light, preset.dark, mode);
+      }
+    } catch {
+      // fall through to hardcoded colors
+    }
+  }
+
   const colorVariables: Record<BaseColor, { light: string; dark: string }> = {
     slate: {
       light: `--background: 0 0% 100%;

@@ -38,6 +38,7 @@ program
   .description('Initialize Galaxy UI in your project')
   .option('-y, --yes', 'Skip prompts and use defaults')
   .option('-c, --cwd <path>', 'Current working directory', process.cwd())
+  .option('--theme <name>', 'Theme preset: default, violet, green, blue')
   .action(initCommand);
 
 program

@@ -33,6 +33,7 @@ import {
 interface InitOptions {
   yes?: boolean;
   cwd: string;
+  theme?: string;
 }
 
 interface InitDependencyPlan {
@@ -230,6 +231,7 @@ export async function initCommand(options: InitOptions) {
         cssPath: config.tailwind.css,
         tailwindConfigPath: config.tailwind.config || 'tailwind.config.js',
         baseColor: config.tailwind.baseColor,
+        theme: options.theme,
         usesSrcDir,
         isExpoProject,
       });

@@ -13,6 +13,7 @@ export interface ReactNativeRuntimeOptions {
   cssPath: string;
   tailwindConfigPath: string;
   baseColor: BaseColor;
+  theme?: string;
   usesSrcDir: boolean;
   isExpo: boolean;
 }
@@ -29,6 +30,7 @@ export function scaffoldInitFrameworkRuntime(options: {
   cssPath: string;
   tailwindConfigPath: string;
   baseColor: BaseColor;
+  theme?: string;
   usesSrcDir: boolean;
   isExpoProject: boolean;
 }): RuntimeScaffoldResult | TailwindScaffoldResult | null {
@@ -42,6 +44,7 @@ export function scaffoldInitFrameworkRuntime(options: {
       cssPath: options.cssPath,
       tailwindConfigPath: options.tailwindConfigPath || 'tailwind.config.js',
       baseColor: options.baseColor,
+      theme: options.theme,
       usesSrcDir: options.usesSrcDir,
       isExpo: options.isExpoProject,
     });
@@ -54,6 +57,7 @@ export function scaffoldInitFrameworkRuntime(options: {
     configPath: options.tailwindConfigPath,
     cssPath: options.cssPath,
     baseColor: options.baseColor,
+    theme: options.theme,
     overwriteExisting: false,
   });
 }
