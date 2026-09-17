@@ -29,7 +29,7 @@ function getCliVersion(): string {
 const program = new Command();
 
 program
-  .name('galaxy-design')
+  .name('nebula')
   .description('CLI tool for Galaxy UI component library')
   .version(getCliVersion());
 

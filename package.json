@@ -1,19 +1,20 @@
 {
-  "name": "@galaxy-stack/design-cli",
-  "version": "0.3.1",
-  "description": "CLI tool for adding Galaxy UI components to your Vue, React, Angular, Next.js, Nuxt.js, React Native, or Flutter project",
+  "name": "@galaxy-stack/nebula-cli",
+  "version": "0.4.0",
+  "description": "CLI tool for adding Galaxy Nebula components to your Vue, React, Angular, Next.js, Nuxt.js, React Native, or Flutter project",
   "author": "Bùi Trọng Hiếu (kevinbui) <kevinbui210191@gmail.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/buikevin/galaxy-design.git"
+    "url": "https://github.com/galaxy-nebula/galaxy-design-cli.git"
   },
   "homepage": "https://galaxy-design.vercel.app",
   "bugs": {
-    "url": "https://github.com/buikevin/galaxy-design/issues"
+    "url": "https://github.com/galaxy-nebula/galaxy-design-cli/issues"
   },
   "keywords": [
-    "galaxy-design",
+    "galaxy-nebula",
+    "nebula",
     "galaxy-ui",
     "ui-components",
     "vue",
@@ -45,8 +46,7 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "bin": {
-    "galaxy-design": "./dist/bin.js",
-    "galaxy-ui-cli": "./dist/bin.js"
+    "nebula": "./dist/bin.js"
   },
   "files": [
     "dist",

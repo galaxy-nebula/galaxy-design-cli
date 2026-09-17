@@ -1,4 +1,4 @@
-# Galaxy UI CLI
+# Galaxy Nebula CLI
 
 CLI for initializing Galaxy UI and copying framework-specific components into your project.
 
@@ -23,14 +23,14 @@ That means the package/source-of-truth layer is still React for Next.js and Vue 
 ## Installation
 
 ```bash
-npx galaxy-design@latest init
+npx @galaxy-stack/nebula-cli@latest init
 ```
 
 Or install globally:
 
 ```bash
-npm install -g galaxy-design
-bun add -g galaxy-design
+npm install -g @galaxy-stack/nebula-cli
+bun add -g @galaxy-stack/nebula-cli
 ```
 
 ## Quick Start
@@ -38,7 +38,7 @@ bun add -g galaxy-design
 ### 1. Initialize
 
 ```bash
-npx galaxy-design@latest init
+npx @galaxy-stack/nebula-cli@latest init
 ```
 
 `init` currently does the following:
@@ -58,8 +58,8 @@ Tailwind behavior:
 ### 1.5 Migrate Tailwind v3 To v4
 
 ```bash
-npx galaxy-design@latest migrate tailwind --dry-run
-npx galaxy-design@latest migrate tailwind --yes
+npx @galaxy-stack/nebula-cli@latest migrate tailwind --dry-run
+npx @galaxy-stack/nebula-cli@latest migrate tailwind --yes
 ```
 
 `migrate tailwind` currently focuses on the safe scaffold layer:
@@ -76,16 +76,16 @@ It does not try to auto-rewrite every potentially breaking utility class.
 
 ```bash
 # Add one component
-npx galaxy-design@latest add button
+npx @galaxy-stack/nebula-cli@latest add button
 
 # Add several components
-npx galaxy-design@latest add button input card
+npx @galaxy-stack/nebula-cli@latest add button input card
 
 # Interactive selection
-npx galaxy-design@latest add
+npx @galaxy-stack/nebula-cli@latest add
 
 # Add everything in the current registry
-npx galaxy-design@latest add --all
+npx @galaxy-stack/nebula-cli@latest add --all
 ```
 
 ## Available Components
@@ -308,10 +308,10 @@ Galaxy UI stores project settings in `components.json`:
 Initialize Galaxy UI in your project and scaffold `components.json`.
 
 ```bash
-npx galaxy-design@latest init
+npx @galaxy-stack/nebula-cli@latest init
 
 # Skip prompts (use defaults)
-npx galaxy-design@latest init --yes
+npx @galaxy-stack/nebula-cli@latest init --yes
 ```
 
 ### `add`
@@ -320,13 +320,13 @@ Add registry components to your project.
 
 ```bash
 # Interactive mode
-npx galaxy-design@latest add
+npx @galaxy-stack/nebula-cli@latest add
 
 # Add specific components
-npx galaxy-design@latest add button input
+npx @galaxy-stack/nebula-cli@latest add button input
 
 # Add all components
-npx galaxy-design@latest add --all
+npx @galaxy-stack/nebula-cli@latest add --all
 ```
 
 There is currently no `diff` command and no `--overwrite` option on `add`.
@@ -365,7 +365,7 @@ Components are copied to your project, so you have full control:
 ## Documentation
 
 - Docs Website: <https://galaxy-design.vercel.app>
-- Repository: <https://github.com/buikevin/galaxy-design>
+- Repository: <https://github.com/galaxy-nebula/galaxy-design-cli>
 
 ## Notes
 
