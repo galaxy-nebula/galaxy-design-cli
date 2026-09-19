@@ -43,7 +43,7 @@ interface InitDependencyPlan {
 
 export async function initCommand(options: InitOptions) {
   console.log(
-    chalk.bold.cyan('\n🌌 Galaxy UI CLI - Multi-Framework Edition\n'),
+    chalk.bold.cyan('\n🌌 Nebula CLI — Galaxy UI Multi-Framework\n'),
   );
 
   const cwd = options.cwd;
