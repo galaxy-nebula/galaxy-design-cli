@@ -1,15 +1,25 @@
-# Galaxy Nebula CLI
+# Nebula CLI
 
-CLI for initializing Galaxy UI and copying framework-specific components into your project.
+[![npm version](https://img.shields.io/npm/v/@galaxy-stack/nebula-cli.svg)](https://www.npmjs.com/package/@galaxy-stack/nebula-cli)
+[![npm downloads](https://img.shields.io/npm/dm/@galaxy-stack/nebula-cli.svg)](https://www.npmjs.com/package/@galaxy-stack/nebula-cli)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+CLI for initializing [Galaxy UI](https://galaxy-design.vercel.app) and copying framework-specific components (67 components × 5 frameworks: React, Vue, Angular, React Native, Flutter) into your project.
 
 ## Features
 
-- Supports `init`, `add`, and `migrate tailwind`
+- Commands: `init`, `add`, `list`, `doctor`, `diff`, `update`, `migrate tailwind`
 - Detects React, Next.js, Vue, Nuxt.js, and Angular projects
 - Stores project settings in `components.json`
 - Scaffolds Tailwind in v4-first mode while preserving existing v3 projects
 - Copies components into your source tree so they remain editable
 - Fails clearly when remote component files cannot be fetched
+- Theme presets: `init --theme violet|green|blue|default`
+- Integrity-verified registry CDN (sha256 per file + release digest)
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) — current version **1.0.0** (Nebula milestone).
 
 ## Framework Mapping
 

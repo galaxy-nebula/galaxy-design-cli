@@ -1,40 +1,56 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+All notable changes to **@galaxy-stack/nebula-cli** (formerly `@galaxy-stack/design-cli`, formerly `galaxy-design`) are documented here. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+## [1.0.0] — 2026-09-19
 
-## [0.4.0] - 2026-09-18
+Nebula milestone — first stable major release.
 
-### Changed
+### Changed — BREAKING
 
-- Renamed the npm package from `@galaxy-stack/design-cli` to
-  `@galaxy-stack/nebula-cli` as part of the Galaxy Stack organization plan
-  (galaxy design product line moves to the
-  [galaxy-nebula](https://github.com/galaxy-nebula) organization).
-- Renamed the CLI command from `galaxy-design` / `galaxy-ui-cli` to `nebula`.
-- `@galaxy-stack/design-cli@0.3.1` and earlier are deprecated; they still work
-  but print a deprecation notice pointing to this package.
-- Repository metadata now points to the `galaxy-nebula` organization.
+- Package renamed: `@galaxy-stack/design-cli` → **`@galaxy-stack/nebula-cli`**
+- Command renamed: `galaxy-design` / `galaxy-ui-cli` → **`nebula`**
+- Repository moved to the **galaxy-nebula** GitHub organization
 
 ### Added
 
-- `--theme` flag for `init` with `violet`, `green`, and `blue` presets, plus a
-  theme-CSS builder and auto-registration-ready presets.
+- `--theme <name>` flag for `init` — theme presets: `default`, `violet`, `green`, `blue`
+- `--overwrite` flag for `add` (backs up existing files to `.galaxy/backups/`)
+- `--registry-url <url>` for `add` — fetch from a versioned, integrity-verified registry CDN
+- `list`, `doctor`, `diff`, `update` commands
+- `migrate tailwind` command (`--dry-run`, `--yes`, `--cwd`) — Tailwind v3 → v4 migration
+- Icon library transform (lucide → heroicons / radix-icons)
+- JS mode (`typescript: false`) via SWC transform
 
-## [0.3.1] - 2026
+### Fixed
 
-### Added
+- Framework registry integrity — 62 canonical manifests validated against real source files
+- Tailwind v3/v4 compatibility matrix (all 14 fixture tests pass)
 
-- P1.4 rotation flow: digest warning and `update:registry-digest` release
-  script.
-- Registered `dashboard-block` in CLI registries (React 64, Vue 64, Angular 62).
-- Combobox component; toast registered for React Native and Flutter.
+### Migration from 0.3.1
 
-### Changed
+```bash
+npm uninstall -g @galaxy-stack/design-cli
+npm install -g @galaxy-stack/nebula-cli
+nebula init
+```
 
-- P2.2 JS mode: SWC type stripping, `cssVariables: false`, prefix in scaffold;
-  iconLibrary transform and `aliases.ui` handling; overwrite flag wired.
+## [0.3.1] — 2026-09-17
 
-For releases before 0.3.1, see the repository git history.
+- Scoped package: `galaxy-design` → `@galaxy-stack/design-cli`
+- `--overwrite` + `--registry-url` for `add`
+- Registry integrity verification (sha256 + digest)
+
+## [0.3.0] — 2026-09-16
+
+- Multi-framework registry sync from canonical manifests
+- `list`, `doctor`, `diff`, `update` commands
+- Tailwind v4 target support + migration plan
+- Registry CDN distribution via Vercel
+
+## [0.2.x]
+
+- Core `init` / `add` / `migrate tailwind` flows, 5-framework support, registry manifest system.
+
+[1.0.0]: https://github.com/galaxy-nebula/galaxy-design-cli/releases/tag/v1.0.0
+[0.3.1]: https://www.npmjs.com/package/@galaxy-stack/design-cli
