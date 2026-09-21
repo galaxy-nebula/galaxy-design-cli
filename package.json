@@ -1,6 +1,6 @@
 {
   "name": "@galaxy-stack/nebula-cli",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Nebula CLI — add Galaxy UI components to your Vue, React, Angular, Next.js, Nuxt.js, React Native, or Flutter project",
   "author": "Bùi Trọng Hiếu (kevinbui) <kevinbui210191@gmail.com>",
   "license": "MIT",
