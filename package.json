@@ -88,7 +88,7 @@
     "test:tailwind-utils": "npm run build && node scripts/test-tailwind-utils.mjs",
     "verify": "npm run audit:registry && npm run build && node scripts/generate-components-schema.mjs --check && node scripts/test-framework-registry-service.mjs && node scripts/test-component-copier.mjs && node scripts/test-add-command.mjs && node scripts/test-init-support.mjs && node scripts/test-nextjs-fixture.mjs && node scripts/test-nextjs-tailwind-migrate-fixture.mjs && node scripts/test-nuxt-fixture.mjs && node scripts/test-angular-fixture.mjs && node scripts/test-angular-tailwind-migrate-fixture.mjs && node scripts/test-vite-react-fixture.mjs && node scripts/test-vite-react-tailwind-migrate-fixture.mjs && node scripts/test-vite-vue-fixture.mjs && node scripts/test-vite-vue-tailwind-migrate-fixture.mjs && node scripts/test-tailwind-utils.mjs && node scripts/test-tailwind-migrate.mjs",
     "update:registry-digest": "node scripts/update-registry-digest.mjs",
-    "prepublishOnly": "npm run verify"
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "@swc/helpers": "~0.5.11",

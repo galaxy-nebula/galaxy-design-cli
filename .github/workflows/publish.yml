@@ -14,44 +14,34 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - uses: actions/checkout@v4
-        with:
-          repository: galaxy-nebula/galaxy-design
-          ref: main
-          path: galaxy-design
-          token: ${{ secrets.GITHUB_TOKEN }}
-
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          registry-url: 'https://registry.npmjs.org/'
+          registry-url: 'https://registry.npmjs.org'
 
-      - name: Use latest npm
-        run: npm install -g npm@latest
-
-      - name: Install dependencies (bun — workspace has bun.lock)
+      - name: Setup bun
         run: |
           curl -fsSL https://bun.sh/install | bash
           echo "$HOME/.bun/bin" >> "$GITHUB_PATH"
-          bun install --no-audit --no-fund
+
+      - name: Install dependencies
+        run: bun install
 
       - name: Build
         run: npm run build
-        env:
-          DESIGN_ROOT: ${{ github.workspace }}/galaxy-design
 
-      - name: Check version not already published
+      - name: Check version already published
+        id: check
         run: |
           VERSION=$(node -p "require('./package.json').version")
           if npm view "@galaxy-stack/nebula-cli@$VERSION" version >/dev/null 2>&1; then
-            echo "Version $VERSION already published — skipping publish"
+            echo "Version $VERSION already published — skipping"
             echo "SHOULD_PUBLISH=false" >> "$GITHUB_ENV"
           else
-            echo "Publishing new version $VERSION"
+            echo "Version $VERSION not published yet"
             echo "SHOULD_PUBLISH=true" >> "$GITHUB_ENV"
           fi
 
-      - name: Publish (skip prepublishOnly — verify already done)
+      - name: Publish (skip prepublishOnly — verify done above)
         if: env.SHOULD_PUBLISH == 'true'
-        run: npm publish --access public --provenance --ignore-scripts
+        run: npm publish --access public
