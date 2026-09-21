@@ -9,7 +9,7 @@ import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 
 const projectRoot = path.resolve(new URL('..', import.meta.url).pathname);
-const generatedRoot = path.resolve(projectRoot, '..', 'galaxy-design', 'packages', 'contracts', 'generated');
+const generatedRoot = path.resolve(projectRoot, '..', '..', 'galaxy-design', 'packages', 'packages', 'contracts', 'generated');
 
 const FRAMEWORKS = {
   react: 'registry-react.json',

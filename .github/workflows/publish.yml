@@ -38,6 +38,8 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          DESIGN_ROOT: ${{ github.workspace }}/galaxy-design
 
       - name: Check version not already published
         run: |

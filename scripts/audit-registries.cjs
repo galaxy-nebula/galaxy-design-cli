@@ -3,8 +3,9 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
-const WORKSPACE_ROOT = path.join(ROOT, '..');
-const DESIGN_ROOT = path.join(WORKSPACE_ROOT, 'galaxy-design');
+const DESIGN_ROOT = process.env.DESIGN_ROOT
+  ? path.resolve(process.env.DESIGN_ROOT)
+  : path.join(ROOT, '..', 'galaxy-design');
 const CLI_SRC = path.join(ROOT, 'src');
 
 const REGISTRY_FILES = {
