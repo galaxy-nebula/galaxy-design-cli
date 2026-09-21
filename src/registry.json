@@ -145,7 +145,9 @@
         "nextjs",
         "vue",
         "nuxtjs",
-        "angular"
+        "angular",
+        "react-native",
+        "flutter"
       ]
     },
     "rate": {
@@ -194,7 +196,9 @@
         "nextjs",
         "vue",
         "nuxtjs",
-        "angular"
+        "angular",
+        "react-native",
+        "flutter"
       ]
     },
     "date-picker": {
@@ -222,7 +226,9 @@
         "nextjs",
         "vue",
         "nuxtjs",
-        "angular"
+        "angular",
+        "react-native",
+        "flutter"
       ]
     },
     "time-picker": {
@@ -250,7 +256,9 @@
         "nextjs",
         "vue",
         "nuxtjs",
-        "angular"
+        "angular",
+        "react-native",
+        "flutter"
       ]
     },
     "tags-input": {
@@ -263,7 +271,9 @@
         "nextjs",
         "vue",
         "nuxtjs",
-        "angular"
+        "angular",
+        "react-native",
+        "flutter"
       ]
     },
     "card": {
@@ -381,7 +391,9 @@
         "nextjs",
         "vue",
         "nuxtjs",
-        "angular"
+        "angular",
+        "react-native",
+        "flutter"
       ]
     },
     "resizable": {
@@ -394,7 +406,9 @@
         "nextjs",
         "vue",
         "nuxtjs",
-        "angular"
+        "angular",
+        "react-native",
+        "flutter"
       ]
     },
     "sheet": {
@@ -422,7 +436,9 @@
         "nextjs",
         "vue",
         "nuxtjs",
-        "angular"
+        "angular",
+        "react-native",
+        "flutter"
       ]
     },
     "alert-dialog": {
@@ -540,7 +556,9 @@
         "nextjs",
         "vue",
         "nuxtjs",
-        "angular"
+        "angular",
+        "react-native",
+        "flutter"
       ]
     },
     "menubar": {
@@ -628,7 +646,9 @@
         "nextjs",
         "vue",
         "nuxtjs",
-        "angular"
+        "angular",
+        "react-native",
+        "flutter"
       ]
     },
     "line-chart": {
@@ -835,7 +855,11 @@
       "type": "modal-overlay",
       "description": "Drawer component with slide-in animation (shadcn style)",
       "category": "modal-overlay",
-      "frameworks": []
+      "frameworks": [
+        "react",
+        "vue",
+        "angular"
+      ]
     },
     "toast": {
       "name": "Toast",
@@ -892,7 +916,9 @@
         "nextjs",
         "vue",
         "nuxtjs",
-        "angular"
+        "angular",
+        "react-native",
+        "flutter"
       ]
     },
     "typography": {
@@ -989,7 +1015,11 @@
       "type": "other",
       "description": "Carousel component for image/content slides (antd style)",
       "category": "other",
-      "frameworks": []
+      "frameworks": [
+        "react",
+        "vue",
+        "angular"
+      ]
     },
     "combobox": {
       "name": "Combobox",
@@ -1000,7 +1030,10 @@
         "react",
         "nextjs",
         "vue",
-        "nuxtjs"
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
       ]
     },
     "data-table": {
@@ -1012,7 +1045,10 @@
         "react",
         "nextjs",
         "vue",
-        "nuxtjs"
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
       ]
     },
     "otp-input": {
@@ -1025,7 +1061,9 @@
         "nextjs",
         "vue",
         "nuxtjs",
-        "angular"
+        "angular",
+        "react-native",
+        "flutter"
       ]
     },
     "login-block": {
@@ -1037,7 +1075,10 @@
         "react",
         "nextjs",
         "vue",
-        "nuxtjs"
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
       ]
     },
     "pricing-block": {
@@ -1049,7 +1090,10 @@
         "react",
         "nextjs",
         "vue",
-        "nuxtjs"
+        "nuxtjs",
+        "angular",
+        "react-native",
+        "flutter"
       ]
     },
     "dashboard-block": {
@@ -1063,7 +1107,8 @@
         "vue",
         "nuxtjs",
         "angular",
-        "flutter"
+        "flutter",
+        "react-native"
       ]
     }
   },
