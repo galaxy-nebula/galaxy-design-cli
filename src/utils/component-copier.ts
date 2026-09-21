@@ -484,7 +484,7 @@ export function createComponentsConfig(
   },
 ): void {
   const config = {
-    $schema: 'https://galaxy-design.vercel.app/schema.json',
+    $schema: 'https://galaxy-nebula.vercel.app/schema.json',
     platform: platform,
     framework: options?.framework || platform,
     typescript: options?.typescript !== false,

@@ -297,7 +297,7 @@ export async function initCommand(options: InitOptions) {
   }
 
   console.log(chalk.cyan('Learn more:'));
-  console.log(chalk.white('  Documentation: https://galaxy-design.vercel.app'));
+  console.log(chalk.white('  Documentation: https://galaxy-nebula.vercel.app'));
   console.log(
     chalk.white('  GitHub: https://github.com/buikevin/galaxy-design\n'),
   );

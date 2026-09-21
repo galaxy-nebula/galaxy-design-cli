@@ -20,7 +20,7 @@ const fetcherPath = resolve(
 
 const registryUrl =
   process.env.GALAXY_REGISTRY_URL ||
-  'https://galaxy-design.vercel.app/registry';
+  'https://galaxy-nebula.vercel.app/registry';
 
 const manifest = await (async () => {
   const response = await fetch(`${registryUrl}/latest-manifest.json`);

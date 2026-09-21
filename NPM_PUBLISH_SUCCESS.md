@@ -266,7 +266,7 @@ npx galaxy-design@latest add button
 - Downloads: (check npm stats)
 - Repository: https://github.com/buikevin/galaxy-design
 - Issues: https://github.com/buikevin/galaxy-design/issues
-- Documentation: https://galaxy-design.vercel.app
+- Documentation: https://galaxy-nebula.vercel.app
 
 ---
 

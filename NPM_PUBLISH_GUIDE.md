@@ -69,7 +69,7 @@ npm publish
 
 - **Name**: `galaxy-design`
 - **Version**: `0.2.0`
-- **Homepage**: https://galaxy-design.vercel.app
+- **Homepage**: https://galaxy-nebula.vercel.app
 - **Repository**: https://github.com/buikevin/galaxy-design
 - **License**: MIT
 

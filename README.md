@@ -4,7 +4,7 @@
 [![npm downloads](https://img.shields.io/npm/dm/@galaxy-stack/nebula-cli.svg)](https://www.npmjs.com/package/@galaxy-stack/nebula-cli)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-CLI for initializing [Galaxy UI](https://galaxy-design.vercel.app) and copying framework-specific components (67 components × 5 frameworks: React, Vue, Angular, React Native, Flutter) into your project.
+CLI for initializing [Galaxy UI](https://galaxy-nebula.vercel.app) and copying framework-specific components (67 components × 5 frameworks: React, Vue, Angular, React Native, Flutter) into your project.
 
 ## Features
 
@@ -276,7 +276,7 @@ Galaxy UI stores project settings in `components.json`:
 
 ```json
 {
-  "$schema": "https://galaxy-design.vercel.app/schema.json",
+  "$schema": "https://galaxy-nebula.vercel.app/schema.json",
   "framework": "react",
   "typescript": true,
   "tailwind": {
@@ -374,7 +374,7 @@ Components are copied to your project, so you have full control:
 
 ## Documentation
 
-- Docs Website: <https://galaxy-design.vercel.app>
+- Docs Website: <https://galaxy-nebula.vercel.app>
 - Repository: <https://github.com/galaxy-nebula/galaxy-design-cli>
 
 ## Notes

@@ -14,7 +14,7 @@ export const EXPECTED_REGISTRY_DIGEST =
   'b351c8a141c77f43e86ec3a088bb7e31940946b40d2fe663e2a83cf01331023d';
 
 export const DEFAULT_REGISTRY_BASE =
-  'https://galaxy-design.vercel.app/registry';
+  'https://galaxy-nebula.vercel.app/registry';
 
 export function resolveRegistryUrl(explicit?: string): string | null {
   return explicit || process.env.GALAXY_REGISTRY_URL || null;

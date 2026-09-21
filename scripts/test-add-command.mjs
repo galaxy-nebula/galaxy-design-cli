@@ -10,7 +10,7 @@ import {
 
 function createComponentsConfig(framework = 'react') {
   return {
-    $schema: 'https://galaxy-design.vercel.app/schema.json',
+    $schema: 'https://galaxy-nebula.vercel.app/schema.json',
     framework,
     typescript: true,
     tailwind: {
