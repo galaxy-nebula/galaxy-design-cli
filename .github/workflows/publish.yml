@@ -19,6 +19,9 @@ jobs:
           node-version: 22
           registry-url: 'https://registry.npmjs.org'
 
+      - name: Use latest npm (trusted publishing support)
+        run: npm install -g npm@latest
+
       - name: Setup bun
         run: |
           curl -fsSL https://bun.sh/install | bash
@@ -44,4 +47,4 @@ jobs:
 
       - name: Publish (skip prepublishOnly — verify done above)
         if: env.SHOULD_PUBLISH == 'true'
-        run: npm publish --access public
+        run: npm publish --access public --provenance
