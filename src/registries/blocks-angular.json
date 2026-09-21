@@ -80,6 +80,47 @@
       "category": "blocks",
       "props": [],
       "selector": "ui-dashboard"
+    },
+    "login-block": {
+      "id": "login-block",
+      "name": "Login Block",
+      "type": "blocks",
+      "description": "Full login page with email/password form, remember me, and social auth.",
+      "files": [
+        "login.component.ts",
+        "index.ts"
+      ],
+      "exports": [
+        "LoginBlockComponent"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "blocks",
+      "props": [],
+      "selector": "ui-login"
+    },
+    "pricing-block": {
+      "id": "pricing-block",
+      "name": "Pricing Block",
+      "type": "blocks",
+      "description": "Pricing cards with tiers, feature lists, and highlighted plan.",
+      "files": [
+        "pricing.component.ts",
+        "index.ts"
+      ],
+      "exports": [
+        "PricingBlockComponent",
+        "PricingTier"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "blocks",
+      "props": [],
+      "selector": "ui-pricing"
     }
   },
   "groups": {

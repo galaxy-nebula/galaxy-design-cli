@@ -976,6 +976,26 @@
       ],
       "selector": "ui-card"
     },
+    "carousel": {
+      "id": "carousel",
+      "name": "Carousel",
+      "type": "data-display",
+      "description": "Carousel component - embla-based with prev/next controls.",
+      "files": [
+        "carousel.component.ts",
+        "index.ts"
+      ],
+      "exports": [
+        "CarouselComponent"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "data-display",
+      "props": [],
+      "selector": "ui-carousel"
+    },
     "checkbox": {
       "id": "checkbox",
       "name": "checkbox",
@@ -1151,6 +1171,27 @@
       ],
       "selector": "ui-collapsible"
     },
+    "combobox": {
+      "id": "combobox",
+      "name": "Combobox",
+      "type": "form",
+      "description": "Searchable select with filtering, combining a text input with a dropdown list.",
+      "files": [
+        "index.ts",
+        "combobox.component.ts"
+      ],
+      "exports": [
+        "ComboboxComponent",
+        "ComboboxOption"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "form",
+      "props": [],
+      "selector": "ui-combobox"
+    },
     "command": {
       "id": "command",
       "name": "command",
@@ -1242,6 +1283,27 @@
       "category": "blocks",
       "props": [],
       "selector": "ui-dashboard"
+    },
+    "data-table": {
+      "id": "data-table",
+      "name": "Data Table",
+      "type": "data-display",
+      "description": "Sortable, filterable, paginated data table.",
+      "files": [
+        "index.ts",
+        "data-table.component.ts"
+      ],
+      "exports": [
+        "DataTableComponent",
+        "DataTableColumn"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "data-display",
+      "props": [],
+      "selector": "ui-data-table"
     },
     "date-picker": {
       "id": "date-picker",
@@ -1577,6 +1639,26 @@
         }
       ],
       "selector": "ui-donut-chart"
+    },
+    "drawer": {
+      "id": "drawer",
+      "name": "Drawer",
+      "type": "overlay",
+      "description": "Mobile-first bottom sheet drawer.",
+      "files": [
+        "drawer.component.ts",
+        "index.ts"
+      ],
+      "exports": [
+        "DrawerComponent"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "overlay",
+      "props": [],
+      "selector": "ui-drawer"
     },
     "dropdown-menu": {
       "id": "dropdown-menu",
@@ -2439,6 +2521,26 @@
       ],
       "selector": "ui-line-chart"
     },
+    "login-block": {
+      "id": "login-block",
+      "name": "Login Block",
+      "type": "blocks",
+      "description": "Full login page with email/password form, remember me, and social auth.",
+      "files": [
+        "login.component.ts",
+        "index.ts"
+      ],
+      "exports": [
+        "LoginBlockComponent"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "blocks",
+      "props": [],
+      "selector": "ui-login"
+    },
     "menubar": {
       "id": "menubar",
       "name": "menubar",
@@ -2995,6 +3097,27 @@
         }
       ],
       "selector": "ui-popover"
+    },
+    "pricing-block": {
+      "id": "pricing-block",
+      "name": "Pricing Block",
+      "type": "blocks",
+      "description": "Pricing cards with tiers, feature lists, and highlighted plan.",
+      "files": [
+        "pricing.component.ts",
+        "index.ts"
+      ],
+      "exports": [
+        "PricingBlockComponent",
+        "PricingTier"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "blocks",
+      "props": [],
+      "selector": "ui-pricing"
     },
     "progress": {
       "id": "progress",

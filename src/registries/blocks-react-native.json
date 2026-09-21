@@ -8,7 +8,11 @@
       "description": "Mobile-optimized chat interface with message list, input, and touch-friendly controls",
       "dependencies": [],
       "devDependencies": [],
-      "registryDependencies": ["avatar", "button", "textarea"],
+      "registryDependencies": [
+        "avatar",
+        "button",
+        "textarea"
+      ],
       "files": [
         "types.ts",
         "ChatMessage.tsx",
@@ -23,7 +27,9 @@
       "description": "Mobile drawer navigation with swipe gestures and nested menu items",
       "dependencies": [],
       "devDependencies": [],
-      "registryDependencies": ["button"],
+      "registryDependencies": [
+        "button"
+      ],
       "files": [
         "types.ts",
         "Drawer.tsx",
@@ -37,19 +43,82 @@
       "description": "Mobile-optimized authentication forms with native keyboard handling",
       "dependencies": [],
       "devDependencies": [],
-      "registryDependencies": ["button", "input", "label", "checkbox"],
+      "registryDependencies": [
+        "button",
+        "input",
+        "label",
+        "checkbox"
+      ],
       "files": [
         "types.ts",
         "AuthForm.tsx",
         "index.ts"
       ],
       "category": "mobile-blocks"
+    },
+    "dashboard-block": {
+      "id": "dashboard-block",
+      "name": "Dashboard Block",
+      "type": "blocks",
+      "description": "Full dashboard page with collapsible sidebar, stat cards, recent activity table, and navigation.",
+      "exports": [],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "blocks",
+      "props": []
+    },
+    "login-block": {
+      "id": "login-block",
+      "name": "Login Block",
+      "type": "blocks",
+      "description": "Full login page with email/password form, remember me, and social auth.",
+      "files": [
+        "LoginBlock.tsx",
+        "index.ts"
+      ],
+      "exports": [
+        "LoginBlock",
+        "LoginBlockProps"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "blocks",
+      "props": []
+    },
+    "pricing-block": {
+      "id": "pricing-block",
+      "name": "Pricing Block",
+      "type": "blocks",
+      "description": "Pricing cards with tiers, feature lists, and highlighted plan.",
+      "files": [
+        "PricingBlock.tsx",
+        "index.ts"
+      ],
+      "exports": [
+        "PricingBlock",
+        "PricingBlockProps",
+        "PricingTier"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "blocks",
+      "props": []
     }
   },
   "groups": {
     "all-mobile-blocks": {
       "name": "All Mobile Blocks",
-      "components": ["chat-ui", "sidebar", "authentication"]
+      "components": [
+        "chat-ui",
+        "sidebar",
+        "authentication"
+      ]
     }
   }
 }

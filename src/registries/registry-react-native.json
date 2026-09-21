@@ -938,6 +938,19 @@
         }
       ]
     },
+    "breadcrumb": {
+      "id": "breadcrumb",
+      "name": "breadcrumb",
+      "type": "other",
+      "description": "breadcrumb",
+      "exports": [],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "other",
+      "props": []
+    },
     "button": {
       "id": "button",
       "name": "Button",
@@ -1035,6 +1048,27 @@
           "description": "CSS class names for the button text."
         }
       ]
+    },
+    "calendar-range": {
+      "id": "calendar-range",
+      "name": "calendar-range",
+      "type": "other",
+      "description": "calendar-range",
+      "files": [
+        "CalendarRange.tsx",
+        "index.ts"
+      ],
+      "exports": [
+        "CalendarRange",
+        "CalendarRangeProps",
+        "CalendarRangeValue"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "other",
+      "props": []
     },
     "calendar": {
       "id": "calendar",
@@ -1244,6 +1278,32 @@
         }
       ]
     },
+    "combobox": {
+      "id": "combobox",
+      "name": "Combobox",
+      "type": "form",
+      "description": "Searchable select with filtering, combining a text input with a dropdown list.",
+      "exports": [],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "form",
+      "props": []
+    },
+    "command": {
+      "id": "command",
+      "name": "command",
+      "type": "other",
+      "description": "command",
+      "exports": [],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "other",
+      "props": []
+    },
     "context-menu": {
       "id": "context-menu",
       "name": "context-menu",
@@ -1324,6 +1384,32 @@
           "description": "Context menu composition content."
         }
       ]
+    },
+    "dashboard-block": {
+      "id": "dashboard-block",
+      "name": "Dashboard Block",
+      "type": "blocks",
+      "description": "Full dashboard page with collapsible sidebar, stat cards, recent activity table, and navigation.",
+      "exports": [],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "blocks",
+      "props": []
+    },
+    "data-table": {
+      "id": "data-table",
+      "name": "Data Table",
+      "type": "data-display",
+      "description": "Sortable, filterable, paginated data table.",
+      "exports": [],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "data-display",
+      "props": []
     },
     "date-picker": {
       "id": "date-picker",
@@ -1432,6 +1518,46 @@
           "description": "Selection mode for the picker."
         }
       ]
+    },
+    "date-range-picker": {
+      "id": "date-range-picker",
+      "name": "date-range-picker",
+      "type": "other",
+      "description": "date-range-picker",
+      "files": [
+        "DateRangePicker.tsx",
+        "index.ts"
+      ],
+      "exports": [
+        "DateRangePicker",
+        "DateRangePickerProps"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "other",
+      "props": []
+    },
+    "date-time-picker": {
+      "id": "date-time-picker",
+      "name": "date-time-picker",
+      "type": "other",
+      "description": "date-time-picker",
+      "files": [
+        "DateTimePicker.tsx",
+        "index.ts"
+      ],
+      "exports": [
+        "DateTimePicker",
+        "DateTimePickerProps"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "other",
+      "props": []
     },
     "dialog": {
       "id": "dialog",
@@ -1879,6 +2005,28 @@
         }
       ]
     },
+    "form": {
+      "id": "form",
+      "name": "form",
+      "type": "other",
+      "description": "form",
+      "files": [
+        "Form.tsx",
+        "index.ts"
+      ],
+      "exports": [
+        "Form",
+        "FormItem",
+        "FormLabel",
+        "FormDescription"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "other",
+      "props": []
+    },
     "gauge-chart": {
       "id": "gauge-chart",
       "name": "Gauge Chart",
@@ -2283,6 +2431,19 @@
         }
       ]
     },
+    "kbd": {
+      "id": "kbd",
+      "name": "kbd",
+      "type": "other",
+      "description": "kbd",
+      "exports": [],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "other",
+      "props": []
+    },
     "label": {
       "id": "label",
       "name": "label",
@@ -2564,6 +2725,26 @@
           "default": false
         }
       ]
+    },
+    "login-block": {
+      "id": "login-block",
+      "name": "Login Block",
+      "type": "blocks",
+      "description": "Full login page with email/password form, remember me, and social auth.",
+      "files": [
+        "LoginBlock.tsx",
+        "index.ts"
+      ],
+      "exports": [
+        "LoginBlock",
+        "LoginBlockProps"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "blocks",
+      "props": []
     },
     "menubar": {
       "id": "menubar",
@@ -2935,6 +3116,26 @@
           "default": ""
         }
       ]
+    },
+    "otp-input": {
+      "id": "otp-input",
+      "name": "OTP Input",
+      "type": "form",
+      "description": "One-time password input with auto-focus, paste support, and completion callback.",
+      "files": [
+        "OTPInput.tsx",
+        "index.ts"
+      ],
+      "exports": [
+        "OTPInput",
+        "OTPInputProps"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "form",
+      "props": []
     },
     "pagination": {
       "id": "pagination",
@@ -3313,6 +3514,27 @@
         }
       ]
     },
+    "pricing-block": {
+      "id": "pricing-block",
+      "name": "Pricing Block",
+      "type": "blocks",
+      "description": "Pricing cards with tiers, feature lists, and highlighted plan.",
+      "files": [
+        "PricingBlock.tsx",
+        "index.ts"
+      ],
+      "exports": [
+        "PricingBlock",
+        "PricingBlockProps",
+        "PricingTier"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "blocks",
+      "props": []
+    },
     "progress": {
       "id": "progress",
       "name": "progress",
@@ -3636,6 +3858,19 @@
         }
       ]
     },
+    "resizable": {
+      "id": "resizable",
+      "name": "resizable",
+      "type": "other",
+      "description": "resizable",
+      "exports": [],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "other",
+      "props": []
+    },
     "scatter-chart": {
       "id": "scatter-chart",
       "name": "scatter-chart",
@@ -3812,6 +4047,19 @@
           "default": "{}"
         }
       ]
+    },
+    "scroll-area": {
+      "id": "scroll-area",
+      "name": "scroll-area",
+      "type": "other",
+      "description": "scroll-area",
+      "exports": [],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "other",
+      "props": []
     },
     "select": {
       "id": "select",
@@ -4527,6 +4775,26 @@
         }
       ]
     },
+    "tags-input": {
+      "id": "tags-input",
+      "name": "tags-input",
+      "type": "other",
+      "description": "tags-input",
+      "files": [
+        "TagsInput.tsx",
+        "index.ts"
+      ],
+      "exports": [
+        "TagsInput",
+        "TagsInputProps"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "other",
+      "props": []
+    },
     "textarea": {
       "id": "textarea",
       "name": "textarea",
@@ -5019,6 +5287,19 @@
           "description": "Toggle content."
         }
       ]
+    },
+    "toolbar": {
+      "id": "toolbar",
+      "name": "Toolbar",
+      "type": "data-display",
+      "description": "Toolbar component with section grouping and separators for grouped actions.",
+      "exports": [],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "data-display",
+      "props": []
     },
     "tooltip": {
       "id": "tooltip",

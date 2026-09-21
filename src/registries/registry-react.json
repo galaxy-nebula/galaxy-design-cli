@@ -1179,7 +1179,8 @@
         "Calendar"
       ],
       "dependencies": [
-        "react-day-picker"
+        "react-day-picker",
+        "lucide-react"
       ],
       "devDependencies": [],
       "peerDependencies": [],
@@ -1228,6 +1229,31 @@
           "description": "Card content."
         }
       ]
+    },
+    "carousel": {
+      "id": "carousel",
+      "name": "Carousel",
+      "type": "data-display",
+      "description": "Carousel component - embla-based with prev/next controls.",
+      "files": [
+        "Carousel.tsx",
+        "index.ts"
+      ],
+      "exports": [
+        "Carousel",
+        "CarouselContent",
+        "CarouselItem",
+        "CarouselPrevious",
+        "CarouselNext"
+      ],
+      "dependencies": [
+        "embla-carousel-react"
+      ],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "data-display",
+      "props": []
     },
     "checkbox": {
       "id": "checkbox",
@@ -2174,6 +2200,34 @@
           "default": "{}"
         }
       ]
+    },
+    "drawer": {
+      "id": "drawer",
+      "name": "Drawer",
+      "type": "overlay",
+      "description": "Mobile-first bottom sheet drawer.",
+      "files": [
+        "Drawer.tsx",
+        "index.ts"
+      ],
+      "exports": [
+        "Drawer",
+        "DrawerPortal",
+        "DrawerOverlay",
+        "DrawerTrigger",
+        "DrawerClose",
+        "DrawerContent",
+        "DrawerHeader",
+        "DrawerFooter",
+        "DrawerTitle",
+        "DrawerDescription"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "overlay",
+      "props": []
     },
     "dropdown-menu": {
       "id": "dropdown-menu",
@@ -5366,7 +5420,9 @@
       "exports": [
         "TimePicker"
       ],
-      "dependencies": [],
+      "dependencies": [
+        "lucide-react"
+      ],
       "devDependencies": [],
       "peerDependencies": [],
       "registryDependencies": [],

@@ -727,6 +727,19 @@
         }
       ]
     },
+    "breadcrumb": {
+      "id": "breadcrumb",
+      "name": "breadcrumb",
+      "type": "other",
+      "description": "breadcrumb",
+      "exports": [],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "other",
+      "props": []
+    },
     "button": {
       "id": "button",
       "name": "Button",
@@ -805,6 +818,25 @@
           "description": "Button content."
         }
       ]
+    },
+    "calendar-range": {
+      "id": "calendar-range",
+      "name": "calendar-range",
+      "type": "other",
+      "description": "calendar-range",
+      "files": [
+        "calendar_range.dart",
+        "index.dart"
+      ],
+      "exports": [
+        "GalaxyCalendarRange"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "other",
+      "props": []
     },
     "calendar": {
       "id": "calendar",
@@ -985,6 +1017,32 @@
         }
       ]
     },
+    "combobox": {
+      "id": "combobox",
+      "name": "Combobox",
+      "type": "form",
+      "description": "Searchable select with filtering, combining a text input with a dropdown list.",
+      "exports": [],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "form",
+      "props": []
+    },
+    "command": {
+      "id": "command",
+      "name": "command",
+      "type": "other",
+      "description": "command",
+      "exports": [],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "other",
+      "props": []
+    },
     "context-menu": {
       "id": "context-menu",
       "name": "context-menu",
@@ -1030,6 +1088,32 @@
           "description": "Called when a menu item is selected."
         }
       ]
+    },
+    "dashboard-block": {
+      "id": "dashboard-block",
+      "name": "Dashboard Block",
+      "type": "blocks",
+      "description": "Full dashboard page with collapsible sidebar, stat cards, recent activity table, and navigation.",
+      "exports": [],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "blocks",
+      "props": []
+    },
+    "data-table": {
+      "id": "data-table",
+      "name": "Data Table",
+      "type": "data-display",
+      "description": "Sortable, filterable, paginated data table.",
+      "exports": [],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "data-display",
+      "props": []
     },
     "date-picker": {
       "id": "date-picker",
@@ -1108,6 +1192,44 @@
           "description": "Optional header widget rendered above the picker."
         }
       ]
+    },
+    "date-range-picker": {
+      "id": "date-range-picker",
+      "name": "date-range-picker",
+      "type": "other",
+      "description": "date-range-picker",
+      "files": [
+        "date_range_picker.dart",
+        "index.dart"
+      ],
+      "exports": [
+        "GalaxyDateRangePicker"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "other",
+      "props": []
+    },
+    "date-time-picker": {
+      "id": "date-time-picker",
+      "name": "date-time-picker",
+      "type": "other",
+      "description": "date-time-picker",
+      "files": [
+        "date_time_picker.dart",
+        "index.dart"
+      ],
+      "exports": [
+        "GalaxyDateTimePicker"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "other",
+      "props": []
     },
     "dialog": {
       "id": "dialog",
@@ -1441,6 +1563,26 @@
           "description": "Base spacing used between sections."
         }
       ]
+    },
+    "form": {
+      "id": "form",
+      "name": "form",
+      "type": "other",
+      "description": "form",
+      "files": [
+        "form.dart",
+        "index.dart"
+      ],
+      "exports": [
+        "GalaxyForm",
+        "GalaxyFormItem"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "other",
+      "props": []
     },
     "gauge-chart": {
       "id": "gauge-chart",
@@ -1777,6 +1919,19 @@
         }
       ]
     },
+    "kbd": {
+      "id": "kbd",
+      "name": "kbd",
+      "type": "other",
+      "description": "kbd",
+      "exports": [],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "other",
+      "props": []
+    },
     "label": {
       "id": "label",
       "name": "label",
@@ -2005,6 +2160,25 @@
           "description": "Padding inside the chart container."
         }
       ]
+    },
+    "login-block": {
+      "id": "login-block",
+      "name": "Login Block",
+      "type": "blocks",
+      "description": "Full login page with email/password form, remember me, and social auth.",
+      "files": [
+        "login_block.dart",
+        "index.dart"
+      ],
+      "exports": [
+        "GalaxyLoginBlock"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "blocks",
+      "props": []
     },
     "menubar": {
       "id": "menubar",
@@ -2249,6 +2423,25 @@
           "description": "Optional footer widget for the drawer variant."
         }
       ]
+    },
+    "otp-input": {
+      "id": "otp-input",
+      "name": "OTP Input",
+      "type": "form",
+      "description": "One-time password input with auto-focus, paste support, and completion callback.",
+      "files": [
+        "otp_input.dart",
+        "index.dart"
+      ],
+      "exports": [
+        "GalaxyOTPInput"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "form",
+      "props": []
     },
     "pagination": {
       "id": "pagination",
@@ -2547,6 +2740,26 @@
         }
       ]
     },
+    "pricing-block": {
+      "id": "pricing-block",
+      "name": "Pricing Block",
+      "type": "blocks",
+      "description": "Pricing cards with tiers, feature lists, and highlighted plan.",
+      "files": [
+        "pricing_block.dart",
+        "index.dart"
+      ],
+      "exports": [
+        "GalaxyPricingBlock",
+        "GalaxyPricingTier"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "blocks",
+      "props": []
+    },
     "progress": {
       "id": "progress",
       "name": "progress",
@@ -2793,6 +3006,19 @@
         }
       ]
     },
+    "resizable": {
+      "id": "resizable",
+      "name": "resizable",
+      "type": "other",
+      "description": "resizable",
+      "exports": [],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "other",
+      "props": []
+    },
     "scatter-chart": {
       "id": "scatter-chart",
       "name": "scatter-chart",
@@ -2932,6 +3158,19 @@
           "description": "Label for the Y axis."
         }
       ]
+    },
+    "scroll-area": {
+      "id": "scroll-area",
+      "name": "scroll-area",
+      "type": "other",
+      "description": "scroll-area",
+      "exports": [],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "other",
+      "props": []
     },
     "select": {
       "id": "select",
@@ -3501,6 +3740,25 @@
         }
       ]
     },
+    "tags-input": {
+      "id": "tags-input",
+      "name": "tags-input",
+      "type": "other",
+      "description": "tags-input",
+      "files": [
+        "tags_input.dart",
+        "index.dart"
+      ],
+      "exports": [
+        "GalaxyTagsInput"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "other",
+      "props": []
+    },
     "textarea": {
       "id": "textarea",
       "name": "textarea",
@@ -3844,6 +4102,19 @@
           "description": "Disables the toggle."
         }
       ]
+    },
+    "toolbar": {
+      "id": "toolbar",
+      "name": "Toolbar",
+      "type": "data-display",
+      "description": "Toolbar component with section grouping and separators for grouped actions.",
+      "exports": [],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "data-display",
+      "props": []
     },
     "tooltip": {
       "id": "tooltip",

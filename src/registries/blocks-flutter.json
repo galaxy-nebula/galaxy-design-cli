@@ -8,7 +8,10 @@
       "description": "Mobile-optimized chat interface with Material Design 3 styling",
       "dependencies": [],
       "devDependencies": [],
-      "registryDependencies": ["avatar", "button"],
+      "registryDependencies": [
+        "avatar",
+        "button"
+      ],
       "files": [
         "types.dart",
         "chat_ui.dart",
@@ -22,18 +25,75 @@
       "description": "Flutter drawer navigation with Material Design components",
       "dependencies": [],
       "devDependencies": [],
-      "registryDependencies": ["button"],
+      "registryDependencies": [
+        "button"
+      ],
       "files": [
         "types.dart",
         "index.dart"
       ],
       "category": "mobile-blocks"
+    },
+    "dashboard-block": {
+      "id": "dashboard-block",
+      "name": "Dashboard Block",
+      "type": "blocks",
+      "description": "Full dashboard page with collapsible sidebar, stat cards, recent activity table, and navigation.",
+      "exports": [],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "blocks",
+      "props": []
+    },
+    "login-block": {
+      "id": "login-block",
+      "name": "Login Block",
+      "type": "blocks",
+      "description": "Full login page with email/password form, remember me, and social auth.",
+      "files": [
+        "login_block.dart",
+        "index.dart"
+      ],
+      "exports": [
+        "GalaxyLoginBlock"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "blocks",
+      "props": []
+    },
+    "pricing-block": {
+      "id": "pricing-block",
+      "name": "Pricing Block",
+      "type": "blocks",
+      "description": "Pricing cards with tiers, feature lists, and highlighted plan.",
+      "files": [
+        "pricing_block.dart",
+        "index.dart"
+      ],
+      "exports": [
+        "GalaxyPricingBlock",
+        "GalaxyPricingTier"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "blocks",
+      "props": []
     }
   },
   "groups": {
     "all-mobile-blocks": {
       "name": "All Mobile Blocks",
-      "components": ["chat-ui", "sidebar"]
+      "components": [
+        "chat-ui",
+        "sidebar"
+      ]
     }
   }
 }

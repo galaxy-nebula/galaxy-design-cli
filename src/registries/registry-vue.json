@@ -1143,7 +1143,8 @@
         "Calendar"
       ],
       "dependencies": [
-        "radix-vue"
+        "radix-vue",
+        "lucide-vue-next"
       ],
       "devDependencies": [],
       "peerDependencies": [],
@@ -1189,6 +1190,27 @@
           "description": "CSS class names for the card container."
         }
       ]
+    },
+    "carousel": {
+      "id": "carousel",
+      "name": "Carousel",
+      "type": "data-display",
+      "description": "Carousel component - embla-based with prev/next controls.",
+      "files": [
+        "Carousel.vue",
+        "index.ts"
+      ],
+      "exports": [
+        "Carousel"
+      ],
+      "dependencies": [
+        "embla-carousel-vue"
+      ],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "data-display",
+      "props": []
     },
     "checkbox": {
       "id": "checkbox",
@@ -1547,7 +1569,8 @@
       "dependencies": [
         "date-fns",
         "lucide-vue-next",
-        "radix-vue"
+        "radix-vue",
+        "@internationalized/date"
       ],
       "devDependencies": [],
       "peerDependencies": [],
@@ -1575,7 +1598,8 @@
       "dependencies": [
         "date-fns",
         "lucide-vue-next",
-        "radix-vue"
+        "radix-vue",
+        "@internationalized/date"
       ],
       "devDependencies": [],
       "peerDependencies": [],
@@ -1603,7 +1627,8 @@
       "dependencies": [
         "date-fns",
         "lucide-vue-next",
-        "radix-vue"
+        "radix-vue",
+        "@internationalized/date"
       ],
       "devDependencies": [],
       "peerDependencies": [],
@@ -1877,6 +1902,25 @@
           "default": "{}"
         }
       ]
+    },
+    "drawer": {
+      "id": "drawer",
+      "name": "Drawer",
+      "type": "overlay",
+      "description": "Mobile-first bottom sheet drawer.",
+      "files": [
+        "Drawer.vue",
+        "index.ts"
+      ],
+      "exports": [
+        "Drawer"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "overlay",
+      "props": []
     },
     "dropdown-menu": {
       "id": "dropdown-menu",
