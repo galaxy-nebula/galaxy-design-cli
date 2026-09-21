@@ -27,7 +27,7 @@ jobs:
           node-version: 22
           registry-url: 'https://registry.npmjs.org/'
 
-      - name: Use latest npm (trusted publishing support)
+      - name: Use latest npm
         run: npm install -g npm@latest
 
       - name: Install dependencies
@@ -47,6 +47,6 @@ jobs:
             echo "SHOULD_PUBLISH=true" >> "$GITHUB_ENV"
           fi
 
-      - name: Publish (skip prepublishOnly — verify ran locally)
+      - name: Publish (skip prepublishOnly — verify already done)
         if: env.SHOULD_PUBLISH == 'true'
         run: npm publish --access public --provenance --ignore-scripts
