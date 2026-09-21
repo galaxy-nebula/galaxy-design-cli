@@ -1062,7 +1062,8 @@
         "nextjs",
         "vue",
         "nuxtjs",
-        "angular"
+        "angular",
+        "flutter"
       ]
     }
   },
