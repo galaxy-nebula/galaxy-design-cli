@@ -11,7 +11,7 @@ mkdirSync(registryOutput, { recursive: true });
 copyFileSync(resolve(sourceRoot, 'registry.json'), resolve(outputRoot, 'registry.json'));
 
 for (const framework of ['react', 'vue', 'angular', 'react-native', 'flutter']) {
-  for (const kind of ['registry', 'blocks']) {
+  for (const kind of ['registry', 'blocks', 'assistant']) {
     const fileName = `${kind}-${framework}.json`;
     copyFileSync(
       resolve(sourceRoot, 'registries', fileName),

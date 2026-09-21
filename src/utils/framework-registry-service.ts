@@ -73,7 +73,7 @@ function normalizeRegistryTarget(target: RegistryTarget): RegistryFramework {
 
 function getRegistrySearchPaths(
   framework: RegistryFramework,
-  kind: 'registry' | 'blocks',
+  kind: 'registry' | 'blocks' | 'assistant',
   registryDir?: string,
 ): string[] {
   const fileName = `${kind}-${framework}.json`;
@@ -93,7 +93,7 @@ function getRegistrySearchPaths(
 
 function readRegistryJson(
   framework: RegistryFramework,
-  kind: 'registry' | 'blocks',
+  kind: 'registry' | 'blocks' | 'assistant',
   registryDir?: string,
 ): FrameworkRegistry | null {
   const candidates = getRegistrySearchPaths(framework, kind, registryDir);
@@ -119,6 +119,7 @@ export function loadFrameworkRegistry(
 ): FrameworkRegistry {
   const framework = normalizeRegistryTarget(target);
   const includeBlocks = options?.includeBlocks !== false;
+  const includeAssistant = options?.includeBlocks !== false;
   const cacheKey = [framework, options?.registryDir || '', includeBlocks]
     .filter(Boolean)
     .join(':');
@@ -169,6 +170,26 @@ export function loadFrameworkRegistry(
       mergedRegistry.groups = {
         ...mergedRegistry.groups,
         ...blocksRegistry.groups,
+      };
+    }
+  }
+
+  if (includeAssistant) {
+    const assistantRegistry = readRegistryJson(
+      framework,
+      'assistant',
+      options?.registryDir,
+    );
+
+    if (assistantRegistry) {
+      mergedRegistry.components = {
+        ...mergedRegistry.components,
+        ...assistantRegistry.components,
+      };
+
+      mergedRegistry.groups = {
+        ...mergedRegistry.groups,
+        ...assistantRegistry.groups,
       };
     }
   }

@@ -71,6 +71,8 @@ export interface CopyComponentFilesOptions {
   componentName: string;
   componentFiles: string[];
   componentType?: string;
+  /** Whether the component is an assistant composite (source lives in assistant/) */
+  assistantComponent?: boolean;
   sourcePlatform: Platform;
   targetPlatform: Platform;
   targetDirectory: string;
@@ -142,7 +144,11 @@ export async function copyComponentFilesToDirectory(
   const writtenFiles: string[] = [];
   const sourcePlatform = normalizeSourcePlatform(options.sourcePlatform);
   const sourceType =
-    options.componentType === 'block' ? 'blocks' : 'components';
+    options.componentType === 'assistant'
+      ? 'assistant'
+      : options.componentType === 'block'
+        ? 'blocks'
+        : 'components';
   const sourceComponentName =
     sourceType === 'blocks'
       ? normalizeBlockSourceName(sourcePlatform, options.componentName)

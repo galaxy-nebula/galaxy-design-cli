@@ -160,7 +160,7 @@ export function getComponentGitHubPath(
   platform: string,
   componentName: string,
   fileName: string,
-  sourceType: 'components' | 'blocks' = 'components',
+  sourceType: 'components' | 'blocks' | 'assistant' = 'components',
 ): string {
   // Map platform to package directory
   const platformMap: Record<string, string> = {

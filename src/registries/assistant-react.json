@@ -1,0 +1,102 @@
+{
+  "schemaVersion": "1.0.0",
+  "name": "react",
+  "generated": true,
+  "pilot": true,
+  "source": "packages/contracts/manifests",
+  "components": {
+    "agent-activity": {
+      "id": "agent-activity",
+      "name": "Agent Activity",
+      "type": "assistant",
+      "description": "Codex-style agent progress panel with task checklist, status badges, progress bar, and timestamped tool call log.",
+      "files": [
+        "AgentActivity.tsx",
+        "AgentTaskItem.tsx",
+        "ToolCallLog.tsx",
+        "types.ts",
+        "index.ts"
+      ],
+      "exports": [
+        "AgentActivity",
+        "AgentTaskItem",
+        "ToolCallLog"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "assistant",
+      "props": []
+    },
+    "chat-panel": {
+      "id": "chat-panel",
+      "name": "Chat Panel",
+      "type": "assistant",
+      "description": "Copilot-style assistant side panel with message list, tool call cards, model badge, and composer with send/stop states.",
+      "files": [
+        "ChatPanel.tsx",
+        "ChatMessage.tsx",
+        "ChatComposer.tsx",
+        "ToolCallCard.tsx",
+        "types.ts",
+        "index.ts"
+      ],
+      "exports": [
+        "ChatPanel",
+        "ChatMessage",
+        "ChatComposer",
+        "ToolCallCard"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "assistant",
+      "props": []
+    },
+    "diff-review": {
+      "id": "diff-review",
+      "name": "Diff Review",
+      "type": "assistant",
+      "description": "AI code review panel with file-level accept/reject, per-file unified diff view, and summary stats for additions and deletions.",
+      "files": [
+        "DiffReview.tsx",
+        "FileDiffCard.tsx",
+        "types.ts",
+        "index.ts"
+      ],
+      "exports": [
+        "DiffReview",
+        "FileDiffCard"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "assistant",
+      "props": []
+    },
+    "prompt-box": {
+      "id": "prompt-box",
+      "name": "Prompt Box",
+      "type": "assistant",
+      "description": "Standalone assistant composer with auto-resizing textarea, attachments row, model pill, slash-command hints, and send/stop states.",
+      "files": [
+        "PromptBox.tsx",
+        "types.ts",
+        "index.ts"
+      ],
+      "exports": [
+        "PromptBox"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "peerDependencies": [],
+      "registryDependencies": [],
+      "category": "assistant",
+      "props": []
+    }
+  },
+  "groups": {}
+}

@@ -9,7 +9,7 @@ import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 
 const projectRoot = path.resolve(new URL('..', import.meta.url).pathname);
-const generatedRoot = path.resolve(projectRoot, '..', '..', 'galaxy-design', 'packages', 'packages', 'contracts', 'generated');
+const generatedRoot = path.resolve(projectRoot, '..', 'galaxy-design', 'packages', 'contracts', 'generated');
 
 const FRAMEWORKS = {
   react: 'registry-react.json',
@@ -20,6 +20,7 @@ const FRAMEWORKS = {
 };
 
 const BLOCK_CATEGORIES = new Set(['blocks', 'mobile-blocks', 'block']);
+const ASSISTANT_CATEGORIES = new Set(['assistant']);
 
 for (const [framework, fileName] of Object.entries(FRAMEWORKS)) {
   const targetPath = path.join(projectRoot, 'src', 'registries', fileName);
@@ -31,6 +32,7 @@ for (const [framework, fileName] of Object.entries(FRAMEWORKS)) {
   const stripped = {};
   const mainComponents = {};
   const blockComponents = {};
+  const assistantComponents = {};
 
   for (const [id, entry] of Object.entries(generated.components)) {
     const clone = { ...entry };
@@ -40,7 +42,9 @@ for (const [framework, fileName] of Object.entries(FRAMEWORKS)) {
     clone.category = clone.category || 'other';
     stripped[id] = clone;
 
-    if (BLOCK_CATEGORIES.has(clone.category)) {
+    if (ASSISTANT_CATEGORIES.has(clone.category)) {
+      assistantComponents[id] = clone;
+    } else if (BLOCK_CATEGORIES.has(clone.category)) {
       blockComponents[id] = clone;
     } else {
       mainComponents[id] = clone;
@@ -61,7 +65,27 @@ for (const [framework, fileName] of Object.entries(FRAMEWORKS)) {
     writeFileSync(blocksPath, JSON.stringify(blocksReg, null, 2) + '\n');
   }
 
-  console.log(`${framework}: ${Object.keys(mainComponents).length} main + ${Object.keys(blockComponents).length} blocks`);
+  // Update assistant registry (assistant category only)
+  const assistantFileName = fileName.replace('registry-', 'assistant-');
+  const assistantPath = path.join(projectRoot, 'src', 'registries', assistantFileName);
+  let assistantReg;
+  if (existsSync(assistantPath)) {
+    assistantReg = JSON.parse(readFileSync(assistantPath, 'utf-8'));
+  } else {
+    assistantReg = {
+      schemaVersion: '1.0.0',
+      name: framework,
+      generated: true,
+      pilot: true,
+      source: 'packages/contracts/manifests',
+      components: {},
+      groups: {},
+    };
+  }
+  assistantReg.components = { ...assistantReg.components, ...assistantComponents };
+  writeFileSync(assistantPath, JSON.stringify(assistantReg, null, 2) + '\n');
+
+  console.log(`${framework}: ${Object.keys(mainComponents).length} main + ${Object.keys(blockComponents).length} blocks + ${Object.keys(assistantComponents).length} assistant`);
 }
 
 console.log('CLI registries synced from manifest artifacts.');
