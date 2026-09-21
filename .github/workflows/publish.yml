@@ -19,7 +19,7 @@ jobs:
         with:
           repository: galaxy-nebula/galaxy-design
           ref: main
-          path: ../galaxy-design
+          path: galaxy-design
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: actions/setup-node@v4
@@ -30,8 +30,11 @@ jobs:
       - name: Use latest npm
         run: npm install -g npm@latest
 
-      - name: Install dependencies
-        run: npm install --no-audit --no-fund
+      - name: Install dependencies (bun — workspace has bun.lock)
+        run: |
+          curl -fsSL https://bun.sh/install | bash
+          echo "$HOME/.bun/bin" >> "$GITHUB_PATH"
+          bun install --no-audit --no-fund
 
       - name: Build
         run: npm run build
