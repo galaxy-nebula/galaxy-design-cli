@@ -11,7 +11,7 @@ import { createHash } from 'crypto';
 
 /** Trust anchor — must match the artifact built for this CLI release. */
 export const EXPECTED_REGISTRY_DIGEST =
-  'b351c8a141c77f43e86ec3a088bb7e31940946b40d2fe663e2a83cf01331023d';
+  'a5e1a65beb1a57fd12dda56af222b33d6e673327928c33f06724a42307ac1b31';
 
 export const DEFAULT_REGISTRY_BASE =
   'https://galaxy-nebula.vercel.app/registry';
