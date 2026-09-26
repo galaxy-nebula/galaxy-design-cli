@@ -2,7 +2,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
 import { dirname, resolve } from 'path';
 import type { BaseColor, Framework } from './config-schema.js';
 import { loadThemePreset, isThemePreset } from './theme-presets.js';
-import { buildCSSFromVars } from './theme-css.js';
+import { buildCSSFromVars, TAILWIND_V4_THEME_BRIDGE } from './theme-css.js';
 
 export type TailwindMode = 'v3' | 'v4';
 
@@ -276,32 +276,7 @@ function getPostCSSConfigContent(
 }
 
 export function getTailwindV4ThemeBridge(): string {
-  return `@custom-variant dark (&:is(.dark *));
-
-@theme inline {
-  --color-background: hsl(var(--background));
-  --color-foreground: hsl(var(--foreground));
-  --color-card: hsl(var(--card));
-  --color-card-foreground: hsl(var(--card-foreground));
-  --color-popover: hsl(var(--popover));
-  --color-popover-foreground: hsl(var(--popover-foreground));
-  --color-primary: hsl(var(--primary));
-  --color-primary-foreground: hsl(var(--primary-foreground));
-  --color-secondary: hsl(var(--secondary));
-  --color-secondary-foreground: hsl(var(--secondary-foreground));
-  --color-muted: hsl(var(--muted));
-  --color-muted-foreground: hsl(var(--muted-foreground));
-  --color-accent: hsl(var(--accent));
-  --color-accent-foreground: hsl(var(--accent-foreground));
-  --color-destructive: hsl(var(--destructive));
-  --color-destructive-foreground: hsl(var(--destructive-foreground));
-  --color-border: hsl(var(--border));
-  --color-input: hsl(var(--input));
-  --color-ring: hsl(var(--ring));
-  --radius-lg: var(--radius);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-sm: calc(var(--radius) - 4px);
-}`;
+  return TAILWIND_V4_THEME_BRIDGE;
 }
 
 function getCSSContent(baseColor: BaseColor, mode: TailwindMode): string {

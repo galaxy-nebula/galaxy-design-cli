@@ -144,7 +144,7 @@ function configureTypeScriptAliases(
     if (match) {
       const baseIndent = match[2] || '  ';
       const propertyIndent = baseIndent + '  ';
-      const pathConfig = `,${match[1]}${propertyIndent}/* Path Aliases */${match[1]}${propertyIndent}"baseUrl": ".",${match[1]}${propertyIndent}"paths": {${match[1]}${propertyIndent}  "@/*": ["${pathMapping}"]${match[1]}${propertyIndent}}`;
+      const pathConfig = `,${match[1]}${propertyIndent}/* Path Aliases */${match[1]}${propertyIndent}${match[1]}${propertyIndent}"paths": {${match[1]}${propertyIndent}  "@/*": ["${pathMapping}"]${match[1]}${propertyIndent}}`;
 
       content = content.replace(
         insertPattern,

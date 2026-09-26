@@ -154,6 +154,15 @@ export async function doctorCommand(options: DoctorOptions) {
 
       if (cssContent.includes('@theme inline')) {
         report('pass', 'Semantic theme bridge (@theme inline) present');
+        const requiredTokens = ['--color-card', '--color-secondary', '--color-muted', '--color-accent', '--color-destructive', '--color-popover'];
+        const missingTokens = requiredTokens.filter((token) => !cssContent.includes(token));
+        if (missingTokens.length > 0) {
+          report(
+            'fail',
+            `@theme inline is missing semantic tokens: ${missingTokens.join(', ')}`,
+            'Re-run `galaxy-design init` (or add the full semantic bridge) so component color utilities resolve.',
+          );
+        }
       } else {
         report(
           'warn',

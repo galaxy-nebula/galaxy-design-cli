@@ -142,7 +142,17 @@ async function testTailwindScaffold() {
   console.log('PASS tailwind scaffold');
 }
 
+async function testV4ThemeBridge() {
+  const { buildCSSFromVars } = await import('../dist/utils/theme-css.js');
+  const css = buildCSSFromVars(':root { --background: 0 0% 100%; }', '.dark { --background: 0 0% 0%; }', 'v4');
+  for (const token of ['--color-card', '--color-card-foreground', '--color-popover', '--color-secondary', '--color-muted', '--color-accent', '--color-destructive']) {
+    assert.ok(css.includes(token), `v4 theme bridge missing ${token}`);
+  }
+  console.log('PASS v4 theme bridge completeness');
+}
+
 await testTailwindDetection();
 await testTailwindScaffold();
+await testV4ThemeBridge();
 
 console.log('tailwind utility checks passed');
